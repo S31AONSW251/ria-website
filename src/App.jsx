@@ -101,6 +101,27 @@ const productCards = [
   ['Voice Interaction', Mic2, 'Natural voice input and spoken responses for a more human companion experience.']
 ]
 
+const differentiators = [
+  ['Built for continuity', Database, 'Most AI tools answer one prompt at a time. RIA is being designed around long-term memory, identity continuity, journaling, and reflective summaries so the relationship can become more useful over time.'],
+  ['Personal before generic', HeartPulse, 'RIA focuses on the person: emotions, beliefs, goals, routines, stress patterns, recovery, and self-understanding. It is not only a question-answer system; it is a private cognitive companion.'],
+  ['User-owned intelligence', LockKeyhole, 'The aim is to make memory visible, editable, exportable, and controlled by the user. RIA should feel trusted because the user can understand what it knows and decide what it keeps.'],
+  ['Designed to travel across devices', Cpu, 'RIA is planned as adaptable software that can move from web and mobile to desktop, embedded devices, wearables, robotics, and future compute environments, including quantum-assisted systems when those platforms mature.']
+]
+
+const installSteps = [
+  ['Choose your platform', 'Select the installer for Windows, macOS, Linux, Android, or the future web/mobile build once early access opens.'],
+  ['Request early access', 'Until public installers are released, use the early access contact button so the founder can share prototype availability and onboarding details.'],
+  ['Install and sign in', 'Run the installer, open RIA, and connect your private profile. The first release will focus on memory, journaling, reflection, and calm mode.'],
+  ['Control your data', 'Review memory, edit saved details, export important notes, and remove anything you do not want RIA to keep.']
+]
+
+const deviceTargets = [
+  ['Desktop', 'Windows, macOS, and Linux for focused daily work.'],
+  ['Mobile', 'Android and future mobile builds for always-available personal support.'],
+  ['Embedded', 'Designed for future integration with electronic devices, wearables, and smart environments.'],
+  ['Future compute', 'Architected with long-term portability in mind, including advanced and quantum-assisted computing platforms as they become practical.']
+]
+
 const news = [
   ['Research', 'How RIA detects recurring emotional patterns'],
   ['Product', 'Designing an editable memory vault'],
@@ -356,7 +377,7 @@ function Home() {
               Personal cognitive <span className="bg-gradient-to-r from-white via-violet-200 to-cyan-200 bg-clip-text text-transparent">intelligence</span>
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-zinc-300">
-              RIA is a persistent digital second brain that remembers, reflects, journals, tracks emotion, classifies beliefs, and grows with you over time.
+              RIA is a persistent digital second brain built to remember, reflect, journal, understand emotion, support decisions, and grow into a private cognitive operating system for every device you use.
             </p>
             <HeroSearch />
             <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -371,6 +392,7 @@ function Home() {
       </section>
       <Featured />
       <ProductGrid />
+      <DifferenceSection />
       <EditorialSections />
     </>
   )
@@ -499,12 +521,13 @@ function Research() {
 function Product() {
   return (
     <>
-      <PageHero label="Product" title="RIA is a digital second brain" copy="A personal AI companion that remembers, reflects, journals, understands emotion, and helps the user grow over time." />
+      <PageHero label="Product" title="RIA is a digital second brain" copy="A personal AI companion designed for memory continuity, reflection, journaling, emotional understanding, private data control, and long-term device portability." />
       <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
         <Container>
           <Dashboard />
         </Container>
       </section>
+      <DifferenceSection />
     </>
   )
 }
@@ -545,6 +568,36 @@ function ChatPanel() {
         <div className="ml-auto max-w-[82%] rounded-xl bg-white p-4 text-sm text-black">Create a journal note.</div>
       </div>
     </div>
+  )
+}
+
+function DifferenceSection() {
+  return (
+    <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <Container>
+        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+          <div>
+            <p className="text-sm text-cyan-200">Why RIA is different</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl">Not another chatbot. A personal intelligence layer.</h2>
+            <p className="mt-6 max-w-xl text-base leading-8 text-zinc-400">
+              RIA is being built to become software that understands a person over time. The goal is to combine AI conversation with memory, emotional context, private journaling, belief tracking, and device portability, so RIA can support the user wherever their digital life moves.
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">
+              Our aim is to create a calm, trusted, deeply personal system: an AI that helps people think clearly, recover emotionally, organize their inner life, and build better decisions without losing control of their data.
+            </p>
+          </div>
+          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
+            {differentiators.map(([title, Icon, copy]) => (
+              <div key={title} className="bg-[#0a0714] p-7">
+                <Icon className="h-6 w-6 text-violet-200" />
+                <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
   )
 }
 
@@ -655,15 +708,15 @@ function Funding() {
 function Download() {
   return (
     <>
-      <PageHero label="Download" title="Download RIA" copy="RIA is currently in prototype development. This page is ready for the first public installer, early access build, or waitlist release." />
+      <PageHero label="Download" title="Download RIA" copy="RIA is preparing for early access across desktop, mobile, and future device environments. Public installers will be published here as soon as the first secure prototype release is ready." />
       <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="bg-white p-8 text-black">
               <Sparkles className="h-8 w-8" />
               <p className="mt-10 text-sm text-zinc-500">Early access</p>
-              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">RIA is preparing for release.</h2>
-              <p className="mt-5 max-w-md leading-7 text-zinc-700">Until the app installer is ready, investors and early users can contact Sudeep Bala for prototype access.</p>
+              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">RIA is preparing for a secure prototype release.</h2>
+              <p className="mt-5 max-w-md leading-7 text-zinc-700">The first RIA release will focus on a trusted personal AI experience: memory, journaling, reflection, emotional support, calm mode, and privacy-first data controls. Until the public installer is ready, investors and early users can request direct prototype access.</p>
               <a href="mailto:balasudeep22@gmail.com?subject=RIA%20Early%20Access" className="mt-8 inline-flex rounded-full bg-black px-5 py-3 text-sm font-medium text-white">Request early access</a>
             </div>
             <div className="grid gap-px bg-white/10 md:grid-cols-2">
@@ -676,9 +729,43 @@ function Download() {
                 <div key={platform} className="bg-[#05030d] p-7">
                   <p className="text-sm text-zinc-500">{platform}</p>
                   <h3 className="mt-10 text-2xl font-semibold tracking-[-0.04em]">{status}</h3>
-                  <a href={href} className="mt-6 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-300 transition hover:border-white hover:text-white">Installer placeholder</a>
+                  <p className="mt-4 text-sm leading-7 text-zinc-500">The installer will appear here when the early access package is approved for release.</p>
+                  <a href={href} className="mt-6 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-300 transition hover:border-white hover:text-white">Installer coming soon</a>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="border border-white/10 bg-[#0a0714] p-8">
+              <p className="text-sm text-cyan-200">How to download and install RIA</p>
+              <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1] tracking-[-0.055em] text-white">A clear release path from prototype access to public installers.</h2>
+              <div className="mt-8 grid gap-4">
+                {installSteps.map(([title, copy], index) => (
+                  <div key={title} className="grid gap-4 border-t border-white/10 pt-5 sm:grid-cols-[3rem_1fr]">
+                    <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-sm font-semibold text-black">{index + 1}</span>
+                    <div>
+                      <h3 className="text-xl font-semibold tracking-[-0.035em]">{title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-zinc-400">{copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border border-white/10 bg-[#0a0714] p-8">
+              <Cpu className="h-7 w-7 text-violet-200" />
+              <p className="mt-8 text-sm text-zinc-500">Device vision</p>
+              <h2 className="mt-3 text-4xl font-semibold leading-[1] tracking-[-0.055em]">Designed for every generation of personal computing.</h2>
+              <p className="mt-5 text-sm leading-7 text-zinc-400">RIA is being designed as portable intelligence software. The long-term ambition is for RIA to run across ordinary electronic devices first, then expand into advanced computing environments as hardware, security, and platform standards evolve.</p>
+              <div className="mt-7 grid gap-3">
+                {deviceTargets.map(([title, copy]) => (
+                  <div key={title} className="border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-sm font-medium text-white">{title}</p>
+                    <p className="mt-2 text-xs leading-5 text-zinc-500">{copy}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Container>
