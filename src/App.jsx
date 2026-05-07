@@ -1079,16 +1079,16 @@ function Demo() {
     chip: isLight ? 'border-sky-300/70 bg-sky-50 text-sky-950 shadow-sm shadow-sky-100/70' : emotionTheme.chip
   }
   const skin = {
-    page: isLight ? 'bg-[linear-gradient(135deg,#f8fbff_0%,#e9f3f8_42%,#f7f4ff_100%)] text-slate-950' : 'void-cosmos text-white',
-    shell: isLight ? 'bg-white/88 border-slate-300/80 shadow-lg shadow-slate-200/70' : 'bg-white/[0.045] border-white/10 shadow-black/40',
-    panel: isLight ? 'bg-slate-50/90 border-slate-300/80' : 'bg-black/35 border-white/10',
-    module: isLight ? 'border-slate-300/80 bg-white/76' : 'border-white/10 bg-white/[0.035]',
-    field: isLight ? 'border-slate-300/80 bg-white/90 text-slate-800 focus:border-sky-400' : 'border-white/10 bg-black/20 text-zinc-300 focus:border-white/30',
+    page: isLight ? 'bg-[#f7f9fc] text-slate-950' : 'void-cosmos text-white',
+    shell: isLight ? 'bg-white border-slate-200 shadow-[0_18px_60px_rgba(15,23,42,0.08)]' : 'bg-white/[0.045] border-white/10 shadow-black/40',
+    panel: isLight ? 'bg-white border-slate-200 shadow-sm shadow-slate-200/60' : 'bg-black/35 border-white/10',
+    module: isLight ? 'border-slate-200 bg-white shadow-sm shadow-slate-200/60' : 'border-white/10 bg-white/[0.035]',
+    field: isLight ? 'border-slate-200 bg-slate-50 text-slate-800 focus:border-sky-400' : 'border-white/10 bg-black/20 text-zinc-300 focus:border-white/30',
     divider: isLight ? 'border-slate-200' : 'border-white/10',
     muted: isLight ? 'text-slate-600' : 'text-zinc-500',
     text: isLight ? 'text-slate-950' : 'text-white',
     soft: isLight ? 'text-slate-700' : 'text-zinc-300',
-    active: isLight ? 'bg-slate-950 text-white border-slate-950' : 'bg-white text-black border-white'
+    active: isLight ? 'bg-slate-950 text-white border-slate-950 shadow-sm shadow-slate-300/80' : 'bg-white text-black border-white'
   }
   const memoryCounts = {
     goals: memory.nodes.filter((node) => node.type === 'goal').length,
@@ -1364,12 +1364,15 @@ function Demo() {
 
   return (
     <section className={`ria-demo relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
-      <div className={`void-stars absolute inset-0 ${isLight ? 'opacity-25' : 'opacity-60'}`} />
-      <div className={`absolute inset-0 ${isLight ? 'opacity-20' : 'opacity-45'}`}>
-        <div className="thought-stream thought-stream-a" />
-        <div className="thought-stream thought-stream-b" />
+      <div className={`void-stars absolute inset-0 ${isLight ? 'opacity-0' : 'opacity-60'}`} />
+      <div className={`absolute inset-0 ${isLight ? 'opacity-100' : 'opacity-45'}`}>
+        <div className={`thought-stream thought-stream-a ${isLight ? 'hidden' : ''}`} />
+        <div className={`thought-stream thought-stream-b ${isLight ? 'hidden' : ''}`} />
         <div className={`absolute inset-0 bg-[size:72px_72px] ${isLight ? 'bg-[linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)]' : 'bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]'}`} />
       </div>
+      {isLight && (
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_34%,rgba(14,165,233,0.11),transparent_26%),radial-gradient(circle_at_78%_16%,rgba(124,58,237,0.08),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.88),rgba(247,249,252,0.92))]" />
+      )}
       <div className="relative grid min-h-[calc(100vh-5rem)] grid-cols-1 xl:grid-cols-[17rem_1fr_20rem]">
         <aside className={`hidden border-r p-5 xl:block ${skin.panel}`}>
           <div className="flex items-center gap-3">
@@ -1459,9 +1462,9 @@ function Demo() {
               <div className={`mx-auto mt-5 max-w-[78rem] overflow-hidden rounded-[1.5rem] border p-5 text-center backdrop-blur-xl sm:mt-6 sm:rounded-[2rem] sm:p-8 ${skin.shell}`}>
                 <p className={`mx-auto inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>AI WORKSPACE</p>
                 <div className="relative mx-auto mt-8 grid h-40 max-w-3xl place-items-center overflow-hidden sm:h-44">
-                  <div className={`absolute h-36 w-36 rounded-full border blur-sm ${isLight ? 'border-sky-200 bg-sky-100/50' : 'border-white/10 bg-white/10'}`} />
-                  <div className={`absolute h-20 w-20 rounded-full blur-2xl ${isLight ? 'bg-sky-200/70' : 'bg-white/20'}`} />
-                  <h1 className="relative text-4xl font-semibold tracking-[0.24em] sm:text-8xl sm:tracking-[0.42em]">ORBIT</h1>
+                  <div className={`absolute h-36 w-36 rounded-full border blur-sm ${isLight ? 'border-sky-200 bg-sky-50' : 'border-white/10 bg-white/10'}`} />
+                  <div className={`absolute h-20 w-20 rounded-full blur-2xl ${isLight ? 'bg-sky-100' : 'bg-white/20'}`} />
+                  <h1 className="relative text-4xl font-semibold tracking-[0.24em] text-slate-950 sm:text-8xl sm:tracking-[0.42em]">ORBIT</h1>
                   <p className={`absolute bottom-0 px-2 text-[0.65rem] font-semibold tracking-[0.22em] sm:text-xs sm:tracking-[0.5em] ${skin.muted}`}>COGNITIVE COMPANION WORKSPACE</p>
                 </div>
               </div>
@@ -1486,7 +1489,7 @@ function Demo() {
                 <div className={`rounded-2xl border p-4 sm:p-5 ${skin.shell}`}>
               <div className="mb-4 flex items-center justify-between">
                 <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>ASK OR COMMAND</p>
-                <span className="inline-flex items-center gap-2 text-xs text-emerald-300"><span className="h-2 w-2 rounded-full bg-emerald-300" />ONLINE</span>
+                <span className={`inline-flex items-center gap-2 text-xs font-medium ${isLight ? 'text-emerald-700' : 'text-emerald-300'}`}><span className="h-2 w-2 rounded-full bg-emerald-400" />ONLINE</span>
               </div>
               <form onSubmit={(event) => { event.preventDefault(); send() }} className={`flex gap-2 rounded-2xl border p-3 sm:gap-3 ${skin.panel}`}>
                 <textarea value={input} onChange={(event) => setInput(event.target.value)} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent p-3 text-base outline-none ${skin.text}`} placeholder="Ask RIA what to do next, or use a command like /analyze..." />
@@ -1536,7 +1539,7 @@ function Demo() {
                   </div>
                 ))}
               </div>
-              <button onClick={() => setActiveTab('memory')} className={`mt-5 w-full rounded-full border px-5 py-3 text-sm ${skin.panel}`}>Open evolution history</button>
+              <button onClick={() => setActiveTab('memory')} className={`mt-5 w-full rounded-full border px-5 py-3 text-sm font-medium ${skin.panel}`}>Open evolution history</button>
             </div>
               </div>
             </>
@@ -1555,13 +1558,13 @@ function Demo() {
               <p className={`mt-2 text-xs ${skin.muted}`}>Internal architecture hidden</p>
             </div>
             {['MODEL PATH', 'MEMORY INDEX', 'REASONING MAP', 'POWER DRAW'].map((item) => (
-              <div key={item} className="mt-5 border-b border-white/10 pb-4">
+              <div key={item} className={`mt-5 border-b pb-4 ${skin.divider}`}>
                 <div className="flex items-center justify-between">
                   <span className={`text-xs font-semibold ${skin.muted}`}>{item}</span>
                   <span className="font-semibold">HIDDEN</span>
                 </div>
-                <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full w-2/3 rounded-full bg-white/30 blur-[1px]" />
+                <div className={`mt-3 h-2 overflow-hidden rounded-full ${isLight ? 'bg-slate-100' : 'bg-white/10'}`}>
+                  <div className={`h-full w-2/3 rounded-full ${isLight ? 'bg-slate-300' : 'bg-white/30 blur-[1px]'}`} />
                 </div>
               </div>
             ))}
