@@ -1424,20 +1424,6 @@ function Demo() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-3 md:grid-cols-4">
-        {[
-          ['Brain route', 'secure chat flow'],
-          ['Memory', 'linked'],
-          ['Mode', 'high-level'],
-          ['Response', 'structured reasoning']
-        ].map(([label, value]) => (
-          <div key={label} className={`rounded-2xl border p-4 ${skin.panel}`}>
-            <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${skin.muted}`}>{label}</p>
-            <p className="mt-2 text-base font-semibold">{value}</p>
-          </div>
-        ))}
-      </div>
-
       <div className="mt-6 h-[58vh] min-h-[24rem] space-y-6 overflow-y-auto pr-1 sm:mt-8 sm:h-[560px] sm:space-y-8 sm:pr-2">
         {messages.map((message, index) => (
           <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex gap-2 sm:gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
