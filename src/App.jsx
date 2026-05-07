@@ -441,7 +441,7 @@ function Container({ children, className = '' }) {
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#05030d]/85 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/35 backdrop-blur-2xl">
       <Container className="flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img src={images.logo} alt="" className="h-7 w-7 rounded-full object-cover invert grayscale" onError={(event) => { event.currentTarget.style.display = 'none' }} />
@@ -468,7 +468,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#05030d]">
+    <footer className="border-t border-white/10 bg-black/25 backdrop-blur-xl">
       <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-5">
         <div>
           <div className="mb-6 flex items-center gap-2 text-white">
@@ -531,13 +531,13 @@ function HeroSearch() {
 function Home() {
   return (
     <>
-      <section className="relative min-h-screen overflow-hidden bg-[#020407] pt-24 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(34,211,238,0.18),transparent_24%),radial-gradient(circle_at_50%_48%,rgba(168,85,247,0.2),transparent_32%),linear-gradient(180deg,#020407_0%,#06111b_52%,#020407_100%)]" />
+      <section className="void-cosmos relative min-h-screen overflow-hidden bg-transparent pt-24 text-white">
+        <div className="void-stars absolute inset-0 opacity-70" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:76px_76px] opacity-25" />
         <div className="thought-stream thought-stream-a opacity-30" />
         <div className="thought-stream thought-stream-b opacity-20" />
         <Container className="relative grid min-h-[calc(100vh-6rem)] gap-8 py-8 xl:grid-cols-[21rem_1fr_21rem] xl:items-center">
-          <motion.aside initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="hidden border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl xl:block">
+          <motion.aside initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="cosmos-glass hidden border border-white/10 p-5 xl:block">
             <div className="flex items-center gap-3">
               <BrainCircuit className="h-7 w-7 text-cyan-200" />
               <div>
@@ -585,7 +585,7 @@ function Home() {
                 </div>
               </div>
               {homeOrbitModules.map(([title, Icon, copy], index) => (
-                <Link key={title} to={title === 'Chat' ? '/demo' : '/product'} className={`home-orbit-node home-orbit-node-${index} group border border-white/10 bg-black/55 p-4 text-left shadow-2xl backdrop-blur-xl transition hover:border-cyan-200/50`}>
+                <Link key={title} to={title === 'Chat' ? '/demo' : '/product'} className={`home-orbit-node home-orbit-node-${index} cosmos-glass group border border-white/10 p-4 text-left transition hover:border-cyan-200/50`}>
                   <Icon className="h-5 w-5 text-cyan-100" />
                   <p className="mt-4 text-sm font-semibold">{title}</p>
                   <p className="mt-1 text-xs leading-5 text-zinc-500">{copy}</p>
@@ -600,7 +600,7 @@ function Home() {
           </motion.div>
 
           <motion.aside initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="hidden space-y-5 xl:block">
-            <div className="border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
+            <div className="cosmos-glass border border-white/10 p-5">
               <p className="text-sm font-semibold text-cyan-100">Memory Field UI</p>
               <div className="mt-5 space-y-3">
                 {memoryField.map(([title, copy, Icon]) => (
@@ -614,7 +614,7 @@ function Home() {
                 ))}
               </div>
             </div>
-            <div className="border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
+            <div className="cosmos-glass border border-white/10 p-5">
               <p className="text-sm font-semibold text-violet-100">User Evolution Model</p>
               <div className="mt-5 space-y-4">
                 {evolutionSignals.map(([label, value]) => (
@@ -642,10 +642,11 @@ function Home() {
 
 function HomeSystemPanels() {
   return (
-    <section className="border-t border-white/10 bg-[#020407] py-20 text-white">
+    <section className="void-cosmos relative overflow-hidden border-t border-white/10 bg-transparent py-20 text-white">
+      <div className="void-stars absolute inset-0 opacity-35" />
       <Container>
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="border border-white/10 bg-white/[0.04] p-8">
+        <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="cosmos-glass border border-white/10 p-8">
             <p className="text-sm text-cyan-200">Proactive Intelligence</p>
             <h2 className="mt-4 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">RIA initiates action before the user asks.</h2>
             <div className="mt-8 space-y-3">
@@ -658,7 +659,7 @@ function HomeSystemPanels() {
           </div>
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
             {memoryField.map(([title, copy, Icon]) => (
-              <div key={title} className="bg-[#050a12] p-7">
+              <div key={title} className="cosmos-glass p-7">
                 <Icon className="h-6 w-6 text-cyan-200" />
                 <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
                 <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
@@ -673,7 +674,7 @@ function HomeSystemPanels() {
 
 function Featured() {
   return (
-    <section className="border-t border-white/10 bg-[#05030d] py-16 text-white">
+    <section className="border-t border-white/10 bg-transparent py-16 text-white">
       <Container>
         <div className="grid gap-5 lg:grid-cols-3">
           {featured.map((card, index) => (
@@ -706,7 +707,7 @@ function CardImage({ type }) {
 
 function ProductGrid() {
   return (
-    <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+    <section className="border-t border-white/10 bg-transparent py-20 text-white">
       <Container>
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
@@ -717,7 +718,7 @@ function ProductGrid() {
         </div>
         <div className="grid gap-px overflow-hidden bg-white/10 md:grid-cols-2 lg:grid-cols-3">
           {productCards.map(([title, Icon, copy]) => (
-            <div key={title} className="bg-[#05030d] p-6 transition hover:bg-[#0d0820]">
+            <div key={title} className="bg-transparent p-6 transition hover:bg-[#0d0820]">
               <Icon className="h-7 w-7 text-violet-200" />
               <h3 className="mt-16 text-2xl font-semibold tracking-[-0.045em] text-white">{title}</h3>
               <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
@@ -732,7 +733,7 @@ function ProductGrid() {
 function EditorialSections() {
   return (
     <>
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="mb-10 flex items-center justify-between">
             <h2 className="text-3xl font-semibold tracking-[-0.045em]">Recent updates</h2>
@@ -772,7 +773,7 @@ function EditorialSections() {
 
 function PageHero({ title, copy, label }) {
   return (
-    <section className="bg-[#05030d] pt-32 text-white">
+    <section className="bg-transparent pt-32 text-white">
       <Container className="pb-20">
         <p className="text-sm text-zinc-500">{label}</p>
         <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-7xl">{title}</h1>
@@ -795,7 +796,7 @@ function Product() {
   return (
     <>
       <PageHero label="Product" title="RIA is a digital second brain" copy="A personal AI companion designed for memory continuity, reflection, journaling, emotional understanding, private data control, and long-term device portability." />
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <Dashboard />
         </Container>
@@ -808,7 +809,7 @@ function Product() {
 function Dashboard() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-      <div className="border border-white/10 bg-[#0a0714] p-5">
+      <div className="border border-white/10 bg-white/[0.04] p-5">
         <div className="grid gap-4 md:grid-cols-2">
           {[
             ['Current mood', 'Calm', HeartPulse],
@@ -831,7 +832,7 @@ function Dashboard() {
 
 function ChatPanel() {
   return (
-    <div className="border border-white/10 bg-[#0a0714]">
+    <div className="border border-white/10 bg-white/[0.04]">
       <div className="border-b border-white/10 p-5">
         <p className="font-semibold">Chat with RIA</p>
       </div>
@@ -846,7 +847,7 @@ function ChatPanel() {
 
 function DifferenceSection() {
   return (
-    <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+    <section className="border-t border-white/10 bg-transparent py-20 text-white">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
@@ -861,7 +862,7 @@ function DifferenceSection() {
           </div>
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
             {differentiators.map(([title, Icon, copy]) => (
-              <div key={title} className="bg-[#0a0714] p-7">
+              <div key={title} className="bg-white/[0.04] p-7">
                 <Icon className="h-6 w-6 text-violet-200" />
                 <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
                 <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
@@ -878,7 +879,7 @@ function Safety() {
   return (
     <>
       <PageHero label="Safety" title="Personal AI requires personal control" copy="RIA is designed around visible memory, editable data, privacy boundaries, and honest communication about what the system can and cannot do." />
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-4">
             {[
@@ -887,7 +888,7 @@ function Safety() {
               ['No false consciousness', ShieldCheck],
               ['User-owned data', Check]
             ].map(([title, Icon]) => (
-              <div key={title} className="bg-[#05030d] p-7">
+              <div key={title} className="bg-transparent p-7">
                 <Icon className="h-7 w-7" />
                 <h3 className="mt-16 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
               </div>
@@ -903,11 +904,11 @@ function Company() {
   return (
     <>
       <PageHero label="Roadmap" title="RIA is becoming a personal cognitive operating system" copy="The roadmap focuses on turning RIA from a concept website into a real product with memory, journaling, reflection, emotional intelligence, voice, calm mode, privacy, and funding support." />
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-5 lg:grid-cols-4">
             {roadmap.map(([phase, title, copy]) => (
-              <div key={phase} className="border border-white/10 bg-[#0a0714] p-7">
+              <div key={phase} className="border border-white/10 bg-white/[0.04] p-7">
                 <p className="text-sm text-zinc-500">{phase}</p>
                 <h3 className="mt-10 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
                 <p className="mt-4 leading-7 text-zinc-400">{copy}</p>
@@ -920,7 +921,7 @@ function Company() {
               <h2 className="mt-4 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">A private AI that helps people understand themselves.</h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700">RIA is not a generic assistant. It is built for personal continuity: memory, emotion, reflection, journaling, and self-growth in one trusted system.</p>
             </div>
-            <div className="border border-white/10 bg-[#0a0714] p-8">
+            <div className="border border-white/10 bg-white/[0.04] p-8">
               <Target className="h-8 w-8" />
               <h3 className="mt-10 text-3xl font-semibold tracking-[-0.05em]">What success looks like</h3>
               <p className="mt-5 leading-7 text-zinc-400">A working RIA prototype users can talk to every day, with persistent memory, visible emotional trends, journal summaries, and user-owned data controls.</p>
@@ -937,7 +938,7 @@ function Funding() {
   return (
     <>
       <PageHero label="Funding" title="Help build the first RIA prototype" copy="RIA needs funding to move from concept to functional product: memory backend, model API, journaling engine, emotional dashboard, voice, privacy controls, and launch materials." />
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="bg-white p-8 text-black">
@@ -949,7 +950,7 @@ function Funding() {
             </div>
             <div className="grid gap-px bg-white/10 md:grid-cols-2">
               {['Model/API integration', 'Memory vault', 'Journal engine', 'Emotion dashboard', 'Voice layer', 'Privacy controls'].map((item) => (
-                <div key={item} className="bg-[#05030d] p-6">
+                <div key={item} className="bg-transparent p-6">
                   <Check className="h-5 w-5" />
                   <p className="mt-10 text-xl font-semibold tracking-[-0.03em]">{item}</p>
                 </div>
@@ -957,7 +958,7 @@ function Funding() {
             </div>
           </div>
           <div className="mt-8">
-            <div className="border border-white/10 bg-[#0a0714] p-8">
+            <div className="border border-white/10 bg-white/[0.04] p-8">
               <Mail className="h-7 w-7 text-cyan-200" />
               <p className="mt-8 text-sm text-zinc-500">Investor contact</p>
               <h2 className="mt-3 text-4xl font-semibold tracking-[-0.055em] text-white">Contact the founder directly</h2>
@@ -982,7 +983,7 @@ function Download() {
   return (
     <>
       <PageHero label="Download" title="Download RIA" copy="RIA is preparing for early access across desktop, mobile, and future device environments. Public installers will be published here as soon as the first secure prototype release is ready." />
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="bg-white p-8 text-black">
@@ -999,7 +1000,7 @@ function Download() {
                 ['Linux', 'Coming soon', '/downloads/ria-linux.AppImage'],
                 ['Android', 'Coming soon', '/downloads/ria-android.apk']
               ].map(([platform, status, href]) => (
-                <div key={platform} className="bg-[#05030d] p-7">
+                <div key={platform} className="bg-transparent p-7">
                   <p className="text-sm text-zinc-500">{platform}</p>
                   <h3 className="mt-10 text-2xl font-semibold tracking-[-0.04em]">{status}</h3>
                   <p className="mt-4 text-sm leading-7 text-zinc-500">The installer will appear here when the early access package is approved for release.</p>
@@ -1010,7 +1011,7 @@ function Download() {
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="border border-white/10 bg-[#0a0714] p-8">
+            <div className="border border-white/10 bg-white/[0.04] p-8">
               <p className="text-sm text-cyan-200">How to download and install RIA</p>
               <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1] tracking-[-0.055em] text-white">A clear release path from prototype access to public installers.</h2>
               <div className="mt-8 grid gap-4">
@@ -1026,7 +1027,7 @@ function Download() {
               </div>
             </div>
 
-            <div className="border border-white/10 bg-[#0a0714] p-8">
+            <div className="border border-white/10 bg-white/[0.04] p-8">
               <Cpu className="h-7 w-7 text-violet-200" />
               <p className="mt-8 text-sm text-zinc-500">Device vision</p>
               <h2 className="mt-3 text-4xl font-semibold leading-[1] tracking-[-0.055em]">Designed for every generation of personal computing.</h2>
@@ -1365,7 +1366,8 @@ function Demo() {
   )
 
   return (
-    <section className={`relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
+    <section className={`void-cosmos relative min-h-screen overflow-hidden ${isLight ? 'text-slate-950' : 'text-white'} pt-20`}>
+      <div className="void-stars absolute inset-0 opacity-60" />
       <div className={`absolute inset-0 ${isLight ? 'opacity-20' : 'opacity-45'}`}>
         <div className="thought-stream thought-stream-a" />
         <div className="thought-stream thought-stream-b" />
@@ -1560,7 +1562,7 @@ function Demo() {
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-[#05030d] text-white">
+    <main className="void-cosmos min-h-screen bg-transparent text-white">
       <ScrollToTop />
       <Header />
       <Routes>
@@ -1579,4 +1581,5 @@ export default function App() {
     </main>
   )
 }
+
 
