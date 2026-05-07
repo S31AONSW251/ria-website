@@ -1593,24 +1593,6 @@ function Demo() {
             </div>
           </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-3 xl:hidden">
-            {mobileTelemetry.map(([label, value, Icon]) => (
-              <div key={label} className={`relative overflow-hidden rounded-2xl border p-4 ${skin.shell}`}>
-                <div className="absolute -right-5 -top-8 h-20 w-20 rounded-full bg-cyan-300/10 blur-2xl" />
-                <div className="flex items-center justify-between gap-3">
-                  <span className={`grid h-10 w-10 place-items-center rounded-xl border ${skin.panel}`}>
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className={`text-[0.65rem] font-semibold uppercase tracking-[0.18em] ${skin.muted}`}>{label}</span>
-                </div>
-                <p className="mt-5 truncate text-xl font-semibold capitalize tracking-[-0.04em]">{value}</p>
-                <div className={`mt-3 h-1.5 overflow-hidden rounded-full ${isLight ? 'bg-slate-200' : 'bg-white/10'}`}>
-                  <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-cyan-300 to-violet-300" />
-                </div>
-              </div>
-            ))}
-          </div>
-
           <div className={`mx-auto mt-5 flex w-fit rounded-full border p-1 sm:mt-7 ${isLight ? 'border-blue-200 bg-white/60 shadow-sm shadow-blue-100' : 'border-white/10 bg-black/40'}`}>
             {[
               ['workspace', 'Workspace'],
