@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -24,7 +24,6 @@ import {
   Target,
   Waves
 } from 'lucide-react'
-import { useEffect } from 'react'
 
 const images = {
   logo: '/images/logos/ria-logo.png',
@@ -109,11 +108,22 @@ const roadmap = [
 ]
 
 const replies = {
-  memory: 'RIA remembers important context: conversations, goals, emotional states, beliefs, and personal history. The memory vault is designed to be editable and user-controlled.',
-  journal: 'RIA can turn interactions into structured journal entries, summarize your day, tag emotions, and ask reflective questions.',
-  belief: 'RIA classifies limiting beliefs, growth beliefs, and emotional blocks so users can see how their mindset evolves.',
-  emotion: 'RIA tracks moods, triggers, intensity, recovery patterns, and emotional timelines to make inner patterns visible.',
-  calm: 'Calm Mode guides breathing, affirmations, grounding, and reset routines when stress or confusion appears.'
+  memory: 'Memory saved locally for this demo.',
+  journal: 'Journal note created.',
+  belief: 'Belief pattern marked.',
+  emotion: 'Emotion noted.',
+  calm: 'Breathe in. Hold. Breathe out.',
+  funding: 'Funding supports the prototype.'
+}
+
+function getRiaReply(text) {
+  const clean = text.toLowerCase()
+  const key = Object.keys(replies).find((item) => clean.includes(item))
+  if (key) return replies[key]
+  if (clean.includes('hello') || clean.includes('hi')) return 'Hi. I am RIA.'
+  if (clean.includes('help')) return 'Ask about memory, journal, belief, emotion, or calm.'
+  if (clean.includes('who')) return 'RIA is your personal cognitive AI.'
+  return 'Noted. I will remember this in the demo chat.'
 }
 
 function ScrollToTop() {
@@ -198,7 +208,8 @@ function HeroSearch() {
     <form
       onSubmit={(event) => {
         event.preventDefault()
-        window.location.href = '/demo'
+        const clean = value.trim()
+        window.location.href = clean ? `/demo?message=${encodeURIComponent(clean)}` : '/demo'
       }}
       className="mx-auto mt-10 flex max-w-xl items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-3 text-left shadow-2xl shadow-violet-950/30 backdrop-blur-xl"
     >
@@ -572,13 +583,24 @@ function ContactRow({ label, value }) {
 function Demo() {
   const [messages, setMessages] = useState([{ role: 'ria', text: 'RIA online. Ask about memory, journal, belief, emotion, or calm mode.' }])
   const [input, setInput] = useState('')
+  const loadedUrlMessage = useRef(false)
   const send = (value = input) => {
     const clean = value.trim()
     if (!clean) return
-    const key = Object.keys(replies).find((item) => clean.toLowerCase().includes(item))
-    setMessages((current) => [...current, { role: 'user', text: clean }, { role: 'ria', text: replies[key] || 'I would connect that to your memory, journal, emotional history, and belief map before responding.' }])
+    setMessages((current) => [...current, { role: 'user', text: clean }, { role: 'ria', text: getRiaReply(clean) }])
     setInput('')
   }
+
+  useEffect(() => {
+    if (loadedUrlMessage.current) return
+    loadedUrlMessage.current = true
+    const params = new URLSearchParams(window.location.search)
+    const message = params.get('message')
+    if (message) {
+      send(message)
+      window.history.replaceState({}, '', '/demo')
+    }
+  }, [])
 
   return (
     <>
