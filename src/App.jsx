@@ -3,18 +3,25 @@ import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
+  Activity,
   Banknote,
   BookOpen,
   BrainCircuit,
   Check,
+  Clock3,
+  Cpu,
   Database,
+  FileText,
   Fingerprint,
+  Gauge,
   Github,
   HeartPulse,
+  KeyRound,
   Layers3,
   LockKeyhole,
   Mail,
   MessageCircle,
+  SendHorizontal,
   Mic2,
   Moon,
   Orbit,
@@ -22,6 +29,7 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
+  UserRound,
   Waves
 } from 'lucide-react'
 
@@ -107,23 +115,131 @@ const roadmap = [
   ['Phase 4', 'Voice and calm mode', 'Voice interaction, affirmations, breathing, and guided emotional recovery.']
 ]
 
-const replies = {
-  memory: 'Memory saved locally for this demo.',
-  journal: 'Journal note created.',
-  belief: 'Belief pattern marked.',
-  emotion: 'Emotion noted.',
-  calm: 'Breathe in. Hold. Breathe out.',
-  funding: 'Funding supports the prototype.'
+const demoTopics = [
+  'memory',
+  'journal',
+  'emotion',
+  'belief',
+  'calm',
+  'focus',
+  'goals',
+  'privacy',
+  'funding',
+  'download'
+]
+
+const demoCapabilities = [
+  ['Intent', 'Active', Gauge],
+  ['Memory', 'Session', Database],
+  ['Emotion', 'Aware', HeartPulse],
+  ['Privacy', 'Controlled', KeyRound]
+]
+
+const demoPromptCards = [
+  ['Daily reflection', 'Turn today into a journal note with mood and next action.', 'Create a journal note for my day'],
+  ['Emotional reset', 'Calm pressure, anxiety, stress, or overwhelm with grounding.', 'I feel overwhelmed and need calm mode'],
+  ['Goal planning', 'Convert a dream or startup idea into practical checkpoints.', 'Help me plan my next RIA milestone'],
+  ['Investor answer', 'Explain RIA professionally for funding or partnership talks.', 'Explain RIA to an investor']
+]
+
+const demoActivity = [
+  ['Memory capture', 'Ready for user-owned recall'],
+  ['Reflection pass', 'Prepared for journaling'],
+  ['Tone reading', 'Listening for emotional context']
+]
+
+const riaKnowledge = [
+  {
+    intent: 'greeting',
+    matches: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'namaste'],
+    reply: () => 'Hi, I am RIA. Tell me what is on your mind, or ask me about memory, journaling, emotions, goals, privacy, funding, or the product roadmap.'
+  },
+  {
+    intent: 'memory',
+    matches: ['memory', 'remember', 'recall', 'store', 'save', 'history', 'past'],
+    reply: ({ text }) => `I can treat that as a memory signal. In the full RIA product, this would become an editable memory card with source context, emotional tone, and user control. For this training conversation, the important detail I noticed is: "${text}".`
+  },
+  {
+    intent: 'journal',
+    matches: ['journal', 'diary', 'write', 'note', 'today', 'summary', 'day'],
+    reply: ({ text }) => `Here is a clean journal-style reflection: Today carried something worth recording. The core note is "${text}". A useful next step is to name what happened, how it felt, what it taught you, and what you want to do differently tomorrow.`
+  },
+  {
+    intent: 'emotion',
+    matches: ['sad', 'angry', 'stress', 'stressed', 'anxiety', 'anxious', 'happy', 'overwhelmed', 'emotion', 'feeling', 'feel', 'mood', 'lonely', 'tired'],
+    reply: ({ tone }) => `I hear the emotional layer here. Your message sounds ${tone}. Start by separating the event from the feeling: what happened, what it made you believe for a moment, and what your body needs now. You do not have to solve the whole life pattern in one breath.`
+  },
+  {
+    intent: 'belief',
+    matches: ['belief', 'mindset', 'thought', 'negative', 'positive', 'confidence', 'fear', 'doubt', 'growth'],
+    reply: () => 'This looks like a belief-pattern question. RIA would classify the thought as limiting, protective, or growth-oriented, then help rewrite it into something more useful. A stronger frame is: "This is information, not a final verdict about me."'
+  },
+  {
+    intent: 'calm',
+    matches: ['calm', 'breathe', 'breathing', 'relax', 'panic', 'peace', 'meditate', 'ground'],
+    reply: () => 'Calm mode: inhale for 4, hold for 2, exhale for 6. Do that three times. Then name five things you can see, four things you can feel, and one small action you can take in the next five minutes.'
+  },
+  {
+    intent: 'focus',
+    matches: ['focus', 'study', 'work', 'productive', 'productivity', 'task', 'plan', 'routine'],
+    reply: () => 'For focus, choose one outcome, one timer, and one visible finish line. Put the next action into a sentence: "For the next 25 minutes, I will..." RIA works best when it turns vague pressure into a small concrete step.'
+  },
+  {
+    intent: 'goals',
+    matches: ['goal', 'dream', 'roadmap', 'future', 'build', 'startup', 'career', 'learn'],
+    reply: () => 'A goal becomes easier when it has a next checkpoint. I would split it into three layers: the long-term direction, this month’s measurable milestone, and today’s smallest useful action. Momentum likes clarity.'
+  },
+  {
+    intent: 'privacy',
+    matches: ['privacy', 'private', 'secure', 'security', 'data', 'delete', 'editable', 'control'],
+    reply: () => 'RIA is designed around user-owned memory: visible, editable, exportable, and removable. A personal AI should never make memory feel mysterious. The user should always know what is stored and be able to change it.'
+  },
+  {
+    intent: 'funding',
+    matches: ['funding', 'invest', 'investor', 'money', 'support', 'partner', 'partnership'],
+    reply: () => 'Funding helps turn RIA from a polished prototype into a working product with model integration, memory storage, journaling, emotional dashboards, voice, privacy controls, and real user testing.'
+  },
+  {
+    intent: 'download',
+    matches: ['download', 'app', 'install', 'apk', 'windows', 'mac', 'android', 'release'],
+    reply: () => 'RIA is preparing for an early access release. The download page is already structured for installers and prototype access, with founder contact available for investors and early users.'
+  },
+  {
+    intent: 'identity',
+    matches: ['who are you', 'what are you', 'about ria', 'what is ria', 'ria'],
+    reply: () => 'RIA is personal cognitive intelligence: a digital second brain for memory continuity, reflection, journaling, emotional awareness, belief tracking, and growth.'
+  }
+]
+
+function getTone(text) {
+  const clean = text.toLowerCase()
+  if (/(sad|lonely|hurt|cry|empty|lost)/.test(clean)) return 'heavy and tender'
+  if (/(angry|mad|frustrated|irritated)/.test(clean)) return 'charged and frustrated'
+  if (/(anxious|stress|stressed|panic|overwhelmed|worried)/.test(clean)) return 'pressured and anxious'
+  if (/(happy|excited|good|great|proud)/.test(clean)) return 'positive and energized'
+  return 'important'
+}
+
+function getDetectedIntent(text = '') {
+  const clean = text.toLowerCase()
+  const topic = riaKnowledge.find(({ matches }) => matches.some((item) => clean.includes(item)))
+  if (topic) return topic.intent
+  if (clean.endsWith('?')) return 'question'
+  if (clean.length > 120) return 'reflection'
+  return 'general'
 }
 
 function getRiaReply(text) {
   const clean = text.toLowerCase()
-  const key = Object.keys(replies).find((item) => clean.includes(item))
-  if (key) return replies[key]
-  if (clean.includes('hello') || clean.includes('hi')) return 'Hi. I am RIA.'
-  if (clean.includes('help')) return 'Ask about memory, journal, belief, emotion, or calm.'
-  if (clean.includes('who')) return 'RIA is your personal cognitive AI.'
-  return 'Noted. I will remember this in the demo chat.'
+  const topic = riaKnowledge.find(({ matches }) => matches.some((item) => clean.includes(item)))
+  if (topic) return topic.reply({ text, tone: getTone(text) })
+  if (clean.endsWith('?')) {
+    return 'Good question. I would answer it by first finding the real intention behind it, then turning that into a clear next step. In this case, the useful frame is: what do you want to understand, decide, or change after asking this?'
+  }
+  if (clean.length > 120) {
+    return 'I understand the main shape of what you shared. The strongest signal is that this matters to you, and it may need reflection instead of a quick reaction. I would summarize it, identify the emotion under it, then choose one grounded next action.'
+  }
+  return 'I understand. Tell me one more detail and I can respond more specifically: is this about memory, emotion, a belief, a goal, or something you want to decide?'
 }
 
 function ScrollToTop() {
@@ -425,8 +541,8 @@ function ChatPanel() {
       </div>
       <div className="space-y-4 p-5">
         <div className="ml-auto max-w-[82%] rounded-xl bg-white p-4 text-sm text-black">I felt overwhelmed today.</div>
-        <div className="max-w-[82%] rounded-xl bg-white/[0.08] p-4 text-sm leading-6 text-zinc-200">Let’s understand what triggered it. You had a lot on your plate today.</div>
-        <div className="ml-auto max-w-[82%] rounded-xl bg-white p-4 text-sm text-black">Thanks RIA.</div>
+        <div className="max-w-[82%] rounded-xl bg-white/[0.08] p-4 text-sm leading-6 text-zinc-200">I hear the pressure in that. Let’s separate the event, the feeling, and the next small action so the day becomes easier to process.</div>
+        <div className="ml-auto max-w-[82%] rounded-xl bg-white p-4 text-sm text-black">Create a journal note.</div>
       </div>
     </div>
   )
@@ -581,14 +697,35 @@ function ContactRow({ label, value }) {
 }
 
 function Demo() {
-  const [messages, setMessages] = useState([{ role: 'ria', text: 'RIA online. Ask about memory, journal, belief, emotion, or calm mode.' }])
+  const [messages, setMessages] = useState(() => {
+    const saved = window.localStorage.getItem('ria-training-messages')
+    if (saved) {
+      try {
+        return JSON.parse(saved)
+      } catch {
+        window.localStorage.removeItem('ria-training-messages')
+      }
+    }
+    return [{ role: 'ria', text: 'RIA training mode is ready. Ask me anything, or start with memory, journal, emotion, belief, calm, focus, goals, privacy, funding, or download.' }]
+  })
   const [input, setInput] = useState('')
+  const [isThinking, setIsThinking] = useState(false)
   const loadedUrlMessage = useRef(false)
+  const scrollRef = useRef(null)
+  const userMessages = messages.filter((message) => message.role === 'user')
+  const lastUserMessage = userMessages[userMessages.length - 1]?.text || ''
+  const detectedIntent = getDetectedIntent(lastUserMessage)
+
   const send = (value = input) => {
     const clean = value.trim()
-    if (!clean) return
-    setMessages((current) => [...current, { role: 'user', text: clean }, { role: 'ria', text: getRiaReply(clean) }])
+    if (!clean || isThinking) return
+    setMessages((current) => [...current, { role: 'user', text: clean }])
     setInput('')
+    setIsThinking(true)
+    window.setTimeout(() => {
+      setMessages((current) => [...current, { role: 'ria', text: getRiaReply(clean) }])
+      setIsThinking(false)
+    }, 450)
   }
 
   useEffect(() => {
@@ -602,35 +739,179 @@ function Demo() {
     }
   }, [])
 
+  useEffect(() => {
+    window.localStorage.setItem('ria-training-messages', JSON.stringify(messages.slice(-30)))
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+  }, [messages, isThinking])
+
   return (
     <>
-      <PageHero label="Demo" title="Talk with RIA" copy="A mock interface showing how RIA can respond through memory, reflection, journaling, emotion, and calm guidance." />
-      <section className="border-t border-white/10 bg-[#05030d] py-20 text-white">
+      <section className="relative overflow-hidden bg-[#05030d] pt-32 text-white">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,3,13,0)_0%,#05030d_90%),radial-gradient(circle_at_16%_18%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_76%_14%,rgba(168,85,247,0.16),transparent_34%)]" />
+        <Container className="relative pb-16">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+            <div>
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-4 py-2 text-xs font-medium text-zinc-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-300" />
+                RIA Training Mode
+              </p>
+              <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-7xl">Talk with RIA Debo</h1>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">A premium conversation console for memory, reflection, journaling, emotion, goals, privacy, and calm guidance.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10">
+              {demoCapabilities.map(([label, value, Icon]) => (
+                <div key={label} className="bg-[#0a0714]/90 p-5">
+                  <Icon className="h-5 w-5 text-cyan-200" />
+                  <p className="mt-7 text-xs text-zinc-500">{label}</p>
+                  <p className="mt-1 text-xl font-semibold tracking-[-0.04em]">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="border-t border-white/10 bg-[#05030d] py-14 text-white">
         <Container>
-          <div className="mx-auto max-w-3xl border border-white/10 bg-[#0a0714]">
-            <div className="border-b border-white/10 p-5">
-              <p className="font-semibold">RIA Cognitive Chat</p>
-            </div>
-            <div className="h-[430px] space-y-4 overflow-y-auto p-5">
-              {messages.map((message, index) => (
-                <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className={`max-w-[86%] rounded-xl px-5 py-4 text-sm leading-6 ${message.role === 'user' ? 'ml-auto bg-white text-black' : 'bg-white/[0.08] text-zinc-200'}`}>
-                  {message.text}
-                </motion.div>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2 border-t border-white/10 p-5 pb-0">
-              {['memory system', 'auto journal', 'belief classifier', 'emotion tracking', 'calm mode'].map((prompt) => (
-                <button key={prompt} onClick={() => send(prompt)} className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 hover:text-white">
-                  {prompt}
+          <div className="grid gap-6 xl:grid-cols-[0.72fr_1.38fr_0.72fr]">
+            <aside className="border border-white/10 bg-[#0a0714]">
+              <div className="border-b border-white/10 p-6">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-black shadow-[0_0_28px_rgba(255,255,255,0.12)]">
+                    <BrainCircuit className="h-6 w-6" />
+                  </span>
+                  <div>
+                    <p className="text-lg font-semibold tracking-[-0.03em]">RIA Debo</p>
+                    <p className="text-xs text-emerald-300">Professional response mode</p>
+                  </div>
+                </div>
+              </div>
+              <div className="grid gap-3 p-6">
+                {[
+                  ['Model Style', 'Warm, direct, reflective, and product-aware'],
+                  ['Session State', `${messages.length} messages processed`],
+                  ['Detected Intent', detectedIntent],
+                  ['Response Range', 'Personal, product, support, and investor queries']
+                ].map(([label, value]) => (
+                  <div key={label} className="border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-xs text-zinc-500">{label}</p>
+                    <p className="mt-2 text-sm capitalize leading-6 text-zinc-200">{value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-white/10 p-6">
+                <button onClick={() => { setMessages([{ role: 'ria', text: 'RIA training mode is ready again. What would you like to explore?' }]); setInput('') }} className="w-full rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-white hover:text-white">
+                  Reset conversation
                 </button>
-              ))}
+              </div>
+            </aside>
+
+            <div className="overflow-hidden border border-white/10 bg-[#0a0714] shadow-2xl shadow-black/40">
+              <div className="flex flex-col gap-4 border-b border-white/10 bg-white/[0.025] p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.06]">
+                    <MessageCircle className="h-5 w-5 text-cyan-200" />
+                  </span>
+                  <div>
+                    <p className="font-semibold">RIA Cognitive Chat</p>
+                    <p className="mt-1 text-xs text-zinc-500">Live training conversation surface</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-400">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5">
+                    <Activity className="h-3.5 w-3.5 text-emerald-300" />
+                    Ready
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5">
+                    <Clock3 className="h-3.5 w-3.5 text-cyan-200" />
+                    Instant
+                  </span>
+                </div>
+              </div>
+              <div className="h-[560px] space-y-5 overflow-y-auto bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:100%_56px] p-5">
+                {messages.map((message, index) => (
+                  <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`flex max-w-[92%] gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                      <span className={`mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full ${message.role === 'user' ? 'bg-white text-black' : 'border border-white/10 bg-cyan-200/10 text-cyan-100'}`}>
+                        {message.role === 'user' ? <UserRound className="h-4 w-4" /> : <BrainCircuit className="h-4 w-4" />}
+                      </span>
+                      <div>
+                        <p className={`mb-1 text-[11px] uppercase tracking-[0.16em] text-zinc-600 ${message.role === 'user' ? 'text-right' : ''}`}>{message.role === 'user' ? 'You' : 'RIA Debo'}</p>
+                        <div className={`rounded-2xl px-5 py-4 text-sm leading-6 shadow-lg ${message.role === 'user' ? 'bg-white text-black shadow-white/5' : 'border border-white/10 bg-white/[0.07] text-zinc-200 shadow-black/20'}`}>
+                          <p className="whitespace-pre-wrap">{message.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+                {isThinking && (
+                  <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.07] px-5 py-4 text-sm text-zinc-300">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-200" />
+                    RIA is composing a response
+                  </div>
+                )}
+                <div ref={scrollRef} />
+              </div>
+              <div className="flex flex-wrap gap-2 border-t border-white/10 bg-white/[0.02] p-5 pb-0">
+                {demoTopics.map((prompt) => (
+                  <button key={prompt} onClick={() => send(prompt)} className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 transition hover:border-white hover:text-white">
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+              <form onSubmit={(event) => { event.preventDefault(); send() }} className="flex gap-3 p-5">
+                <textarea
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' && !event.shiftKey) {
+                      event.preventDefault()
+                      send()
+                    }
+                  }}
+                  rows={1}
+                  className="max-h-32 min-h-12 min-w-0 flex-1 resize-none rounded-2xl bg-[#1f1f1f] px-5 py-3 text-sm leading-6 text-white outline-none ring-1 ring-white/10 transition placeholder:text-zinc-500 focus:ring-cyan-200/50"
+                  placeholder="Ask RIA anything..."
+                />
+                <button disabled={!input.trim() || isThinking} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-black transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40" aria-label="Send">
+                  <SendHorizontal className="h-5 w-5" />
+                </button>
+              </form>
             </div>
-            <form onSubmit={(event) => { event.preventDefault(); send() }} className="flex gap-3 p-5">
-              <input value={input} onChange={(event) => setInput(event.target.value)} className="min-w-0 flex-1 rounded-full bg-[#1f1f1f] px-5 py-3 text-white outline-none placeholder:text-zinc-500" placeholder="Message RIA..." />
-              <button className="grid h-12 w-12 place-items-center rounded-full bg-white text-black" aria-label="Send">
-                <ArrowRight className="h-5 w-5" />
-              </button>
-            </form>
+
+            <aside className="grid gap-6">
+              <div className="border border-white/10 bg-[#0a0714] p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold">Response Studio</p>
+                    <p className="mt-1 text-xs text-zinc-500">Suggested professional flows</p>
+                  </div>
+                  <Cpu className="h-5 w-5 text-violet-200" />
+                </div>
+                <div className="mt-6 grid gap-3">
+                  {demoPromptCards.map(([title, copy, prompt]) => (
+                    <button key={title} onClick={() => send(prompt)} className="border border-white/10 bg-white/[0.03] p-4 text-left transition hover:border-cyan-200/40 hover:bg-white/[0.06]">
+                      <p className="text-sm font-medium text-white">{title}</p>
+                      <p className="mt-2 text-xs leading-5 text-zinc-500">{copy}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border border-white/10 bg-[#0a0714] p-6">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-cyan-200" />
+                  <p className="text-sm font-semibold">System Activity</p>
+                </div>
+                <div className="mt-5 space-y-4">
+                  {demoActivity.map(([title, copy]) => (
+                    <div key={title} className="border-l border-white/10 pl-4">
+                      <p className="text-sm text-zinc-200">{title}</p>
+                      <p className="mt-1 text-xs leading-5 text-zinc-500">{copy}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </aside>
           </div>
         </Container>
       </section>
