@@ -306,12 +306,27 @@ const riaKnowledge = [
   {
     intent: 'greeting',
     matches: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'namaste'],
-    reply: () => 'Hi, I am RIA. Tell me what is on your mind, or ask me about memory, journaling, emotions, goals, privacy, funding, or the product roadmap.'
+    reply: () => 'Hi, I am RIA. This is demo mode, but I can still explain the product clearly, answer questions about features, memory, privacy, funding, roadmap, downloads, image generation, and help you think through goals or emotions.'
+  },
+  {
+    intent: 'demo',
+    matches: ['demo', 'prototype', 'preview', 'real or demo', 'is this real', 'simulation', 'simulated'],
+    reply: () => 'RIA Orbit is an interactive product demo. The interface shows how the future RIA experience will feel: chat, memory, journaling, goals, emotional awareness, image fallback, and system-style controls. Some parts are simulated in the browser until the full backend, model connection, account system, and real memory storage are released.'
+  },
+  {
+    intent: 'features',
+    matches: ['feature', 'features', 'can you do', 'what can ria do', 'capability', 'capabilities', 'function', 'functions'],
+    reply: () => 'RIA is planned as a personal cognitive OS. Core features include long-term memory, editable memory vault, journaling, emotional check-ins, belief tracking, goal planning, calm mode, reflection summaries, private data controls, voice interaction, and cross-device access. In this demo, I simulate those workflows so visitors can understand the product direction.'
+  },
+  {
+    intent: 'how-it-works',
+    matches: ['how work', 'how does it work', 'architecture', 'backend', 'model', 'ai model', 'system design', 'technology', 'tech stack'],
+    reply: () => 'The planned RIA system has four layers: a conversation layer for chat and voice, a memory layer for saved user context, a reflection layer for journals/goals/beliefs/emotions, and a control layer where users can edit, export, or delete what RIA knows. This website currently runs as a frontend demo, so the production AI backend and persistent database are represented as interface behavior.'
   },
   {
     intent: 'memory',
     matches: ['memory', 'remember', 'recall', 'store', 'save', 'history', 'past'],
-    reply: ({ text }) => `I can treat that as a memory signal. In the full RIA product, this would become an editable memory card with source context, emotional tone, and user control. For this training conversation, the important detail I noticed is: "${text}".`
+    reply: ({ text }) => `I can treat that as a memory signal. In the full RIA product, this would become an editable memory card with source context, emotional tone, category, and user control. In this demo session, the important detail I noticed is: "${text}". You should always be able to see, edit, export, or delete memory.`
   },
   {
     intent: 'journal',
@@ -346,24 +361,49 @@ const riaKnowledge = [
   {
     intent: 'privacy',
     matches: ['privacy', 'private', 'secure', 'security', 'data', 'delete', 'editable', 'control'],
-    reply: () => 'RIA is designed around user-owned memory: visible, editable, exportable, and removable. A personal AI should never make memory feel mysterious. The user should always know what is stored and be able to change it.'
+    reply: () => 'RIA is designed around user-owned memory: visible, editable, exportable, and removable. A personal AI should never make memory feel mysterious. The user should know what is stored, why it matters, and how to delete it. Production RIA should use clear account controls, secure storage, and privacy-first defaults.'
   },
   {
     intent: 'funding',
-    matches: ['funding', 'invest', 'investor', 'money', 'support', 'partner', 'partnership'],
-    reply: () => 'Funding helps turn RIA from a polished prototype into a working product with model integration, memory storage, journaling, emotional dashboards, voice, privacy controls, and real user testing.'
+    matches: ['funding', 'invest', 'investor', 'money', 'support', 'partner', 'partnership', 'business', 'startup'],
+    reply: () => 'Funding helps turn RIA from a polished prototype into a working product with model integration, memory storage, journaling, emotional dashboards, voice, privacy controls, mobile support, and real user testing. The funding page is meant for investors, partners, and early supporters who want to help build the first real release.'
   },
   {
     intent: 'download',
-    matches: ['download', 'app', 'install', 'apk', 'windows', 'mac', 'android', 'release'],
-    reply: () => 'RIA is preparing for an early access release. The download page is already structured for installers and prototype access, with founder contact available for investors and early users.'
+    matches: ['download', 'app', 'install', 'apk', 'windows', 'mac', 'android', 'release', 'ios', 'mobile', 'desktop'],
+    reply: () => 'RIA is preparing for early access. The download page is structured for future Windows, macOS, Linux, Android, and web/mobile builds. Right now, the website demo is the safest way to try the concept while the real installers and app accounts are prepared.'
+  },
+  {
+    intent: 'image',
+    matches: ['image', 'picture', 'photo', 'visual', 'art', 'poster', 'generate image', 'draw', 'render'],
+    reply: () => 'RIA can handle image requests in demo mode with a no-GPU fallback renderer. It creates a browser-generated SVG visual and gives you a download button. It is not full AI image generation yet, but it prevents the feature from failing when there is no GPU, backend, or image API available.'
+  },
+  {
+    intent: 'creator',
+    matches: ['founder', 'creator', 'owner', 'who made', 'made ria', 'sudeep', 'contact', 'email', 'phone', 'whatsapp'],
+    reply: () => `RIA is being built by ${contactDetails.founderName} under ${contactDetails.companyName}. For funding, partnership, or early access, use email ${contactDetails.email} or WhatsApp ${contactDetails.whatsapp}.`
+  },
+  {
+    intent: 'price',
+    matches: ['price', 'pricing', 'cost', 'paid', 'free', 'subscription', 'plan'],
+    reply: () => 'Pricing is not finalized yet. The current website is a demo and early product concept. A sensible future model could include a free demo, early-access testing, and paid plans for private memory, voice, storage, advanced reflection, and cross-device sync.'
   },
   {
     intent: 'identity',
-    matches: ['who are you', 'what are you', 'about ria', 'what is ria', 'ria'],
-    reply: () => 'RIA is personal cognitive intelligence: a digital second brain for memory continuity, reflection, journaling, emotional awareness, belief tracking, and growth.'
+    matches: ['who are you', 'what are you', 'about ria', 'what is ria', 'ria', 'explain ria'],
+    reply: () => 'RIA is personal cognitive intelligence: a digital second brain for memory continuity, reflection, journaling, emotional awareness, belief tracking, and growth. The goal is not just another chatbot, but a private companion system that helps people understand themselves and organize their life over time.'
   }
 ]
+
+function matchesKnowledge(clean, matches) {
+  return matches.some((item) => {
+    const target = item.toLowerCase()
+    if (target.length <= 3) {
+      return new RegExp(`(^|\\W)${target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(\\W|$)`).test(clean)
+    }
+    return clean.includes(target)
+  })
+}
 
 function getTone(text) {
   const clean = text.toLowerCase()
@@ -376,7 +416,7 @@ function getTone(text) {
 
 function getDetectedIntent(text = '') {
   const clean = text.toLowerCase()
-  const topic = riaKnowledge.find(({ matches }) => matches.some((item) => clean.includes(item)))
+  const topic = riaKnowledge.find(({ matches }) => matchesKnowledge(clean, matches))
   if (topic) return topic.intent
   if (clean.endsWith('?')) return 'question'
   if (clean.length > 120) return 'reflection'
@@ -434,19 +474,34 @@ function formatAdvancedReply(text, baseReply, intent, tone) {
   ].join('\n')
 }
 
+function getGeneralAnswer(text, tone) {
+  const clean = text.trim()
+  if (!clean) return 'Ask me anything about RIA, the demo, memory, privacy, funding, downloads, image generation, or your own goals and emotions.'
+  return [
+    `I can help with that. In this demo, I do not browse the internet or call a production AI backend, so I will answer from the RIA product knowledge built into this website and be clear about limits.`,
+    '',
+    `Your question: "${clean}"`,
+    '',
+    'Best answer:',
+    'RIA is designed to turn a normal chat into a structured personal intelligence flow. If your question is about the product, I can explain the feature, the roadmap, how the demo works, what is simulated, and what will need a real backend later. If your question is personal, I can help break it into memory, emotion, belief, goal, and next-action layers.',
+    '',
+    `What I would do next: ask one specific follow-up, or say "explain RIA", "show roadmap", "privacy", "download", "funding", "generate image of ...", or "help me plan a goal".`
+  ].join('\n')
+}
+
 function getRiaReply(text) {
   const clean = text.toLowerCase()
-  const topic = riaKnowledge.find(({ matches }) => matches.some((item) => clean.includes(item)))
+  const topic = riaKnowledge.find(({ matches }) => matchesKnowledge(clean, matches))
   const intent = topic?.intent || getDetectedIntent(text)
   const tone = getTone(text)
   if (topic) return formatAdvancedReply(text, topic.reply({ text, tone }), intent, tone)
   if (clean.endsWith('?')) {
-    return formatAdvancedReply(text, 'Good question. I would answer it by first finding the real intention behind it, then turning that into a clear next step. In this case, the useful frame is: what do you want to understand, decide, or change after asking this?', intent, tone)
+    return formatAdvancedReply(text, getGeneralAnswer(text, tone), intent, tone)
   }
   if (clean.length > 120) {
     return formatAdvancedReply(text, 'I understand the main shape of what you shared. The strongest signal is that this matters to you, and it may need reflection instead of a quick reaction. I would summarize it, identify the emotion under it, then choose one grounded next action.', intent, tone)
   }
-  return formatAdvancedReply(text, 'I understand. Tell me one more detail and I can respond more specifically: is this about memory, emotion, a belief, a goal, or something you want to decide?', intent, tone)
+  return formatAdvancedReply(text, getGeneralAnswer(text, tone), intent, tone)
 }
 
 function isImageRequest(text = '') {
@@ -1135,7 +1190,7 @@ function Demo() {
         window.localStorage.removeItem('ria-os-messages')
       }
     }
-    return [{ role: 'ria', text: 'RIA Interface OS is online. I can remember goals, emotions, beliefs, and conversations while adapting the interface to your state.' }]
+    return [{ role: 'ria', text: 'RIA Orbit demo mode is online. Ask me anything about RIA: what it is, features, privacy, memory, roadmap, funding, downloads, image generation, or how the demo works. I can also help with goals, emotions, journaling, calm mode, and planning while showing how the real RIA experience will work.' }]
   })
   const [memory, setMemory] = useState(() => {
     const saved = window.localStorage.getItem('ria-os-memory')
@@ -1516,6 +1571,7 @@ function Demo() {
               <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') send() }} className={`min-w-0 flex-1 bg-transparent text-sm outline-none ${skin.text} placeholder:${isLight ? 'text-slate-400' : 'text-zinc-600'}`} placeholder="Ask RIA anything or use a command..." />
               <span className={`hidden rounded-full border px-3 py-1 text-xs sm:inline ${skin.muted}`}>⌘ K</span>
             </div>
+            <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>DEMO MODE</span>
             <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>LIVE GROWTH {isThinking ? 'PROCESSING' : 'OFFLINE'}</span>
             <button onClick={() => setVisualMode(isLight ? 'dark' : 'light')} className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Toggle light and dark mode">
               {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
@@ -1562,6 +1618,10 @@ function Demo() {
             ].map(([id, item]) => (
               <button key={id} onClick={() => { setSurface(id); if (id === 'conversation') setActiveTab('chat') }} className={`rounded-full px-5 py-2.5 text-sm font-medium sm:px-8 sm:py-3 ${surface === id ? skin.active : skin.soft}`}>{item}</button>
             ))}
+          </div>
+
+          <div className={`mx-auto mt-4 max-w-[78rem] rounded-2xl border px-5 py-4 text-sm leading-6 ${skin.panel}`}>
+            <span className="font-semibold">Demo notice:</span> RIA Orbit is a preview interface. Memory, GPU studio, system activity, and image generation are simulated so visitors can understand the product flow before the full backend release.
           </div>
 
           {surface === 'conversation' ? renderConversationSurface() : (
