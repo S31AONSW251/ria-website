@@ -574,7 +574,7 @@ function Home() {
               A neural OS shell for memory, reflection, goals, emotional intelligence, proactive guidance, and identity evolution. RIA is designed to feel like a second brain that is awake, adaptive, and privately yours.
             </p>
 
-            <div className="relative mt-10 grid h-[34rem] w-full max-w-[48rem] place-items-center">
+            <div className="relative mt-10 grid h-auto w-full max-w-[48rem] gap-3 md:h-[34rem] md:place-items-center">
               <div className="home-orbit-ring h-[31rem] w-[31rem]" />
               <div className="home-orbit-ring home-orbit-ring-b h-[23rem] w-[23rem]" />
               <div className="home-core-pulse grid h-48 w-48 place-items-center rounded-full border border-white/15 bg-white/[0.08] shadow-[0_0_90px_rgba(34,211,238,0.22)] backdrop-blur-xl">
@@ -1082,7 +1082,11 @@ function Demo() {
   })
   const [activeTab, setActiveTab] = useState('core')
   const [surface, setSurface] = useState('workspace')
-  const [visualMode, setVisualMode] = useState('dark')
+  const [visualMode, setVisualMode] = useState(() => {
+    const themeParam = new URLSearchParams(window.location.search).get('theme')
+    if (themeParam === 'light' || themeParam === 'dark') return themeParam
+    return window.localStorage.getItem('ria-os-visual-mode') || 'dark'
+  })
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
   const loadedUrlMessage = useRef(false)
@@ -1091,16 +1095,24 @@ function Demo() {
   const lastUserMessage = userMessages[userMessages.length - 1]?.text || ''
   const detectedIntent = getDetectedIntent(lastUserMessage)
   const emotionMode = detectEmotionMode(lastUserMessage)
-  const theme = themeByEmotion[emotionMode]
+  const emotionTheme = themeByEmotion[emotionMode]
   const isLight = visualMode === 'light'
+  const theme = {
+    ...emotionTheme,
+    accent: isLight ? 'text-sky-700' : emotionTheme.accent,
+    chip: isLight ? 'border-sky-300/70 bg-sky-50 text-sky-950 shadow-sm shadow-sky-100/70' : emotionTheme.chip
+  }
   const skin = {
-    page: isLight ? 'bg-[#eef3f6] text-slate-950' : 'bg-[#030405] text-white',
-    shell: isLight ? 'bg-white/72 border-slate-300/70 shadow-slate-300/40' : 'bg-white/[0.045] border-white/10 shadow-black/40',
-    panel: isLight ? 'bg-white/82 border-slate-300/70' : 'bg-black/35 border-white/10',
-    muted: isLight ? 'text-slate-500' : 'text-zinc-500',
+    page: isLight ? 'bg-[linear-gradient(135deg,#f8fbff_0%,#e9f3f8_42%,#f7f4ff_100%)] text-slate-950' : 'void-cosmos text-white',
+    shell: isLight ? 'bg-white/88 border-slate-300/80 shadow-lg shadow-slate-200/70' : 'bg-white/[0.045] border-white/10 shadow-black/40',
+    panel: isLight ? 'bg-slate-50/90 border-slate-300/80' : 'bg-black/35 border-white/10',
+    module: isLight ? 'border-slate-300/80 bg-white/76' : 'border-white/10 bg-white/[0.035]',
+    field: isLight ? 'border-slate-300/80 bg-white/90 text-slate-800 focus:border-sky-400' : 'border-white/10 bg-black/20 text-zinc-300 focus:border-white/30',
+    divider: isLight ? 'border-slate-200' : 'border-white/10',
+    muted: isLight ? 'text-slate-600' : 'text-zinc-500',
     text: isLight ? 'text-slate-950' : 'text-white',
     soft: isLight ? 'text-slate-700' : 'text-zinc-300',
-    active: isLight ? 'bg-slate-950 text-white' : 'bg-white text-black'
+    active: isLight ? 'bg-slate-950 text-white border-slate-950' : 'bg-white text-black border-white'
   }
   const memoryCounts = {
     goals: memory.nodes.filter((node) => node.type === 'goal').length,
@@ -1169,6 +1181,10 @@ function Demo() {
     window.localStorage.setItem('ria-os-memory', JSON.stringify(memory))
   }, [memory])
 
+  useEffect(() => {
+    window.localStorage.setItem('ria-os-visual-mode', visualMode)
+  }, [visualMode])
+
   const renderActiveModule = () => {
     if (activeTab === 'memory') {
       return (
@@ -1179,15 +1195,15 @@ function Demo() {
           </div>
           <div className="grid gap-3">
             {memory.nodes.map((node) => (
-              <div key={node.id} className="border border-white/10 bg-white/[0.035] p-4">
+              <div key={node.id} className={`border p-4 ${skin.module}`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={`rounded-full border px-3 py-1 text-xs capitalize ${theme.chip}`}>{node.type}</span>
-                  <button onClick={() => deleteMemoryNode(node.id)} className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-zinc-500 transition hover:text-white" aria-label="Delete memory">
+                  <button onClick={() => deleteMemoryNode(node.id)} className={`grid h-8 w-8 place-items-center rounded-full border transition ${skin.panel} ${skin.muted} ${isLight ? 'hover:text-slate-950' : 'hover:text-white'}`} aria-label="Delete memory">
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
-                <p className="text-sm font-semibold text-white">{node.title}</p>
-                <textarea value={node.detail} onChange={(event) => updateMemoryNode(node.id, event.target.value)} className="mt-3 min-h-20 w-full resize-none border border-white/10 bg-black/20 p-3 text-sm leading-6 text-zinc-300 outline-none focus:border-white/30" />
+                <p className={`text-sm font-semibold ${skin.text}`}>{node.title}</p>
+                <textarea value={node.detail} onChange={(event) => updateMemoryNode(node.id, event.target.value)} className={`mt-3 min-h-20 w-full resize-none border p-3 text-sm leading-6 outline-none ${skin.field}`} />
               </div>
             ))}
           </div>
@@ -1206,10 +1222,10 @@ function Demo() {
               ['Belief detection', `${memoryCounts.beliefs} belief signals are available for reframing.`],
               ['Pattern detection', activeSuggestion]
             ].map(([title, copy]) => (
-              <div key={title} className="border border-white/10 bg-white/[0.035] p-5">
-                <Sparkles className="h-5 w-5 text-violet-200" />
+              <div key={title} className={`border p-5 ${skin.module}`}>
+                <Sparkles className={`h-5 w-5 ${isLight ? 'text-violet-700' : 'text-violet-200'}`} />
                 <h3 className="mt-8 text-xl font-semibold tracking-[-0.04em]">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-zinc-400">{copy}</p>
+                <p className={`mt-3 text-sm leading-7 ${skin.soft}`}>{copy}</p>
               </div>
             ))}
           </div>
@@ -1227,12 +1243,12 @@ function Demo() {
               ['Proactive suggestions', 'proactive'],
               ['Write memories automatically', 'memoryWrite']
             ].map(([label, key]) => (
-              <button key={key} onClick={() => setMemory((current) => ({ ...current, settings: { ...current.settings, [key]: !current.settings[key] } }))} className="flex items-center justify-between border border-white/10 bg-white/[0.035] p-5 text-left">
+              <button key={key} onClick={() => setMemory((current) => ({ ...current, settings: { ...current.settings, [key]: !current.settings[key] } }))} className={`flex items-center justify-between border p-5 text-left ${skin.module}`}>
                 <span>
-                  <span className="block text-sm font-semibold text-white">{label}</span>
-                  <span className="mt-1 block text-xs text-zinc-500">{memory.settings[key] ? 'Enabled' : 'Paused'}</span>
+                  <span className={`block text-sm font-semibold ${skin.text}`}>{label}</span>
+                  <span className={`mt-1 block text-xs ${skin.muted}`}>{memory.settings[key] ? 'Enabled' : 'Paused'}</span>
                 </span>
-                <span className={`h-6 w-11 rounded-full p-1 transition ${memory.settings[key] ? 'bg-cyan-300' : 'bg-white/15'}`}>
+                <span className={`h-6 w-11 rounded-full p-1 transition ${memory.settings[key] ? 'bg-cyan-300' : isLight ? 'bg-slate-300' : 'bg-white/15'}`}>
                   <span className={`block h-4 w-4 rounded-full bg-black transition ${memory.settings[key] ? 'translate-x-5' : ''}`} />
                 </span>
               </button>
@@ -1248,11 +1264,11 @@ function Demo() {
         <div>
           <p className={`text-sm ${theme.accent}`}>Emotional Graph</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Mood-responsive interface</h2>
-          <div className="mt-8 flex h-56 items-end gap-4 border border-white/10 bg-black/20 p-5">
+          <div className={`mt-8 flex h-56 items-end gap-4 border p-5 ${skin.module}`}>
             {graph.map((height, index) => (
               <div key={index} className="flex flex-1 flex-col items-center gap-3">
                 <motion.div initial={{ height: 20 }} animate={{ height }} className="w-full bg-gradient-to-t from-cyan-300/30 to-white/80" />
-                <span className="text-xs text-zinc-500">{['Emotion', 'Goals', 'Beliefs', 'Chats'][index]}</span>
+                <span className={`text-xs ${skin.muted}`}>{['Emotion', 'Goals', 'Beliefs', 'Chats'][index]}</span>
               </div>
             ))}
           </div>
@@ -1265,10 +1281,10 @@ function Demo() {
         <div>
           <p className={`text-sm ${theme.accent}`}>Life Guidance Mode</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Proactive next step</h2>
-          <div className="mt-6 border border-white/10 bg-white/[0.035] p-6">
-            <Compass className="h-7 w-7 text-cyan-200" />
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-200">{activeSuggestion}</p>
-            <button onClick={() => send('Break my strongest goal into a smaller next step')} className="mt-6 rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Ask RIA to guide me</button>
+          <div className={`mt-6 border p-6 ${skin.module}`}>
+            <Compass className={`h-7 w-7 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
+            <p className={`mt-8 max-w-2xl text-lg leading-8 ${skin.soft}`}>{activeSuggestion}</p>
+            <button onClick={() => send('Break my strongest goal into a smaller next step')} className={`mt-6 rounded-full px-5 py-3 text-sm font-medium ${skin.active}`}>Ask RIA to guide me</button>
           </div>
         </div>
       )
@@ -1285,10 +1301,10 @@ function Demo() {
             ['Beliefs', memoryCounts.beliefs, Fingerprint],
             ['Memory nodes', memory.nodes.length, Database]
           ].map(([label, value, Icon]) => (
-            <div key={label} className="border border-white/10 bg-white/[0.035] p-5">
-              <Icon className="h-5 w-5 text-cyan-200" />
+            <div key={label} className={`border p-5 ${skin.module}`}>
+              <Icon className={`h-5 w-5 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
               <p className="mt-8 text-3xl font-semibold">{value}</p>
-              <p className="mt-1 text-xs text-zinc-500">{label}</p>
+              <p className={`mt-1 text-xs ${skin.muted}`}>{label}</p>
             </div>
           ))}
         </div>
@@ -1297,15 +1313,15 @@ function Demo() {
   }
 
   const renderConversationSurface = () => (
-    <div className={`mx-auto mt-6 max-w-[78rem] rounded-[2rem] border p-6 ${skin.shell}`}>
+    <div className={`mx-auto mt-5 max-w-[78rem] rounded-[1.5rem] border p-4 sm:mt-6 sm:rounded-[2rem] sm:p-6 ${skin.shell}`}>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-        <div className="flex items-center gap-4">
-          <span className={`grid h-14 w-14 place-items-center rounded-full border ${skin.panel}`}>
+        <div className="flex items-start gap-3 sm:items-center sm:gap-4">
+          <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-full border sm:h-14 sm:w-14 ${skin.panel}`}>
             <BrainCircuit className="h-6 w-6" />
           </span>
-          <div>
+          <div className="min-w-0">
             <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>FAST COLLABORATION</p>
-            <h2 className="mt-2 text-5xl font-semibold tracking-[-0.06em]">RIA Conversation</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em] sm:text-5xl sm:tracking-[-0.06em]">RIA Conversation</h2>
             <p className={`mt-3 text-sm ${skin.muted}`}>Unified memory · Advanced response mode · General</p>
           </div>
         </div>
@@ -1332,33 +1348,33 @@ function Demo() {
         ))}
       </div>
 
-      <div className="mt-8 h-[560px] space-y-8 overflow-y-auto pr-2">
+      <div className="mt-6 h-[58vh] min-h-[24rem] space-y-6 overflow-y-auto pr-1 sm:mt-8 sm:h-[560px] sm:space-y-8 sm:pr-2">
         {messages.map((message, index) => (
-          <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            {message.role === 'ria' && <span className={`mt-7 grid h-9 w-9 shrink-0 place-items-center rounded-full border ${skin.panel}`}>R</span>}
-            <div className={`max-w-[78%] ${message.role === 'user' ? 'text-right' : ''}`}>
+          <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex gap-2 sm:gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            {message.role === 'ria' && <span className={`mt-7 hidden h-9 w-9 shrink-0 place-items-center rounded-full border sm:grid ${skin.panel}`}>R</span>}
+            <div className={`max-w-[92%] sm:max-w-[78%] ${message.role === 'user' ? 'text-right' : ''}`}>
               <div className={`mb-2 flex items-center gap-2 text-xs ${message.role === 'user' ? 'justify-end' : ''}`}>
                 <span className={skin.muted}>{message.role === 'user' ? 'You' : 'RIA'}</span>
                 <span className={`rounded-full border px-3 py-1 ${skin.panel}`}>{message.role === 'user' ? 'Input' : 'Advanced AI response'}</span>
               </div>
-              <div className={`rounded-3xl border px-6 py-5 text-base leading-8 shadow-xl ${message.role === 'user' ? skin.active : skin.panel}`}>
+              <div className={`rounded-2xl border px-4 py-4 text-sm leading-7 shadow-xl sm:rounded-3xl sm:px-6 sm:py-5 sm:text-base sm:leading-8 ${message.role === 'user' ? skin.active : skin.panel}`}>
                 <p className="whitespace-pre-wrap">{message.text}</p>
               </div>
             </div>
-            {message.role === 'user' && <span className={`mt-7 grid h-9 w-9 shrink-0 place-items-center rounded-full border ${skin.active}`}>Y</span>}
+            {message.role === 'user' && <span className={`mt-7 hidden h-9 w-9 shrink-0 place-items-center rounded-full border sm:grid ${skin.active}`}>Y</span>}
           </motion.div>
         ))}
         {isThinking && (
-          <div className={`max-w-[78%] rounded-3xl border px-6 py-5 text-base ${skin.panel}`}>
+          <div className={`max-w-[92%] rounded-2xl border px-4 py-4 text-sm sm:max-w-[78%] sm:rounded-3xl sm:px-6 sm:py-5 sm:text-base ${skin.panel}`}>
             RIA is processing context, memory continuity, emotional tone, and next action...
           </div>
         )}
         <div ref={scrollRef} />
       </div>
 
-      <form onSubmit={(event) => { event.preventDefault(); send() }} className={`mt-6 flex gap-3 rounded-3xl border p-4 ${skin.panel}`}>
+      <form onSubmit={(event) => { event.preventDefault(); send() }} className={`mt-6 flex gap-2 rounded-2xl border p-3 sm:gap-3 sm:rounded-3xl sm:p-4 ${skin.panel}`}>
         <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send() } }} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-base leading-7 outline-none ${skin.text}`} placeholder="Chat with RIA in detail..." />
-        <button disabled={!input.trim() || isThinking} className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl ${skin.active} disabled:opacity-40`} aria-label="Send">
+        <button disabled={!input.trim() || isThinking} className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl sm:h-14 sm:w-14 ${skin.active} disabled:opacity-40`} aria-label="Send">
           <SendHorizontal className="h-5 w-5" />
         </button>
       </form>
@@ -1366,12 +1382,12 @@ function Demo() {
   )
 
   return (
-    <section className={`void-cosmos relative min-h-screen overflow-hidden ${isLight ? 'text-slate-950' : 'text-white'} pt-20`}>
-      <div className="void-stars absolute inset-0 opacity-60" />
+    <section className={`relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
+      <div className={`void-stars absolute inset-0 ${isLight ? 'opacity-25' : 'opacity-60'}`} />
       <div className={`absolute inset-0 ${isLight ? 'opacity-20' : 'opacity-45'}`}>
         <div className="thought-stream thought-stream-a" />
         <div className="thought-stream thought-stream-b" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px]" />
+        <div className={`absolute inset-0 bg-[size:72px_72px] ${isLight ? 'bg-[linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)]' : 'bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]'}`} />
       </div>
       <div className="relative grid min-h-[calc(100vh-5rem)] grid-cols-1 xl:grid-cols-[17rem_1fr_20rem]">
         <aside className={`hidden border-r p-5 xl:block ${skin.panel}`}>
@@ -1391,7 +1407,7 @@ function Demo() {
           <p className={`mt-10 text-xs font-semibold tracking-[0.18em] ${skin.muted}`}>COMMAND CENTER</p>
           <div className="mt-4 grid gap-2">
             {osTabs.map(([id, label, Icon]) => (
-              <button key={id} onClick={() => { setActiveTab(id); if (id === 'chat') setSurface('conversation') }} className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition ${activeTab === id ? skin.active : `${skin.panel} ${skin.soft} hover:border-white/30`}`}>
+              <button key={id} onClick={() => { setActiveTab(id); if (id === 'chat') setSurface('conversation') }} className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition ${activeTab === id ? skin.active : `${skin.panel} ${skin.soft} ${isLight ? 'hover:border-slate-500' : 'hover:border-white/30'}`}`}>
                 <Icon className="h-4 w-4" />
                 {label}
               </button>
@@ -1399,44 +1415,55 @@ function Demo() {
           </div>
         </aside>
 
-        <main className="px-5 py-6 lg:px-8">
-          <div className={`mx-auto flex max-w-[98rem] items-center gap-3 rounded-full border p-3 backdrop-blur-xl ${skin.shell}`}>
+        <main className="min-w-0 px-3 py-5 sm:px-5 sm:py-6 lg:px-8">
+          <div className={`mx-auto flex max-w-[98rem] flex-wrap items-center gap-2 rounded-[1.5rem] border p-2 backdrop-blur-xl sm:gap-3 sm:rounded-full sm:p-3 ${skin.shell}`}>
             <button className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Menu">
               <Menu className="h-5 w-5" />
             </button>
-            <div className={`flex min-w-0 flex-1 items-center gap-3 rounded-full border px-5 py-3 ${skin.panel}`}>
+            <div className={`order-2 flex min-w-0 basis-full items-center gap-3 rounded-full border px-4 py-3 sm:order-none sm:basis-auto sm:flex-1 sm:px-5 ${skin.panel}`}>
               <Search className={`h-5 w-5 ${skin.muted}`} />
               <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') send() }} className={`min-w-0 flex-1 bg-transparent text-sm outline-none ${skin.text} placeholder:${isLight ? 'text-slate-400' : 'text-zinc-600'}`} placeholder="Ask RIA anything or use a command..." />
-              <span className={`rounded-full border px-3 py-1 text-xs ${skin.muted}`}>⌘ K</span>
+              <span className={`hidden rounded-full border px-3 py-1 text-xs sm:inline ${skin.muted}`}>⌘ K</span>
             </div>
             <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>LIVE GROWTH {isThinking ? 'PROCESSING' : 'OFFLINE'}</span>
             <button onClick={() => setVisualMode(isLight ? 'dark' : 'light')} className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Toggle light and dark mode">
               {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </button>
-            <button className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Notifications">
+            <button className={`hidden h-11 w-11 place-items-center rounded-full border sm:grid ${skin.panel}`} aria-label="Notifications">
               <Bell className="h-5 w-5" />
             </button>
-            <span className={`grid h-12 w-12 place-items-center rounded-full border text-lg font-semibold ${skin.shell}`}>R</span>
+            <span className={`hidden h-12 w-12 place-items-center rounded-full border text-lg font-semibold sm:grid ${skin.shell}`}>R</span>
           </div>
 
-          <div className="mx-auto mt-7 flex w-fit rounded-full border border-white/10 bg-black/20 p-1">
+          <div className="mt-4 xl:hidden">
+            <div className={`flex gap-2 overflow-x-auto rounded-2xl border p-2 ${skin.panel}`}>
+              {osTabs.map(([id, label, Icon]) => (
+                <button key={id} onClick={() => { setActiveTab(id); if (id === 'chat') setSurface('conversation') }} className={`flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium ${activeTab === id ? skin.active : `${skin.panel} ${skin.soft}`}`}>
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className={`mx-auto mt-5 flex w-fit rounded-full border p-1 sm:mt-7 ${isLight ? 'border-slate-300 bg-white/70' : 'border-white/10 bg-black/20'}`}>
             {[
               ['workspace', 'Workspace'],
               ['conversation', 'Conversation']
             ].map(([id, item]) => (
-              <button key={id} onClick={() => { setSurface(id); if (id === 'conversation') setActiveTab('chat') }} className={`rounded-full px-8 py-3 text-sm font-medium ${surface === id ? skin.active : skin.soft}`}>{item}</button>
+              <button key={id} onClick={() => { setSurface(id); if (id === 'conversation') setActiveTab('chat') }} className={`rounded-full px-5 py-2.5 text-sm font-medium sm:px-8 sm:py-3 ${surface === id ? skin.active : skin.soft}`}>{item}</button>
             ))}
           </div>
 
           {surface === 'conversation' ? renderConversationSurface() : (
             <>
-              <div className={`mx-auto mt-6 max-w-[78rem] overflow-hidden rounded-[2rem] border p-8 text-center backdrop-blur-xl ${skin.shell}`}>
+              <div className={`mx-auto mt-5 max-w-[78rem] overflow-hidden rounded-[1.5rem] border p-5 text-center backdrop-blur-xl sm:mt-6 sm:rounded-[2rem] sm:p-8 ${skin.shell}`}>
                 <p className={`mx-auto inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>AI WORKSPACE</p>
-                <div className="relative mx-auto mt-8 grid h-44 max-w-3xl place-items-center overflow-hidden">
-                  <div className="absolute h-36 w-36 rounded-full border border-white/10 bg-white/10 blur-sm" />
-                  <div className="absolute h-20 w-20 rounded-full bg-white/20 blur-2xl" />
-                  <h1 className="relative text-6xl font-semibold tracking-[0.42em] sm:text-8xl">ORBIT</h1>
-                  <p className={`absolute bottom-0 text-xs font-semibold tracking-[0.5em] ${skin.muted}`}>COGNITIVE COMPANION WORKSPACE</p>
+                <div className="relative mx-auto mt-8 grid h-40 max-w-3xl place-items-center overflow-hidden sm:h-44">
+                  <div className={`absolute h-36 w-36 rounded-full border blur-sm ${isLight ? 'border-sky-200 bg-sky-100/50' : 'border-white/10 bg-white/10'}`} />
+                  <div className={`absolute h-20 w-20 rounded-full blur-2xl ${isLight ? 'bg-sky-200/70' : 'bg-white/20'}`} />
+                  <h1 className="relative text-4xl font-semibold tracking-[0.24em] sm:text-8xl sm:tracking-[0.42em]">ORBIT</h1>
+                  <p className={`absolute bottom-0 px-2 text-[0.65rem] font-semibold tracking-[0.22em] sm:text-xs sm:tracking-[0.5em] ${skin.muted}`}>COGNITIVE COMPANION WORKSPACE</p>
                 </div>
               </div>
 
@@ -1457,12 +1484,12 @@ function Demo() {
               </div>
 
               <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 lg:grid-cols-[1.05fr_0.75fr]">
-                <div className={`rounded-2xl border p-5 ${skin.shell}`}>
+                <div className={`rounded-2xl border p-4 sm:p-5 ${skin.shell}`}>
               <div className="mb-4 flex items-center justify-between">
                 <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>ASK OR COMMAND</p>
                 <span className="inline-flex items-center gap-2 text-xs text-emerald-300"><span className="h-2 w-2 rounded-full bg-emerald-300" />ONLINE</span>
               </div>
-              <form onSubmit={(event) => { event.preventDefault(); send() }} className={`flex gap-3 rounded-2xl border p-3 ${skin.panel}`}>
+              <form onSubmit={(event) => { event.preventDefault(); send() }} className={`flex gap-2 rounded-2xl border p-3 sm:gap-3 ${skin.panel}`}>
                 <textarea value={input} onChange={(event) => setInput(event.target.value)} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent p-3 text-base outline-none ${skin.text}`} placeholder="Ask RIA what to do next, or use a command like /analyze..." />
                 <button disabled={!input.trim() || isThinking} className={`grid h-14 w-14 shrink-0 place-items-center rounded-xl ${skin.active} disabled:opacity-40`} aria-label="Send">
                   <SendHorizontal className="h-5 w-5" />
@@ -1475,7 +1502,7 @@ function Demo() {
               </div>
               <div className="mt-5 max-h-72 space-y-4 overflow-y-auto pr-2">
                 {messages.slice(-6).map((message, index) => (
-                  <div key={`${message.role}-${index}`} className={`max-w-[80%] rounded-2xl border p-4 text-sm leading-6 ${message.role === 'user' ? `ml-auto ${skin.active}` : skin.panel}`}>
+                  <div key={`${message.role}-${index}`} className={`max-w-[94%] rounded-2xl border p-4 text-sm leading-6 sm:max-w-[80%] ${message.role === 'user' ? `ml-auto ${skin.active}` : skin.panel}`}>
                     <p className={`mb-1 text-[10px] font-semibold tracking-[0.18em] ${message.role === 'user' ? '' : skin.muted}`}>{message.role === 'user' ? 'YOU' : 'RIA'}</p>
                     <p className="whitespace-pre-wrap">{message.text}</p>
                   </div>
@@ -1492,8 +1519,8 @@ function Demo() {
               </div>
               <div className="mt-5 space-y-4">
                 {memory.timeline.slice(0, 5).map((event) => (
-                  <div key={event.id} className="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
-                    <div>
+                  <div key={event.id} className={`flex items-start justify-between gap-4 border-b pb-3 ${skin.divider}`}>
+                    <div className="min-w-0">
                       <p className={`text-sm ${skin.soft}`}>{event.label}</p>
                       <p className={`mt-1 line-clamp-1 text-xs ${skin.muted}`}>{event.detail}</p>
                     </div>
@@ -1507,7 +1534,7 @@ function Demo() {
             </>
           )}
 
-          <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className={`mx-auto mt-4 max-w-[78rem] rounded-2xl border p-6 ${skin.shell}`}>
+          <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className={`mx-auto mt-4 max-w-[78rem] rounded-2xl border p-4 sm:p-6 ${skin.shell}`}>
             {renderActiveModule()}
           </motion.div>
         </main>

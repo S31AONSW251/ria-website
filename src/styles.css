@@ -196,6 +196,26 @@ a {
   top: 35%;
 }
 
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .home-orbit-ring {
+    display: none;
+  }
+
+  .home-orbit-node {
+    position: static;
+    width: 100%;
+    transform: none;
+  }
+
+  .home-core-pulse {
+    margin-bottom: 1rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
