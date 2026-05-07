@@ -441,25 +441,25 @@ function Container({ children, className = '' }) {
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/35 backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/90 text-black backdrop-blur-2xl">
       <Container className="flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src={images.logo} alt="" className="h-7 w-7 rounded-full object-cover invert grayscale" onError={(event) => { event.currentTarget.style.display = 'none' }} />
-          <span className="grid h-8 w-8 place-items-center rounded-lg border border-white/20 bg-white text-black shadow-[0_0_18px_rgba(255,255,255,0.12)]">
+          <img src={images.logo} alt="" className="h-7 w-7 rounded-full object-cover grayscale" onError={(event) => { event.currentTarget.style.display = 'none' }} />
+          <span className="grid h-8 w-8 place-items-center rounded-lg border border-black/10 bg-black text-white">
             <BrainCircuit className="h-4 w-4" />
           </span>
-          <span className="text-base font-semibold tracking-[-0.02em] text-white">RIA</span>
+          <span className="text-base font-semibold tracking-[-0.02em] text-black">RIA</span>
         </Link>
-        <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-zinc-700 md:flex">
           {nav.map(([label, to]) => (
-            <NavLink key={to} to={to} className={({ isActive }) => isActive ? 'text-white' : 'transition hover:text-white'}>
+            <NavLink key={to} to={to} className={({ isActive }) => isActive ? 'text-black' : 'transition hover:text-black'}>
               {label}
             </NavLink>
           ))}
         </nav>
         <div className="flex items-center gap-4 text-sm">
-          <Link to="/download" className="hidden text-zinc-300 transition hover:text-white sm:inline">Download</Link>
-          <Link to="/demo" className="rounded-full bg-gradient-to-r from-violet-300 to-cyan-200 px-4 py-2 font-semibold text-black shadow-[0_0_24px_rgba(103,232,249,0.18)] transition hover:brightness-110">Start RIA</Link>
+          <Link to="/download" className="hidden text-zinc-700 transition hover:text-black sm:inline">Download</Link>
+          <Link to="/demo" className="rounded-full bg-black px-4 py-2 font-semibold text-white transition hover:bg-zinc-800">Start RIA</Link>
         </div>
       </Container>
     </header>
@@ -468,14 +468,14 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black/25 backdrop-blur-xl">
+    <footer className="border-t border-black/10 bg-white text-black">
       <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-5">
         <div>
-          <div className="mb-6 flex items-center gap-2 text-white">
-            <BrainCircuit className="h-5 w-5 text-violet-300" />
+          <div className="mb-6 flex items-center gap-2 text-black">
+            <BrainCircuit className="h-5 w-5" />
             <span className="font-semibold">RIA</span>
           </div>
-          <p className="max-w-xs text-sm leading-6 text-zinc-500">Personal cognitive intelligence for memory continuity, reflection, emotional awareness, and growth.</p>
+          <p className="max-w-xs text-sm leading-6 text-zinc-600">Personal cognitive intelligence for memory continuity, reflection, emotional awareness, and growth.</p>
         </div>
         {[
           ['Research', ['Memory continuity', 'Reflection engine', 'Belief classification', 'Emotional AI']],
@@ -484,14 +484,14 @@ function Footer() {
           ['Support', ['Funding', 'Partner', 'Privacy', 'Terms']]
         ].map(([title, links]) => (
           <div key={title}>
-            <p className="mb-4 text-sm font-semibold text-white">{title}</p>
+            <p className="mb-4 text-sm font-semibold text-black">{title}</p>
             {links.map((item) => (
-              <p key={item} className="mb-3 text-sm text-zinc-500">{item}</p>
+              <p key={item} className="mb-3 text-sm text-zinc-600">{item}</p>
             ))}
           </div>
         ))}
       </Container>
-      <Container className="flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+      <Container className="flex flex-col gap-4 border-t border-black/10 py-6 text-sm text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
         <p>RIA by AIONTEC © 2026</p>
         <div className="flex gap-4">
           <Github className="h-4 w-4" />
@@ -512,16 +512,16 @@ function HeroSearch() {
         const clean = value.trim()
         window.location.href = clean ? `/demo?message=${encodeURIComponent(clean)}` : '/demo'
       }}
-      className="mx-auto mt-10 flex max-w-xl items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-3 text-left shadow-2xl shadow-violet-950/30 backdrop-blur-xl"
+      className="mt-10 flex max-w-2xl items-center gap-3 rounded-2xl border border-black/10 bg-white px-4 py-3 text-left shadow-sm"
     >
       <Search className="h-5 w-5 text-zinc-500" />
       <input
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder="Ask RIA about your memory, journal, or emotions"
-        className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
+        className="min-w-0 flex-1 bg-transparent text-sm text-black outline-none placeholder:text-zinc-500"
       />
-      <button className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-r from-violet-400 to-cyan-300 text-black" aria-label="Ask RIA">
+      <button className="grid h-8 w-8 place-items-center rounded-full bg-black text-white" aria-label="Ask RIA">
         <ArrowRight className="h-4 w-4" />
       </button>
     </form>
@@ -531,107 +531,83 @@ function HeroSearch() {
 function Home() {
   return (
     <>
-      <section className="void-cosmos relative min-h-screen overflow-hidden bg-transparent pt-24 text-white">
-        <div className="void-stars absolute inset-0 opacity-70" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:76px_76px] opacity-25" />
-        <div className="thought-stream thought-stream-a opacity-30" />
-        <div className="thought-stream thought-stream-b opacity-20" />
-        <Container className="relative grid min-h-[calc(100vh-6rem)] gap-8 py-8 xl:grid-cols-[21rem_1fr_21rem] xl:items-center">
-          <motion.aside initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="cosmos-glass hidden border border-white/10 p-5 xl:block">
-            <div className="flex items-center gap-3">
-              <BrainCircuit className="h-7 w-7 text-cyan-200" />
-              <div>
-                <p className="font-semibold">Live Cognition Layer</p>
-                <p className="text-xs text-zinc-500">RIA is thinking in visible streams</p>
-              </div>
-            </div>
-            <div className="mt-7 space-y-4">
-              {cognitionStream.map((item, index) => (
-                <div key={item} className="flex items-center gap-3 border-b border-white/10 pb-4">
-                  <span className="relative flex h-3 w-3">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-60" />
-                    <span className="relative inline-flex h-3 w-3 rounded-full bg-cyan-200" />
-                  </span>
-                  <div>
-                    <p className="text-sm text-zinc-200">{item}</p>
-                    <p className="mt-1 text-xs text-zinc-600">stream {String(index + 1).padStart(2, '0')}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-7 border border-cyan-200/20 bg-cyan-200/[0.06] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Proactive Signal</p>
-              <p className="mt-3 text-sm leading-6 text-zinc-300">{proactiveSignals[0]}</p>
-            </div>
-          </motion.aside>
-
-          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="relative mx-auto flex w-full max-w-4xl flex-col items-center text-center">
-            <p className="inline-flex rounded-full border border-cyan-200/30 bg-cyan-200/10 px-5 py-2 text-xs font-semibold tracking-[0.18em] text-cyan-100">PERSONAL COGNITIVE OPERATING SYSTEM</p>
-            <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.9] tracking-[-0.07em] sm:text-7xl lg:text-8xl">
-              RIA is not a site. It is a <span className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-transparent">living mind interface</span>.
+      <section className="bg-white pt-24 text-black">
+        <Container className="py-8 sm:py-12">
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+            <p className="text-sm text-zinc-600">AIONTEC + RIA</p>
+            <h1 className="mt-8 text-[5.4rem] font-semibold leading-[0.82] tracking-[-0.08em] sm:text-[9rem] lg:text-[13rem]">
+              RIA
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-300">
-              A neural OS shell for memory, reflection, goals, emotional intelligence, proactive guidance, and identity evolution. RIA is designed to feel like a second brain that is awake, adaptive, and privately yours.
-            </p>
-
-            <div className="relative mt-10 grid h-auto w-full max-w-[48rem] gap-3 md:h-[34rem] md:place-items-center">
-              <div className="home-orbit-ring h-[31rem] w-[31rem]" />
-              <div className="home-orbit-ring home-orbit-ring-b h-[23rem] w-[23rem]" />
-              <div className="home-core-pulse grid h-48 w-48 place-items-center rounded-full border border-white/15 bg-white/[0.08] shadow-[0_0_90px_rgba(34,211,238,0.22)] backdrop-blur-xl">
-                <div>
-                  <BrainCircuit className="mx-auto h-10 w-10 text-cyan-100" />
-                  <p className="mt-3 text-3xl font-semibold tracking-[0.18em]">RIA</p>
-                  <p className="mt-2 text-xs text-zinc-500">AI CORE ACTIVE</p>
+            <div className="mt-8 grid gap-8 border-t border-black/10 pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <h2 className="max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl">
+                Personal cognitive intelligence for memory, reflection, and emotional clarity.
+              </h2>
+              <div>
+                <p className="max-w-2xl text-base leading-8 text-zinc-700">
+                  RIA is a private second-brain interface that turns conversation into memory, journaling, goals, belief tracking, and calm guidance across devices.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link to="/demo" className="rounded-full bg-black px-5 py-3 text-sm font-medium text-white">Try RIA</Link>
+                  <Link to="/product" className="rounded-full border border-black/20 px-5 py-3 text-sm font-medium text-black">Explore product</Link>
                 </div>
               </div>
-              {homeOrbitModules.map(([title, Icon, copy], index) => (
-                <Link key={title} to={title === 'Chat' ? '/demo' : '/product'} className={`home-orbit-node home-orbit-node-${index} cosmos-glass group border border-white/10 p-4 text-left transition hover:border-cyan-200/50`}>
-                  <Icon className="h-5 w-5 text-cyan-100" />
-                  <p className="mt-4 text-sm font-semibold">{title}</p>
-                  <p className="mt-1 text-xs leading-5 text-zinc-500">{copy}</p>
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-2 flex flex-wrap justify-center gap-3">
-              <Link to="/demo" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black">Enter RIA OS</Link>
-              <Link to="/product" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white hover:border-white">View system layers</Link>
             </div>
           </motion.div>
 
-          <motion.aside initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="hidden space-y-5 xl:block">
-            <div className="cosmos-glass border border-white/10 p-5">
-              <p className="text-sm font-semibold text-cyan-100">Memory Field UI</p>
-              <div className="mt-5 space-y-3">
-                {memoryField.map(([title, copy, Icon]) => (
-                  <div key={title} className="border border-white/10 bg-black/25 p-4">
-                    <div className="flex items-center gap-3">
-                      <Icon className="h-4 w-4 text-violet-200" />
-                      <p className="text-sm font-medium">{title}</p>
-                    </div>
-                    <p className="mt-2 text-xs leading-5 text-zinc-500">{copy}</p>
-                  </div>
-                ))}
+          <div className="mt-12 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+            <Link to="/demo" className="group min-h-[26rem] overflow-hidden rounded-sm bg-black text-white">
+              <div className="flex h-full min-h-[26rem] flex-col justify-between bg-[radial-gradient(circle_at_72%_18%,rgba(255,255,255,0.24),transparent_20%),linear-gradient(135deg,#050505,#111827_45%,#000)] p-6 sm:p-8">
+                <div className="flex items-center justify-between text-sm text-zinc-400">
+                  <span>Interactive demo</span>
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </div>
+                <div>
+                  <p className="mb-4 inline-flex rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">Memory OS</p>
+                  <h3 className="max-w-xl text-4xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">Talk to the RIA operating system.</h3>
+                </div>
               </div>
+            </Link>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {featured.slice(0, 2).map((card) => (
+                <Link key={card.title} to={card.to} className="group border border-black/10 p-5 transition hover:bg-zinc-50">
+                  <p className="text-sm text-zinc-500">{card.type}</p>
+                  <h3 className="mt-12 text-2xl font-semibold leading-[1.05] tracking-[-0.045em]">{card.title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-zinc-600">{card.copy}</p>
+                  <ArrowRight className="mt-6 h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
+              ))}
             </div>
-            <div className="cosmos-glass border border-white/10 p-5">
-              <p className="text-sm font-semibold text-violet-100">User Evolution Model</p>
-              <div className="mt-5 space-y-4">
-                {evolutionSignals.map(([label, value]) => (
-                  <div key={label}>
-                    <div className="flex justify-between gap-4 text-sm">
-                      <span className="text-zinc-500">{label}</span>
-                      <span className="text-zinc-200">{value}</span>
-                    </div>
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-cyan-200 to-violet-300" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-5 text-sm leading-6 text-zinc-400">RIA maps the shift from reactive thinking into structured identity growth.</p>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-black/10 bg-white py-16 text-black">
+        <Container>
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="text-3xl font-semibold tracking-[-0.045em]">Recent updates</h2>
+            <Link to="/research" className="text-sm text-zinc-600 hover:text-black">View all</Link>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {news.map(([type, title]) => (
+              <Link key={title} to="/research" className="group border-t border-black/10 pt-5">
+                <p className="text-sm text-zinc-500">{type}</p>
+                <h3 className="mt-2 min-h-20 text-xl font-semibold leading-[1.08] tracking-[-0.04em]">{title}</h3>
+                <p className="mt-6 text-sm text-zinc-600">Read update</p>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-black/10 bg-[#f7f7f4] py-16 text-black">
+        <Container>
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div>
+              <p className="text-sm text-zinc-600">Ask RIA</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">What can RIA help with?</h2>
             </div>
-          </motion.aside>
+            <HeroSearch />
+          </div>
         </Container>
       </section>
       <HomeSystemPanels />
@@ -1121,6 +1097,11 @@ function Demo() {
     conversations: memory.nodes.filter((node) => node.type === 'conversation' || node.type === 'journal').length
   }
   const activeSuggestion = getActiveSuggestion(memory)
+  const mobileTelemetry = [
+    ['Mode', detectedIntent, Zap],
+    ['Memory', `${memory.nodes.length} nodes`, Database],
+    ['Persona', `${Math.round(memory.personaLevel * 10)}%`, BrainCircuit]
+  ]
 
   const updateMemoryNode = (id, detail) => {
     setMemory((current) => ({
@@ -1382,7 +1363,7 @@ function Demo() {
   )
 
   return (
-    <section className={`relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
+    <section className={`ria-demo relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
       <div className={`void-stars absolute inset-0 ${isLight ? 'opacity-25' : 'opacity-60'}`} />
       <div className={`absolute inset-0 ${isLight ? 'opacity-20' : 'opacity-45'}`}>
         <div className="thought-stream thought-stream-a" />
@@ -1446,6 +1427,24 @@ function Demo() {
             </div>
           </div>
 
+          <div className="mt-4 grid gap-3 sm:grid-cols-3 xl:hidden">
+            {mobileTelemetry.map(([label, value, Icon]) => (
+              <div key={label} className={`relative overflow-hidden rounded-2xl border p-4 ${skin.shell}`}>
+                <div className="absolute -right-5 -top-8 h-20 w-20 rounded-full bg-cyan-300/10 blur-2xl" />
+                <div className="flex items-center justify-between gap-3">
+                  <span className={`grid h-10 w-10 place-items-center rounded-xl border ${skin.panel}`}>
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className={`text-[0.65rem] font-semibold uppercase tracking-[0.18em] ${skin.muted}`}>{label}</span>
+                </div>
+                <p className="mt-5 truncate text-xl font-semibold capitalize tracking-[-0.04em]">{value}</p>
+                <div className={`mt-3 h-1.5 overflow-hidden rounded-full ${isLight ? 'bg-slate-200' : 'bg-white/10'}`}>
+                  <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-cyan-300 to-violet-300" />
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className={`mx-auto mt-5 flex w-fit rounded-full border p-1 sm:mt-7 ${isLight ? 'border-slate-300 bg-white/70' : 'border-white/10 bg-black/20'}`}>
             {[
               ['workspace', 'Workspace'],
@@ -1467,14 +1466,14 @@ function Demo() {
                 </div>
               </div>
 
-              <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 md:grid-cols-4">
+              <div className="mx-auto mt-4 grid max-w-[78rem] grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
                 {orbitCards.map(([title, copy, Icon, prompt]) => (
-                  <button key={title} onClick={() => send(prompt)} className={`group rounded-2xl border p-5 text-left transition hover:-translate-y-1 ${skin.shell}`}>
-                    <div className="flex items-center gap-4">
+                  <button key={title} onClick={() => send(prompt)} className={`group rounded-2xl border p-4 text-left transition hover:-translate-y-1 sm:p-5 ${skin.shell}`}>
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                       <span className={`grid h-12 w-12 place-items-center rounded-xl border ${skin.panel}`}>
                         <Icon className="h-5 w-5" />
                       </span>
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-semibold">{title}</p>
                         <p className={`mt-1 text-sm ${skin.muted}`}>{copy}</p>
                       </div>
@@ -1498,6 +1497,15 @@ function Demo() {
               <div className="mt-4 flex flex-wrap gap-2">
                 {['Reason', 'Analyze', 'Evolve', 'Memory', 'Reflect', 'Optimize'].map((cmd) => (
                   <button key={cmd} onClick={() => send(cmd)} className={`rounded-full border px-4 py-2 text-sm font-semibold ${skin.panel}`}>{cmd}</button>
+                ))}
+              </div>
+              <div className="mt-5 grid grid-cols-3 gap-2 xl:hidden">
+                {demoCapabilities.slice(0, 3).map(([label, value, Icon]) => (
+                  <div key={label} className={`rounded-2xl border p-3 ${skin.panel}`}>
+                    <Icon className="h-4 w-4" />
+                    <p className="mt-4 text-sm font-semibold">{value}</p>
+                    <p className={`mt-1 text-[0.65rem] uppercase tracking-[0.16em] ${skin.muted}`}>{label}</p>
+                  </div>
                 ))}
               </div>
               <div className="mt-5 max-h-72 space-y-4 overflow-y-auto pr-2">
@@ -1589,7 +1597,7 @@ function Demo() {
 
 export default function App() {
   return (
-    <main className="void-cosmos min-h-screen bg-transparent text-white">
+    <main className="openai-site min-h-screen bg-white text-black">
       <ScrollToTop />
       <Header />
       <Routes>
