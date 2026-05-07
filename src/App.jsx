@@ -1494,7 +1494,7 @@ function Demo() {
       {!isLight && (
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,0.10),transparent_16%),radial-gradient(circle_at_86%_6%,rgba(255,255,255,0.05),transparent_22%),linear-gradient(180deg,rgba(0,0,0,0.22),rgba(0,0,0,0.82))]" />
       )}
-      <div className="relative grid min-h-[calc(100vh-5rem)] grid-cols-1 xl:grid-cols-[17rem_1fr_20rem]">
+      <div className="relative grid min-h-[calc(100vh-5rem)] grid-cols-1 xl:grid-cols-[17rem_1fr]">
         <aside className={`hidden border-r p-5 xl:block ${skin.panel}`}>
           <div className="flex items-center gap-3">
             <Orbit className="h-7 w-7" />
@@ -1693,79 +1693,6 @@ function Demo() {
           </motion.div>
         </main>
 
-        <aside className={`hidden border-l p-5 xl:grid xl:content-start xl:gap-4 ${skin.panel}`}>
-          <div className={`rounded-2xl border p-5 ${skin.shell}`}>
-            <div className="flex items-center justify-between">
-              <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>SYSTEM PULSE</p>
-              <ShieldCheck className={`h-4 w-4 ${skin.muted}`} />
-            </div>
-            <div className={`mt-5 rounded-xl border p-4 ${skin.panel}`}>
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-sm font-semibold">NVIDIA GEFORCE RTX 3060</p>
-                  <p className={`mt-2 text-xs ${skin.muted}`}>12GB NVIDIA</p>
-                </div>
-                <span className={`h-2 w-2 rounded-full ${isLight ? 'bg-emerald-300' : 'bg-teal-200'}`} />
-              </div>
-            </div>
-            {gpuPulse.map(([item, value, ringColor, percent]) => (
-              <div key={item} className={`mt-6 border-b pb-5 ${skin.divider}`}>
-                <div className="flex items-center gap-5">
-                  <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border-[4px] ${isLight ? 'border-blue-500 bg-white text-slate-950' : 'border-white bg-black text-white'}`}>
-                    <span className="text-sm font-bold">{value}</span>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className={`text-xs font-semibold ${skin.muted}`}>{item}</p>
-                    <div className="mt-4 flex items-end gap-1">
-                      {[18, 28, 34, 48, 38, 42].map((height, index) => (
-                        <span key={index} style={{ height }} className={`w-7 rounded-t-full ${isLight ? 'bg-blue-200' : 'bg-gradient-to-t from-zinc-900 to-zinc-400'}`} />
-                      ))}
-                    </div>
-                    <p className={`mt-2 text-xs ${skin.muted}`}>{item === 'VRAM USAGE' ? '7.5 / 12 GB' : item === 'POWER DRAW' ? 'not exposed' : ''}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className={`rounded-2xl border p-5 ${skin.shell}`}>
-            <div className="flex items-center justify-between">
-              <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>RESOURCES</p>
-              <Gauge className={`h-4 w-4 ${skin.muted}`} />
-            </div>
-            {[
-              ['CPU USAGE', '0%', 0],
-              ['RAM USAGE', '12.8 / 16 GB', 80],
-              ['DISK USAGE', '61%', 61],
-              ['Network', 'local', 100]
-            ].map(([item, value, width], index) => (
-              <div key={item} className="mt-4 text-sm">
-                <div className="flex items-center justify-between">
-                  <span className={skin.muted}>{item}</span>
-                  <span className="font-semibold">{value}</span>
-                </div>
-                {index < 3 && (
-                  <div className={`mt-3 h-1.5 overflow-hidden rounded-full ${isLight ? 'bg-blue-100' : 'bg-white/10'}`}>
-                    <div style={{ width: `${width}%` }} className={`h-full rounded-full ${isLight ? 'bg-blue-400' : 'bg-white'}`} />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className={`rounded-2xl border p-5 ${skin.shell}`}>
-            <div className="flex items-center justify-between">
-              <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>CURRENT MODE</p>
-              <Zap className="h-4 w-4" />
-            </div>
-            <p className="mt-6 text-2xl font-semibold capitalize">{detectedIntent}</p>
-            <p className={`mt-2 text-sm ${skin.muted}`}>{theme.label}</p>
-          </div>
-
-          <button onClick={() => { setMessages([{ role: 'ria', text: 'RIA Interface OS has been reset. Memory has returned to the default product vision.' }]); setMemory(initialOsMemory); setInput('') }} className={`rounded-full border px-5 py-3 text-sm font-medium ${skin.panel}`}>
-            Reset Interface OS
-          </button>
-        </aside>
       </div>
     </section>
   )
