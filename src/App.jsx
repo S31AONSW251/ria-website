@@ -185,22 +185,44 @@ const osTabs = [
   ['core', 'AI Workspace', Sparkles],
   ['chat', 'Chat', MessageCircle],
   ['dashboard', 'Dashboard', BarChart3],
-  ['memory', 'Memory Vault', Database],
+  ['memory', 'Memory', Database],
   ['reflection', 'Core Memory', ShieldCheck],
   ['knowledge', 'Knowledge Sources', Globe2],
+  ['web', 'Web Explorer', Globe2],
+  ['teach', 'Teach RIA', BookOpen],
+  ['gallery', 'Creative Gallery', Image],
+  ['desktop', 'Desktop Vault', FileText],
+  ['games', 'Games', Target],
   ['behavior', 'Behavior Settings', SlidersHorizontal],
   ['emotion', 'Emotional Graph', BarChart3],
   ['guidance', 'Life Guidance Mode', Compass],
   ['tools', 'Tools', Wrench],
   ['wellness', 'Private Wellness', HeartPulse],
-  ['goals', 'Goals', Target]
+  ['goals', 'Goals', Target],
+  ['actions', 'Actions', ArrowRight]
 ]
 
 const orbitCards = [
   ['Ask RIA', 'Start a clear conversation', MessageCircle, 'How are you tracking my goals today?'],
+  ['GPU Studio', 'Create or accelerate media', Cpu, 'Open GPU studio'],
   ['Improve RIA', 'Review safe upgrades', Sparkles, 'Improve my daily reflection flow'],
   ['Memory', 'Browse what RIA knows', Database, 'Open my memory summary'],
   ['Tools', 'Open action toolkit', Wrench, 'Show available RIA tools']
+]
+
+const premiumActivity = [
+  ['Upgrade proposed: add introspective trait and adjust tone for conflict', '05:42 PM'],
+  ['System scan complete: 4 findings', '05:32 PM'],
+  ['proposal auto_advanced', '05:02 PM'],
+  ['Controlled change applied: 0 files', '05:02 PM'],
+  ['proposal approved', '05:02 PM']
+]
+
+const gpuPulse = [
+  ['GPU USAGE', '93%', 'bg-white', 93],
+  ['GPU TEMPERATURE', '58c', 'bg-white', 58],
+  ['VRAM USAGE', '65%', 'bg-white', 65],
+  ['POWER DRAW', 'n/a', 'bg-zinc-700', 0]
 ]
 
 const homeOrbitModules = [
@@ -425,6 +447,76 @@ function getRiaReply(text) {
     return formatAdvancedReply(text, 'I understand the main shape of what you shared. The strongest signal is that this matters to you, and it may need reflection instead of a quick reaction. I would summarize it, identify the emotion under it, then choose one grounded next action.', intent, tone)
   }
   return formatAdvancedReply(text, 'I understand. Tell me one more detail and I can respond more specifically: is this about memory, emotion, a belief, a goal, or something you want to decide?', intent, tone)
+}
+
+function isImageRequest(text = '') {
+  return /(generate|create|make|draw|render|design).{0,28}(image|picture|photo|visual|art|poster|scene)|image of|picture of|photo of/i.test(text)
+}
+
+function getImagePrompt(text = '') {
+  return text
+    .replace(/^(please\s+)?(generate|create|make|draw|render|design)\s+(an?\s+)?(image|picture|photo|visual|art|poster|scene)\s+(of|for)?\s*/i, '')
+    .trim() || text.trim() || 'RIA generated visual'
+}
+
+function createFallbackImage(prompt) {
+  const cleanPrompt = getImagePrompt(prompt)
+  const seed = cleanPrompt.split('').reduce((total, char) => total + char.charCodeAt(0), 0)
+  const hueA = seed % 360
+  const hueB = (seed * 7 + 120) % 360
+  const hueC = (seed * 13 + 230) % 360
+  const title = cleanPrompt.length > 54 ? `${cleanPrompt.slice(0, 54)}...` : cleanPrompt
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="768" viewBox="0 0 1280 768">
+      <defs>
+        <radialGradient id="core" cx="50%" cy="42%" r="60%">
+          <stop offset="0%" stop-color="hsl(${hueA}, 92%, 78%)"/>
+          <stop offset="42%" stop-color="hsl(${hueB}, 76%, 54%)"/>
+          <stop offset="100%" stop-color="#05070d"/>
+        </radialGradient>
+        <linearGradient id="glass" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.34)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.06)"/>
+        </linearGradient>
+        <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+      </defs>
+      <rect width="1280" height="768" fill="#05070d"/>
+      <rect width="1280" height="768" fill="url(#core)" opacity="0.86"/>
+      <circle cx="230" cy="180" r="210" fill="hsl(${hueC}, 90%, 65%)" opacity="0.32" filter="url(#blur)"/>
+      <circle cx="1020" cy="160" r="260" fill="white" opacity="0.18" filter="url(#blur)"/>
+      <circle cx="930" cy="620" r="250" fill="hsl(${hueB}, 86%, 62%)" opacity="0.26" filter="url(#blur)"/>
+      <g opacity="0.28" stroke="white" fill="none">
+        <ellipse cx="640" cy="384" rx="440" ry="120" transform="rotate(-12 640 384)"/>
+        <ellipse cx="640" cy="384" rx="360" ry="90" transform="rotate(18 640 384)"/>
+        <ellipse cx="640" cy="384" rx="250" ry="62" transform="rotate(-38 640 384)"/>
+      </g>
+      <g opacity="0.6">
+        ${Array.from({ length: 42 }).map((_, index) => {
+          const x = (seed * (index + 11) * 17) % 1280
+          const y = (seed * (index + 7) * 23) % 768
+          const r = 1 + ((seed + index) % 3)
+          return `<circle cx="${x}" cy="${y}" r="${r}" fill="white" opacity="${0.28 + (index % 5) * 0.09}"/>`
+        }).join('')}
+      </g>
+      <rect x="72" y="78" width="1136" height="612" rx="38" fill="rgba(0,0,0,0.30)" stroke="rgba(255,255,255,0.32)"/>
+      <text x="104" y="132" fill="rgba(255,255,255,0.72)" font-family="Inter, Arial, sans-serif" font-size="20" letter-spacing="6">RIA FALLBACK RENDER</text>
+      <text x="104" y="596" fill="white" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700">${escapeSvg(title)}</text>
+      <text x="104" y="642" fill="rgba(255,255,255,0.72)" font-family="Inter, Arial, sans-serif" font-size="24">Generated in-browser without GPU acceleration</text>
+    </svg>
+  `
+  return {
+    src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
+    alt: `Generated visual for ${cleanPrompt}`,
+    prompt: cleanPrompt
+  }
+}
+
+function escapeSvg(value = '') {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
 }
 
 function ScrollToTop() {
@@ -1079,16 +1171,16 @@ function Demo() {
     chip: isLight ? 'border-sky-300/70 bg-sky-50 text-sky-950 shadow-sm shadow-sky-100/70' : emotionTheme.chip
   }
   const skin = {
-    page: isLight ? 'bg-[#f7f9fc] text-slate-950' : 'void-cosmos text-white',
-    shell: isLight ? 'bg-white border-slate-200 shadow-[0_18px_60px_rgba(15,23,42,0.08)]' : 'bg-white/[0.045] border-white/10 shadow-black/40',
-    panel: isLight ? 'bg-white border-slate-200 shadow-sm shadow-slate-200/60' : 'bg-black/35 border-white/10',
-    module: isLight ? 'border-slate-200 bg-white shadow-sm shadow-slate-200/60' : 'border-white/10 bg-white/[0.035]',
-    field: isLight ? 'border-slate-200 bg-slate-50 text-slate-800 focus:border-sky-400' : 'border-white/10 bg-black/20 text-zinc-300 focus:border-white/30',
-    divider: isLight ? 'border-slate-200' : 'border-white/10',
-    muted: isLight ? 'text-slate-600' : 'text-zinc-500',
+    page: isLight ? 'bg-[#eaf8ff] text-slate-950' : 'bg-[#050505] text-white',
+    shell: isLight ? 'bg-white/62 border-blue-200/80 shadow-[0_24px_80px_rgba(59,130,246,0.13)] backdrop-blur-2xl' : 'bg-white/[0.055] border-white/10 shadow-[0_28px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl',
+    panel: isLight ? 'bg-white/58 border-blue-200/80 shadow-sm shadow-blue-100/70 backdrop-blur-xl' : 'bg-white/[0.06] border-white/10 shadow-inner shadow-white/[0.03]',
+    module: isLight ? 'border-blue-200/80 bg-white/64 shadow-sm shadow-blue-100/70 backdrop-blur-xl' : 'border-white/10 bg-white/[0.055] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]',
+    field: isLight ? 'border-blue-200/80 bg-white/58 text-slate-800 focus:border-blue-400' : 'border-white/10 bg-black/25 text-zinc-300 focus:border-white/30',
+    divider: isLight ? 'border-blue-200/70' : 'border-white/10',
+    muted: isLight ? 'text-slate-500' : 'text-zinc-500',
     text: isLight ? 'text-slate-950' : 'text-white',
     soft: isLight ? 'text-slate-700' : 'text-zinc-300',
-    active: isLight ? 'bg-slate-950 text-white border-slate-950 shadow-sm shadow-slate-300/80' : 'bg-white text-black border-white'
+    active: isLight ? 'bg-blue-50/90 text-slate-950 border-blue-300 shadow-sm shadow-blue-200/80' : 'bg-white text-black border-white'
   }
   const memoryCounts = {
     goals: memory.nodes.filter((node) => node.type === 'goal').length,
@@ -1097,6 +1189,10 @@ function Demo() {
     conversations: memory.nodes.filter((node) => node.type === 'conversation' || node.type === 'journal').length
   }
   const activeSuggestion = getActiveSuggestion(memory)
+  const displayActivity = [
+    ...memory.timeline.slice(0, 2).map((event) => [event.label, new Date(event.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })]),
+    ...premiumActivity
+  ].slice(0, 6)
   const mobileTelemetry = [
     ['Mode', detectedIntent, Zap],
     ['Memory', `${memory.nodes.length} nodes`, Database],
@@ -1121,6 +1217,7 @@ function Demo() {
     const clean = value.trim()
     if (!clean || isThinking) return
     const intent = getDetectedIntent(clean)
+    const imageRequest = isImageRequest(clean)
     const now = new Date().toISOString()
     const memoryNode = createMemoryNode(clean, intent)
     setMessages((current) => [...current, { role: 'user', text: clean }])
@@ -1136,8 +1233,20 @@ function Demo() {
     setInput('')
     setIsThinking(true)
     window.setTimeout(() => {
-      const reply = `${getRiaReply(clean)}\n\nActive behavior: ${activeSuggestion}`
-      setMessages((current) => [...current, { role: 'ria', text: reply }])
+      if (imageRequest) {
+        const image = createFallbackImage(clean)
+        setMessages((current) => [
+          ...current,
+          {
+            role: 'ria',
+            text: `I generated a no-GPU fallback visual for "${image.prompt}". This runs fully in the browser, so users can still create and download an image even when GPU or AI image services are unavailable.\n\nActive behavior: ${activeSuggestion}`,
+            image
+          }
+        ])
+      } else {
+        const reply = `${getRiaReply(clean)}\n\nActive behavior: ${activeSuggestion}`
+        setMessages((current) => [...current, { role: 'ria', text: reply }])
+      }
       setIsThinking(false)
     }, 520)
   }
@@ -1340,6 +1449,15 @@ function Demo() {
               </div>
               <div className={`rounded-2xl border px-4 py-4 text-sm leading-7 shadow-xl sm:rounded-3xl sm:px-6 sm:py-5 sm:text-base sm:leading-8 ${message.role === 'user' ? skin.active : skin.panel}`}>
                 <p className="whitespace-pre-wrap">{message.text}</p>
+                {message.image && (
+                  <div className="mt-5 overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                    <img src={message.image.src} alt={message.image.alt} className="aspect-[5/3] w-full object-cover" />
+                    <div className="flex items-center justify-between gap-3 p-3 text-xs">
+                      <span className={skin.muted}>No-GPU fallback render</span>
+                      <a href={message.image.src} download="ria-fallback-render.svg" className={`rounded-full border px-3 py-1 font-semibold ${skin.panel}`}>Download</a>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             {message.role === 'user' && <span className={`mt-7 hidden h-9 w-9 shrink-0 place-items-center rounded-full border sm:grid ${skin.active}`}>Y</span>}
@@ -1364,14 +1482,17 @@ function Demo() {
 
   return (
     <section className={`ria-demo relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
-      <div className={`void-stars absolute inset-0 ${isLight ? 'opacity-0' : 'opacity-60'}`} />
+      <div className={`void-stars absolute inset-0 ${isLight ? 'opacity-20' : 'opacity-50'}`} />
       <div className={`absolute inset-0 ${isLight ? 'opacity-100' : 'opacity-45'}`}>
         <div className={`thought-stream thought-stream-a ${isLight ? 'hidden' : ''}`} />
         <div className={`thought-stream thought-stream-b ${isLight ? 'hidden' : ''}`} />
-        <div className={`absolute inset-0 bg-[size:72px_72px] ${isLight ? 'bg-[linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)]' : 'bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]'}`} />
+        <div className={`absolute inset-0 bg-[size:72px_72px] ${isLight ? 'bg-[linear-gradient(rgba(37,99,235,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.045)_1px,transparent_1px)]' : 'bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]'}`} />
       </div>
       {isLight && (
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_34%,rgba(14,165,233,0.11),transparent_26%),radial-gradient(circle_at_78%_16%,rgba(124,58,237,0.08),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.88),rgba(247,249,252,0.92))]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(34,211,238,0.38),transparent_24%),radial-gradient(circle_at_72%_14%,rgba(168,85,247,0.22),transparent_28%),radial-gradient(circle_at_43%_48%,rgba(255,255,255,0.92),transparent_22%),linear-gradient(135deg,rgba(240,249,255,0.88),rgba(239,246,255,0.74)_45%,rgba(238,242,255,0.9))]" />
+      )}
+      {!isLight && (
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,0.10),transparent_16%),radial-gradient(circle_at_86%_6%,rgba(255,255,255,0.05),transparent_22%),linear-gradient(180deg,rgba(0,0,0,0.22),rgba(0,0,0,0.82))]" />
       )}
       <div className="relative grid min-h-[calc(100vh-5rem)] grid-cols-1 xl:grid-cols-[17rem_1fr_20rem]">
         <aside className={`hidden border-r p-5 xl:block ${skin.panel}`}>
@@ -1379,7 +1500,7 @@ function Demo() {
             <Orbit className="h-7 w-7" />
             <div>
               <p className="text-xl font-semibold tracking-[-0.04em]">RIA ORBIT</p>
-              <p className={`text-sm ${skin.muted}`}>Cognitive Companion OS</p>
+              <p className={`text-sm ${skin.muted}`}>Quantum-Neural AI System</p>
             </div>
           </div>
           <div className={`mt-10 rounded-2xl border px-4 py-3 text-xs font-semibold tracking-[0.12em] ${skin.shell}`}>
@@ -1448,7 +1569,7 @@ function Demo() {
             ))}
           </div>
 
-          <div className={`mx-auto mt-5 flex w-fit rounded-full border p-1 sm:mt-7 ${isLight ? 'border-slate-300 bg-white/70' : 'border-white/10 bg-black/20'}`}>
+          <div className={`mx-auto mt-5 flex w-fit rounded-full border p-1 sm:mt-7 ${isLight ? 'border-blue-200 bg-white/60 shadow-sm shadow-blue-100' : 'border-white/10 bg-black/40'}`}>
             {[
               ['workspace', 'Workspace'],
               ['conversation', 'Conversation']
@@ -1459,17 +1580,20 @@ function Demo() {
 
           {surface === 'conversation' ? renderConversationSurface() : (
             <>
-              <div className={`mx-auto mt-5 max-w-[78rem] overflow-hidden rounded-[1.5rem] border p-5 text-center backdrop-blur-xl sm:mt-6 sm:rounded-[2rem] sm:p-8 ${skin.shell}`}>
+              <div className={`relative mx-auto mt-5 max-w-[78rem] overflow-hidden rounded-[1.5rem] border p-5 text-center backdrop-blur-xl sm:mt-6 sm:rounded-[2rem] sm:p-8 ${skin.shell}`}>
+                <div className={`pointer-events-none absolute inset-0 ${isLight ? 'bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.9),transparent_18%),radial-gradient(circle_at_23%_10%,rgba(34,211,238,0.15),transparent_30%)]' : 'bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.13),transparent_16%)]'}`} />
                 <p className={`mx-auto inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>AI WORKSPACE</p>
                 <div className="relative mx-auto mt-8 grid h-40 max-w-3xl place-items-center overflow-hidden sm:h-44">
                   <div className={`absolute h-36 w-36 rounded-full border blur-sm ${isLight ? 'border-sky-200 bg-sky-50' : 'border-white/10 bg-white/10'}`} />
                   <div className={`absolute h-20 w-20 rounded-full blur-2xl ${isLight ? 'bg-sky-100' : 'bg-white/20'}`} />
-                  <h1 className="relative text-4xl font-semibold tracking-[0.24em] text-slate-950 sm:text-8xl sm:tracking-[0.42em]">ORBIT</h1>
-                  <p className={`absolute bottom-0 px-2 text-[0.65rem] font-semibold tracking-[0.22em] sm:text-xs sm:tracking-[0.5em] ${skin.muted}`}>COGNITIVE COMPANION WORKSPACE</p>
+                  <div className={`absolute h-40 w-80 rounded-[50%] border ${isLight ? 'border-blue-200/40' : 'border-white/10'} rotate-12`} />
+                  <div className={`absolute h-24 w-72 rounded-[50%] border ${isLight ? 'border-blue-200/30' : 'border-white/10'} -rotate-12`} />
+                  <h1 className={`relative text-4xl font-semibold tracking-[0.24em] sm:text-8xl sm:tracking-[0.42em] ${isLight ? 'text-slate-950' : 'text-white'}`}>ORBIT</h1>
+                  <p className={`absolute bottom-0 px-2 text-[0.65rem] font-semibold tracking-[0.22em] sm:text-xs sm:tracking-[0.5em] ${skin.muted}`}>QUANTUM-NEURAL AI WORKSPACE</p>
                 </div>
               </div>
 
-              <div className="mx-auto mt-4 grid max-w-[78rem] grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+              <div className="mx-auto mt-4 grid max-w-[78rem] grid-cols-2 gap-3 md:grid-cols-5 md:gap-4">
                 {orbitCards.map(([title, copy, Icon, prompt]) => (
                   <button key={title} onClick={() => send(prompt)} className={`group rounded-2xl border p-4 text-left transition hover:-translate-y-1 sm:p-5 ${skin.shell}`}>
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -1498,8 +1622,18 @@ function Demo() {
                 </button>
               </form>
               <div className="mt-4 flex flex-wrap gap-2">
-                {['Reason', 'Analyze', 'Evolve', 'Memory', 'Reflect', 'Optimize'].map((cmd) => (
-                  <button key={cmd} onClick={() => send(cmd)} className={`rounded-full border px-4 py-2 text-sm font-semibold ${skin.panel}`}>{cmd}</button>
+                {[
+                  ['Reason', '/reason'],
+                  ['Analyze', '/analyze'],
+                  ['Evolve', '/evolve'],
+                  ['GPU', '/gpu'],
+                  ['Memory', '/memory'],
+                  ['Reflect', '/reflect'],
+                  ['Optimize', '/optimize']
+                ].map(([cmd, slash]) => (
+                  <button key={cmd} onClick={() => send(cmd)} className={`rounded-full border px-4 py-2 text-sm font-semibold ${skin.panel}`}>
+                    {cmd} <span className={`ml-1 text-xs font-normal ${skin.muted}`}>{slash}</span>
+                  </button>
                 ))}
               </div>
               <div className="mt-5 grid grid-cols-3 gap-2 xl:hidden">
@@ -1516,6 +1650,15 @@ function Demo() {
                   <div key={`${message.role}-${index}`} className={`max-w-[94%] rounded-2xl border p-4 text-sm leading-6 sm:max-w-[80%] ${message.role === 'user' ? `ml-auto ${skin.active}` : skin.panel}`}>
                     <p className={`mb-1 text-[10px] font-semibold tracking-[0.18em] ${message.role === 'user' ? '' : skin.muted}`}>{message.role === 'user' ? 'YOU' : 'RIA'}</p>
                     <p className="whitespace-pre-wrap">{message.text}</p>
+                    {message.image && (
+                      <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-black/20">
+                        <img src={message.image.src} alt={message.image.alt} className="aspect-[5/3] w-full object-cover" />
+                        <div className="flex items-center justify-between gap-3 p-3 text-xs">
+                          <span className={skin.muted}>No-GPU fallback</span>
+                          <a href={message.image.src} download="ria-fallback-render.svg" className={`rounded-full border px-3 py-1 font-semibold ${skin.panel}`}>Download</a>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
                 {isThinking && <div className={`rounded-2xl border p-4 text-sm ${skin.panel}`}>RIA is processing protected memory and next action...</div>}
@@ -1529,12 +1672,12 @@ function Demo() {
                 <span className={`text-xs ${skin.muted}`}>{memory.timeline.length} SIGNALS</span>
               </div>
               <div className="mt-5 space-y-4">
-                {memory.timeline.slice(0, 5).map((event) => (
-                  <div key={event.id} className={`flex items-start justify-between gap-4 border-b pb-3 ${skin.divider}`}>
+                {displayActivity.map(([label, time]) => (
+                  <div key={`${label}-${time}`} className={`flex items-start justify-between gap-4 border-b pb-3 ${skin.divider}`}>
                     <div className="min-w-0">
-                      <p className={`text-sm ${skin.soft}`}>{event.label}</p>
-                      <p className={`mt-1 line-clamp-1 text-xs ${skin.muted}`}>{event.detail}</p>
+                      <p className={`line-clamp-2 text-sm ${skin.soft}`}>{label}</p>
                     </div>
+                    <span className={`shrink-0 text-xs ${skin.muted}`}>{time}</span>
                     <ArrowRight className={`h-4 w-4 ${skin.muted}`} />
                   </div>
                 ))}
@@ -1552,30 +1695,60 @@ function Demo() {
 
         <aside className={`hidden border-l p-5 xl:grid xl:content-start xl:gap-4 ${skin.panel}`}>
           <div className={`rounded-2xl border p-5 ${skin.shell}`}>
-            <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>SYSTEM PULSE</p>
-            <div className={`mt-5 rounded-xl border p-4 ${skin.panel}`}>
-              <p className="text-sm font-semibold">CORE TELEMETRY PROTECTED</p>
-              <p className={`mt-2 text-xs ${skin.muted}`}>Internal architecture hidden</p>
+            <div className="flex items-center justify-between">
+              <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>SYSTEM PULSE</p>
+              <ShieldCheck className={`h-4 w-4 ${skin.muted}`} />
             </div>
-            {['MODEL PATH', 'MEMORY INDEX', 'REASONING MAP', 'POWER DRAW'].map((item) => (
-              <div key={item} className={`mt-5 border-b pb-4 ${skin.divider}`}>
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs font-semibold ${skin.muted}`}>{item}</span>
-                  <span className="font-semibold">HIDDEN</span>
+            <div className={`mt-5 rounded-xl border p-4 ${skin.panel}`}>
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm font-semibold">NVIDIA GEFORCE RTX 3060</p>
+                  <p className={`mt-2 text-xs ${skin.muted}`}>12GB NVIDIA</p>
                 </div>
-                <div className={`mt-3 h-2 overflow-hidden rounded-full ${isLight ? 'bg-slate-100' : 'bg-white/10'}`}>
-                  <div className={`h-full w-2/3 rounded-full ${isLight ? 'bg-slate-300' : 'bg-white/30 blur-[1px]'}`} />
+                <span className={`h-2 w-2 rounded-full ${isLight ? 'bg-emerald-300' : 'bg-teal-200'}`} />
+              </div>
+            </div>
+            {gpuPulse.map(([item, value, ringColor, percent]) => (
+              <div key={item} className={`mt-6 border-b pb-5 ${skin.divider}`}>
+                <div className="flex items-center gap-5">
+                  <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border-[4px] ${isLight ? 'border-blue-500 bg-white text-slate-950' : 'border-white bg-black text-white'}`}>
+                    <span className="text-sm font-bold">{value}</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className={`text-xs font-semibold ${skin.muted}`}>{item}</p>
+                    <div className="mt-4 flex items-end gap-1">
+                      {[18, 28, 34, 48, 38, 42].map((height, index) => (
+                        <span key={index} style={{ height }} className={`w-7 rounded-t-full ${isLight ? 'bg-blue-200' : 'bg-gradient-to-t from-zinc-900 to-zinc-400'}`} />
+                      ))}
+                    </div>
+                    <p className={`mt-2 text-xs ${skin.muted}`}>{item === 'VRAM USAGE' ? '7.5 / 12 GB' : item === 'POWER DRAW' ? 'not exposed' : ''}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
           <div className={`rounded-2xl border p-5 ${skin.shell}`}>
-            <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>RESOURCES</p>
-            {['CPU USAGE', 'RAM USAGE', 'DISK USAGE', 'Network'].map((item, index) => (
-              <div key={item} className="mt-4 flex items-center justify-between text-sm">
-                <span className={skin.muted}>{item}</span>
-                <span className="font-semibold">{index === 3 ? 'local' : 'N/A'}</span>
+            <div className="flex items-center justify-between">
+              <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>RESOURCES</p>
+              <Gauge className={`h-4 w-4 ${skin.muted}`} />
+            </div>
+            {[
+              ['CPU USAGE', '0%', 0],
+              ['RAM USAGE', '12.8 / 16 GB', 80],
+              ['DISK USAGE', '61%', 61],
+              ['Network', 'local', 100]
+            ].map(([item, value, width], index) => (
+              <div key={item} className="mt-4 text-sm">
+                <div className="flex items-center justify-between">
+                  <span className={skin.muted}>{item}</span>
+                  <span className="font-semibold">{value}</span>
+                </div>
+                {index < 3 && (
+                  <div className={`mt-3 h-1.5 overflow-hidden rounded-full ${isLight ? 'bg-blue-100' : 'bg-white/10'}`}>
+                    <div style={{ width: `${width}%` }} className={`h-full rounded-full ${isLight ? 'bg-blue-400' : 'bg-white'}`} />
+                  </div>
+                )}
               </div>
             ))}
           </div>
