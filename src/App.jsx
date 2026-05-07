@@ -363,17 +363,32 @@ function getActiveSuggestion(memory) {
   return 'RIA is watching for useful patterns across goals, emotions, beliefs, and conversations.'
 }
 
+function formatAdvancedReply(text, baseReply, intent, tone) {
+  const clean = text.trim()
+  const focus = intent === 'general' ? 'context' : intent
+  return [
+    baseReply,
+    '',
+    `Signal read: ${focus} request with ${tone} tone.`,
+    `Reasoning route: I separated the message into intention, emotional pressure, memory value, and the smallest useful next action.`,
+    `Memory update: I treated "${clean.slice(0, 110)}${clean.length > 110 ? '...' : ''}" as a live continuity signal for this session.`,
+    'Next action: answer one layer deeper, or ask me to convert this into a goal, journal entry, belief reframe, or execution plan.'
+  ].join('\n')
+}
+
 function getRiaReply(text) {
   const clean = text.toLowerCase()
   const topic = riaKnowledge.find(({ matches }) => matches.some((item) => clean.includes(item)))
-  if (topic) return topic.reply({ text, tone: getTone(text) })
+  const intent = topic?.intent || getDetectedIntent(text)
+  const tone = getTone(text)
+  if (topic) return formatAdvancedReply(text, topic.reply({ text, tone }), intent, tone)
   if (clean.endsWith('?')) {
-    return 'Good question. I would answer it by first finding the real intention behind it, then turning that into a clear next step. In this case, the useful frame is: what do you want to understand, decide, or change after asking this?'
+    return formatAdvancedReply(text, 'Good question. I would answer it by first finding the real intention behind it, then turning that into a clear next step. In this case, the useful frame is: what do you want to understand, decide, or change after asking this?', intent, tone)
   }
   if (clean.length > 120) {
-    return 'I understand the main shape of what you shared. The strongest signal is that this matters to you, and it may need reflection instead of a quick reaction. I would summarize it, identify the emotion under it, then choose one grounded next action.'
+    return formatAdvancedReply(text, 'I understand the main shape of what you shared. The strongest signal is that this matters to you, and it may need reflection instead of a quick reaction. I would summarize it, identify the emotion under it, then choose one grounded next action.', intent, tone)
   }
-  return 'I understand. Tell me one more detail and I can respond more specifically: is this about memory, emotion, a belief, a goal, or something you want to decide?'
+  return formatAdvancedReply(text, 'I understand. Tell me one more detail and I can respond more specifically: is this about memory, emotion, a belief, a goal, or something you want to decide?', intent, tone)
 }
 
 function ScrollToTop() {
@@ -920,6 +935,7 @@ function Demo() {
     return initialOsMemory
   })
   const [activeTab, setActiveTab] = useState('core')
+  const [surface, setSurface] = useState('workspace')
   const [visualMode, setVisualMode] = useState('dark')
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
@@ -1134,6 +1150,75 @@ function Demo() {
     )
   }
 
+  const renderConversationSurface = () => (
+    <div className={`mx-auto mt-6 max-w-[78rem] rounded-[2rem] border p-6 ${skin.shell}`}>
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex items-center gap-4">
+          <span className={`grid h-14 w-14 place-items-center rounded-full border ${skin.panel}`}>
+            <BrainCircuit className="h-6 w-6" />
+          </span>
+          <div>
+            <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>FAST COLLABORATION</p>
+            <h2 className="mt-2 text-5xl font-semibold tracking-[-0.06em]">RIA Conversation</h2>
+            <p className={`mt-3 text-sm ${skin.muted}`}>Unified memory · Advanced response mode · General</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 text-sm">
+          <span className={`rounded-full border px-4 py-2 ${skin.panel}`}>{isThinking ? 'Processing' : 'Ready'}</span>
+          <span className={`rounded-full border px-4 py-2 ${skin.panel}`}>{messages.length} messages</span>
+          <button onClick={() => { setMessages([{ role: 'ria', text: 'RIA conversation restarted. I am ready for a clear, high-level conversation.' }]); setInput('') }} className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Restart conversation">
+            <Activity className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-3 md:grid-cols-4">
+        {[
+          ['Brain route', 'secure chat flow'],
+          ['Memory', 'linked'],
+          ['Mode', 'high-level'],
+          ['Response', 'structured reasoning']
+        ].map(([label, value]) => (
+          <div key={label} className={`rounded-2xl border p-4 ${skin.panel}`}>
+            <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${skin.muted}`}>{label}</p>
+            <p className="mt-2 text-base font-semibold">{value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 h-[560px] space-y-8 overflow-y-auto pr-2">
+        {messages.map((message, index) => (
+          <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            {message.role === 'ria' && <span className={`mt-7 grid h-9 w-9 shrink-0 place-items-center rounded-full border ${skin.panel}`}>R</span>}
+            <div className={`max-w-[78%] ${message.role === 'user' ? 'text-right' : ''}`}>
+              <div className={`mb-2 flex items-center gap-2 text-xs ${message.role === 'user' ? 'justify-end' : ''}`}>
+                <span className={skin.muted}>{message.role === 'user' ? 'You' : 'RIA'}</span>
+                <span className={`rounded-full border px-3 py-1 ${skin.panel}`}>{message.role === 'user' ? 'Input' : 'Advanced AI response'}</span>
+              </div>
+              <div className={`rounded-3xl border px-6 py-5 text-base leading-8 shadow-xl ${message.role === 'user' ? skin.active : skin.panel}`}>
+                <p className="whitespace-pre-wrap">{message.text}</p>
+              </div>
+            </div>
+            {message.role === 'user' && <span className={`mt-7 grid h-9 w-9 shrink-0 place-items-center rounded-full border ${skin.active}`}>Y</span>}
+          </motion.div>
+        ))}
+        {isThinking && (
+          <div className={`max-w-[78%] rounded-3xl border px-6 py-5 text-base ${skin.panel}`}>
+            RIA is processing context, memory continuity, emotional tone, and next action...
+          </div>
+        )}
+        <div ref={scrollRef} />
+      </div>
+
+      <form onSubmit={(event) => { event.preventDefault(); send() }} className={`mt-6 flex gap-3 rounded-3xl border p-4 ${skin.panel}`}>
+        <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send() } }} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-base leading-7 outline-none ${skin.text}`} placeholder="Chat with RIA in detail..." />
+        <button disabled={!input.trim() || isThinking} className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl ${skin.active} disabled:opacity-40`} aria-label="Send">
+          <SendHorizontal className="h-5 w-5" />
+        </button>
+      </form>
+    </div>
+  )
+
   return (
     <section className={`relative min-h-screen overflow-hidden ${skin.page} pt-20`}>
       <div className={`absolute inset-0 ${isLight ? 'opacity-20' : 'opacity-45'}`}>
@@ -1159,7 +1244,7 @@ function Demo() {
           <p className={`mt-10 text-xs font-semibold tracking-[0.18em] ${skin.muted}`}>COMMAND CENTER</p>
           <div className="mt-4 grid gap-2">
             {osTabs.map(([id, label, Icon]) => (
-              <button key={id} onClick={() => setActiveTab(id)} className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition ${activeTab === id ? skin.active : `${skin.panel} ${skin.soft} hover:border-white/30`}`}>
+              <button key={id} onClick={() => { setActiveTab(id); if (id === 'chat') setSurface('conversation') }} className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition ${activeTab === id ? skin.active : `${skin.panel} ${skin.soft} hover:border-white/30`}`}>
                 <Icon className="h-4 w-4" />
                 {label}
               </button>
@@ -1188,39 +1273,44 @@ function Demo() {
           </div>
 
           <div className="mx-auto mt-7 flex w-fit rounded-full border border-white/10 bg-black/20 p-1">
-            {['Workspace', 'Conversation'].map((item, index) => (
-              <button key={item} className={`rounded-full px-8 py-3 text-sm font-medium ${index === 0 ? skin.active : skin.soft}`}>{item}</button>
+            {[
+              ['workspace', 'Workspace'],
+              ['conversation', 'Conversation']
+            ].map(([id, item]) => (
+              <button key={id} onClick={() => { setSurface(id); if (id === 'conversation') setActiveTab('chat') }} className={`rounded-full px-8 py-3 text-sm font-medium ${surface === id ? skin.active : skin.soft}`}>{item}</button>
             ))}
           </div>
 
-          <div className={`mx-auto mt-6 max-w-[78rem] overflow-hidden rounded-[2rem] border p-8 text-center backdrop-blur-xl ${skin.shell}`}>
-            <p className={`mx-auto inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>AI WORKSPACE</p>
-            <div className="relative mx-auto mt-8 grid h-44 max-w-3xl place-items-center overflow-hidden">
-              <div className="absolute h-36 w-36 rounded-full border border-white/10 bg-white/10 blur-sm" />
-              <div className="absolute h-20 w-20 rounded-full bg-white/20 blur-2xl" />
-              <h1 className="relative text-6xl font-semibold tracking-[0.42em] sm:text-8xl">ORBIT</h1>
-              <p className={`absolute bottom-0 text-xs font-semibold tracking-[0.5em] ${skin.muted}`}>COGNITIVE COMPANION WORKSPACE</p>
-            </div>
-          </div>
-
-          <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 md:grid-cols-4">
-            {orbitCards.map(([title, copy, Icon, prompt]) => (
-              <button key={title} onClick={() => send(prompt)} className={`group rounded-2xl border p-5 text-left transition hover:-translate-y-1 ${skin.shell}`}>
-                <div className="flex items-center gap-4">
-                  <span className={`grid h-12 w-12 place-items-center rounded-xl border ${skin.panel}`}>
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <p className="font-semibold">{title}</p>
-                    <p className={`mt-1 text-sm ${skin.muted}`}>{copy}</p>
-                  </div>
+          {surface === 'conversation' ? renderConversationSurface() : (
+            <>
+              <div className={`mx-auto mt-6 max-w-[78rem] overflow-hidden rounded-[2rem] border p-8 text-center backdrop-blur-xl ${skin.shell}`}>
+                <p className={`mx-auto inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>AI WORKSPACE</p>
+                <div className="relative mx-auto mt-8 grid h-44 max-w-3xl place-items-center overflow-hidden">
+                  <div className="absolute h-36 w-36 rounded-full border border-white/10 bg-white/10 blur-sm" />
+                  <div className="absolute h-20 w-20 rounded-full bg-white/20 blur-2xl" />
+                  <h1 className="relative text-6xl font-semibold tracking-[0.42em] sm:text-8xl">ORBIT</h1>
+                  <p className={`absolute bottom-0 text-xs font-semibold tracking-[0.5em] ${skin.muted}`}>COGNITIVE COMPANION WORKSPACE</p>
                 </div>
-              </button>
-            ))}
-          </div>
+              </div>
 
-          <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 lg:grid-cols-[1.05fr_0.75fr]">
-            <div className={`rounded-2xl border p-5 ${skin.shell}`}>
+              <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 md:grid-cols-4">
+                {orbitCards.map(([title, copy, Icon, prompt]) => (
+                  <button key={title} onClick={() => send(prompt)} className={`group rounded-2xl border p-5 text-left transition hover:-translate-y-1 ${skin.shell}`}>
+                    <div className="flex items-center gap-4">
+                      <span className={`grid h-12 w-12 place-items-center rounded-xl border ${skin.panel}`}>
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="font-semibold">{title}</p>
+                        <p className={`mt-1 text-sm ${skin.muted}`}>{copy}</p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 lg:grid-cols-[1.05fr_0.75fr]">
+                <div className={`rounded-2xl border p-5 ${skin.shell}`}>
               <div className="mb-4 flex items-center justify-between">
                 <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>ASK OR COMMAND</p>
                 <span className="inline-flex items-center gap-2 text-xs text-emerald-300"><span className="h-2 w-2 rounded-full bg-emerald-300" />ONLINE</span>
@@ -1266,7 +1356,9 @@ function Demo() {
               </div>
               <button onClick={() => setActiveTab('memory')} className={`mt-5 w-full rounded-full border px-5 py-3 text-sm ${skin.panel}`}>Open evolution history</button>
             </div>
-          </div>
+              </div>
+            </>
+          )}
 
           <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className={`mx-auto mt-4 max-w-[78rem] rounded-2xl border p-6 ${skin.shell}`}>
             {renderActiveModule()}
