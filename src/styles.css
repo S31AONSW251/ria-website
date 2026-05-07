@@ -20,18 +20,6 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
-.premium-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
-  background-size: 72px 72px, 72px 72px, 100% 100%;
-}
-
-.premium-grid::selection {
-  background: rgba(255, 255, 255, 0.24);
-}
-
 ::selection {
   background: rgba(255, 255, 255, 0.22);
   color: #f8fafc;
