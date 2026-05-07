@@ -59,6 +59,37 @@ a {
   animation: aurora 12s ease-in-out infinite;
 }
 
+@keyframes thought-flow {
+  0% {
+    transform: translate3d(-8%, 0, 0) rotate(0deg);
+    opacity: 0.28;
+  }
+  50% {
+    transform: translate3d(8%, 3%, 0) rotate(8deg);
+    opacity: 0.52;
+  }
+  100% {
+    transform: translate3d(-8%, 0, 0) rotate(0deg);
+    opacity: 0.28;
+  }
+}
+
+.thought-stream {
+  position: absolute;
+  inset: -25%;
+  background:
+    linear-gradient(115deg, transparent 18%, rgba(255,255,255,0.13) 19%, transparent 21%),
+    linear-gradient(65deg, transparent 30%, rgba(34,211,238,0.12) 31%, transparent 33%),
+    linear-gradient(135deg, transparent 46%, rgba(168,85,247,0.16) 47%, transparent 49%);
+  filter: blur(1px);
+  animation: thought-flow 18s ease-in-out infinite;
+}
+
+.thought-stream-b {
+  animation-delay: -8s;
+  transform: rotate(16deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

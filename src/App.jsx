@@ -5,12 +5,15 @@ import {
   ArrowRight,
   Activity,
   Banknote,
+  BarChart3,
   BookOpen,
   BrainCircuit,
   Check,
   Clock3,
+  Compass,
   Cpu,
   Database,
+  Edit3,
   FileText,
   Fingerprint,
   Gauge,
@@ -27,8 +30,10 @@ import {
   Orbit,
   Search,
   ShieldCheck,
+  SlidersHorizontal,
   Sparkles,
   Target,
+  Trash2,
   UserRound,
   Waves
 } from 'lucide-react'
@@ -169,6 +174,56 @@ const demoActivity = [
   ['Tone reading', 'Listening for emotional context']
 ]
 
+const osTabs = [
+  ['core', 'RIA Core Mind', BrainCircuit],
+  ['memory', 'Memory Vault', Database],
+  ['reflection', 'Reflection Engine', Search],
+  ['behavior', 'Behavior Settings', SlidersHorizontal],
+  ['emotion', 'Emotional Graph', BarChart3],
+  ['guidance', 'Life Guidance Mode', Compass]
+]
+
+const initialOsMemory = {
+  nodes: [
+    { id: 'seed-goal', type: 'goal', title: 'Build RIA into a cognitive companion system', detail: 'Long-term product vision focused on memory, reflection, emotional intelligence, and private user control.', createdAt: '2026-05-07T00:00:00.000Z' },
+    { id: 'seed-belief', type: 'belief', title: 'RIA should feel alive, not like a static website', detail: 'The interface should behave like a living AI operating system with continuous state and adaptive guidance.', createdAt: '2026-05-07T00:00:00.000Z' }
+  ],
+  timeline: [
+    { id: 'seed-event', label: 'RIA Interface OS initialized', detail: 'Core mind, memory vault, reflection engine, emotional graph, and guidance mode are ready.', createdAt: '2026-05-07T00:00:00.000Z' }
+  ],
+  settings: {
+    reasoning: 'adaptive',
+    tone: 'warm',
+    proactive: true,
+    memoryWrite: true
+  },
+  personaLevel: 1
+}
+
+const themeByEmotion = {
+  calm: {
+    label: 'Soft blue calm',
+    shell: 'from-[#050816] via-[#071827] to-[#04131d]',
+    glow: 'rgba(34,211,238,0.22)',
+    accent: 'text-cyan-200',
+    chip: 'border-cyan-200/30 bg-cyan-200/10 text-cyan-100'
+  },
+  stressed: {
+    label: 'Warm grounded',
+    shell: 'from-[#140b08] via-[#21120b] to-[#090606]',
+    glow: 'rgba(251,146,60,0.20)',
+    accent: 'text-amber-200',
+    chip: 'border-amber-200/30 bg-amber-200/10 text-amber-100'
+  },
+  deep: {
+    label: 'Dark neural mode',
+    shell: 'from-[#05030d] via-[#0b0716] to-[#02030a]',
+    glow: 'rgba(168,85,247,0.22)',
+    accent: 'text-violet-200',
+    chip: 'border-violet-200/30 bg-violet-200/10 text-violet-100'
+  }
+}
+
 const riaKnowledge = [
   {
     intent: 'greeting',
@@ -248,6 +303,44 @@ function getDetectedIntent(text = '') {
   if (clean.endsWith('?')) return 'question'
   if (clean.length > 120) return 'reflection'
   return 'general'
+}
+
+function detectEmotionMode(text = '') {
+  const clean = text.toLowerCase()
+  if (/(stress|stressed|anxious|panic|overwhelmed|angry|pressure|worried|tired)/.test(clean)) return 'stressed'
+  if (/(think|deep|why|meaning|purpose|identity|future|strategy|reflect|understand)/.test(clean)) return 'deep'
+  return 'calm'
+}
+
+function createMemoryNode(text, intent) {
+  const now = new Date().toISOString()
+  const title = intent === 'goal'
+    ? 'Goal signal'
+    : intent === 'belief'
+      ? 'Belief pattern'
+      : intent === 'emotion'
+        ? 'Emotional state'
+        : intent === 'journal'
+          ? 'Journal memory'
+          : 'Conversation memory'
+
+  return {
+    id: `${intent}-${Date.now()}`,
+    type: ['goal', 'belief', 'emotion', 'journal'].includes(intent) ? intent : 'conversation',
+    title,
+    detail: text,
+    createdAt: now
+  }
+}
+
+function getActiveSuggestion(memory) {
+  const goals = memory.nodes.filter((node) => node.type === 'goal')
+  const emotions = memory.nodes.filter((node) => node.type === 'emotion')
+  const beliefs = memory.nodes.filter((node) => node.type === 'belief')
+  if (goals.length >= 3) return 'You have multiple goal signals. Want me to break the strongest one into a smaller next action?'
+  if (emotions.length >= 3) return 'I notice repeated emotional entries. A short reflection could reveal the trigger pattern.'
+  if (beliefs.length >= 2) return 'There are belief patterns forming. I can help separate protective thoughts from limiting thoughts.'
+  return 'RIA is watching for useful patterns across goals, emotions, beliefs, and conversations.'
 }
 
 function getRiaReply(text) {
@@ -785,16 +878,28 @@ function ContactRow({ label, value }) {
 
 function Demo() {
   const [messages, setMessages] = useState(() => {
-    const saved = window.localStorage.getItem('ria-training-messages')
+    const saved = window.localStorage.getItem('ria-os-messages')
     if (saved) {
       try {
         return JSON.parse(saved)
       } catch {
-        window.localStorage.removeItem('ria-training-messages')
+        window.localStorage.removeItem('ria-os-messages')
       }
     }
-    return [{ role: 'ria', text: 'RIA training mode is ready. Ask me anything, or start with memory, journal, emotion, belief, calm, focus, goals, privacy, funding, or download.' }]
+    return [{ role: 'ria', text: 'RIA Interface OS is online. I can remember goals, emotions, beliefs, and conversations while adapting the interface to your state.' }]
   })
+  const [memory, setMemory] = useState(() => {
+    const saved = window.localStorage.getItem('ria-os-memory')
+    if (saved) {
+      try {
+        return JSON.parse(saved)
+      } catch {
+        window.localStorage.removeItem('ria-os-memory')
+      }
+    }
+    return initialOsMemory
+  })
+  const [activeTab, setActiveTab] = useState('core')
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
   const loadedUrlMessage = useRef(false)
@@ -802,17 +907,53 @@ function Demo() {
   const userMessages = messages.filter((message) => message.role === 'user')
   const lastUserMessage = userMessages[userMessages.length - 1]?.text || ''
   const detectedIntent = getDetectedIntent(lastUserMessage)
+  const emotionMode = detectEmotionMode(lastUserMessage)
+  const theme = themeByEmotion[emotionMode]
+  const memoryCounts = {
+    goals: memory.nodes.filter((node) => node.type === 'goal').length,
+    emotions: memory.nodes.filter((node) => node.type === 'emotion').length,
+    beliefs: memory.nodes.filter((node) => node.type === 'belief').length,
+    conversations: memory.nodes.filter((node) => node.type === 'conversation' || node.type === 'journal').length
+  }
+  const activeSuggestion = getActiveSuggestion(memory)
+
+  const updateMemoryNode = (id, detail) => {
+    setMemory((current) => ({
+      ...current,
+      nodes: current.nodes.map((node) => node.id === id ? { ...node, detail } : node)
+    }))
+  }
+
+  const deleteMemoryNode = (id) => {
+    setMemory((current) => ({
+      ...current,
+      nodes: current.nodes.filter((node) => node.id !== id)
+    }))
+  }
 
   const send = (value = input) => {
     const clean = value.trim()
     if (!clean || isThinking) return
+    const intent = getDetectedIntent(clean)
+    const now = new Date().toISOString()
+    const memoryNode = createMemoryNode(clean, intent)
     setMessages((current) => [...current, { role: 'user', text: clean }])
+    setMemory((current) => ({
+      ...current,
+      personaLevel: Math.min(9, current.personaLevel + 0.1),
+      nodes: current.settings.memoryWrite ? [memoryNode, ...current.nodes].slice(0, 24) : current.nodes,
+      timeline: [
+        { id: `event-${Date.now()}`, label: `${intent} detected`, detail: clean, createdAt: now },
+        ...current.timeline
+      ].slice(0, 18)
+    }))
     setInput('')
     setIsThinking(true)
     window.setTimeout(() => {
-      setMessages((current) => [...current, { role: 'ria', text: getRiaReply(clean) }])
+      const reply = `${getRiaReply(clean)}\n\nActive behavior: ${activeSuggestion}`
+      setMessages((current) => [...current, { role: 'ria', text: reply }])
       setIsThinking(false)
-    }, 450)
+    }, 520)
   }
 
   useEffect(() => {
@@ -827,182 +968,260 @@ function Demo() {
   }, [])
 
   useEffect(() => {
-    window.localStorage.setItem('ria-training-messages', JSON.stringify(messages.slice(-30)))
+    window.localStorage.setItem('ria-os-messages', JSON.stringify(messages.slice(-50)))
     scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
   }, [messages, isThinking])
 
-  return (
-    <>
-      <section className="relative overflow-hidden bg-[#05030d] pt-32 text-white">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,3,13,0)_0%,#05030d_90%),radial-gradient(circle_at_16%_18%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_76%_14%,rgba(168,85,247,0.16),transparent_34%)]" />
-        <Container className="relative pb-16">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
-            <div>
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-4 py-2 text-xs font-medium text-zinc-300">
-                <span className="h-2 w-2 rounded-full bg-emerald-300" />
-                RIA Training Mode
-              </p>
-              <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-7xl">Talk with RIA Debo</h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">A premium conversation console for memory, reflection, journaling, emotion, goals, privacy, and calm guidance.</p>
-            </div>
-            <div className="grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10">
-              {demoCapabilities.map(([label, value, Icon]) => (
-                <div key={label} className="bg-[#0a0714]/90 p-5">
-                  <Icon className="h-5 w-5 text-cyan-200" />
-                  <p className="mt-7 text-xs text-zinc-500">{label}</p>
-                  <p className="mt-1 text-xl font-semibold tracking-[-0.04em]">{value}</p>
+  useEffect(() => {
+    window.localStorage.setItem('ria-os-memory', JSON.stringify(memory))
+  }, [memory])
+
+  const renderActiveModule = () => {
+    if (activeTab === 'memory') {
+      return (
+        <div className="grid gap-5">
+          <div>
+            <p className={`text-sm ${theme.accent}`}>What RIA knows about you</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Editable memory nodes</h2>
+          </div>
+          <div className="grid gap-3">
+            {memory.nodes.map((node) => (
+              <div key={node.id} className="border border-white/10 bg-white/[0.035] p-4">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <span className={`rounded-full border px-3 py-1 text-xs capitalize ${theme.chip}`}>{node.type}</span>
+                  <button onClick={() => deleteMemoryNode(node.id)} className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-zinc-500 transition hover:text-white" aria-label="Delete memory">
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
+                <p className="text-sm font-semibold text-white">{node.title}</p>
+                <textarea value={node.detail} onChange={(event) => updateMemoryNode(node.id, event.target.value)} className="mt-3 min-h-20 w-full resize-none border border-white/10 bg-black/20 p-3 text-sm leading-6 text-zinc-300 outline-none focus:border-white/30" />
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    if (activeTab === 'reflection') {
+      return (
+        <div>
+          <p className={`text-sm ${theme.accent}`}>Reflection Engine</p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Patterns RIA is detecting</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              ['Auto journaling', `${memoryCounts.conversations} entries are ready for daily summaries.`],
+              ['Belief detection', `${memoryCounts.beliefs} belief signals are available for reframing.`],
+              ['Pattern detection', activeSuggestion]
+            ].map(([title, copy]) => (
+              <div key={title} className="border border-white/10 bg-white/[0.035] p-5">
+                <Sparkles className="h-5 w-5 text-violet-200" />
+                <h3 className="mt-8 text-xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-zinc-400">{copy}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    if (activeTab === 'behavior') {
+      return (
+        <div>
+          <p className={`text-sm ${theme.accent}`}>Behavior Settings</p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Adaptive reasoning style</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {[
+              ['Proactive suggestions', 'proactive'],
+              ['Write memories automatically', 'memoryWrite']
+            ].map(([label, key]) => (
+              <button key={key} onClick={() => setMemory((current) => ({ ...current, settings: { ...current.settings, [key]: !current.settings[key] } }))} className="flex items-center justify-between border border-white/10 bg-white/[0.035] p-5 text-left">
+                <span>
+                  <span className="block text-sm font-semibold text-white">{label}</span>
+                  <span className="mt-1 block text-xs text-zinc-500">{memory.settings[key] ? 'Enabled' : 'Paused'}</span>
+                </span>
+                <span className={`h-6 w-11 rounded-full p-1 transition ${memory.settings[key] ? 'bg-cyan-300' : 'bg-white/15'}`}>
+                  <span className={`block h-4 w-4 rounded-full bg-black transition ${memory.settings[key] ? 'translate-x-5' : ''}`} />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    if (activeTab === 'emotion') {
+      const graph = [memoryCounts.emotions, memoryCounts.goals, memoryCounts.beliefs, userMessages.length].map((value) => Math.max(14, Math.min(100, value * 18 + 18)))
+      return (
+        <div>
+          <p className={`text-sm ${theme.accent}`}>Emotional Graph</p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Mood-responsive interface</h2>
+          <div className="mt-8 flex h-56 items-end gap-4 border border-white/10 bg-black/20 p-5">
+            {graph.map((height, index) => (
+              <div key={index} className="flex flex-1 flex-col items-center gap-3">
+                <motion.div initial={{ height: 20 }} animate={{ height }} className="w-full bg-gradient-to-t from-cyan-300/30 to-white/80" />
+                <span className="text-xs text-zinc-500">{['Emotion', 'Goals', 'Beliefs', 'Chats'][index]}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    if (activeTab === 'guidance') {
+      return (
+        <div>
+          <p className={`text-sm ${theme.accent}`}>Life Guidance Mode</p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Proactive next step</h2>
+          <div className="mt-6 border border-white/10 bg-white/[0.035] p-6">
+            <Compass className="h-7 w-7 text-cyan-200" />
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-200">{activeSuggestion}</p>
+            <button onClick={() => send('Break my strongest goal into a smaller next step')} className="mt-6 rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Ask RIA to guide me</button>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        <p className={`text-sm ${theme.accent}`}>RIA Core Mind</p>
+        <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Living AI system state</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-4">
+          {[
+            ['Goals', memoryCounts.goals, Target],
+            ['Emotions', memoryCounts.emotions, HeartPulse],
+            ['Beliefs', memoryCounts.beliefs, Fingerprint],
+            ['Memory nodes', memory.nodes.length, Database]
+          ].map(([label, value, Icon]) => (
+            <div key={label} className="border border-white/10 bg-white/[0.035] p-5">
+              <Icon className="h-5 w-5 text-cyan-200" />
+              <p className="mt-8 text-3xl font-semibold">{value}</p>
+              <p className="mt-1 text-xs text-zinc-500">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <section className={`relative min-h-screen overflow-hidden bg-gradient-to-br ${theme.shell} pt-24 text-white`}>
+      <div className="absolute inset-0 opacity-40">
+        <div className="thought-stream thought-stream-a" />
+        <div className="thought-stream thought-stream-b" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px]" />
+      </div>
+      <Container className="relative py-10">
+        <div className="mb-6 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className={`inline-flex rounded-full border px-4 py-2 text-xs font-medium ${theme.chip}`}>RIA Interface OS</p>
+            <h1 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-7xl">Cognitive Companion System</h1>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-300">A living AI operating interface with persistent memory, adaptive emotion themes, reflection intelligence, behavior settings, and long-term identity growth.</p>
+          </div>
+          <div className="grid grid-cols-3 gap-px overflow-hidden border border-white/10 bg-white/10 text-center">
+            {[
+              ['Theme', theme.label],
+              ['Persona', `Level ${memory.personaLevel.toFixed(1)}`],
+              ['State', isThinking ? 'Thinking' : 'Continuous']
+            ].map(([label, value]) => (
+              <div key={label} className="bg-black/30 px-5 py-4">
+                <p className="text-xs text-zinc-500">{label}</p>
+                <p className="mt-1 text-sm font-semibold">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-6 xl:grid-cols-[17rem_1fr_20rem]">
+          <aside className="border border-white/10 bg-black/25 backdrop-blur-xl">
+            <div className="border-b border-white/10 p-5">
+              <BrainCircuit className="h-7 w-7 text-cyan-200" />
+              <p className="mt-4 text-lg font-semibold">RIA Modules</p>
+            </div>
+            <div className="grid gap-1 p-3">
+              {osTabs.map(([id, label, Icon]) => (
+                <button key={id} onClick={() => setActiveTab(id)} className={`flex items-center gap-3 px-4 py-3 text-left text-sm transition ${activeTab === id ? 'bg-white text-black' : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'}`}>
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </button>
               ))}
             </div>
-          </div>
-        </Container>
-      </section>
-      <section className="border-t border-white/10 bg-[#05030d] py-14 text-white">
-        <Container>
-          <div className="grid gap-6 xl:grid-cols-[0.72fr_1.38fr_0.72fr]">
-            <aside className="border border-white/10 bg-[#0a0714]">
-              <div className="border-b border-white/10 p-6">
-                <div className="flex items-center gap-3">
-                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-black shadow-[0_0_28px_rgba(255,255,255,0.12)]">
-                    <BrainCircuit className="h-6 w-6" />
-                  </span>
-                  <div>
-                    <p className="text-lg font-semibold tracking-[-0.03em]">RIA Debo</p>
-                    <p className="text-xs text-emerald-300">Professional response mode</p>
-                  </div>
-                </div>
-              </div>
-              <div className="grid gap-3 p-6">
-                {[
-                  ['Model Style', 'Warm, direct, reflective, and product-aware'],
-                  ['Session State', `${messages.length} messages processed`],
-                  ['Detected Intent', detectedIntent],
-                  ['Response Range', 'Personal, product, support, and investor queries']
-                ].map(([label, value]) => (
-                  <div key={label} className="border border-white/10 bg-white/[0.03] p-4">
-                    <p className="text-xs text-zinc-500">{label}</p>
-                    <p className="mt-2 text-sm capitalize leading-6 text-zinc-200">{value}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="border-t border-white/10 p-6">
-                <button onClick={() => { setMessages([{ role: 'ria', text: 'RIA training mode is ready again. What would you like to explore?' }]); setInput('') }} className="w-full rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-white hover:text-white">
-                  Reset conversation
-                </button>
-              </div>
-            </aside>
+          </aside>
 
-            <div className="overflow-hidden border border-white/10 bg-[#0a0714] shadow-2xl shadow-black/40">
-              <div className="flex flex-col gap-4 border-b border-white/10 bg-white/[0.025] p-5 sm:flex-row sm:items-center sm:justify-between">
+          <main className="grid gap-6">
+            <div className="border border-white/10 bg-black/25 p-5 backdrop-blur-xl">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.06]">
                     <MessageCircle className="h-5 w-5 text-cyan-200" />
                   </span>
                   <div>
-                    <p className="font-semibold">RIA Cognitive Chat</p>
-                    <p className="mt-1 text-xs text-zinc-500">Live training conversation surface</p>
+                    <p className="font-semibold">Continuous Core Chat</p>
+                    <p className="text-xs text-zinc-500">Conversation and memory persist locally</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-400">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5">
-                    <Activity className="h-3.5 w-3.5 text-emerald-300" />
-                    Ready
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5">
-                    <Clock3 className="h-3.5 w-3.5 text-cyan-200" />
-                    Instant
-                  </span>
-                </div>
+                <span className={`rounded-full border px-3 py-1.5 text-xs ${theme.chip}`}>{isThinking ? 'RIA is processing...' : `${detectedIntent} mode`}</span>
               </div>
-              <div className="h-[560px] space-y-5 overflow-y-auto bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:100%_56px] p-5">
+              <div className="h-[420px] space-y-5 overflow-y-auto border border-white/10 bg-black/20 p-5">
                 {messages.map((message, index) => (
                   <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`flex max-w-[92%] gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                      <span className={`mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full ${message.role === 'user' ? 'bg-white text-black' : 'border border-white/10 bg-cyan-200/10 text-cyan-100'}`}>
-                        {message.role === 'user' ? <UserRound className="h-4 w-4" /> : <BrainCircuit className="h-4 w-4" />}
-                      </span>
-                      <div>
-                        <p className={`mb-1 text-[11px] uppercase tracking-[0.16em] text-zinc-600 ${message.role === 'user' ? 'text-right' : ''}`}>{message.role === 'user' ? 'You' : 'RIA Debo'}</p>
-                        <div className={`rounded-2xl px-5 py-4 text-sm leading-6 shadow-lg ${message.role === 'user' ? 'bg-white text-black shadow-white/5' : 'border border-white/10 bg-white/[0.07] text-zinc-200 shadow-black/20'}`}>
-                          <p className="whitespace-pre-wrap">{message.text}</p>
-                        </div>
-                      </div>
+                    <div className={`max-w-[88%] rounded-2xl px-5 py-4 text-sm leading-6 ${message.role === 'user' ? 'bg-white text-black' : 'border border-white/10 bg-white/[0.07] text-zinc-200'}`}>
+                      <p className="whitespace-pre-wrap">{message.text}</p>
                     </div>
                   </motion.div>
                 ))}
                 {isThinking && (
-                  <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.07] px-5 py-4 text-sm text-zinc-300">
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.07] px-5 py-4 text-sm text-zinc-300">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-200" />
-                    RIA is composing a response
+                    RIA is processing memory, tone, belief, and next action
                   </div>
                 )}
                 <div ref={scrollRef} />
               </div>
-              <div className="flex flex-wrap gap-2 border-t border-white/10 bg-white/[0.02] p-5 pb-0">
-                {demoTopics.map((prompt) => (
-                  <button key={prompt} onClick={() => send(prompt)} className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 transition hover:border-white hover:text-white">
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-              <form onSubmit={(event) => { event.preventDefault(); send() }} className="flex gap-3 p-5">
-                <textarea
-                  value={input}
-                  onChange={(event) => setInput(event.target.value)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' && !event.shiftKey) {
-                      event.preventDefault()
-                      send()
-                    }
-                  }}
-                  rows={1}
-                  className="max-h-32 min-h-12 min-w-0 flex-1 resize-none rounded-2xl bg-[#1f1f1f] px-5 py-3 text-sm leading-6 text-white outline-none ring-1 ring-white/10 transition placeholder:text-zinc-500 focus:ring-cyan-200/50"
-                  placeholder="Ask RIA anything..."
-                />
-                <button disabled={!input.trim() || isThinking} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-black transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40" aria-label="Send">
+              <form onSubmit={(event) => { event.preventDefault(); send() }} className="mt-4 flex gap-3">
+                <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send() } }} rows={1} className="max-h-32 min-h-12 min-w-0 flex-1 resize-none rounded-2xl bg-black/35 px-5 py-3 text-sm leading-6 text-white outline-none ring-1 ring-white/10 transition placeholder:text-zinc-500 focus:ring-cyan-200/50" placeholder="Tell RIA a goal, feeling, belief, or reflection..." />
+                <button disabled={!input.trim() || isThinking} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-black transition disabled:opacity-40" aria-label="Send">
                   <SendHorizontal className="h-5 w-5" />
                 </button>
               </form>
             </div>
 
-            <aside className="grid gap-6">
-              <div className="border border-white/10 bg-[#0a0714] p-6">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold">Response Studio</p>
-                    <p className="mt-1 text-xs text-zinc-500">Suggested professional flows</p>
-                  </div>
-                  <Cpu className="h-5 w-5 text-violet-200" />
-                </div>
-                <div className="mt-6 grid gap-3">
-                  {demoPromptCards.map(([title, copy, prompt]) => (
-                    <button key={title} onClick={() => send(prompt)} className="border border-white/10 bg-white/[0.03] p-4 text-left transition hover:border-cyan-200/40 hover:bg-white/[0.06]">
-                      <p className="text-sm font-medium text-white">{title}</p>
-                      <p className="mt-2 text-xs leading-5 text-zinc-500">{copy}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
+            <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="border border-white/10 bg-black/25 p-6 backdrop-blur-xl">
+              {renderActiveModule()}
+            </motion.div>
+          </main>
 
-              <div className="border border-white/10 bg-[#0a0714] p-6">
-                <div className="flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-cyan-200" />
-                  <p className="text-sm font-semibold">System Activity</p>
-                </div>
-                <div className="mt-5 space-y-4">
-                  {demoActivity.map(([title, copy]) => (
-                    <div key={title} className="border-l border-white/10 pl-4">
-                      <p className="text-sm text-zinc-200">{title}</p>
-                      <p className="mt-1 text-xs leading-5 text-zinc-500">{copy}</p>
-                    </div>
-                  ))}
-                </div>
+          <aside className="grid content-start gap-6">
+            <div className="border border-white/10 bg-black/25 p-5 backdrop-blur-xl">
+              <p className={`text-sm ${theme.accent}`}>Live Thinking Panel</p>
+              <div className="mt-5 space-y-4">
+                {['Intent scan', 'Memory write', 'Emotion theme', 'Guidance loop'].map((item, index) => (
+                  <div key={item} className="flex items-center justify-between border-b border-white/10 pb-3 text-sm">
+                    <span className="text-zinc-300">{item}</span>
+                    <span className={index === 2 ? theme.accent : 'text-emerald-300'}>{isThinking || index < 3 ? 'Active' : 'Ready'}</span>
+                  </div>
+                ))}
               </div>
-            </aside>
-          </div>
-        </Container>
-      </section>
-    </>
+            </div>
+
+            <div className="border border-white/10 bg-black/25 p-5 backdrop-blur-xl">
+              <p className={`text-sm ${theme.accent}`}>Memory Timeline</p>
+              <div className="mt-5 max-h-[420px] space-y-4 overflow-y-auto">
+                {memory.timeline.map((event) => (
+                  <div key={event.id} className="border-l border-white/10 pl-4">
+                    <p className="text-sm font-medium text-white">{event.label}</p>
+                    <p className="mt-1 text-xs leading-5 text-zinc-500">{event.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button onClick={() => { setMessages([{ role: 'ria', text: 'RIA Interface OS has been reset. Memory has returned to the default product vision.' }]); setMemory(initialOsMemory); setInput('') }} className="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-white hover:text-white">
+              Reset Interface OS
+            </button>
+          </aside>
+        </div>
+      </Container>
+    </section>
   )
 }
 
