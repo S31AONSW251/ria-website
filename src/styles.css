@@ -90,6 +90,84 @@ a {
   transform: rotate(16deg);
 }
 
+@keyframes home-core-breathe {
+  0%, 100% {
+    box-shadow: 0 0 60px rgba(34, 211, 238, 0.16), inset 0 0 34px rgba(255,255,255,0.08);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 120px rgba(168, 85, 247, 0.26), inset 0 0 44px rgba(34,211,238,0.12);
+    transform: scale(1.035);
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.home-core-pulse {
+  animation: home-core-breathe 5.5s ease-in-out infinite;
+}
+
+.home-orbit-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+}
+
+.home-orbit-ring::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  background: #a5f3fc;
+  box-shadow: 0 0 28px rgba(34,211,238,0.9);
+}
+
+.home-orbit-ring-b {
+  animation: orbit-spin 28s linear infinite;
+  border-color: rgba(165, 180, 252, 0.18);
+}
+
+.home-orbit-node {
+  position: absolute;
+  width: 13rem;
+}
+
+.home-orbit-node-0 {
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.home-orbit-node-1 {
+  right: 0;
+  top: 35%;
+}
+
+.home-orbit-node-2 {
+  bottom: 4%;
+  right: 12%;
+}
+
+.home-orbit-node-3 {
+  bottom: 4%;
+  left: 12%;
+}
+
+.home-orbit-node-4 {
+  left: 0;
+  top: 35%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

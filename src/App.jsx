@@ -203,6 +203,42 @@ const orbitCards = [
   ['Tools', 'Open action toolkit', Wrench, 'Show available RIA tools']
 ]
 
+const homeOrbitModules = [
+  ['Memory', Database, 'Core memories + user timeline'],
+  ['Reflection', Search, 'Recurring thoughts + insight loops'],
+  ['Goals', Target, 'Life direction + execution path'],
+  ['Insights', Sparkles, 'Pattern synthesis + next action'],
+  ['Chat', MessageCircle, 'Continuous conversation stream']
+]
+
+const cognitionStream = [
+  'analyzing memory continuity',
+  'updating emotional context',
+  'forming response strategy',
+  'checking belief patterns',
+  'mapping next useful action'
+]
+
+const memoryField = [
+  ['Core memories', 'RIA tracks durable personal signals that should remain visible and editable.', Database],
+  ['Emotional states', 'Mood shifts become a living timeline instead of disappearing after chat.', HeartPulse],
+  ['Recurring thoughts', 'Repeated worries, dreams, doubts, and patterns become reflection material.', Orbit],
+  ['Life goals', 'Goals are treated as evolving identity anchors, not simple to-do items.', Target]
+]
+
+const proactiveSignals = [
+  'You have not reviewed your goals recently. Want a 3-step restart plan?',
+  'Your emotional pattern is leaning toward pressure. RIA can switch into grounded mode.',
+  'A repeated belief signal is forming. RIA can reframe it before it becomes a block.'
+]
+
+const evolutionSignals = [
+  ['Thinking pattern', 'reactive -> structured'],
+  ['Decision style', 'unclear -> prioritized'],
+  ['Emotional loop', 'pressure -> recovery'],
+  ['Belief shift', 'doubt -> directed action']
+]
+
 const initialOsMemory = {
   nodes: [
     { id: 'seed-goal', type: 'goal', title: 'Build RIA into a cognitive companion system', detail: 'Long-term product vision focused on memory, reflection, emotional intelligence, and private user control.', createdAt: '2026-05-07T00:00:00.000Z' },
@@ -495,34 +531,143 @@ function HeroSearch() {
 function Home() {
   return (
     <>
-      <section className="relative min-h-screen overflow-hidden bg-[#05030d] pt-28 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(139,92,246,0.24),transparent_32%),radial-gradient(circle_at_72%_40%,rgba(34,211,238,0.13),transparent_28%),linear-gradient(180deg,rgba(5,3,13,0),#05030d_92%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:84px_84px] opacity-25" />
-        <Container className="relative flex min-h-[calc(100vh-7rem)] flex-col justify-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="mx-auto max-w-5xl text-center">
-            <p className="mb-7 inline-flex rounded-full border border-white/16 bg-white/[0.07] px-7 py-3 text-base font-semibold tracking-[-0.02em] text-white shadow-[0_0_34px_rgba(139,92,246,0.18)]">RIA</p>
-            <h1 className="text-5xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
-              Personal cognitive <span className="bg-gradient-to-r from-white via-violet-200 to-cyan-200 bg-clip-text text-transparent">intelligence</span>
+      <section className="relative min-h-screen overflow-hidden bg-[#020407] pt-24 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(34,211,238,0.18),transparent_24%),radial-gradient(circle_at_50%_48%,rgba(168,85,247,0.2),transparent_32%),linear-gradient(180deg,#020407_0%,#06111b_52%,#020407_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:76px_76px] opacity-25" />
+        <div className="thought-stream thought-stream-a opacity-30" />
+        <div className="thought-stream thought-stream-b opacity-20" />
+        <Container className="relative grid min-h-[calc(100vh-6rem)] gap-8 py-8 xl:grid-cols-[21rem_1fr_21rem] xl:items-center">
+          <motion.aside initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="hidden border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl xl:block">
+            <div className="flex items-center gap-3">
+              <BrainCircuit className="h-7 w-7 text-cyan-200" />
+              <div>
+                <p className="font-semibold">Live Cognition Layer</p>
+                <p className="text-xs text-zinc-500">RIA is thinking in visible streams</p>
+              </div>
+            </div>
+            <div className="mt-7 space-y-4">
+              {cognitionStream.map((item, index) => (
+                <div key={item} className="flex items-center gap-3 border-b border-white/10 pb-4">
+                  <span className="relative flex h-3 w-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-60" />
+                    <span className="relative inline-flex h-3 w-3 rounded-full bg-cyan-200" />
+                  </span>
+                  <div>
+                    <p className="text-sm text-zinc-200">{item}</p>
+                    <p className="mt-1 text-xs text-zinc-600">stream {String(index + 1).padStart(2, '0')}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-7 border border-cyan-200/20 bg-cyan-200/[0.06] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Proactive Signal</p>
+              <p className="mt-3 text-sm leading-6 text-zinc-300">{proactiveSignals[0]}</p>
+            </div>
+          </motion.aside>
+
+          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="relative mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+            <p className="inline-flex rounded-full border border-cyan-200/30 bg-cyan-200/10 px-5 py-2 text-xs font-semibold tracking-[0.18em] text-cyan-100">PERSONAL COGNITIVE OPERATING SYSTEM</p>
+            <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.9] tracking-[-0.07em] sm:text-7xl lg:text-8xl">
+              RIA is not a site. It is a <span className="bg-gradient-to-r from-white via-cyan-100 to-violet-200 bg-clip-text text-transparent">living mind interface</span>.
             </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-zinc-300">
-              RIA is a persistent digital second brain built to remember, reflect, journal, understand emotion, support decisions, and grow into a private cognitive operating system for every device you use.
+            <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-300">
+              A neural OS shell for memory, reflection, goals, emotional intelligence, proactive guidance, and identity evolution. RIA is designed to feel like a second brain that is awake, adaptive, and privately yours.
             </p>
-            <HeroSearch />
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {['Talk with RIA', 'Research', 'Memory', 'Download', 'Demo', 'Funding'].map((item) => (
-                <Link key={item} to={item === 'Talk with RIA' ? '/demo' : item === 'Funding' ? '/funding' : item === 'Download' ? '/download' : `/${item.toLowerCase()}`} className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 transition hover:border-white hover:text-white">
-                  {item}
+
+            <div className="relative mt-10 grid h-[34rem] w-full max-w-[48rem] place-items-center">
+              <div className="home-orbit-ring h-[31rem] w-[31rem]" />
+              <div className="home-orbit-ring home-orbit-ring-b h-[23rem] w-[23rem]" />
+              <div className="home-core-pulse grid h-48 w-48 place-items-center rounded-full border border-white/15 bg-white/[0.08] shadow-[0_0_90px_rgba(34,211,238,0.22)] backdrop-blur-xl">
+                <div>
+                  <BrainCircuit className="mx-auto h-10 w-10 text-cyan-100" />
+                  <p className="mt-3 text-3xl font-semibold tracking-[0.18em]">RIA</p>
+                  <p className="mt-2 text-xs text-zinc-500">AI CORE ACTIVE</p>
+                </div>
+              </div>
+              {homeOrbitModules.map(([title, Icon, copy], index) => (
+                <Link key={title} to={title === 'Chat' ? '/demo' : '/product'} className={`home-orbit-node home-orbit-node-${index} group border border-white/10 bg-black/55 p-4 text-left shadow-2xl backdrop-blur-xl transition hover:border-cyan-200/50`}>
+                  <Icon className="h-5 w-5 text-cyan-100" />
+                  <p className="mt-4 text-sm font-semibold">{title}</p>
+                  <p className="mt-1 text-xs leading-5 text-zinc-500">{copy}</p>
                 </Link>
               ))}
             </div>
+
+            <div className="mt-2 flex flex-wrap justify-center gap-3">
+              <Link to="/demo" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black">Enter RIA OS</Link>
+              <Link to="/product" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white hover:border-white">View system layers</Link>
+            </div>
           </motion.div>
+
+          <motion.aside initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="hidden space-y-5 xl:block">
+            <div className="border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
+              <p className="text-sm font-semibold text-cyan-100">Memory Field UI</p>
+              <div className="mt-5 space-y-3">
+                {memoryField.map(([title, copy, Icon]) => (
+                  <div key={title} className="border border-white/10 bg-black/25 p-4">
+                    <div className="flex items-center gap-3">
+                      <Icon className="h-4 w-4 text-violet-200" />
+                      <p className="text-sm font-medium">{title}</p>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-zinc-500">{copy}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
+              <p className="text-sm font-semibold text-violet-100">User Evolution Model</p>
+              <div className="mt-5 space-y-4">
+                {evolutionSignals.map(([label, value]) => (
+                  <div key={label}>
+                    <div className="flex justify-between gap-4 text-sm">
+                      <span className="text-zinc-500">{label}</span>
+                      <span className="text-zinc-200">{value}</span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                      <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-cyan-200 to-violet-300" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 text-sm leading-6 text-zinc-400">RIA maps the shift from reactive thinking into structured identity growth.</p>
+            </div>
+          </motion.aside>
         </Container>
       </section>
-      <Featured />
-      <ProductGrid />
+      <HomeSystemPanels />
       <DifferenceSection />
-      <EditorialSections />
     </>
+  )
+}
+
+function HomeSystemPanels() {
+  return (
+    <section className="border-t border-white/10 bg-[#020407] py-20 text-white">
+      <Container>
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="border border-white/10 bg-white/[0.04] p-8">
+            <p className="text-sm text-cyan-200">Proactive Intelligence</p>
+            <h2 className="mt-4 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">RIA initiates action before the user asks.</h2>
+            <div className="mt-8 space-y-3">
+              {proactiveSignals.map((signal) => (
+                <div key={signal} className="border border-white/10 bg-black/30 p-4 text-sm leading-7 text-zinc-300">
+                  {signal}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
+            {memoryField.map(([title, copy, Icon]) => (
+              <div key={title} className="bg-[#050a12] p-7">
+                <Icon className="h-6 w-6 text-cyan-200" />
+                <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
   )
 }
 
