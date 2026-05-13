@@ -601,8 +601,353 @@ function LivingStream() {
   )
 }
 
-function NeuralSphere({ compact = false }: { compact?: boolean }) {
+type NeuralSphereVariant =
+  | 'default'
+  | 'vision'
+  | 'technology'
+  | 'personal'
+  | 'enterprise'
+  | 'usecases'
+  | 'investor'
+  | 'founder'
+  | 'careers'
+  | 'newsroom'
+  | 'documentation'
+  | 'contact'
+
+type NeuralSpherePreset = {
+  nodeCount: number
+  pointColor: number
+  lineColor: number
+  coreColor: number
+  ringColor: number
+  pointOpacity: number
+  lineOpacity: number
+  spinY: number
+  spinZ: number
+  waveSpeed: number
+  waveAmplitude: number
+  floatSpeed: number
+  floatAmplitude: number
+  corePulse: number
+  corePulseSpeed: number
+  ringCount: number
+  ringTilt: number
+  ringTwist: number
+  connectionStride: number
+  connectionOffset: number
+  radius: number
+  radiusJitter: number
+}
+
+const neuralSpherePresets: Record<NeuralSphereVariant, NeuralSpherePreset> = {
+  default: {
+    nodeCount: 150,
+    pointColor: 0x8cf6ff,
+    lineColor: 0x7dd3fc,
+    coreColor: 0x6d5dfc,
+    ringColor: 0xc4b5fd,
+    pointOpacity: 0.9,
+    lineOpacity: 0.16,
+    spinY: 0.0026,
+    spinZ: 0,
+    waveSpeed: 0.58,
+    waveAmplitude: 0.12,
+    floatSpeed: 0.38,
+    floatAmplitude: 0.06,
+    corePulse: 0.08,
+    corePulseSpeed: 1.1,
+    ringCount: 3,
+    ringTilt: 0.42,
+    ringTwist: 0.48,
+    connectionStride: 13,
+    connectionOffset: 5,
+    radius: 1.64,
+    radiusJitter: 0.08
+  },
+  vision: {
+    nodeCount: 154,
+    pointColor: 0x9ee8ff,
+    lineColor: 0x7dd3fc,
+    coreColor: 0x6d8fff,
+    ringColor: 0xa5b4fc,
+    pointOpacity: 0.92,
+    lineOpacity: 0.15,
+    spinY: 0.002,
+    spinZ: 0.0009,
+    waveSpeed: 0.46,
+    waveAmplitude: 0.18,
+    floatSpeed: 0.25,
+    floatAmplitude: 0.1,
+    corePulse: 0.12,
+    corePulseSpeed: 0.8,
+    ringCount: 4,
+    ringTilt: 0.35,
+    ringTwist: 0.42,
+    connectionStride: 17,
+    connectionOffset: 7,
+    radius: 1.72,
+    radiusJitter: 0.06
+  },
+  technology: {
+    nodeCount: 190,
+    pointColor: 0x80f2ff,
+    lineColor: 0x38bdf8,
+    coreColor: 0x4f46e5,
+    ringColor: 0x22d3ee,
+    pointOpacity: 0.88,
+    lineOpacity: 0.2,
+    spinY: 0.0035,
+    spinZ: 0.0012,
+    waveSpeed: 0.8,
+    waveAmplitude: 0.09,
+    floatSpeed: 0.6,
+    floatAmplitude: 0.05,
+    corePulse: 0.07,
+    corePulseSpeed: 1.5,
+    ringCount: 2,
+    ringTilt: 0.58,
+    ringTwist: 0.72,
+    connectionStride: 11,
+    connectionOffset: 4,
+    radius: 1.58,
+    radiusJitter: 0.11
+  },
+  personal: {
+    nodeCount: 140,
+    pointColor: 0xb6f5ff,
+    lineColor: 0x93c5fd,
+    coreColor: 0xa855f7,
+    ringColor: 0xe9d5ff,
+    pointOpacity: 0.92,
+    lineOpacity: 0.14,
+    spinY: 0.0018,
+    spinZ: 0.0005,
+    waveSpeed: 0.38,
+    waveAmplitude: 0.2,
+    floatSpeed: 0.32,
+    floatAmplitude: 0.14,
+    corePulse: 0.15,
+    corePulseSpeed: 0.95,
+    ringCount: 3,
+    ringTilt: 0.3,
+    ringTwist: 0.5,
+    connectionStride: 19,
+    connectionOffset: 3,
+    radius: 1.68,
+    radiusJitter: 0.07
+  },
+  enterprise: {
+    nodeCount: 170,
+    pointColor: 0x67e8f9,
+    lineColor: 0x0ea5e9,
+    coreColor: 0x1d4ed8,
+    ringColor: 0x60a5fa,
+    pointOpacity: 0.9,
+    lineOpacity: 0.14,
+    spinY: 0.0024,
+    spinZ: 0.0003,
+    waveSpeed: 0.44,
+    waveAmplitude: 0.08,
+    floatSpeed: 0.24,
+    floatAmplitude: 0.04,
+    corePulse: 0.06,
+    corePulseSpeed: 0.85,
+    ringCount: 5,
+    ringTilt: 0.22,
+    ringTwist: 0.3,
+    connectionStride: 15,
+    connectionOffset: 6,
+    radius: 1.6,
+    radiusJitter: 0.05
+  },
+  usecases: {
+    nodeCount: 155,
+    pointColor: 0x93c5fd,
+    lineColor: 0x818cf8,
+    coreColor: 0x7c3aed,
+    ringColor: 0xa78bfa,
+    pointOpacity: 0.88,
+    lineOpacity: 0.17,
+    spinY: 0.0031,
+    spinZ: 0.0017,
+    waveSpeed: 0.92,
+    waveAmplitude: 0.16,
+    floatSpeed: 0.54,
+    floatAmplitude: 0.09,
+    corePulse: 0.09,
+    corePulseSpeed: 1.35,
+    ringCount: 3,
+    ringTilt: 0.68,
+    ringTwist: 0.94,
+    connectionStride: 9,
+    connectionOffset: 5,
+    radius: 1.63,
+    radiusJitter: 0.09
+  },
+  investor: {
+    nodeCount: 180,
+    pointColor: 0x99f6e4,
+    lineColor: 0x2dd4bf,
+    coreColor: 0x0f766e,
+    ringColor: 0x5eead4,
+    pointOpacity: 0.86,
+    lineOpacity: 0.15,
+    spinY: 0.0021,
+    spinZ: 0.0008,
+    waveSpeed: 0.52,
+    waveAmplitude: 0.07,
+    floatSpeed: 0.22,
+    floatAmplitude: 0.03,
+    corePulse: 0.05,
+    corePulseSpeed: 0.72,
+    ringCount: 4,
+    ringTilt: 0.26,
+    ringTwist: 0.36,
+    connectionStride: 14,
+    connectionOffset: 4,
+    radius: 1.57,
+    radiusJitter: 0.04
+  },
+  founder: {
+    nodeCount: 132,
+    pointColor: 0xc4b5fd,
+    lineColor: 0xa78bfa,
+    coreColor: 0xdb2777,
+    ringColor: 0xf5d0fe,
+    pointOpacity: 0.9,
+    lineOpacity: 0.16,
+    spinY: 0.0027,
+    spinZ: 0.0015,
+    waveSpeed: 0.66,
+    waveAmplitude: 0.22,
+    floatSpeed: 0.28,
+    floatAmplitude: 0.12,
+    corePulse: 0.14,
+    corePulseSpeed: 1.08,
+    ringCount: 2,
+    ringTilt: 0.74,
+    ringTwist: 1.02,
+    connectionStride: 21,
+    connectionOffset: 2,
+    radius: 1.71,
+    radiusJitter: 0.1
+  },
+  careers: {
+    nodeCount: 165,
+    pointColor: 0x86efac,
+    lineColor: 0x34d399,
+    coreColor: 0x22c55e,
+    ringColor: 0xbbf7d0,
+    pointOpacity: 0.88,
+    lineOpacity: 0.18,
+    spinY: 0.0033,
+    spinZ: 0.001,
+    waveSpeed: 0.88,
+    waveAmplitude: 0.13,
+    floatSpeed: 0.46,
+    floatAmplitude: 0.08,
+    corePulse: 0.1,
+    corePulseSpeed: 1.4,
+    ringCount: 3,
+    ringTilt: 0.5,
+    ringTwist: 0.65,
+    connectionStride: 10,
+    connectionOffset: 4,
+    radius: 1.62,
+    radiusJitter: 0.12
+  },
+  newsroom: {
+    nodeCount: 148,
+    pointColor: 0xfda4af,
+    lineColor: 0xfb7185,
+    coreColor: 0xbe123c,
+    ringColor: 0xf9a8d4,
+    pointOpacity: 0.88,
+    lineOpacity: 0.15,
+    spinY: 0.0029,
+    spinZ: 0.0013,
+    waveSpeed: 0.74,
+    waveAmplitude: 0.11,
+    floatSpeed: 0.4,
+    floatAmplitude: 0.06,
+    corePulse: 0.08,
+    corePulseSpeed: 1.18,
+    ringCount: 4,
+    ringTilt: 0.6,
+    ringTwist: 0.74,
+    connectionStride: 16,
+    connectionOffset: 7,
+    radius: 1.59,
+    radiusJitter: 0.08
+  },
+  documentation: {
+    nodeCount: 176,
+    pointColor: 0xbfdbfe,
+    lineColor: 0x60a5fa,
+    coreColor: 0x2563eb,
+    ringColor: 0x93c5fd,
+    pointOpacity: 0.9,
+    lineOpacity: 0.13,
+    spinY: 0.0019,
+    spinZ: 0.0006,
+    waveSpeed: 0.5,
+    waveAmplitude: 0.06,
+    floatSpeed: 0.2,
+    floatAmplitude: 0.02,
+    corePulse: 0.05,
+    corePulseSpeed: 0.76,
+    ringCount: 5,
+    ringTilt: 0.18,
+    ringTwist: 0.22,
+    connectionStride: 12,
+    connectionOffset: 5,
+    radius: 1.55,
+    radiusJitter: 0.03
+  },
+  contact: {
+    nodeCount: 138,
+    pointColor: 0xfde68a,
+    lineColor: 0xfbbf24,
+    coreColor: 0xf97316,
+    ringColor: 0xfdba74,
+    pointOpacity: 0.9,
+    lineOpacity: 0.17,
+    spinY: 0.0022,
+    spinZ: 0.0011,
+    waveSpeed: 0.57,
+    waveAmplitude: 0.17,
+    floatSpeed: 0.35,
+    floatAmplitude: 0.1,
+    corePulse: 0.13,
+    corePulseSpeed: 1.02,
+    ringCount: 3,
+    ringTilt: 0.46,
+    ringTwist: 0.58,
+    connectionStride: 18,
+    connectionOffset: 3,
+    radius: 1.66,
+    radiusJitter: 0.08
+  }
+}
+
+const pageHeroSphereVariants: Record<string, NeuralSphereVariant> = {
+  Vision: 'vision',
+  Technology: 'technology',
+  'RIA Personal': 'personal',
+  'RIA Enterprise': 'enterprise',
+  'Use Cases': 'usecases',
+  'Investor Relations': 'investor',
+  Founder: 'founder',
+  Careers: 'careers',
+  Newsroom: 'newsroom',
+  Documentation: 'documentation',
+  Contact: 'contact'
+}
+
+function NeuralSphere({ compact = false, variant = 'default' }: { compact?: boolean; variant?: NeuralSphereVariant }) {
   const mountRef = useRef<HTMLDivElement | null>(null)
+  const preset = neuralSpherePresets[variant]
 
   useEffect(() => {
     const mount = mountRef.current
@@ -625,22 +970,22 @@ function NeuralSphere({ compact = false }: { compact?: boolean }) {
       const group = new THREE.Group()
       scene.add(group)
 
-      const nodeCount = compact ? 92 : 150
+      const nodeCount = compact ? Math.max(82, Math.round(preset.nodeCount * 0.62)) : preset.nodeCount
       const positions: number[] = []
       for (let index = 0; index < nodeCount; index += 1) {
         const phi = Math.acos(1 - (2 * (index + 0.5)) / nodeCount)
         const theta = Math.PI * (1 + Math.sqrt(5)) * index
-        const radius = 1.64 + 0.08 * Math.sin(index * 1.7)
+        const radius = preset.radius + preset.radiusJitter * Math.sin(index * 1.7 + preset.waveSpeed)
         positions.push(radius * Math.cos(theta) * Math.sin(phi), radius * Math.sin(theta) * Math.sin(phi), radius * Math.cos(phi))
       }
 
       const pointGeometry = new THREE.BufferGeometry()
       pointGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
       const pointMaterial = new THREE.PointsMaterial({
-        color: 0x8cf6ff,
+        color: preset.pointColor,
         size: compact ? 0.035 : 0.045,
         transparent: true,
-        opacity: 0.9,
+        opacity: preset.pointOpacity,
         blending: THREE.AdditiveBlending,
         depthWrite: false
       })
@@ -648,15 +993,15 @@ function NeuralSphere({ compact = false }: { compact?: boolean }) {
 
       const linePositions: number[] = []
       for (let index = 0; index < nodeCount; index += 1) {
-        const target = (index + 13 + (index % 5)) % nodeCount
+        const target = (index + preset.connectionStride + (index % preset.connectionOffset)) % nodeCount
         linePositions.push(positions[index * 3], positions[index * 3 + 1], positions[index * 3 + 2], positions[target * 3], positions[target * 3 + 1], positions[target * 3 + 2])
       }
       const lineGeometry = new THREE.BufferGeometry()
       lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3))
       const lineMaterial = new THREE.LineBasicMaterial({
-        color: 0x7dd3fc,
+        color: preset.lineColor,
         transparent: true,
-        opacity: 0.16,
+        opacity: preset.lineOpacity,
         blending: THREE.AdditiveBlending
       })
       group.add(new THREE.LineSegments(lineGeometry, lineMaterial))
@@ -664,7 +1009,7 @@ function NeuralSphere({ compact = false }: { compact?: boolean }) {
       const core = new THREE.Mesh(
         new THREE.SphereGeometry(0.58, 32, 32),
         new THREE.MeshBasicMaterial({
-          color: 0x6d5dfc,
+          color: preset.coreColor,
           transparent: true,
           opacity: 0.18,
           blending: THREE.AdditiveBlending
@@ -672,11 +1017,16 @@ function NeuralSphere({ compact = false }: { compact?: boolean }) {
       )
       group.add(core)
 
-      const ringMaterial = new THREE.LineBasicMaterial({ color: 0xc4b5fd, transparent: true, opacity: 0.24 })
-      for (let index = 0; index < 3; index += 1) {
-        const ring = new THREE.Line(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0, 0, 2.0 + index * 0.28, 1.0 + index * 0.12, 0, Math.PI * 2, false, 0).getPoints(120)), ringMaterial)
-        ring.rotation.x = Math.PI / 2 + index * 0.42
-        ring.rotation.y = index * 0.48
+      const ringMaterial = new THREE.LineBasicMaterial({ color: preset.ringColor, transparent: true, opacity: 0.24 })
+      for (let index = 0; index < preset.ringCount; index += 1) {
+        const ring = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(
+            new THREE.EllipseCurve(0, 0, 1.92 + index * 0.24, 0.98 + index * 0.11, 0, Math.PI * 2, false, 0).getPoints(120)
+          ),
+          ringMaterial
+        )
+        ring.rotation.x = Math.PI / 2 + index * preset.ringTilt
+        ring.rotation.y = index * preset.ringTwist
         group.add(ring)
       }
 
@@ -689,9 +1039,15 @@ function NeuralSphere({ compact = false }: { compact?: boolean }) {
       }
 
       let frameId = 0
+      const clockStart = performance.now()
       const animate = () => {
-        group.rotation.y += 0.0026
-        group.rotation.x = Math.sin(Date.now() * 0.00032) * 0.12
+        const elapsed = (performance.now() - clockStart) * 0.001
+        group.rotation.y += preset.spinY
+        group.rotation.z += preset.spinZ
+        group.rotation.x = Math.sin(elapsed * preset.waveSpeed) * preset.waveAmplitude
+        group.position.y = Math.sin(elapsed * preset.floatSpeed) * preset.floatAmplitude
+        const pulse = 1 + Math.sin(elapsed * preset.corePulseSpeed) * preset.corePulse
+        core.scale.setScalar(pulse)
         frameId = requestAnimationFrame(animate)
         renderer.render(scene, camera)
       }
@@ -719,10 +1075,10 @@ function NeuralSphere({ compact = false }: { compact?: boolean }) {
       cancelled = true
       cleanup?.()
     }
-  }, [compact])
+  }, [compact, preset])
 
   return (
-    <div className={`neural-sphere ${compact ? 'neural-sphere-compact' : ''}`}>
+    <div className={`neural-sphere neural-sphere-${variant} ${compact ? 'neural-sphere-compact' : ''}`}>
       <div ref={mountRef} className="h-full w-full" />
       <div className="neural-sphere-core" />
     </div>
@@ -772,6 +1128,8 @@ function FeatureGrid({ items, columns = 'lg:grid-cols-3' }: { items: Feature[]; 
 }
 
 function PageHero({ eyebrow, title, copy, metrics, children }: { eyebrow: string; title: string; copy: string; metrics?: Metric[]; children?: ReactNode }) {
+  const sphereVariant = pageHeroSphereVariants[eyebrow] ?? 'default'
+
   return (
     <section className="relative overflow-hidden pt-32">
       <div className="absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.2),transparent_32rem)]" />
@@ -787,7 +1145,7 @@ function PageHero({ eyebrow, title, copy, metrics, children }: { eyebrow: string
           )}
         </Reveal>
         <Reveal className="relative min-h-[24rem] min-w-0 lg:min-h-[34rem]">
-          {children ?? <NeuralSphere />}
+          {children ?? <NeuralSphere variant={sphereVariant} />}
         </Reveal>
       </div>
     </section>

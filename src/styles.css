@@ -730,10 +730,12 @@ select option {
   min-height: 31rem;
   width: 100%;
   overflow: hidden;
+  isolation: isolate;
   border-radius: 8px;
   background:
     radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.16), transparent 18rem),
     radial-gradient(circle at 62% 36%, rgba(168, 85, 247, 0.16), transparent 16rem);
+  background-blend-mode: screen, normal;
 }
 
 .neural-sphere canvas {
@@ -748,12 +750,15 @@ select option {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 50%;
   transform: rotateX(66deg);
+  pointer-events: none;
+  animation: sphere-ring-orbit 16s linear infinite;
 }
 
 .neural-sphere::after {
   inset: 20%;
   border-color: rgba(125, 211, 252, 0.15);
   transform: rotateX(72deg) rotateZ(28deg);
+  animation: sphere-ring-orbit-reverse 22s linear infinite;
 }
 
 .neural-sphere-compact {
@@ -771,6 +776,94 @@ select option {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(34, 211, 238, 0.08) 34%, transparent 70%);
   filter: blur(2px);
   animation: core-pulse 4.8s ease-in-out infinite;
+}
+
+.neural-sphere-vision {
+  background:
+    radial-gradient(circle at 52% 42%, rgba(59, 130, 246, 0.2), transparent 17rem),
+    radial-gradient(circle at 66% 32%, rgba(165, 180, 252, 0.2), transparent 14rem);
+}
+
+.neural-sphere-technology {
+  background:
+    radial-gradient(circle at 48% 58%, rgba(34, 211, 238, 0.21), transparent 15rem),
+    radial-gradient(circle at 64% 38%, rgba(56, 189, 248, 0.2), transparent 14rem);
+}
+
+.neural-sphere-technology::before {
+  animation-duration: 11s;
+}
+
+.neural-sphere-technology::after {
+  animation-duration: 15s;
+}
+
+.neural-sphere-personal {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(192, 132, 252, 0.2), transparent 17rem),
+    radial-gradient(circle at 62% 34%, rgba(244, 114, 182, 0.14), transparent 15rem);
+}
+
+.neural-sphere-enterprise {
+  background:
+    radial-gradient(circle at 54% 50%, rgba(14, 165, 233, 0.2), transparent 16rem),
+    radial-gradient(circle at 64% 38%, rgba(96, 165, 250, 0.15), transparent 15rem);
+}
+
+.neural-sphere-enterprise::before,
+.neural-sphere-enterprise::after {
+  border-style: dashed;
+}
+
+.neural-sphere-usecases {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(129, 140, 248, 0.22), transparent 16rem),
+    radial-gradient(circle at 65% 35%, rgba(167, 139, 250, 0.16), transparent 14rem);
+}
+
+.neural-sphere-investor {
+  background:
+    radial-gradient(circle at 52% 46%, rgba(45, 212, 191, 0.2), transparent 16rem),
+    radial-gradient(circle at 66% 34%, rgba(94, 234, 212, 0.14), transparent 14rem);
+}
+
+.neural-sphere-founder {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(196, 181, 253, 0.2), transparent 16rem),
+    radial-gradient(circle at 64% 35%, rgba(244, 114, 182, 0.16), transparent 14rem);
+}
+
+.neural-sphere-founder::before {
+  animation-duration: 12s;
+}
+
+.neural-sphere-careers {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(74, 222, 128, 0.2), transparent 16rem),
+    radial-gradient(circle at 64% 35%, rgba(134, 239, 172, 0.14), transparent 14rem);
+}
+
+.neural-sphere-newsroom {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(251, 113, 133, 0.2), transparent 16rem),
+    radial-gradient(circle at 64% 35%, rgba(249, 168, 212, 0.15), transparent 14rem);
+}
+
+.neural-sphere-documentation {
+  background:
+    radial-gradient(circle at 52% 50%, rgba(96, 165, 250, 0.2), transparent 16rem),
+    radial-gradient(circle at 66% 34%, rgba(147, 197, 253, 0.15), transparent 14rem);
+}
+
+.neural-sphere-documentation::before,
+.neural-sphere-documentation::after {
+  border-width: 1.5px;
+}
+
+.neural-sphere-contact {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.2), transparent 16rem),
+    radial-gradient(circle at 64% 35%, rgba(249, 115, 22, 0.15), transparent 14rem);
 }
 
 .layer-tile {
@@ -1687,6 +1780,24 @@ select option {
   78%, 100% {
     opacity: 0;
     transform: translate3d(-130vw, 24vh, 0) rotate(-16deg);
+  }
+}
+
+@keyframes sphere-ring-orbit {
+  0% {
+    transform: rotateX(66deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes sphere-ring-orbit-reverse {
+  0% {
+    transform: rotateX(72deg) rotateZ(28deg);
+  }
+  100% {
+    transform: rotateX(72deg) rotateZ(-332deg);
   }
 }
 
