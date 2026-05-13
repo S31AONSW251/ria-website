@@ -588,25 +588,25 @@ function Container({ children, className = '' }) {
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/90 text-black backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#03060d]/85 text-white shadow-[0_18px_60px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
       <Container className="flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src={images.logo} alt="" className="h-7 w-7 rounded-full object-cover grayscale" onError={(event) => { event.currentTarget.style.display = 'none' }} />
-          <span className="grid h-8 w-8 place-items-center rounded-lg border border-black/10 bg-black text-white">
+          <img src={images.logo} alt="" className="h-7 w-7 rounded-full object-cover" onError={(event) => { event.currentTarget.style.display = 'none' }} />
+          <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-200/20 bg-white/10 text-cyan-100">
             <BrainCircuit className="h-4 w-4" />
           </span>
-          <span className="text-base font-semibold tracking-[-0.02em] text-black">RIA</span>
+          <span className="text-base font-semibold text-white">RIA</span>
         </Link>
-        <nav className="hidden items-center gap-6 text-sm text-zinc-700 md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-zinc-400 md:flex">
           {nav.map(([label, to]) => (
-            <NavLink key={to} to={to} className={({ isActive }) => isActive ? 'text-black' : 'transition hover:text-black'}>
+            <NavLink key={to} to={to} className={({ isActive }) => isActive ? 'text-white' : 'transition hover:text-white'}>
               {label}
             </NavLink>
           ))}
         </nav>
-        <div className="flex items-center gap-4 text-sm">
-          <Link to="/download" className="hidden text-zinc-700 transition hover:text-black sm:inline">Download</Link>
-          <Link to="/demo" className="rounded-full bg-black px-4 py-2 font-semibold text-white transition hover:bg-zinc-800">Start RIA</Link>
+        <div className="hidden items-center gap-4 text-sm sm:flex">
+          <Link to="/download" className="hidden text-zinc-400 transition hover:text-white sm:inline">Download</Link>
+          <Link to="/demo" className="rounded-full bg-white px-4 py-2 font-semibold text-black transition hover:bg-cyan-100">Start RIA</Link>
         </div>
       </Container>
     </header>
@@ -615,14 +615,14 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-black/10 bg-white text-black">
+    <footer className="border-t border-white/10 bg-[#030407] text-white">
       <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-5">
         <div>
-          <div className="mb-6 flex items-center gap-2 text-black">
+          <div className="mb-6 flex items-center gap-2 text-white">
             <BrainCircuit className="h-5 w-5" />
             <span className="font-semibold">RIA</span>
           </div>
-          <p className="max-w-xs text-sm leading-6 text-zinc-600">Personal cognitive intelligence for memory continuity, reflection, emotional awareness, and growth.</p>
+          <p className="max-w-xs text-sm leading-6 text-zinc-500">Personal cognitive intelligence for memory continuity, reflection, emotional awareness, and growth.</p>
         </div>
         {[
           ['Research', ['Memory continuity', 'Reflection engine', 'Belief classification', 'Emotional AI']],
@@ -631,14 +631,14 @@ function Footer() {
           ['Support', ['Funding', 'Partner', 'Privacy', 'Terms']]
         ].map(([title, links]) => (
           <div key={title}>
-            <p className="mb-4 text-sm font-semibold text-black">{title}</p>
+            <p className="mb-4 text-sm font-semibold text-white">{title}</p>
             {links.map((item) => (
-              <p key={item} className="mb-3 text-sm text-zinc-600">{item}</p>
+              <p key={item} className="mb-3 text-sm text-zinc-500">{item}</p>
             ))}
           </div>
         ))}
       </Container>
-      <Container className="flex flex-col gap-4 border-t border-black/10 py-6 text-sm text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
+      <Container className="flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
         <p>RIA by AIONTEC © 2026</p>
         <div className="flex gap-4">
           <Github className="h-4 w-4" />
@@ -659,16 +659,16 @@ function HeroSearch() {
         const clean = value.trim()
         window.location.href = clean ? `/demo?message=${encodeURIComponent(clean)}` : '/demo'
       }}
-      className="mt-10 flex max-w-2xl items-center gap-3 rounded-2xl border border-black/10 bg-white px-4 py-3 text-left shadow-sm"
+      className="mt-10 flex max-w-2xl items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-left shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl"
     >
       <Search className="h-5 w-5 text-zinc-500" />
       <input
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder="Ask RIA about your memory, journal, or emotions"
-        className="min-w-0 flex-1 bg-transparent text-sm text-black outline-none placeholder:text-zinc-500"
+        className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
       />
-      <button className="grid h-8 w-8 place-items-center rounded-full bg-black text-white" aria-label="Ask RIA">
+      <button className="grid h-8 w-8 place-items-center rounded-full bg-white text-black" aria-label="Ask RIA">
         <ArrowRight className="h-4 w-4" />
       </button>
     </form>
@@ -678,47 +678,49 @@ function HeroSearch() {
 function Home() {
   return (
     <>
-      <section className="bg-white pt-24 text-black">
+      <section className="relative overflow-hidden pt-24 text-white">
+        <div className="void-stars pointer-events-none absolute inset-0 opacity-30" />
+        <div className="thought-stream thought-stream-a pointer-events-none absolute inset-0 opacity-30" />
         <Container className="py-8 sm:py-12">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
-            <p className="text-sm text-zinc-600">AIONTEC + RIA</p>
-            <h1 className="mt-8 text-[5.4rem] font-semibold leading-[0.82] tracking-[-0.08em] sm:text-[9rem] lg:text-[13rem]">
+          <motion.div className="relative" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+            <p className="text-sm text-cyan-200">AIONTEC + RIA</p>
+            <h1 className="mt-8 text-[4.2rem] font-semibold leading-[0.88] tracking-normal text-white sm:text-[9rem] lg:text-[13rem]">
               RIA
             </h1>
-            <div className="mt-8 grid gap-8 border-t border-black/10 pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-              <h2 className="max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl">
+            <div className="mt-8 grid gap-8 border-t border-white/10 pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <h2 className="max-w-[calc(100vw-2.5rem)] text-3xl font-semibold leading-[1.05] tracking-normal sm:max-w-4xl sm:text-6xl">
                 Personal cognitive intelligence for memory, reflection, and emotional clarity.
               </h2>
               <div>
-                <p className="max-w-2xl text-base leading-8 text-zinc-700">
+                <p className="max-w-[calc(100vw-2.5rem)] text-base leading-8 text-zinc-400 sm:max-w-2xl">
                   RIA is a private second-brain interface that turns conversation into memory, journaling, goals, belief tracking, and calm guidance across devices.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to="/demo" className="rounded-full bg-black px-5 py-3 text-sm font-medium text-white">Try RIA</Link>
-                  <Link to="/product" className="rounded-full border border-black/20 px-5 py-3 text-sm font-medium text-black">Explore product</Link>
+                  <Link to="/demo" className="rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Try RIA</Link>
+                  <Link to="/product" className="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-white">Explore product</Link>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          <div className="mt-12 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-            <Link to="/demo" className="group min-h-[26rem] overflow-hidden rounded-sm bg-black text-white">
-              <div className="flex h-full min-h-[26rem] flex-col justify-between bg-[radial-gradient(circle_at_72%_18%,rgba(255,255,255,0.24),transparent_20%),linear-gradient(135deg,#050505,#111827_45%,#000)] p-6 sm:p-8">
+          <div className="relative mt-12 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+            <Link to="/demo" className="group min-h-[26rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black text-white shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+              <div className="flex h-full min-h-[26rem] flex-col justify-between bg-[linear-gradient(135deg,rgba(2,6,23,0.68),rgba(4,4,5,0.82)),url('/images/hero/ria-hero.jpg')] bg-cover bg-center p-6 sm:p-8">
                 <div className="flex items-center justify-between text-sm text-zinc-400">
                   <span>Interactive demo</span>
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </div>
                 <div>
                   <p className="mb-4 inline-flex rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">Memory OS</p>
-                  <h3 className="max-w-xl text-4xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">Talk to the RIA operating system.</h3>
+                  <h3 className="max-w-xl text-4xl font-semibold leading-[1] tracking-normal sm:text-6xl">Talk to the RIA operating system.</h3>
                 </div>
               </div>
             </Link>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {featured.slice(0, 2).map((card) => (
-                <Link key={card.title} to={card.to} className="group border border-black/10 p-5 transition hover:bg-zinc-50">
+                <Link key={card.title} to={card.to} className="group rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-5 transition hover:border-cyan-200/30 hover:bg-white/[0.07]">
                   <p className="text-sm text-zinc-500">{card.type}</p>
-                  <h3 className="mt-12 text-2xl font-semibold leading-[1.05] tracking-[-0.045em]">{card.title}</h3>
+                  <h3 className="mt-12 text-2xl font-semibold leading-[1.05] tracking-normal text-white">{card.title}</h3>
                   <p className="mt-4 text-sm leading-6 text-zinc-600">{card.copy}</p>
                   <ArrowRight className="mt-6 h-4 w-4 transition group-hover:translate-x-1" />
                 </Link>
@@ -728,30 +730,30 @@ function Home() {
         </Container>
       </section>
 
-      <section className="border-t border-black/10 bg-white py-16 text-black">
+      <section className="border-t border-white/10 bg-black/20 py-16 text-white">
         <Container>
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-3xl font-semibold tracking-[-0.045em]">Recent updates</h2>
-            <Link to="/research" className="text-sm text-zinc-600 hover:text-black">View all</Link>
+            <h2 className="text-3xl font-semibold tracking-normal">Recent updates</h2>
+            <Link to="/research" className="text-sm text-zinc-400 hover:text-white">View all</Link>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {news.map(([type, title]) => (
-              <Link key={title} to="/research" className="group border-t border-black/10 pt-5">
+              <Link key={title} to="/research" className="group border-t border-white/10 pt-5">
                 <p className="text-sm text-zinc-500">{type}</p>
-                <h3 className="mt-2 min-h-20 text-xl font-semibold leading-[1.08] tracking-[-0.04em]">{title}</h3>
-                <p className="mt-6 text-sm text-zinc-600">Read update</p>
+                <h3 className="mt-2 min-h-20 text-xl font-semibold leading-[1.08] tracking-normal text-white">{title}</h3>
+                <p className="mt-6 text-sm text-zinc-400">Read update</p>
               </Link>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="border-t border-black/10 bg-[#f7f7f4] py-16 text-black">
+      <section className="border-t border-white/10 bg-white/[0.035] py-16 text-white">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             <div>
-              <p className="text-sm text-zinc-600">Ask RIA</p>
-              <h2 className="mt-4 text-4xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl">What can RIA help with?</h2>
+              <p className="text-sm text-cyan-200">Ask RIA</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-[1] tracking-normal sm:text-6xl">What can RIA help with?</h2>
             </div>
             <HeroSearch />
           </div>
@@ -771,7 +773,7 @@ function HomeSystemPanels() {
         <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="cosmos-glass border border-white/10 p-8">
             <p className="text-sm text-cyan-200">Proactive Intelligence</p>
-            <h2 className="mt-4 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">RIA initiates action before the user asks.</h2>
+            <h2 className="mt-4 text-5xl font-semibold leading-[0.98] tracking-normal">RIA initiates action before the user asks.</h2>
             <div className="mt-8 space-y-3">
               {proactiveSignals.map((signal) => (
                 <div key={signal} className="border border-white/10 bg-black/30 p-4 text-sm leading-7 text-zinc-300">
@@ -784,7 +786,7 @@ function HomeSystemPanels() {
             {memoryField.map(([title, copy, Icon]) => (
               <div key={title} className="cosmos-glass p-7">
                 <Icon className="h-6 w-6 text-cyan-200" />
-                <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <h3 className="mt-12 text-2xl font-semibold tracking-normal">{title}</h3>
                 <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
               </div>
             ))}
@@ -806,7 +808,7 @@ function Featured() {
                 <CardImage type={card.type} />
               </div>
               <p className="mt-4 text-sm text-zinc-500">{card.type}</p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-white">{card.title}</h2>
+              <h2 className="mt-1 text-2xl font-semibold tracking-normal text-white">{card.title}</h2>
               <p className="mt-2 max-w-xl text-sm leading-6 text-zinc-400">{card.copy}</p>
             </Link>
           ))}
@@ -834,7 +836,7 @@ function ProductGrid() {
       <Container>
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <h2 className="text-4xl font-semibold tracking-[-0.055em] sm:text-5xl">Explore RIA</h2>
+            <h2 className="text-4xl font-semibold tracking-normal sm:text-5xl">Explore RIA</h2>
             <p className="mt-3 max-w-2xl text-zinc-400">A full personal cognitive system in modular layers.</p>
           </div>
           <Link to="/product" className="hidden text-sm text-zinc-300 hover:text-white sm:block">View product</Link>
@@ -843,7 +845,7 @@ function ProductGrid() {
           {productCards.map(([title, Icon, copy]) => (
             <div key={title} className="bg-transparent p-6 transition hover:bg-[#0d0820]">
               <Icon className="h-7 w-7 text-violet-200" />
-              <h3 className="mt-16 text-2xl font-semibold tracking-[-0.045em] text-white">{title}</h3>
+              <h3 className="mt-16 text-2xl font-semibold tracking-normal text-white">{title}</h3>
               <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
             </div>
           ))}
@@ -859,7 +861,7 @@ function EditorialSections() {
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="mb-10 flex items-center justify-between">
-            <h2 className="text-3xl font-semibold tracking-[-0.045em]">Recent updates</h2>
+            <h2 className="text-3xl font-semibold tracking-normal">Recent updates</h2>
             <Link to="/research" className="text-sm text-zinc-400 hover:text-white">View all</Link>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -875,16 +877,16 @@ function EditorialSections() {
           </div>
         </Container>
       </section>
-      <section className="border-t border-white/10 bg-white py-20 text-black">
+      <section className="border-t border-white/10 bg-white/[0.035] py-20 text-white">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-end">
-            <h2 className="text-5xl font-semibold leading-[0.98] tracking-[-0.065em] sm:text-7xl">Get started with RIA</h2>
+            <h2 className="text-5xl font-semibold leading-[0.98] tracking-normal sm:text-7xl">Get started with RIA</h2>
             <div>
-              <p className="max-w-2xl text-lg leading-8 text-zinc-700">Start with the demo, explore the product architecture, or support the build through the funding page.</p>
+              <p className="max-w-2xl text-lg leading-8 text-zinc-400">Start with the demo, explore the product architecture, or support the build through the funding page.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/download" className="rounded-full bg-black px-5 py-3 text-sm font-medium text-white">Download RIA</Link>
-                <Link to="/demo" className="rounded-full border border-black/20 px-5 py-3 text-sm font-medium text-black">Try demo</Link>
-                <Link to="/funding" className="rounded-full border border-black/20 px-5 py-3 text-sm font-medium text-black">Support RIA</Link>
+                <Link to="/download" className="rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Download RIA</Link>
+                <Link to="/demo" className="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white">Try demo</Link>
+                <Link to="/funding" className="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white">Support RIA</Link>
               </div>
             </div>
           </div>
@@ -899,7 +901,7 @@ function PageHero({ title, copy, label }) {
     <section className="bg-transparent pt-32 text-white">
       <Container className="pb-20">
         <p className="text-sm text-zinc-500">{label}</p>
-        <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-7xl">{title}</h1>
+        <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-normal sm:text-7xl">{title}</h1>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">{copy}</p>
       </Container>
     </section>
@@ -975,7 +977,7 @@ function DifferenceSection() {
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
             <p className="text-sm text-cyan-200">Why RIA is different</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl">Not another chatbot. A personal intelligence layer.</h2>
+            <h2 className="mt-4 text-4xl font-semibold leading-[0.98] tracking-normal sm:text-6xl">Not another chatbot. A personal intelligence layer.</h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-zinc-400">
               RIA is being built to become software that understands a person over time. The goal is to combine AI conversation with memory, emotional context, private journaling, belief tracking, and device portability, so RIA can support the user wherever their digital life moves.
             </p>
@@ -987,7 +989,7 @@ function DifferenceSection() {
             {differentiators.map(([title, Icon, copy]) => (
               <div key={title} className="bg-white/[0.04] p-7">
                 <Icon className="h-6 w-6 text-violet-200" />
-                <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <h3 className="mt-12 text-2xl font-semibold tracking-normal">{title}</h3>
                 <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
               </div>
             ))}
@@ -1013,7 +1015,7 @@ function Safety() {
             ].map(([title, Icon]) => (
               <div key={title} className="bg-transparent p-7">
                 <Icon className="h-7 w-7" />
-                <h3 className="mt-16 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <h3 className="mt-16 text-2xl font-semibold tracking-normal">{title}</h3>
               </div>
             ))}
           </div>
@@ -1033,20 +1035,20 @@ function Company() {
             {roadmap.map(([phase, title, copy]) => (
               <div key={phase} className="border border-white/10 bg-white/[0.04] p-7">
                 <p className="text-sm text-zinc-500">{phase}</p>
-                <h3 className="mt-10 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <h3 className="mt-10 text-2xl font-semibold tracking-normal">{title}</h3>
                 <p className="mt-4 leading-7 text-zinc-400">{copy}</p>
               </div>
             ))}
           </div>
           <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="bg-white p-8 text-black">
+            <div className="border border-white/10 bg-white/[0.06] p-8 text-white">
               <p className="text-sm text-zinc-500">Vision</p>
-              <h2 className="mt-4 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">A private AI that helps people understand themselves.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700">RIA is not a generic assistant. It is built for personal continuity: memory, emotion, reflection, journaling, and self-growth in one trusted system.</p>
+              <h2 className="mt-4 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-normal">A private AI that helps people understand themselves.</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">RIA is not a generic assistant. It is built for personal continuity: memory, emotion, reflection, journaling, and self-growth in one trusted system.</p>
             </div>
             <div className="border border-white/10 bg-white/[0.04] p-8">
               <Target className="h-8 w-8" />
-              <h3 className="mt-10 text-3xl font-semibold tracking-[-0.05em]">What success looks like</h3>
+              <h3 className="mt-10 text-3xl font-semibold tracking-normal">What success looks like</h3>
               <p className="mt-5 leading-7 text-zinc-400">A working RIA prototype users can talk to every day, with persistent memory, visible emotional trends, journal summaries, and user-owned data controls.</p>
               <Link to="/funding" className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Support RIA</Link>
             </div>
@@ -1064,18 +1066,18 @@ function Funding() {
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="bg-white p-8 text-black">
+            <div className="border border-white/10 bg-white/[0.06] p-8 text-white">
               <Banknote className="h-8 w-8" />
               <p className="mt-10 text-sm text-zinc-500">Founder contact</p>
-              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">Invest in the first RIA prototype</h2>
-              <p className="mt-5 max-w-md leading-7 text-zinc-700">For funding, partnership, or investor conversations, contact Sudeep Bala directly.</p>
-              <a href="mailto:balasudeep22@gmail.com?subject=Funding%20RIA" className="mt-8 inline-flex rounded-full bg-black px-5 py-3 text-sm font-medium text-white">Email Sudeep</a>
+              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-normal">Invest in the first RIA prototype</h2>
+              <p className="mt-5 max-w-md leading-7 text-zinc-400">For funding, partnership, or investor conversations, contact Sudeep Bala directly.</p>
+              <a href="mailto:balasudeep22@gmail.com?subject=Funding%20RIA" className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Email Sudeep</a>
             </div>
             <div className="grid gap-px bg-white/10 md:grid-cols-2">
               {['Model/API integration', 'Memory vault', 'Journal engine', 'Emotion dashboard', 'Voice layer', 'Privacy controls'].map((item) => (
                 <div key={item} className="bg-transparent p-6">
                   <Check className="h-5 w-5" />
-                  <p className="mt-10 text-xl font-semibold tracking-[-0.03em]">{item}</p>
+                  <p className="mt-10 text-xl font-semibold tracking-normal">{item}</p>
                 </div>
               ))}
             </div>
@@ -1084,7 +1086,7 @@ function Funding() {
             <div className="border border-white/10 bg-white/[0.04] p-8">
               <Mail className="h-7 w-7 text-cyan-200" />
               <p className="mt-8 text-sm text-zinc-500">Investor contact</p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.055em] text-white">Contact the founder directly</h2>
+              <h2 className="mt-3 text-4xl font-semibold tracking-normal text-white">Contact the founder directly</h2>
               <div className="mt-8 grid gap-3 text-sm">
                 <ContactRow label="Founder" value={contactDetails.founderName} />
                 <ContactRow label="Company" value={contactDetails.companyName} />
@@ -1109,12 +1111,12 @@ function Download() {
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="bg-white p-8 text-black">
+            <div className="border border-white/10 bg-white/[0.06] p-8 text-white">
               <Sparkles className="h-8 w-8" />
               <p className="mt-10 text-sm text-zinc-500">Early access</p>
-              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-[-0.06em]">RIA is preparing for a secure prototype release.</h2>
-              <p className="mt-5 max-w-md leading-7 text-zinc-700">The first RIA release will focus on a trusted personal AI experience: memory, journaling, reflection, emotional support, calm mode, and privacy-first data controls. Until the public installer is ready, investors and early users can request direct prototype access.</p>
-              <a href="mailto:balasudeep22@gmail.com?subject=RIA%20Early%20Access" className="mt-8 inline-flex rounded-full bg-black px-5 py-3 text-sm font-medium text-white">Request early access</a>
+              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-normal">RIA is preparing for a secure prototype release.</h2>
+              <p className="mt-5 max-w-md leading-7 text-zinc-400">The first RIA release will focus on a trusted personal AI experience: memory, journaling, reflection, emotional support, calm mode, and privacy-first data controls. Until the public installer is ready, investors and early users can request direct prototype access.</p>
+              <a href="mailto:balasudeep22@gmail.com?subject=RIA%20Early%20Access" className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Request early access</a>
             </div>
             <div className="grid gap-px bg-white/10 md:grid-cols-2">
               {[
@@ -1125,7 +1127,7 @@ function Download() {
               ].map(([platform, status, href]) => (
                 <div key={platform} className="bg-transparent p-7">
                   <p className="text-sm text-zinc-500">{platform}</p>
-                  <h3 className="mt-10 text-2xl font-semibold tracking-[-0.04em]">{status}</h3>
+                  <h3 className="mt-10 text-2xl font-semibold tracking-normal">{status}</h3>
                   <p className="mt-4 text-sm leading-7 text-zinc-500">The installer will appear here when the early access package is approved for release.</p>
                   <a href={href} className="mt-6 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-300 transition hover:border-white hover:text-white">Installer coming soon</a>
                 </div>
@@ -1136,13 +1138,13 @@ function Download() {
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
             <div className="border border-white/10 bg-white/[0.04] p-8">
               <p className="text-sm text-cyan-200">How to download and install RIA</p>
-              <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1] tracking-[-0.055em] text-white">A clear release path from prototype access to public installers.</h2>
+              <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1] tracking-normal text-white">A clear release path from prototype access to public installers.</h2>
               <div className="mt-8 grid gap-4">
                 {installSteps.map(([title, copy], index) => (
                   <div key={title} className="grid gap-4 border-t border-white/10 pt-5 sm:grid-cols-[3rem_1fr]">
                     <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-sm font-semibold text-black">{index + 1}</span>
                     <div>
-                      <h3 className="text-xl font-semibold tracking-[-0.035em]">{title}</h3>
+                      <h3 className="text-xl font-semibold tracking-normal">{title}</h3>
                       <p className="mt-2 text-sm leading-7 text-zinc-400">{copy}</p>
                     </div>
                   </div>
@@ -1153,7 +1155,7 @@ function Download() {
             <div className="border border-white/10 bg-white/[0.04] p-8">
               <Cpu className="h-7 w-7 text-violet-200" />
               <p className="mt-8 text-sm text-zinc-500">Device vision</p>
-              <h2 className="mt-3 text-4xl font-semibold leading-[1] tracking-[-0.055em]">Designed for every generation of personal computing.</h2>
+              <h2 className="mt-3 text-4xl font-semibold leading-[1] tracking-normal">Designed for every generation of personal computing.</h2>
               <p className="mt-5 text-sm leading-7 text-zinc-400">RIA is being designed as portable intelligence software. The long-term ambition is for RIA to run across ordinary electronic devices first, then expand into advanced computing environments as hardware, security, and platform standards evolve.</p>
               <div className="mt-7 grid gap-3">
                 {deviceTargets.map(([title, copy]) => (
@@ -1336,7 +1338,7 @@ function Demo() {
         <div className="grid gap-5">
           <div>
             <p className={`text-sm ${theme.accent}`}>What RIA knows about you</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Editable memory nodes</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-normal">Editable memory nodes</h2>
           </div>
           <div className="grid gap-3">
             {memory.nodes.map((node) => (
@@ -1360,7 +1362,7 @@ function Demo() {
       return (
         <div>
           <p className={`text-sm ${theme.accent}`}>Reflection Engine</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Patterns RIA is detecting</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-normal">Patterns RIA is detecting</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
               ['Auto journaling', `${memoryCounts.conversations} entries are ready for daily summaries.`],
@@ -1369,7 +1371,7 @@ function Demo() {
             ].map(([title, copy]) => (
               <div key={title} className={`border p-5 ${skin.module}`}>
                 <Sparkles className={`h-5 w-5 ${isLight ? 'text-violet-700' : 'text-violet-200'}`} />
-                <h3 className="mt-8 text-xl font-semibold tracking-[-0.04em]">{title}</h3>
+                <h3 className="mt-8 text-xl font-semibold tracking-normal">{title}</h3>
                 <p className={`mt-3 text-sm leading-7 ${skin.soft}`}>{copy}</p>
               </div>
             ))}
@@ -1382,7 +1384,7 @@ function Demo() {
       return (
         <div>
           <p className={`text-sm ${theme.accent}`}>Behavior Settings</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Adaptive reasoning style</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-normal">Adaptive reasoning style</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {[
               ['Proactive suggestions', 'proactive'],
@@ -1408,7 +1410,7 @@ function Demo() {
       return (
         <div>
           <p className={`text-sm ${theme.accent}`}>Emotional Graph</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Mood-responsive interface</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-normal">Mood-responsive interface</h2>
           <div className={`mt-8 flex h-56 items-end gap-4 border p-5 ${skin.module}`}>
             {graph.map((height, index) => (
               <div key={index} className="flex flex-1 flex-col items-center gap-3">
@@ -1425,7 +1427,7 @@ function Demo() {
       return (
         <div>
           <p className={`text-sm ${theme.accent}`}>Life Guidance Mode</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Proactive next step</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-normal">Proactive next step</h2>
           <div className={`mt-6 border p-6 ${skin.module}`}>
             <Compass className={`h-7 w-7 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
             <p className={`mt-8 max-w-2xl text-lg leading-8 ${skin.soft}`}>{activeSuggestion}</p>
@@ -1438,7 +1440,7 @@ function Demo() {
     return (
       <div>
         <p className={`text-sm ${theme.accent}`}>RIA Core Mind</p>
-        <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em]">Living AI system state</h2>
+        <h2 className="mt-2 text-3xl font-semibold tracking-normal">Living AI system state</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-4">
           {[
             ['Goals', memoryCounts.goals, Target],
@@ -1466,7 +1468,7 @@ function Demo() {
           </span>
           <div className="min-w-0">
             <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>FAST COLLABORATION</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em] sm:text-5xl sm:tracking-[-0.06em]">RIA Conversation</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-normal sm:text-5xl sm:tracking-normal">RIA Conversation</h2>
             <p className={`mt-3 text-sm ${skin.muted}`}>Unified memory · Advanced response mode · General</p>
           </div>
         </div>
@@ -1540,7 +1542,7 @@ function Demo() {
           <div className="flex items-center gap-3">
             <Orbit className="h-7 w-7" />
             <div>
-              <p className="text-xl font-semibold tracking-[-0.04em]">RIA ORBIT</p>
+              <p className="text-xl font-semibold tracking-normal">RIA ORBIT</p>
               <p className={`text-sm ${skin.muted}`}>Quantum-Neural AI System</p>
             </div>
           </div>
@@ -1728,7 +1730,7 @@ function Demo() {
 
 export default function App() {
   return (
-    <main className="openai-site min-h-screen bg-white text-black">
+    <main className="ria-site min-h-screen bg-[#050505] text-white">
       <ScrollToTop />
       <Header />
       <Routes>
