@@ -1,0 +1,25 @@
+<svg width="220" height="44" viewBox="0 0 220 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AIONTEC">
+  <defs>
+    <linearGradient id="aiontec-mark" x1="0" y1="4" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="0.55" stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <filter id="aiontec-glow" x="-16" y="-16" width="74" height="74" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.2 0 0 0 0 0.86 0 0 0 0 1 0 0 0 0.55 0"/>
+      <feBlend in2="BackgroundImageFix" mode="screen"/>
+      <feBlend in="SourceGraphic" mode="normal"/>
+    </filter>
+  </defs>
+  <g filter="url(#aiontec-glow)">
+    <path d="M22 4L40 36H33.5L29.7 28.7H14.3L10.5 36H4L22 4Z" stroke="url(#aiontec-mark)" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M17 23.5H27L22 14.1L17 23.5Z" fill="url(#aiontec-mark)" opacity="0.85"/>
+    <circle cx="22" cy="6.3" r="2.5" fill="#E0F2FE"/>
+    <circle cx="8.2" cy="35.1" r="2.2" fill="#67E8F9"/>
+    <circle cx="35.8" cy="35.1" r="2.2" fill="#C4B5FD"/>
+  </g>
+  <text x="54" y="28" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="800" letter-spacing="3.8">AIONTEC</text>
+  <path d="M54 35H190" stroke="url(#aiontec-mark)" stroke-width="1" opacity="0.45"/>
+</svg>

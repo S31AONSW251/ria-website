@@ -5,7 +5,7 @@ Edit this file with the real details you want investors/supporters to see.
 ## Contact
 
 - Founder: Sudeep Bala
-- Company: AIONTEC / RIA
+- Company: RIA
 - Email: Use website contact button
 - Phone / WhatsApp: Use website WhatsApp button
 - Location: India

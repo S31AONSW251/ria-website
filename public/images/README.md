@@ -4,7 +4,7 @@ Upload website images here. Files inside `public` can be used directly by the Re
 
 Recommended structure:
 
-- `public/images/logos/ria-logo.png`
+- `public/images/logos/ria-conscious-logo.png`
 - `public/images/hero/ria-hero.jpg`
 - `public/images/cards/product.jpg`
 - `public/images/cards/research.jpg`

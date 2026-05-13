@@ -1,6 +1,6 @@
 # RIA Website
 
-Premium React/Vite website for RIA, a personal cognitive AI system by AIONTEC.
+Premium React/Vite website for RIA, a personal cognitive AI system by RIA.
 
 ## Run locally
 
