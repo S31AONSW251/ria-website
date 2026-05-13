@@ -357,6 +357,15 @@ const competitiveRows = [
   ['Evolution tracking', 'No', 'No', 'No', 'No', 'Yes']
 ]
 
+const competitiveHeaders = [
+  { label: 'Capability' },
+  { label: 'ChatGPT', logo: '/images/brands/openai.svg', invert: true },
+  { label: 'Claude', logo: '/images/brands/claude.svg', invert: true },
+  { label: 'Notion AI', logo: '/images/brands/notion.svg', invert: true },
+  { label: 'Perplexity', logo: '/images/brands/perplexity.svg', invert: true },
+  { label: 'RIA', logo: assets.logo }
+]
+
 const downloads = [
   { title: 'Investor Deck', href: '/downloads/investor-deck.md', copy: 'Category thesis, market model, product lines, and use of capital.' },
   { title: 'Architecture Whitepaper', href: '/downloads/architecture-whitepaper.md', copy: 'The 12-layer cognitive system and persistent memory framework.' },
@@ -1807,8 +1816,22 @@ function InvestorsPage() {
             <table className="w-full min-w-[760px] border-collapse bg-black/40 text-left text-sm">
               <thead>
                 <tr className="border-b border-white/10 text-zinc-400">
-                  {['Capability', 'ChatGPT', 'Claude', 'Notion AI', 'Perplexity', 'RIA'].map((heading) => (
-                    <th key={heading} className="px-5 py-4 font-semibold">{heading}</th>
+                  {competitiveHeaders.map((heading) => (
+                    <th key={heading.label} className="px-5 py-4 font-semibold">
+                      {heading.logo ? (
+                        <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                          <img
+                            src={heading.logo}
+                            alt=""
+                            className={`h-4 w-4 shrink-0 object-contain ${heading.invert ? 'invert opacity-90' : 'opacity-95'}`}
+                            loading="lazy"
+                          />
+                          <span>{heading.label}</span>
+                        </span>
+                      ) : (
+                        heading.label
+                      )}
+                    </th>
                   ))}
                 </tr>
               </thead>
