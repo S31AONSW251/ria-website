@@ -76,23 +76,44 @@ const nav = [
   ['Funding', '/funding']
 ]
 
+const platformStats = [
+  ['Continuity layer', 'Long-term identity, memory, and context orchestration'],
+  ['Private-first', 'User-visible memory controls and export-ready architecture'],
+  ['Multimodal ready', 'Designed for voice, text, image, files, and device telemetry'],
+  ['Production path', 'API, database, desktop, mobile, and embedded deployment roadmap']
+]
+
+const operatingMetrics = [
+  ['Memory graph', '24 nodes', 'Session-aware recall with editable user ownership'],
+  ['Response route', '4 layers', 'Intent, context, emotion, and next-action reasoning'],
+  ['Data boundary', 'User owned', 'Private storage model with review and deletion controls'],
+  ['Release track', 'Prototype', 'Structured path from demo to installable product']
+]
+
+const platformLayers = [
+  ['Interface OS', BrainCircuit, 'A calm, premium user surface for conversation, guidance, memory review, and daily decisions.'],
+  ['Cognition Router', Cpu, 'Routes user input through intent, context, tone, safety, retrieval, and next-action systems.'],
+  ['Memory Graph', Database, 'Turns sessions into structured, editable memory nodes across goals, beliefs, emotions, and history.'],
+  ['Trust Layer', ShieldCheck, 'Keeps memory visible, controlled, exportable, and removable so personal AI never feels hidden.']
+]
+
 const featured = [
   {
     type: 'Product',
-    title: 'Introducing RIA, personal cognitive intelligence',
-    copy: 'A persistent digital second brain designed for memory, reflection, emotional tracking, journaling, and personal growth.',
+    title: 'RIA Cognitive Intelligence Platform',
+    copy: 'A premium personal AI operating layer for memory continuity, reflection, emotional context, and private user control.',
     to: '/product'
   },
   {
     type: 'Research',
-    title: 'Building memory continuity for personal AI',
-    copy: 'RIA’s architecture combines short-term context, long-term identity, belief classification, and reflective summaries.',
+    title: 'Architecture for persistent personal intelligence',
+    copy: 'RIA combines short-term reasoning, long-term memory, identity context, belief signals, and reflective summaries.',
     to: '/research'
   },
   {
     type: 'Safety',
-    title: 'User-owned memory and emotional privacy',
-    copy: 'A personal AI system must make memory visible, editable, exportable, and controlled by the user.',
+    title: 'User-owned cognition and data boundaries',
+    copy: 'A serious personal AI must make memory visible, editable, exportable, removable, and understandable.',
     to: '/safety'
   }
 ]
@@ -105,19 +126,19 @@ const accentByType = {
 }
 
 const productCards = [
-  ['Memory System', Database, 'Persistent memory that stores conversations, emotions, beliefs, goals, and personal history.'],
-  ['Reflection Engine', Orbit, 'Pattern detection and insight generation for recurring thoughts, stress cycles, and behavior.'],
-  ['Journal & Beliefs', BookOpen, 'Auto-journals your day and classifies limiting or growth-oriented beliefs over time.'],
-  ['Emotional Intelligence', HeartPulse, 'Mood tracking, emotional timelines, trigger correlation, and calm recovery insights.'],
-  ['Calm Mode', Moon, 'Breathing guidance, affirmations, grounding, and spiritual reset flows.'],
-  ['Voice Interaction', Mic2, 'Natural voice input and spoken responses for a more human companion experience.']
+  ['Memory Graph', Database, 'Structured long-term memory for conversations, emotions, goals, beliefs, preferences, and personal history.'],
+  ['Reflection Engine', Orbit, 'Pattern detection and insight generation for recurring thoughts, stress cycles, priorities, and decisions.'],
+  ['Journal Intelligence', BookOpen, 'Daily summaries, belief signals, mood annotations, and private self-review workflows.'],
+  ['Emotional Context', HeartPulse, 'Mood-aware reasoning, emotional timelines, trigger correlation, and recovery recommendations.'],
+  ['Calm Protocols', Moon, 'Grounding, breathing, affirmations, and emotional reset flows designed as controlled product experiences.'],
+  ['Voice + Device Layer', Mic2, 'Natural voice interaction and a roadmap for desktop, mobile, embedded, and wearable access.']
 ]
 
 const differentiators = [
-  ['Built for continuity', Database, 'Most AI tools answer one prompt at a time. RIA is being designed around long-term memory, identity continuity, journaling, and reflective summaries so the relationship can become more useful over time.'],
-  ['Personal before generic', HeartPulse, 'RIA focuses on the person: emotions, beliefs, goals, routines, stress patterns, recovery, and self-understanding. It is not only a question-answer system; it is a private cognitive companion.'],
-  ['User-owned intelligence', LockKeyhole, 'The aim is to make memory visible, editable, exportable, and controlled by the user. RIA should feel trusted because the user can understand what it knows and decide what it keeps.'],
-  ['Designed to travel across devices', Cpu, 'RIA is planned as adaptable software that can move from web and mobile to desktop, embedded devices, wearables, robotics, and future compute environments, including quantum-assisted systems when those platforms mature.']
+  ['Persistent by design', Database, 'Most AI tools optimize for one prompt. RIA is organized around continuity: memory, identity, journals, user state, and reflective summaries that compound over time.'],
+  ['Personal operating layer', HeartPulse, 'RIA is not positioned as a generic chatbot. It is a private intelligence layer for emotions, goals, routines, decisions, beliefs, and long-term self-understanding.'],
+  ['User-owned intelligence', LockKeyhole, 'Memory must be visible, editable, exportable, and removable. The product should feel trusted because the user can inspect what RIA knows and change it.'],
+  ['Built for deployment', Cpu, 'The architecture is shaped for web, desktop, mobile, embedded devices, voice, local model orchestration, and future advanced compute environments.']
 ]
 
 const installSteps = [
@@ -142,10 +163,10 @@ const news = [
 ]
 
 const roadmap = [
-  ['Phase 1', 'RIA web prototype', 'Premium website, interactive demo, product architecture, and funding page.'],
-  ['Phase 2', 'Memory and journal backend', 'Persistent memory vault, auto-journal engine, identity file, and data controls.'],
-  ['Phase 3', 'Reflection intelligence', 'Belief classification, pattern detection, emotional trend reports, and insight generation.'],
-  ['Phase 4', 'Voice and calm mode', 'Voice interaction, affirmations, breathing, and guided emotional recovery.']
+  ['Phase 1', 'Premium platform surface', 'Website, product narrative, RIA Orbit demo, architecture pages, and investor-ready positioning.'],
+  ['Phase 2', 'Private memory backend', 'Persistent memory vault, auto-journal engine, identity file, retrieval, and user-owned data controls.'],
+  ['Phase 3', 'Cognitive analytics', 'Belief classification, pattern detection, emotional trend reporting, and structured insight generation.'],
+  ['Phase 4', 'Multimodal release', 'Voice, files, images, calm protocols, desktop/mobile packaging, and controlled early-access onboarding.']
 ]
 
 const demoTopics = [
@@ -182,40 +203,40 @@ const demoActivity = [
 ]
 
 const osTabs = [
-  ['core', 'AI Workspace', Sparkles],
-  ['chat', 'Chat', MessageCircle],
-  ['dashboard', 'Dashboard', BarChart3],
-  ['memory', 'Memory', Database],
-  ['reflection', 'Core Memory', ShieldCheck],
+  ['core', 'Command Center', Sparkles],
+  ['chat', 'Conversation', MessageCircle],
+  ['dashboard', 'Telemetry', BarChart3],
+  ['memory', 'Memory Graph', Database],
+  ['reflection', 'Reflection Engine', ShieldCheck],
   ['knowledge', 'Knowledge Sources', Globe2],
-  ['web', 'Web Explorer', Globe2],
-  ['teach', 'Teach RIA', BookOpen],
-  ['gallery', 'Creative Gallery', Image],
+  ['web', 'Research Browser', Globe2],
+  ['teach', 'Model Training', BookOpen],
+  ['gallery', 'Creative Studio', Image],
   ['desktop', 'Desktop Vault', FileText],
-  ['games', 'Games', Target],
-  ['behavior', 'Behavior Settings', SlidersHorizontal],
-  ['emotion', 'Emotional Graph', BarChart3],
-  ['guidance', 'Life Guidance Mode', Compass],
+  ['games', 'Focus Modes', Target],
+  ['behavior', 'Behavior Controls', SlidersHorizontal],
+  ['emotion', 'Emotional Signals', BarChart3],
+  ['guidance', 'Guidance Layer', Compass],
   ['tools', 'Tools', Wrench],
-  ['wellness', 'Private Wellness', HeartPulse],
-  ['goals', 'Goals', Target],
+  ['wellness', 'Wellness Protocols', HeartPulse],
+  ['goals', 'Goal Graph', Target],
   ['actions', 'Actions', ArrowRight]
 ]
 
 const orbitCards = [
-  ['Ask RIA', 'Start a clear conversation', MessageCircle, 'How are you tracking my goals today?'],
-  ['GPU Studio', 'Create or accelerate media', Cpu, 'Open GPU studio'],
-  ['Improve RIA', 'Review safe upgrades', Sparkles, 'Improve my daily reflection flow'],
-  ['Memory', 'Browse what RIA knows', Database, 'Open my memory summary'],
-  ['Tools', 'Open action toolkit', Wrench, 'Show available RIA tools']
+  ['Ask RIA', 'Start a high-context session', MessageCircle, 'Give me an executive summary of my current goals and risks'],
+  ['Inference Layer', 'Inspect compute readiness', Cpu, 'Open inference and model routing status'],
+  ['Optimize', 'Review controlled upgrades', Sparkles, 'Optimize my daily reflection and memory flow'],
+  ['Memory Graph', 'Browse owned context', Database, 'Open my memory graph summary'],
+  ['Action System', 'Convert insight to execution', Wrench, 'Show available RIA action tools']
 ]
 
 const premiumActivity = [
-  ['Upgrade proposed: add introspective trait and adjust tone for conflict', '05:42 PM'],
-  ['System scan complete: 4 findings', '05:32 PM'],
-  ['proposal auto_advanced', '05:02 PM'],
-  ['Controlled change applied: 0 files', '05:02 PM'],
-  ['proposal approved', '05:02 PM']
+  ['Context package prepared for next response route', '05:42 PM'],
+  ['Memory graph integrity check complete: 4 signals indexed', '05:32 PM'],
+  ['Reflection model selected adaptive reasoning mode', '05:02 PM'],
+  ['User-owned memory policy verified for session', '05:02 PM'],
+  ['Private guidance protocol approved', '05:02 PM']
 ]
 
 const gpuPulse = [
@@ -223,6 +244,27 @@ const gpuPulse = [
   ['GPU TEMPERATURE', '58c', 'bg-white', 58],
   ['VRAM USAGE', '65%', 'bg-white', 65],
   ['POWER DRAW', 'n/a', 'bg-zinc-700', 0]
+]
+
+const demoSystemHealth = [
+  ['Memory graph', 'Online', Database, 'Editable continuity nodes active'],
+  ['Reasoning route', 'Adaptive', BrainCircuit, 'Intent, context, tone, and action'],
+  ['Privacy layer', 'Protected', LockKeyhole, 'User-owned session boundary'],
+  ['Model state', 'Simulated', Cpu, 'Frontend demo without production backend']
+]
+
+const demoCommandRows = [
+  ['/memory', 'Open owned context, saved signals, source notes, and memory controls.'],
+  ['/reflect', 'Generate a daily journal, belief reframe, and pattern summary.'],
+  ['/plan', 'Convert goals into milestones, next actions, and review checkpoints.'],
+  ['/calm', 'Run emotional recovery, grounding, and pressure reduction protocols.']
+]
+
+const demoModuleInsights = [
+  ['Retrieval', 'Session memory + product knowledge'],
+  ['Reasoning', 'Intent, tone, context, next action'],
+  ['Controls', 'Edit, delete, export, pause memory'],
+  ['Output', 'Answer, journal, plan, image fallback']
 ]
 
 const homeOrbitModules = [
@@ -249,9 +291,9 @@ const memoryField = [
 ]
 
 const proactiveSignals = [
-  'You have not reviewed your goals recently. Want a 3-step restart plan?',
-  'Your emotional pattern is leaning toward pressure. RIA can switch into grounded mode.',
-  'A repeated belief signal is forming. RIA can reframe it before it becomes a block.'
+  'Goal review is overdue. RIA can compress the current direction into a 3-step execution plan.',
+  'Emotional pressure is trending upward. RIA can shift the session into a grounded recovery protocol.',
+  'A repeated belief signal is forming. RIA can classify it before it becomes a durable constraint.'
 ]
 
 const evolutionSignals = [
@@ -588,7 +630,7 @@ function Container({ children, className = '' }) {
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#03060d]/85 text-white shadow-[0_18px_60px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#030407]/88 text-white shadow-[0_18px_60px_rgba(0,0,0,0.38)] backdrop-blur-2xl">
       <Container className="flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img src={images.logo} alt="" className="h-7 w-7 rounded-full object-cover" onError={(event) => { event.currentTarget.style.display = 'none' }} />
@@ -596,6 +638,7 @@ function Header() {
             <BrainCircuit className="h-4 w-4" />
           </span>
           <span className="text-base font-semibold text-white">RIA</span>
+          <span className="hidden text-xs font-medium uppercase tracking-[0.24em] text-zinc-600 lg:inline">Cognitive Systems</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-zinc-400 md:flex">
           {nav.map(([label, to]) => (
@@ -605,8 +648,8 @@ function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-4 text-sm sm:flex">
-          <Link to="/download" className="hidden text-zinc-400 transition hover:text-white sm:inline">Download</Link>
-          <Link to="/demo" className="rounded-full bg-white px-4 py-2 font-semibold text-black transition hover:bg-cyan-100">Start RIA</Link>
+          <Link to="/download" className="hidden text-zinc-400 transition hover:text-white sm:inline">Early access</Link>
+          <Link to="/demo" className="rounded-full bg-white px-4 py-2 font-semibold text-black transition hover:bg-cyan-100">Launch Demo</Link>
         </div>
       </Container>
     </header>
@@ -622,7 +665,7 @@ function Footer() {
             <BrainCircuit className="h-5 w-5" />
             <span className="font-semibold">RIA</span>
           </div>
-          <p className="max-w-xs text-sm leading-6 text-zinc-500">Personal cognitive intelligence for memory continuity, reflection, emotional awareness, and growth.</p>
+          <p className="max-w-xs text-sm leading-6 text-zinc-500">Premium cognitive intelligence infrastructure for private memory, adaptive reasoning, and personal AI operating systems.</p>
         </div>
         {[
           ['Research', ['Memory continuity', 'Reflection engine', 'Belief classification', 'Emotional AI']],
@@ -665,7 +708,7 @@ function HeroSearch() {
       <input
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        placeholder="Ask RIA about your memory, journal, or emotions"
+        placeholder="Ask RIA for an executive memory and goal summary"
         className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
       />
       <button className="grid h-8 w-8 place-items-center rounded-full bg-white text-black" aria-label="Ask RIA">
@@ -683,45 +726,62 @@ function Home() {
         <div className="thought-stream thought-stream-a pointer-events-none absolute inset-0 opacity-30" />
         <Container className="py-8 sm:py-12">
           <motion.div className="relative" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
-            <p className="text-sm text-cyan-200">AIONTEC + RIA</p>
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">AIONTEC + RIA Cognitive Systems</p>
             <h1 className="mt-8 text-[4.2rem] font-semibold leading-[0.88] tracking-normal text-white sm:text-[9rem] lg:text-[13rem]">
               RIA
             </h1>
             <div className="mt-8 grid gap-8 border-t border-white/10 pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-              <h2 className="max-w-[calc(100vw-2.5rem)] text-3xl font-semibold leading-[1.05] tracking-normal sm:max-w-4xl sm:text-6xl">
-                Personal cognitive intelligence for memory, reflection, and emotional clarity.
+              <h2 className="max-w-[21rem] text-[1.75rem] font-semibold leading-[1.08] tracking-normal sm:max-w-4xl sm:text-6xl">
+                Private cognitive intelligence for memory, reasoning, and adaptive AI workflows.
               </h2>
               <div>
-                <p className="max-w-[calc(100vw-2.5rem)] text-base leading-8 text-zinc-400 sm:max-w-2xl">
-                  RIA is a private second-brain interface that turns conversation into memory, journaling, goals, belief tracking, and calm guidance across devices.
+                <p className="max-w-[21rem] text-base leading-8 text-zinc-400 sm:max-w-2xl">
+                  RIA is a premium personal AI operating layer: memory graph, reflection engine, emotional context, data controls, and a production roadmap across web, desktop, mobile, and devices.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to="/demo" className="rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Try RIA</Link>
-                  <Link to="/product" className="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-white">Explore product</Link>
+                  <Link to="/demo" className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black">Launch RIA Orbit</Link>
+                  <Link to="/product" className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">View platform</Link>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          <div className="relative mt-12 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-            <Link to="/demo" className="group min-h-[26rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black text-white shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
-              <div className="flex h-full min-h-[26rem] flex-col justify-between bg-[linear-gradient(135deg,rgba(2,6,23,0.68),rgba(4,4,5,0.82)),url('/images/hero/ria-hero.jpg')] bg-cover bg-center p-6 sm:p-8">
+          <div className="relative mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-4">
+            {platformStats.map(([label, copy]) => (
+              <div key={label} className="bg-[#05070b]/92 p-5">
+                <p className="text-sm font-semibold text-white">{label}</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-500">{copy}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="relative mt-10 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+            <Link to="/demo" className="group min-h-[30rem] overflow-hidden rounded-lg border border-white/10 bg-black text-white shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+              <div className="flex h-full min-h-[30rem] flex-col justify-between bg-[linear-gradient(135deg,rgba(2,6,23,0.9),rgba(4,4,5,0.96)),url('/images/hero/ria-hero.jpg')] bg-cover bg-center p-6 sm:p-8">
                 <div className="flex items-center justify-between text-sm text-zinc-400">
-                  <span>Interactive demo</span>
+                  <span>RIA Orbit command center</span>
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </div>
                 <div>
-                  <p className="mb-4 inline-flex rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">Memory OS</p>
-                  <h3 className="max-w-xl text-4xl font-semibold leading-[1] tracking-normal sm:text-6xl">Talk to the RIA operating system.</h3>
+                  <p className="mb-4 inline-flex rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">Production demo</p>
+                  <h3 className="max-w-xl text-3xl font-semibold leading-[1] tracking-normal sm:text-5xl">A premium operating surface for personal AI.</h3>
+                  <div className="mt-8 grid max-w-2xl gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+                    {operatingMetrics.slice(0, 4).map(([label, value]) => (
+                      <div key={label} className="bg-black/45 p-4 backdrop-blur">
+                        <p className="text-2xl font-semibold">{value}</p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.18em] text-zinc-500">{label}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Link>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {featured.slice(0, 2).map((card) => (
-                <Link key={card.title} to={card.to} className="group rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-5 transition hover:border-cyan-200/30 hover:bg-white/[0.07]">
+                <Link key={card.title} to={card.to} className="group rounded-lg border border-white/10 bg-white/[0.045] p-6 transition hover:border-cyan-200/30 hover:bg-white/[0.07]">
                   <p className="text-sm text-zinc-500">{card.type}</p>
-                  <h3 className="mt-12 text-2xl font-semibold leading-[1.05] tracking-normal text-white">{card.title}</h3>
-                  <p className="mt-4 text-sm leading-6 text-zinc-600">{card.copy}</p>
+                  <h3 className="mt-16 text-2xl font-semibold leading-[1.05] tracking-normal text-white">{card.title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-zinc-500">{card.copy}</p>
                   <ArrowRight className="mt-6 h-4 w-4 transition group-hover:translate-x-1" />
                 </Link>
               ))}
@@ -733,7 +793,7 @@ function Home() {
       <section className="border-t border-white/10 bg-black/20 py-16 text-white">
         <Container>
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-3xl font-semibold tracking-normal">Recent updates</h2>
+            <h2 className="text-3xl font-semibold tracking-normal">Platform focus</h2>
             <Link to="/research" className="text-sm text-zinc-400 hover:text-white">View all</Link>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -752,8 +812,8 @@ function Home() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             <div>
-              <p className="text-sm text-cyan-200">Ask RIA</p>
-              <h2 className="mt-4 text-4xl font-semibold leading-[1] tracking-normal sm:text-6xl">What can RIA help with?</h2>
+              <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">Executive prompt</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-[1] tracking-normal sm:text-6xl">Ask RIA like a command layer.</h2>
             </div>
             <HeroSearch />
           </div>
@@ -771,19 +831,20 @@ function HomeSystemPanels() {
       <div className="void-stars absolute inset-0 opacity-35" />
       <Container>
         <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="cosmos-glass border border-white/10 p-8">
-            <p className="text-sm text-cyan-200">Proactive Intelligence</p>
-            <h2 className="mt-4 text-5xl font-semibold leading-[0.98] tracking-normal">RIA initiates action before the user asks.</h2>
+          <div className="cosmos-glass rounded-lg border border-white/10 p-8">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">Adaptive operation</p>
+            <h2 className="mt-4 text-5xl font-semibold leading-[0.98] tracking-normal">RIA turns personal context into controlled intelligence.</h2>
+            <p className="mt-6 max-w-xl text-base leading-8 text-zinc-400">The product direction is not another chat window. RIA is a private operating surface for memory, reasoning, reflection, goals, and action.</p>
             <div className="mt-8 space-y-3">
               {proactiveSignals.map((signal) => (
-                <div key={signal} className="border border-white/10 bg-black/30 p-4 text-sm leading-7 text-zinc-300">
+                <div key={signal} className="rounded-md border border-white/10 bg-black/30 p-4 text-sm leading-7 text-zinc-300">
                   {signal}
                 </div>
               ))}
             </div>
           </div>
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
-            {memoryField.map(([title, copy, Icon]) => (
+          <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-2">
+            {platformLayers.map(([title, Icon, copy]) => (
               <div key={title} className="cosmos-glass p-7">
                 <Icon className="h-6 w-6 text-cyan-200" />
                 <h3 className="mt-12 text-2xl font-semibold tracking-normal">{title}</h3>
@@ -836,14 +897,15 @@ function ProductGrid() {
       <Container>
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <h2 className="text-4xl font-semibold tracking-normal sm:text-5xl">Explore RIA</h2>
-            <p className="mt-3 max-w-2xl text-zinc-400">A full personal cognitive system in modular layers.</p>
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">Platform modules</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-normal sm:text-5xl">RIA production architecture</h2>
+            <p className="mt-3 max-w-2xl text-zinc-400">A full personal cognitive system organized into product-ready layers.</p>
           </div>
           <Link to="/product" className="hidden text-sm text-zinc-300 hover:text-white sm:block">View product</Link>
         </div>
-        <div className="grid gap-px overflow-hidden bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
           {productCards.map(([title, Icon, copy]) => (
-            <div key={title} className="bg-transparent p-6 transition hover:bg-[#0d0820]">
+            <div key={title} className="bg-[#05070b]/86 p-6 transition hover:bg-[#0d1017]">
               <Icon className="h-7 w-7 text-violet-200" />
               <h3 className="mt-16 text-2xl font-semibold tracking-normal text-white">{title}</h3>
               <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
@@ -898,9 +960,10 @@ function EditorialSections() {
 
 function PageHero({ title, copy, label }) {
   return (
-    <section className="bg-transparent pt-32 text-white">
+    <section className="relative overflow-hidden bg-transparent pt-32 text-white">
+      <div className="void-stars pointer-events-none absolute inset-0 opacity-20" />
       <Container className="pb-20">
-        <p className="text-sm text-zinc-500">{label}</p>
+        <p className="relative text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">{label}</p>
         <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-normal sm:text-7xl">{title}</h1>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">{copy}</p>
       </Container>
@@ -911,7 +974,7 @@ function PageHero({ title, copy, label }) {
 function Research() {
   return (
     <>
-      <PageHero label="Research" title="Researching memory continuity for personal AI" copy="RIA explores how memory, reflection, emotional tracking, and belief classification can create a more useful personal cognitive system." />
+      <PageHero label="Research" title="Researching persistent cognition for personal AI" copy="RIA explores memory continuity, reflective summarization, emotional context, belief classification, and user-owned cognition as one integrated product architecture." />
       <ProductGrid />
     </>
   )
@@ -920,7 +983,7 @@ function Research() {
 function Product() {
   return (
     <>
-      <PageHero label="Product" title="RIA is a digital second brain" copy="A personal AI companion designed for memory continuity, reflection, journaling, emotional understanding, private data control, and long-term device portability." />
+      <PageHero label="Product" title="RIA is a private cognitive operating system" copy="A premium AI interface designed for memory continuity, reflection, journaling, emotional context, private data control, and long-term device portability." />
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <Dashboard />
@@ -934,18 +997,34 @@ function Product() {
 function Dashboard() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-      <div className="border border-white/10 bg-white/[0.04] p-5">
-        <div className="grid gap-4 md:grid-cols-2">
-          {[
-            ['Current mood', 'Calm', HeartPulse],
-            ['Memory status', 'Linked', Database],
-            ['Journal summary', 'Ready', BookOpen],
-            ['Belief insight', '3 growth beliefs', Fingerprint]
-          ].map(([label, value, Icon]) => (
-            <div key={label} className="border border-white/10 bg-white/[0.03] p-5">
-              <Icon className="h-5 w-5" />
+      <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
+        <div className="mb-5 flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">RIA console</p>
+            <h2 className="mt-2 text-3xl font-semibold">Operating dashboard</h2>
+          </div>
+          <span className="rounded-full border border-emerald-300/30 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-200">READY</span>
+        </div>
+        <div className="grid gap-px overflow-hidden rounded-md border border-white/10 bg-white/10 md:grid-cols-2">
+          {operatingMetrics.map(([label, value, copy]) => (
+            <div key={label} className="bg-[#05070b] p-5">
+              <Gauge className="h-5 w-5 text-cyan-200" />
               <p className="mt-8 text-sm text-zinc-500">{label}</p>
               <p className="mt-2 text-2xl font-semibold">{value}</p>
+              <p className="mt-3 text-sm leading-6 text-zinc-500">{copy}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-5 grid gap-px overflow-hidden rounded-md border border-white/10 bg-white/10 md:grid-cols-2">
+          {[
+            ['Private retrieval', Database],
+            ['Reasoning route', Cpu],
+            ['Trust boundary', LockKeyhole],
+            ['Action output', ArrowRight]
+          ].map(([label, Icon]) => (
+            <div key={label} className="flex items-center gap-3 bg-white/[0.035] p-4">
+              <Icon className="h-5 w-5" />
+              <p className="text-sm font-medium text-zinc-300">{label}</p>
             </div>
           ))}
         </div>
@@ -957,14 +1036,15 @@ function Dashboard() {
 
 function ChatPanel() {
   return (
-    <div className="border border-white/10 bg-white/[0.04]">
+    <div className="rounded-lg border border-white/10 bg-white/[0.04]">
       <div className="border-b border-white/10 p-5">
-        <p className="font-semibold">Chat with RIA</p>
+        <p className="font-semibold">RIA response pipeline</p>
+        <p className="mt-1 text-sm text-zinc-500">Session context converted into memory, reflection, and next action.</p>
       </div>
       <div className="space-y-4 p-5">
-        <div className="ml-auto max-w-[82%] rounded-xl bg-white p-4 text-sm text-black">I felt overwhelmed today.</div>
-        <div className="max-w-[82%] rounded-xl bg-white/[0.08] p-4 text-sm leading-6 text-zinc-200">I hear the pressure in that. Let’s separate the event, the feeling, and the next small action so the day becomes easier to process.</div>
-        <div className="ml-auto max-w-[82%] rounded-xl bg-white p-4 text-sm text-black">Create a journal note.</div>
+        <div className="ml-auto max-w-[82%] rounded-lg bg-white p-4 text-sm text-black">Summarize my current priorities and risks.</div>
+        <div className="max-w-[86%] rounded-lg bg-white/[0.08] p-4 text-sm leading-6 text-zinc-200">RIA identifies the strongest goal signal, compares it with emotional pressure, then creates a private memory update and a focused next action.</div>
+        <div className="ml-auto max-w-[82%] rounded-lg bg-white p-4 text-sm text-black">Turn that into an execution plan.</div>
       </div>
     </div>
   )
@@ -976,18 +1056,18 @@ function DifferenceSection() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
-            <p className="text-sm text-cyan-200">Why RIA is different</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-[0.98] tracking-normal sm:text-6xl">Not another chatbot. A personal intelligence layer.</h2>
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-200">Why RIA is different</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-[0.98] tracking-normal sm:text-6xl">Not a chatbot. A private intelligence infrastructure layer.</h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-zinc-400">
-              RIA is being built to become software that understands a person over time. The goal is to combine AI conversation with memory, emotional context, private journaling, belief tracking, and device portability, so RIA can support the user wherever their digital life moves.
+              RIA is being built as software that understands a person over time. Conversation becomes structured memory, emotional context, private journaling, belief signals, and execution guidance.
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">
-              Our aim is to create a calm, trusted, deeply personal system: an AI that helps people think clearly, recover emotionally, organize their inner life, and build better decisions without losing control of their data.
+              The target experience is premium and controlled: an AI system that helps users think clearly, recover emotionally, organize decisions, and keep ownership of the data that makes it useful.
             </p>
           </div>
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-2">
             {differentiators.map(([title, Icon, copy]) => (
-              <div key={title} className="bg-white/[0.04] p-7">
+              <div key={title} className="bg-[#05070b]/90 p-7">
                 <Icon className="h-6 w-6 text-violet-200" />
                 <h3 className="mt-12 text-2xl font-semibold tracking-normal">{title}</h3>
                 <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
@@ -1003,17 +1083,17 @@ function DifferenceSection() {
 function Safety() {
   return (
     <>
-      <PageHero label="Safety" title="Personal AI requires personal control" copy="RIA is designed around visible memory, editable data, privacy boundaries, and honest communication about what the system can and cannot do." />
+      <PageHero label="Safety" title="Personal AI requires production-grade control" copy="RIA is designed around visible memory, editable data, clear privacy boundaries, and honest communication about what the system can and cannot do." />
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
-          <div className="grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
             {[
               ['Editable memory', Database],
               ['Private by default', LockKeyhole],
               ['No false consciousness', ShieldCheck],
               ['User-owned data', Check]
             ].map(([title, Icon]) => (
-              <div key={title} className="bg-transparent p-7">
+              <div key={title} className="bg-[#05070b] p-7">
                 <Icon className="h-7 w-7" />
                 <h3 className="mt-16 text-2xl font-semibold tracking-normal">{title}</h3>
               </div>
@@ -1028,12 +1108,12 @@ function Safety() {
 function Company() {
   return (
     <>
-      <PageHero label="Roadmap" title="RIA is becoming a personal cognitive operating system" copy="The roadmap focuses on turning RIA from a concept website into a real product with memory, journaling, reflection, emotional intelligence, voice, calm mode, privacy, and funding support." />
+      <PageHero label="Roadmap" title="RIA is becoming a private cognitive operating system" copy="The roadmap moves from premium web platform and RIA Orbit demo into a working product with memory, retrieval, journaling, reflection, emotional intelligence, voice, privacy, and early-access distribution." />
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-5 lg:grid-cols-4">
             {roadmap.map(([phase, title, copy]) => (
-              <div key={phase} className="border border-white/10 bg-white/[0.04] p-7">
+              <div key={phase} className="rounded-lg border border-white/10 bg-white/[0.04] p-7">
                 <p className="text-sm text-zinc-500">{phase}</p>
                 <h3 className="mt-10 text-2xl font-semibold tracking-normal">{title}</h3>
                 <p className="mt-4 leading-7 text-zinc-400">{copy}</p>
@@ -1041,15 +1121,15 @@ function Company() {
             ))}
           </div>
           <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="border border-white/10 bg-white/[0.06] p-8 text-white">
+            <div className="rounded-lg border border-white/10 bg-white/[0.06] p-8 text-white">
               <p className="text-sm text-zinc-500">Vision</p>
-              <h2 className="mt-4 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-normal">A private AI that helps people understand themselves.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">RIA is not a generic assistant. It is built for personal continuity: memory, emotion, reflection, journaling, and self-growth in one trusted system.</p>
+              <h2 className="mt-4 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-normal">A private AI system that compounds personal context.</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">RIA is built for personal continuity: memory, emotion, reflection, journaling, goals, and decisions in one trusted product surface.</p>
             </div>
-            <div className="border border-white/10 bg-white/[0.04] p-8">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-8">
               <Target className="h-8 w-8" />
               <h3 className="mt-10 text-3xl font-semibold tracking-normal">What success looks like</h3>
-              <p className="mt-5 leading-7 text-zinc-400">A working RIA prototype users can talk to every day, with persistent memory, visible emotional trends, journal summaries, and user-owned data controls.</p>
+              <p className="mt-5 leading-7 text-zinc-400">A working RIA product users can trust every day, with persistent memory, emotional trend visibility, journal summaries, and user-owned data controls.</p>
               <Link to="/funding" className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Support RIA</Link>
             </div>
           </div>
@@ -1062,20 +1142,20 @@ function Company() {
 function Funding() {
   return (
     <>
-      <PageHero label="Funding" title="Help build the first RIA prototype" copy="RIA needs funding to move from concept to functional product: memory backend, model API, journaling engine, emotional dashboard, voice, privacy controls, and launch materials." />
+      <PageHero label="Funding" title="Build RIA into a premium AI product" copy="Funding moves RIA from platform demo to functional product: private memory backend, model API, retrieval, journaling engine, emotional dashboard, voice, privacy controls, and early-access packaging." />
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="border border-white/10 bg-white/[0.06] p-8 text-white">
+            <div className="rounded-lg border border-white/10 bg-white/[0.06] p-8 text-white">
               <Banknote className="h-8 w-8" />
               <p className="mt-10 text-sm text-zinc-500">Founder contact</p>
-              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-normal">Invest in the first RIA prototype</h2>
+              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-normal">Invest in the first premium RIA release</h2>
               <p className="mt-5 max-w-md leading-7 text-zinc-400">For funding, partnership, or investor conversations, contact Sudeep Bala directly.</p>
               <a href="mailto:balasudeep22@gmail.com?subject=Funding%20RIA" className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Email Sudeep</a>
             </div>
-            <div className="grid gap-px bg-white/10 md:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-2">
               {['Model/API integration', 'Memory vault', 'Journal engine', 'Emotion dashboard', 'Voice layer', 'Privacy controls'].map((item) => (
-                <div key={item} className="bg-transparent p-6">
+                <div key={item} className="bg-[#05070b] p-6">
                   <Check className="h-5 w-5" />
                   <p className="mt-10 text-xl font-semibold tracking-normal">{item}</p>
                 </div>
@@ -1083,7 +1163,7 @@ function Funding() {
             </div>
           </div>
           <div className="mt-8">
-            <div className="border border-white/10 bg-white/[0.04] p-8">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-8">
               <Mail className="h-7 w-7 text-cyan-200" />
               <p className="mt-8 text-sm text-zinc-500">Investor contact</p>
               <h2 className="mt-3 text-4xl font-semibold tracking-normal text-white">Contact the founder directly</h2>
@@ -1107,25 +1187,25 @@ function Funding() {
 function Download() {
   return (
     <>
-      <PageHero label="Download" title="Download RIA" copy="RIA is preparing for early access across desktop, mobile, and future device environments. Public installers will be published here as soon as the first secure prototype release is ready." />
+      <PageHero label="Download" title="Prepare for RIA early access" copy="RIA is preparing for controlled early access across web, desktop, mobile, and future device environments. Public installers will appear here after the secure prototype release is approved." />
       <section className="border-t border-white/10 bg-transparent py-20 text-white">
         <Container>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="border border-white/10 bg-white/[0.06] p-8 text-white">
+            <div className="rounded-lg border border-white/10 bg-white/[0.06] p-8 text-white">
               <Sparkles className="h-8 w-8" />
               <p className="mt-10 text-sm text-zinc-500">Early access</p>
-              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-normal">RIA is preparing for a secure prototype release.</h2>
+              <h2 className="mt-3 text-5xl font-semibold leading-[0.98] tracking-normal">RIA is preparing for controlled product access.</h2>
               <p className="mt-5 max-w-md leading-7 text-zinc-400">The first RIA release will focus on a trusted personal AI experience: memory, journaling, reflection, emotional support, calm mode, and privacy-first data controls. Until the public installer is ready, investors and early users can request direct prototype access.</p>
               <a href="mailto:balasudeep22@gmail.com?subject=RIA%20Early%20Access" className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Request early access</a>
             </div>
-            <div className="grid gap-px bg-white/10 md:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-2">
               {[
                 ['Windows', 'Coming soon', '/downloads/ria-windows.exe'],
                 ['macOS', 'Coming soon', '/downloads/ria-mac.dmg'],
                 ['Linux', 'Coming soon', '/downloads/ria-linux.AppImage'],
                 ['Android', 'Coming soon', '/downloads/ria-android.apk']
               ].map(([platform, status, href]) => (
-                <div key={platform} className="bg-transparent p-7">
+                <div key={platform} className="bg-[#05070b] p-7">
                   <p className="text-sm text-zinc-500">{platform}</p>
                   <h3 className="mt-10 text-2xl font-semibold tracking-normal">{status}</h3>
                   <p className="mt-4 text-sm leading-7 text-zinc-500">The installer will appear here when the early access package is approved for release.</p>
@@ -1136,7 +1216,7 @@ function Download() {
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="border border-white/10 bg-white/[0.04] p-8">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-8">
               <p className="text-sm text-cyan-200">How to download and install RIA</p>
               <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1] tracking-normal text-white">A clear release path from prototype access to public installers.</h2>
               <div className="mt-8 grid gap-4">
@@ -1152,7 +1232,7 @@ function Download() {
               </div>
             </div>
 
-            <div className="border border-white/10 bg-white/[0.04] p-8">
+            <div className="rounded-lg border border-white/10 bg-white/[0.04] p-8">
               <Cpu className="h-7 w-7 text-violet-200" />
               <p className="mt-8 text-sm text-zinc-500">Device vision</p>
               <h2 className="mt-3 text-4xl font-semibold leading-[1] tracking-normal">Designed for every generation of personal computing.</h2>
@@ -1192,7 +1272,7 @@ function Demo() {
         window.localStorage.removeItem('ria-os-messages')
       }
     }
-    return [{ role: 'ria', text: 'RIA Orbit demo mode is online. Ask me anything about RIA: what it is, features, privacy, memory, roadmap, funding, downloads, image generation, or how the demo works. I can also help with goals, emotions, journaling, calm mode, and planning while showing how the real RIA experience will work.' }]
+    return [{ role: 'ria', text: 'RIA Orbit is online. This premium demo simulates the future RIA command center: conversation, memory graph, reflection engine, emotional context, private controls, image fallback, roadmap, funding, downloads, and goal planning. Ask for an executive summary, a memory review, a journal entry, a calm protocol, or a product explanation.' }]
   })
   const [memory, setMemory] = useState(() => {
     const saved = window.localStorage.getItem('ria-os-memory')
@@ -1337,12 +1417,13 @@ function Demo() {
       return (
         <div className="grid gap-5">
           <div>
-            <p className={`text-sm ${theme.accent}`}>What RIA knows about you</p>
+            <p className={`text-sm font-medium uppercase tracking-[0.18em] ${theme.accent}`}>Private memory graph</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-normal">Editable memory nodes</h2>
+            <p className={`mt-3 max-w-2xl text-sm leading-7 ${skin.muted}`}>Every saved signal stays visible and user-controlled. This demo stores only local browser session memory.</p>
           </div>
           <div className="grid gap-3">
             {memory.nodes.map((node) => (
-              <div key={node.id} className={`border p-4 ${skin.module}`}>
+              <div key={node.id} className={`rounded-lg border p-4 ${skin.module}`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={`rounded-full border px-3 py-1 text-xs capitalize ${theme.chip}`}>{node.type}</span>
                   <button onClick={() => deleteMemoryNode(node.id)} className={`grid h-8 w-8 place-items-center rounded-full border transition ${skin.panel} ${skin.muted} ${isLight ? 'hover:text-slate-950' : 'hover:text-white'}`} aria-label="Delete memory">
@@ -1350,7 +1431,7 @@ function Demo() {
                   </button>
                 </div>
                 <p className={`text-sm font-semibold ${skin.text}`}>{node.title}</p>
-                <textarea value={node.detail} onChange={(event) => updateMemoryNode(node.id, event.target.value)} className={`mt-3 min-h-20 w-full resize-none border p-3 text-sm leading-6 outline-none ${skin.field}`} />
+                <textarea value={node.detail} onChange={(event) => updateMemoryNode(node.id, event.target.value)} className={`mt-3 min-h-20 w-full resize-none rounded-md border p-3 text-sm leading-6 outline-none ${skin.field}`} />
               </div>
             ))}
           </div>
@@ -1361,7 +1442,7 @@ function Demo() {
     if (activeTab === 'reflection') {
       return (
         <div>
-          <p className={`text-sm ${theme.accent}`}>Reflection Engine</p>
+          <p className={`text-sm font-medium uppercase tracking-[0.18em] ${theme.accent}`}>Reflection engine</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-normal">Patterns RIA is detecting</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
@@ -1369,7 +1450,7 @@ function Demo() {
               ['Belief detection', `${memoryCounts.beliefs} belief signals are available for reframing.`],
               ['Pattern detection', activeSuggestion]
             ].map(([title, copy]) => (
-              <div key={title} className={`border p-5 ${skin.module}`}>
+              <div key={title} className={`rounded-lg border p-5 ${skin.module}`}>
                 <Sparkles className={`h-5 w-5 ${isLight ? 'text-violet-700' : 'text-violet-200'}`} />
                 <h3 className="mt-8 text-xl font-semibold tracking-normal">{title}</h3>
                 <p className={`mt-3 text-sm leading-7 ${skin.soft}`}>{copy}</p>
@@ -1383,14 +1464,14 @@ function Demo() {
     if (activeTab === 'behavior') {
       return (
         <div>
-          <p className={`text-sm ${theme.accent}`}>Behavior Settings</p>
+          <p className={`text-sm font-medium uppercase tracking-[0.18em] ${theme.accent}`}>Behavior controls</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-normal">Adaptive reasoning style</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {[
               ['Proactive suggestions', 'proactive'],
               ['Write memories automatically', 'memoryWrite']
             ].map(([label, key]) => (
-              <button key={key} onClick={() => setMemory((current) => ({ ...current, settings: { ...current.settings, [key]: !current.settings[key] } }))} className={`flex items-center justify-between border p-5 text-left ${skin.module}`}>
+              <button key={key} onClick={() => setMemory((current) => ({ ...current, settings: { ...current.settings, [key]: !current.settings[key] } }))} className={`flex items-center justify-between rounded-lg border p-5 text-left ${skin.module}`}>
                 <span>
                   <span className={`block text-sm font-semibold ${skin.text}`}>{label}</span>
                   <span className={`mt-1 block text-xs ${skin.muted}`}>{memory.settings[key] ? 'Enabled' : 'Paused'}</span>
@@ -1409,9 +1490,9 @@ function Demo() {
       const graph = [memoryCounts.emotions, memoryCounts.goals, memoryCounts.beliefs, userMessages.length].map((value) => Math.max(14, Math.min(100, value * 18 + 18)))
       return (
         <div>
-          <p className={`text-sm ${theme.accent}`}>Emotional Graph</p>
+          <p className={`text-sm font-medium uppercase tracking-[0.18em] ${theme.accent}`}>Emotional signals</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-normal">Mood-responsive interface</h2>
-          <div className={`mt-8 flex h-56 items-end gap-4 border p-5 ${skin.module}`}>
+          <div className={`mt-8 flex h-56 items-end gap-4 rounded-lg border p-5 ${skin.module}`}>
             {graph.map((height, index) => (
               <div key={index} className="flex flex-1 flex-col items-center gap-3">
                 <motion.div initial={{ height: 20 }} animate={{ height }} className="w-full bg-gradient-to-t from-cyan-300/30 to-white/80" />
@@ -1426,9 +1507,9 @@ function Demo() {
     if (activeTab === 'guidance') {
       return (
         <div>
-          <p className={`text-sm ${theme.accent}`}>Life Guidance Mode</p>
+          <p className={`text-sm font-medium uppercase tracking-[0.18em] ${theme.accent}`}>Guidance layer</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-normal">Proactive next step</h2>
-          <div className={`mt-6 border p-6 ${skin.module}`}>
+          <div className={`mt-6 rounded-lg border p-6 ${skin.module}`}>
             <Compass className={`h-7 w-7 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
             <p className={`mt-8 max-w-2xl text-lg leading-8 ${skin.soft}`}>{activeSuggestion}</p>
             <button onClick={() => send('Break my strongest goal into a smaller next step')} className={`mt-6 rounded-full px-5 py-3 text-sm font-medium ${skin.active}`}>Ask RIA to guide me</button>
@@ -1439,17 +1520,27 @@ function Demo() {
 
     return (
       <div>
-        <p className={`text-sm ${theme.accent}`}>RIA Core Mind</p>
-        <h2 className="mt-2 text-3xl font-semibold tracking-normal">Living AI system state</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-4">
+        <p className={`text-sm font-medium uppercase tracking-[0.18em] ${theme.accent}`}>RIA command center</p>
+        <h2 className="mt-2 text-3xl font-semibold tracking-normal">Production demo system state</h2>
+        <div className="mt-6 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-4">
+          {demoSystemHealth.map(([label, value, Icon, copy]) => (
+            <div key={label} className={`p-5 ${isLight ? 'bg-white/70' : 'bg-[#05070b]'}`}>
+              <Icon className={`h-5 w-5 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
+              <p className="mt-8 text-2xl font-semibold">{value}</p>
+              <p className={`mt-1 text-xs uppercase tracking-[0.16em] ${skin.muted}`}>{label}</p>
+              <p className={`mt-4 text-sm leading-6 ${skin.soft}`}>{copy}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-5 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 md:grid-cols-4">
           {[
             ['Goals', memoryCounts.goals, Target],
             ['Emotions', memoryCounts.emotions, HeartPulse],
             ['Beliefs', memoryCounts.beliefs, Fingerprint],
             ['Memory nodes', memory.nodes.length, Database]
           ].map(([label, value, Icon]) => (
-            <div key={label} className={`border p-5 ${skin.module}`}>
-              <Icon className={`h-5 w-5 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
+            <div key={label} className={`p-5 ${isLight ? 'bg-white/70' : 'bg-white/[0.035]'}`}>
+              <Icon className={`h-5 w-5 ${isLight ? 'text-sky-700' : 'text-zinc-300'}`} />
               <p className="mt-8 text-3xl font-semibold">{value}</p>
               <p className={`mt-1 text-xs ${skin.muted}`}>{label}</p>
             </div>
@@ -1460,16 +1551,16 @@ function Demo() {
   }
 
   const renderConversationSurface = () => (
-    <div className={`mx-auto mt-5 max-w-[78rem] rounded-[1.5rem] border p-4 sm:mt-6 sm:rounded-[2rem] sm:p-6 ${skin.shell}`}>
+    <div className={`mx-auto mt-5 max-w-[78rem] rounded-lg border p-4 sm:mt-6 sm:p-6 ${skin.shell}`}>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="flex items-start gap-3 sm:items-center sm:gap-4">
           <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-full border sm:h-14 sm:w-14 ${skin.panel}`}>
             <BrainCircuit className="h-6 w-6" />
           </span>
           <div className="min-w-0">
-            <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>FAST COLLABORATION</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-normal sm:text-5xl sm:tracking-normal">RIA Conversation</h2>
-            <p className={`mt-3 text-sm ${skin.muted}`}>Unified memory · Advanced response mode · General</p>
+            <p className={`text-xs font-semibold tracking-[0.22em] ${skin.muted}`}>HIGH-CONTEXT SESSION</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-normal sm:text-5xl sm:tracking-normal">RIA Conversation Layer</h2>
+            <p className={`mt-3 text-sm ${skin.muted}`}>Memory graph · Reflection engine · Private response routing</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 text-sm">
@@ -1490,7 +1581,7 @@ function Demo() {
                 <span className={skin.muted}>{message.role === 'user' ? 'You' : 'RIA'}</span>
                 <span className={`rounded-full border px-3 py-1 ${skin.panel}`}>{message.role === 'user' ? 'Input' : 'Advanced AI response'}</span>
               </div>
-              <div className={`rounded-2xl border px-4 py-4 text-sm leading-7 shadow-xl sm:rounded-3xl sm:px-6 sm:py-5 sm:text-base sm:leading-8 ${message.role === 'user' ? skin.active : skin.panel}`}>
+              <div className={`rounded-lg border px-4 py-4 text-sm leading-7 shadow-xl sm:px-6 sm:py-5 sm:text-base sm:leading-8 ${message.role === 'user' ? skin.active : skin.panel}`}>
                 <p className="whitespace-pre-wrap">{message.text}</p>
                 {message.image && (
                   <div className="mt-5 overflow-hidden rounded-2xl border border-white/10 bg-black/20">
@@ -1507,16 +1598,16 @@ function Demo() {
           </motion.div>
         ))}
         {isThinking && (
-          <div className={`max-w-[92%] rounded-2xl border px-4 py-4 text-sm sm:max-w-[78%] sm:rounded-3xl sm:px-6 sm:py-5 sm:text-base ${skin.panel}`}>
-            RIA is processing context, memory continuity, emotional tone, and next action...
+          <div className={`max-w-[92%] rounded-lg border px-4 py-4 text-sm sm:max-w-[78%] sm:px-6 sm:py-5 sm:text-base ${skin.panel}`}>
+            RIA is routing context through memory, intent, emotional signal, and next-action policy...
           </div>
         )}
         <div ref={scrollRef} />
       </div>
 
-      <form onSubmit={(event) => { event.preventDefault(); send() }} className={`mt-6 flex gap-2 rounded-2xl border p-3 sm:gap-3 sm:rounded-3xl sm:p-4 ${skin.panel}`}>
-        <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send() } }} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-base leading-7 outline-none ${skin.text}`} placeholder="Chat with RIA in detail..." />
-        <button disabled={!input.trim() || isThinking} className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl sm:h-14 sm:w-14 ${skin.active} disabled:opacity-40`} aria-label="Send">
+      <form onSubmit={(event) => { event.preventDefault(); send() }} className={`mt-6 flex gap-2 rounded-lg border p-3 sm:gap-3 sm:p-4 ${skin.panel}`}>
+        <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send() } }} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-base leading-7 outline-none ${skin.text}`} placeholder="Ask RIA for a memory review, executive plan, or calm protocol..." />
+        <button disabled={!input.trim() || isThinking} className={`grid h-12 w-12 shrink-0 place-items-center rounded-lg sm:h-14 sm:w-14 ${skin.active} disabled:opacity-40`} aria-label="Send">
           <SendHorizontal className="h-5 w-5" />
         </button>
       </form>
@@ -1543,13 +1634,13 @@ function Demo() {
             <Orbit className="h-7 w-7" />
             <div>
               <p className="text-xl font-semibold tracking-normal">RIA ORBIT</p>
-              <p className={`text-sm ${skin.muted}`}>Quantum-Neural AI System</p>
+              <p className={`text-sm ${skin.muted}`}>Cognitive command center</p>
             </div>
           </div>
-          <div className={`mt-10 rounded-2xl border px-4 py-3 text-xs font-semibold tracking-[0.12em] ${skin.shell}`}>
+          <div className={`mt-10 rounded-lg border px-4 py-3 text-xs font-semibold tracking-[0.12em] ${skin.shell}`}>
             <div className="flex items-center justify-between">
-              <span>GROWTH UI</span>
-              <span className={isLight ? 'text-slate-700' : 'text-zinc-400'}>PROTECTED</span>
+              <span>PRODUCT DEMO</span>
+              <span className={isLight ? 'text-slate-700' : 'text-zinc-400'}>SECURE</span>
             </div>
           </div>
           <p className={`mt-10 text-xs font-semibold tracking-[0.18em] ${skin.muted}`}>COMMAND CENTER</p>
@@ -1564,17 +1655,17 @@ function Demo() {
         </aside>
 
         <main className="min-w-0 px-3 py-5 sm:px-5 sm:py-6 lg:px-8">
-          <div className={`mx-auto flex max-w-[98rem] flex-wrap items-center gap-2 rounded-[1.5rem] border p-2 backdrop-blur-xl sm:gap-3 sm:rounded-full sm:p-3 ${skin.shell}`}>
+          <div className={`mx-auto flex max-w-[98rem] flex-wrap items-center gap-2 rounded-lg border p-2 backdrop-blur-xl sm:gap-3 sm:p-3 ${skin.shell}`}>
             <button className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Menu">
               <Menu className="h-5 w-5" />
             </button>
-            <div className={`order-2 flex min-w-0 basis-full items-center gap-3 rounded-full border px-4 py-3 sm:order-none sm:basis-auto sm:flex-1 sm:px-5 ${skin.panel}`}>
+            <div className={`order-2 flex min-w-0 basis-full items-center gap-3 rounded-lg border px-4 py-3 sm:order-none sm:basis-auto sm:flex-1 sm:px-5 ${skin.panel}`}>
               <Search className={`h-5 w-5 ${skin.muted}`} />
-              <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') send() }} className={`min-w-0 flex-1 bg-transparent text-sm outline-none ${skin.text} placeholder:${isLight ? 'text-slate-400' : 'text-zinc-600'}`} placeholder="Ask RIA anything or use a command..." />
+              <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') send() }} className={`min-w-0 flex-1 bg-transparent text-sm outline-none ${skin.text} placeholder:${isLight ? 'text-slate-400' : 'text-zinc-600'}`} placeholder="Ask RIA for memory, planning, reflection, or product strategy..." />
               <span className={`hidden rounded-full border px-3 py-1 text-xs sm:inline ${skin.muted}`}>⌘ K</span>
             </div>
-            <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>DEMO MODE</span>
-            <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>LIVE GROWTH {isThinking ? 'PROCESSING' : 'OFFLINE'}</span>
+            <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>CONTROLLED DEMO</span>
+            <span className={`hidden rounded-full border px-4 py-3 text-xs font-semibold tracking-[0.12em] lg:inline-flex ${theme.chip}`}>ROUTER {isThinking ? 'PROCESSING' : 'STANDBY'}</span>
             <button onClick={() => setVisualMode(isLight ? 'dark' : 'light')} className={`grid h-11 w-11 place-items-center rounded-full border ${skin.panel}`} aria-label="Toggle light and dark mode">
               {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </button>
@@ -1585,7 +1676,7 @@ function Demo() {
           </div>
 
           <div className="mt-4 xl:hidden">
-            <div className={`flex gap-2 overflow-x-auto rounded-2xl border p-2 ${skin.panel}`}>
+            <div className={`flex gap-2 overflow-x-auto rounded-lg border p-2 ${skin.panel}`}>
               {osTabs.map(([id, label, Icon]) => (
                 <button key={id} onClick={() => { setActiveTab(id); if (id === 'chat') setSurface('conversation') }} className={`flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium ${activeTab === id ? skin.active : `${skin.panel} ${skin.soft}`}`}>
                   <Icon className="h-4 w-4" />
@@ -1604,28 +1695,36 @@ function Demo() {
             ))}
           </div>
 
-          <div className={`mx-auto mt-4 max-w-[78rem] rounded-2xl border px-5 py-4 text-sm leading-6 ${skin.panel}`}>
-            <span className="font-semibold">Demo notice:</span> RIA Orbit is a preview interface. Memory, GPU studio, system activity, and image generation are simulated so visitors can understand the product flow before the full backend release.
+          <div className={`mx-auto mt-4 max-w-[78rem] rounded-lg border px-5 py-4 text-sm leading-6 ${skin.panel}`}>
+            <span className="font-semibold">Product preview:</span> RIA Orbit demonstrates the intended production flow. Memory, inference, activity, and image generation are simulated locally until the full backend and account system ship.
           </div>
 
           {surface === 'conversation' ? renderConversationSurface() : (
             <>
-              <div className={`relative mx-auto mt-5 max-w-[78rem] overflow-hidden rounded-[1.5rem] border p-5 text-center backdrop-blur-xl sm:mt-6 sm:rounded-[2rem] sm:p-8 ${skin.shell}`}>
-                <div className={`pointer-events-none absolute inset-0 ${isLight ? 'bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.9),transparent_18%),radial-gradient(circle_at_23%_10%,rgba(34,211,238,0.15),transparent_30%)]' : 'bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.13),transparent_16%)]'}`} />
-                <p className={`mx-auto inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>AI WORKSPACE</p>
-                <div className="relative mx-auto mt-8 grid h-40 max-w-3xl place-items-center overflow-hidden sm:h-44">
-                  <div className={`absolute h-36 w-36 rounded-full border blur-sm ${isLight ? 'border-sky-200 bg-sky-50' : 'border-white/10 bg-white/10'}`} />
-                  <div className={`absolute h-20 w-20 rounded-full blur-2xl ${isLight ? 'bg-sky-100' : 'bg-white/20'}`} />
-                  <div className={`absolute h-40 w-80 rounded-[50%] border ${isLight ? 'border-blue-200/40' : 'border-white/10'} rotate-12`} />
-                  <div className={`absolute h-24 w-72 rounded-[50%] border ${isLight ? 'border-blue-200/30' : 'border-white/10'} -rotate-12`} />
-                  <h1 className={`relative text-4xl font-semibold tracking-[0.24em] sm:text-8xl sm:tracking-[0.42em] ${isLight ? 'text-slate-950' : 'text-white'}`}>ORBIT</h1>
-                  <p className={`absolute bottom-0 px-2 text-[0.65rem] font-semibold tracking-[0.22em] sm:text-xs sm:tracking-[0.5em] ${skin.muted}`}>QUANTUM-NEURAL AI WORKSPACE</p>
+              <div className={`relative mx-auto mt-5 max-w-[78rem] overflow-hidden rounded-lg border p-5 backdrop-blur-xl sm:mt-6 sm:p-8 ${skin.shell}`}>
+                <div className={`pointer-events-none absolute inset-0 ${isLight ? 'bg-[linear-gradient(135deg,rgba(255,255,255,0.85),rgba(219,234,254,0.45))]' : 'bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))]'}`} />
+                <div className="relative grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+                  <div>
+                    <p className={`inline-flex rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.18em] ${theme.chip}`}>RIA ORBIT</p>
+                    <h1 className={`mt-8 text-5xl font-semibold leading-[0.96] sm:text-7xl ${isLight ? 'text-slate-950' : 'text-white'}`}>Cognitive command center.</h1>
+                    <p className={`mt-6 max-w-xl text-base leading-8 ${skin.soft}`}>A production-style preview for memory, reflection, emotional context, model routing, private controls, and action planning.</p>
+                  </div>
+                  <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2">
+                    {demoSystemHealth.map(([label, value, Icon, copy]) => (
+                      <div key={label} className={`p-5 ${isLight ? 'bg-white/70' : 'bg-black/38'}`}>
+                        <Icon className={`h-5 w-5 ${isLight ? 'text-sky-700' : 'text-cyan-200'}`} />
+                        <p className="mt-8 text-2xl font-semibold">{value}</p>
+                        <p className={`mt-1 text-xs uppercase tracking-[0.18em] ${skin.muted}`}>{label}</p>
+                        <p className={`mt-4 text-sm leading-6 ${skin.soft}`}>{copy}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               <div className="mx-auto mt-4 grid max-w-[78rem] grid-cols-2 gap-3 md:grid-cols-5 md:gap-4">
                 {orbitCards.map(([title, copy, Icon, prompt]) => (
-                  <button key={title} onClick={() => send(prompt)} className={`group rounded-2xl border p-4 text-left transition hover:-translate-y-1 sm:p-5 ${skin.shell}`}>
+                  <button key={title} onClick={() => send(prompt)} className={`group rounded-lg border p-4 text-left transition hover:-translate-y-1 sm:p-5 ${skin.shell}`}>
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                       <span className={`grid h-12 w-12 place-items-center rounded-xl border ${skin.panel}`}>
                         <Icon className="h-5 w-5" />
@@ -1640,14 +1739,14 @@ function Demo() {
               </div>
 
               <div className="mx-auto mt-4 grid max-w-[78rem] gap-4 lg:grid-cols-[1.05fr_0.75fr]">
-                <div className={`rounded-2xl border p-4 sm:p-5 ${skin.shell}`}>
+                <div className={`rounded-lg border p-4 sm:p-5 ${skin.shell}`}>
               <div className="mb-4 flex items-center justify-between">
-                <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>ASK OR COMMAND</p>
+                <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>COMMAND INPUT</p>
                 <span className={`inline-flex items-center gap-2 text-xs font-medium ${isLight ? 'text-emerald-700' : 'text-emerald-300'}`}><span className="h-2 w-2 rounded-full bg-emerald-400" />ONLINE</span>
               </div>
-              <form onSubmit={(event) => { event.preventDefault(); send() }} className={`flex gap-2 rounded-2xl border p-3 sm:gap-3 ${skin.panel}`}>
-                <textarea value={input} onChange={(event) => setInput(event.target.value)} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent p-3 text-base outline-none ${skin.text}`} placeholder="Ask RIA what to do next, or use a command like /analyze..." />
-                <button disabled={!input.trim() || isThinking} className={`grid h-14 w-14 shrink-0 place-items-center rounded-xl ${skin.active} disabled:opacity-40`} aria-label="Send">
+              <form onSubmit={(event) => { event.preventDefault(); send() }} className={`flex gap-2 rounded-lg border p-3 sm:gap-3 ${skin.panel}`}>
+                <textarea value={input} onChange={(event) => setInput(event.target.value)} rows={2} className={`min-w-0 flex-1 resize-none bg-transparent p-3 text-base outline-none ${skin.text}`} placeholder="Ask RIA to summarize, reflect, plan, calm, or explain the product..." />
+                <button disabled={!input.trim() || isThinking} className={`grid h-14 w-14 shrink-0 place-items-center rounded-lg ${skin.active} disabled:opacity-40`} aria-label="Send">
                   <SendHorizontal className="h-5 w-5" />
                 </button>
               </form>
@@ -1668,16 +1767,24 @@ function Demo() {
               </div>
               <div className="mt-5 grid grid-cols-3 gap-2 xl:hidden">
                 {demoCapabilities.slice(0, 3).map(([label, value, Icon]) => (
-                  <div key={label} className={`rounded-2xl border p-3 ${skin.panel}`}>
+                  <div key={label} className={`rounded-lg border p-3 ${skin.panel}`}>
                     <Icon className="h-4 w-4" />
                     <p className="mt-4 text-sm font-semibold">{value}</p>
                     <p className={`mt-1 text-[0.65rem] uppercase tracking-[0.16em] ${skin.muted}`}>{label}</p>
                   </div>
                 ))}
               </div>
+              <div className="mt-5 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2">
+                {demoCommandRows.map(([command, copy]) => (
+                  <button key={command} onClick={() => send(command)} className={`p-4 text-left ${isLight ? 'bg-white/70' : 'bg-black/25'}`}>
+                    <p className="font-semibold">{command}</p>
+                    <p className={`mt-2 text-xs leading-5 ${skin.muted}`}>{copy}</p>
+                  </button>
+                ))}
+              </div>
               <div className="mt-5 max-h-72 space-y-4 overflow-y-auto pr-2">
                 {messages.slice(-6).map((message, index) => (
-                  <div key={`${message.role}-${index}`} className={`max-w-[94%] rounded-2xl border p-4 text-sm leading-6 sm:max-w-[80%] ${message.role === 'user' ? `ml-auto ${skin.active}` : skin.panel}`}>
+                  <div key={`${message.role}-${index}`} className={`max-w-[94%] rounded-lg border p-4 text-sm leading-6 sm:max-w-[80%] ${message.role === 'user' ? `ml-auto ${skin.active}` : skin.panel}`}>
                     <p className={`mb-1 text-[10px] font-semibold tracking-[0.18em] ${message.role === 'user' ? '' : skin.muted}`}>{message.role === 'user' ? 'YOU' : 'RIA'}</p>
                     <p className="whitespace-pre-wrap">{message.text}</p>
                     {message.image && (
@@ -1691,14 +1798,14 @@ function Demo() {
                     )}
                   </div>
                 ))}
-                {isThinking && <div className={`rounded-2xl border p-4 text-sm ${skin.panel}`}>RIA is processing protected memory and next action...</div>}
+                {isThinking && <div className={`rounded-lg border p-4 text-sm ${skin.panel}`}>RIA is processing protected memory, routing, and next action...</div>}
                 <div ref={scrollRef} />
               </div>
             </div>
 
-            <div className={`rounded-2xl border p-5 ${skin.shell}`}>
+            <div className={`rounded-lg border p-5 ${skin.shell}`}>
               <div className="flex items-center justify-between">
-                <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>RECENT ACTIVITY</p>
+                <p className={`text-xs font-semibold tracking-[0.2em] ${skin.muted}`}>SYSTEM ACTIVITY</p>
                 <span className={`text-xs ${skin.muted}`}>{memory.timeline.length} SIGNALS</span>
               </div>
               <div className="mt-5 space-y-4">
@@ -1712,13 +1819,21 @@ function Demo() {
                   </div>
                 ))}
               </div>
-              <button onClick={() => setActiveTab('memory')} className={`mt-5 w-full rounded-full border px-5 py-3 text-sm font-medium ${skin.panel}`}>Open evolution history</button>
+              <div className="mt-5 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10">
+                {demoModuleInsights.map(([label, copy]) => (
+                  <div key={label} className={`p-3 ${isLight ? 'bg-white/70' : 'bg-black/20'}`}>
+                    <p className="text-sm font-semibold">{label}</p>
+                    <p className={`mt-1 text-xs ${skin.muted}`}>{copy}</p>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => setActiveTab('memory')} className={`mt-5 w-full rounded-full border px-5 py-3 text-sm font-medium ${skin.panel}`}>Open memory graph</button>
             </div>
               </div>
             </>
           )}
 
-          <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className={`mx-auto mt-4 max-w-[78rem] rounded-2xl border p-4 sm:p-6 ${skin.shell}`}>
+          <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className={`mx-auto mt-4 max-w-[78rem] rounded-lg border p-4 sm:p-6 ${skin.shell}`}>
             {renderActiveModule()}
           </motion.div>
         </main>

@@ -241,7 +241,10 @@ a {
   }
 
   .ria-site .max-w-\[1500px\] {
-    max-width: 24rem;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 390px;
+    width: 100%;
   }
 
   .ria-site section:not(.ria-demo) h1,
