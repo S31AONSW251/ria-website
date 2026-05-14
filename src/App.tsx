@@ -554,22 +554,24 @@ function Header() {
       </div>
       {open && (
         <div className="border-t border-white/10 bg-black/85 px-4 py-5 backdrop-blur-2xl">
-          <div className="mx-auto grid max-w-[1500px] gap-6 lg:grid-cols-4">
-            {groups.map((group) => (
-              <div key={group}>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-200/75">{group}</p>
-                <div className="grid gap-2">
-                  {pageLinks
-                    .filter((item) => item.group === group)
-                    .map((item) => (
-                      <Link key={item.path} to={item.path} className="rounded-lg border border-white/10 bg-white/[0.03] p-3 transition hover:border-cyan-200/35 hover:bg-white/[0.06]">
-                        <span className="block text-sm font-semibold text-white">{item.label}</span>
-                        <span className="mt-1 block text-xs leading-5 text-zinc-400">{item.description}</span>
-                      </Link>
-                    ))}
+          <div className="mx-auto max-h-[calc(100svh-5rem)] max-w-[1500px] overflow-y-auto pr-1 lg:max-h-none lg:overflow-visible lg:pr-0">
+            <div className="grid gap-6 lg:grid-cols-4">
+              {groups.map((group) => (
+                <div key={group}>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-200/75">{group}</p>
+                  <div className="grid gap-2">
+                    {pageLinks
+                      .filter((item) => item.group === group)
+                      .map((item) => (
+                        <Link key={item.path} to={item.path} className="rounded-lg border border-white/10 bg-white/[0.03] p-3 transition hover:border-cyan-200/35 hover:bg-white/[0.06]">
+                          <span className="block text-sm font-semibold text-white">{item.label}</span>
+                          <span className="mt-1 block text-xs leading-5 text-zinc-400">{item.description}</span>
+                        </Link>
+                      ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -2170,7 +2172,36 @@ function InvestorsPage() {
       <section className="py-20">
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
           <SectionIntro eyebrow="Competitive Matrix" title="RIA is designed to win on continuity." copy="The wedge is not generic generation. It is memory, reflection, belief analysis, identity continuity, and evolution tracking." />
-          <div className="mt-12 overflow-x-auto rounded-lg border border-white/10">
+          <div className="mt-12 space-y-3 md:hidden">
+            {competitiveRows.map((row) => (
+              <Reveal key={`mobile-${row[0]}`} className="rounded-lg border border-white/10 bg-black/40 p-4">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200/80">{row[0]}</p>
+                <div className="mt-3 space-y-2">
+                  {competitiveHeaders.slice(1).map((heading, index) => {
+                    const cell = row[index + 1]
+                    const isRia = heading.label === 'RIA'
+                    return (
+                      <div key={`${row[0]}-${heading.label}`} className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-black/35 px-3 py-2">
+                        <span className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-300">
+                          {heading.logo ? (
+                            <img
+                              src={heading.logo}
+                              alt=""
+                              className={`h-3.5 w-3.5 shrink-0 object-contain ${heading.invert ? 'invert opacity-90' : 'opacity-95'}`}
+                              loading="lazy"
+                            />
+                          ) : null}
+                          {heading.label}
+                        </span>
+                        <span className={`text-sm font-semibold ${isRia ? 'text-cyan-100' : 'text-zinc-200'}`}>{cell}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-12 hidden overflow-x-auto rounded-lg border border-white/10 md:block">
             <table className="w-full min-w-[760px] border-collapse bg-black/40 text-left text-sm">
               <thead>
                 <tr className="border-b border-white/10 text-zinc-400">
