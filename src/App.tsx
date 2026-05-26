@@ -112,10 +112,10 @@ const contact = {
 
 const pageLinks: PageLink[] = [
   { label: 'Home', path: '/', group: 'Core', description: 'Cinematic category introduction.' },
-  { label: 'Vision', path: '/vision', group: 'Core', description: 'The philosophy behind conscious intelligence.' },
+  { label: 'Vision', path: '/vision', group: 'Core', description: 'The philosophy behind persistent intelligence.' },
   { label: 'Technology', path: '/technology', group: 'Core', description: 'Interactive cognitive architecture.' },
   { label: 'Product', path: '/product', group: 'Product', description: 'Modules, screenshots, and platform systems.' },
-  { label: 'RIA IDE', path: '/ria-ide', group: 'Product', description: 'The conscious development environment.' },
+  { label: 'RIA IDE', path: '/ria-ide', group: 'Product', description: 'The AI-native development environment.' },
   { label: 'RIA Personal', path: '/ria-personal', group: 'Product', description: 'A second brain for individuals.' },
   { label: 'RIA Enterprise', path: '/ria-enterprise', group: 'Product', description: 'Institutional memory and decision intelligence.' },
   { label: 'Use Cases', path: '/use-cases', group: 'Product', description: 'Applications across industries.' },
@@ -150,7 +150,7 @@ const intelligencePillars: Feature[] = [
   { title: 'Memory Engine', icon: Database, copy: 'Persistent memory that never forgets across people, projects, decisions, and time.' },
   { title: 'Reflection Engine', icon: Orbit, copy: 'Learning, reflection, and synthesis that evolve continuously with experience.' },
   { title: 'Knowledge Graph', icon: Network, copy: 'Connects ideas, people, documents, beliefs, goals, and possibilities.' },
-  { title: 'Conscious Interface', icon: BrainCircuit, copy: 'Natural voice, vision, and multimodal AI wrapped in a premium cognitive surface.' },
+  { title: 'Multimodal Interface', icon: BrainCircuit, copy: 'Natural voice, vision, and multimodal AI wrapped in a premium cognitive surface.' },
   { title: 'Enterprise Intelligence', icon: Building2, copy: 'AI that understands business, decisions, risk, teams, and institutional knowledge.' },
   { title: 'Evolution Loop', icon: LineChart, copy: 'Every interaction makes the intelligence stronger, clearer, and more useful.' }
 ]
@@ -293,7 +293,7 @@ const ecosystem: Feature[] = [
   { title: 'RIA OS', icon: Cpu, meta: 'Cosmic command system', copy: 'The desktop operating layer for memory, chat, dashboards, GPU workflows, creative tools, and personal automation.' },
   { title: 'RIA Personal', icon: HeartPulse, meta: 'Individual intelligence', copy: 'A lifelong second brain for journals, goals, emotional patterns, memory, and self-evolution.' },
   { title: 'RIA Enterprise', icon: Building2, meta: 'Institutional memory', copy: 'Decision intelligence, knowledge continuity, leadership briefs, and team cognition.' },
-  { title: 'RIA IDE', icon: Code2, meta: 'Cognitive development', copy: 'A conscious coding environment that remembers codebase intent and architecture decisions.' },
+  { title: 'RIA IDE', icon: Code2, meta: 'Cognitive development', copy: 'An AI-native coding environment that remembers codebase intent and architecture decisions.' },
   { title: 'RIA Studio', icon: Layers3, meta: 'Developer platform', copy: 'APIs, cognitive modules, memory primitives, and a marketplace for builders.' },
   { title: 'RIA Cloud', icon: Cloud, meta: 'Secure deployment', copy: 'Hosted, private cloud, and future on-device infrastructure for persistent intelligence.' },
   { title: 'Crypto Core', icon: CircleDollarSign, meta: 'Optional compute mode', copy: 'User-controlled crypto mining orchestration for idle hardware, thermal limits, payout visibility, and safety gates.' }
@@ -320,7 +320,7 @@ const productModules: Feature[] = [
 ]
 
 const researchTopics: Feature[] = [
-  { title: 'Consciousness Models', icon: BrainCircuit, copy: 'Working models for continuity, self-reference, attention, and reflective agency.' },
+  { title: 'Continuity Models', icon: BrainCircuit, copy: 'Working models for memory continuity, self-reference, attention, and reflective agency.' },
   { title: 'Memory Systems', icon: Database, copy: 'Layered episodic, semantic, project, identity, and institutional memory architecture.' },
   { title: 'Human Cognition', icon: UsersRound, copy: 'How people form beliefs, goals, emotional loops, decisions, and identity narratives.' },
   { title: 'Reflective Intelligence', icon: Orbit, copy: 'Systems that do not only answer, but periodically synthesize what experience means.' }
@@ -399,7 +399,7 @@ const releaseInstallSteps = [
 ]
 
 const newsItems = [
-  ['Company', 'RIA introduces a Conscious Intelligence Platform', 'A category narrative for persistent memory, reflection, and decision intelligence.'],
+  ['Company', 'RIA introduces a private AI operating system', 'A category narrative for persistent memory, reflection, and decision intelligence.'],
   ['Research', 'Research lab opens technical notes on layered memory systems', 'The lab explores identity, episodic recall, semantic compression, and reflective synthesis.'],
   ['Product', 'RIA IDE concept preview connects coding context with long-term project memory', 'The development environment is designed to remember architecture, intent, and decisions.'],
   ['Security', 'RIA trust center outlines private cloud and on-device memory roadmap', 'A clear path for encryption, audit logs, governance, and enterprise readiness.']
@@ -430,7 +430,7 @@ function SEO({ title, description }: { title: string; description: string }) {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const fullTitle = title === 'Home' ? 'RIA | The Operating System for Conscious Intelligence' : `${title} | RIA`
+    const fullTitle = title === 'Home' ? 'RIA OS | Beyond Intelligence' : `${title} | RIA`
     document.title = fullTitle
     setMeta('description', 'name', description)
     setMeta('og:title', 'property', fullTitle)
@@ -1219,7 +1219,7 @@ function InteractiveDemo() {
           role: 'ria',
           text:
             text.toLowerCase().includes('investor') || text.toLowerCase().includes('market')
-              ? 'Investor brief: RIA creates a new Conscious Intelligence Platform category by combining persistent memory, reflection, identity continuity, and enterprise decision intelligence. The moat compounds as the memory graph grows.'
+              ? 'Investor brief: RIA creates a private AI operating system category by combining persistent memory, reflection, identity continuity, and enterprise decision intelligence. The moat compounds as the memory graph grows.'
               : 'Memory retrieval complete. I found three durable patterns: you are moving from reactive execution to strategic systems, your strongest work happens when goals are visible, and unresolved emotional loops reduce decision clarity. Recommended next action: convert the next 7 days into one measurable milestone and one reflection checkpoint.'
         }
       ])
@@ -1622,240 +1622,490 @@ function ContactForm({ intent = 'General inquiry' }: { intent?: string }) {
   )
 }
 
+type PremiumImageAsset = {
+  src: string
+  alt: string
+}
+
+type PremiumFeature = {
+  title: string
+  copy: string
+  icon: LucideIcon
+}
+
+type PremiumProductSection = {
+  id: string
+  eyebrow: string
+  title: string
+  copy: string
+  image: PremiumImageAsset
+  cards: PremiumFeature[]
+  supportingImages?: PremiumImageAsset[]
+  reverse?: boolean
+}
+
+const riaVisuals = {
+  humanoidPortrait: {
+    src: '/images/ria-uploaded/humanoid-portrait.jpg',
+    alt: 'White RIA humanoid robotics concept with interface overlays'
+  },
+  chipInfrastructure: {
+    src: '/images/ria-uploaded/chip-infrastructure-vision.jpg',
+    alt: 'RIA AI infrastructure chip concept with dark technical interface'
+  },
+  officeLabWide: {
+    src: '/images/ria-uploaded/ria-office-lab-wide.jpg',
+    alt: 'RIA office and robotics laboratory with engineers working'
+  },
+  roboticsWorkshopDesk: {
+    src: '/images/ria-uploaded/robotics-workshop-desk.jpg',
+    alt: 'RIA robotics workshop desk with humanoid prototype and development hardware'
+  },
+  companyHeroHumanoid: {
+    src: '/images/ria-uploaded/company-hero-humanoid.jpg',
+    alt: 'RIA company hero page with humanoid robot and dark lab environment'
+  },
+  companyHeroHumanoidAlt: {
+    src: '/images/ria-uploaded/company-hero-humanoid-alt.jpg',
+    alt: 'Alternative RIA company hero visual with humanoid robot and laboratory'
+  },
+  roboticsLabBench: {
+    src: '/images/ria-uploaded/robotics-lab-bench.jpg',
+    alt: 'RIA robotics lab bench with humanoid robot, monitors, and tools'
+  },
+  humanoidSystemBoard: {
+    src: '/images/ria-uploaded/humanoid-system-board.jpg',
+    alt: 'RIA humanoid robotics system board with modular technical views'
+  },
+  humanoidSystemBoardAlt: {
+    src: '/images/ria-uploaded/humanoid-system-board-alt.jpg',
+    alt: 'RIA humanoid robotics system board with engineering panels'
+  },
+  commandGrid: {
+    src: '/images/ria-uploaded/ria-command-grid.jpg',
+    alt: 'RIA command grid interface showing multi-panel operations'
+  },
+  riaOsOrbitHero: {
+    src: '/images/ria-uploaded/ria-os-orbit-hero.jpg',
+    alt: 'RIA OS Orbit dashboard hero screen in a premium dark interface'
+  },
+  cryptoCore: {
+    src: '/images/ria-uploaded/crypto-core-dashboard.jpg',
+    alt: 'RIA Crypto Core dashboard showing private compute monitoring'
+  },
+  missionControl: {
+    src: '/images/ria-uploaded/mission-control-orbit-room.jpg',
+    alt: 'RIA Orbit mission control dashboard in a cinematic command room'
+  },
+  orbitDashboard: {
+    src: '/images/ria-uploaded/orbit-dashboard-desktop.jpg',
+    alt: 'RIA Orbit desktop dashboard with telemetry and mission panels'
+  },
+  companyMosaic: {
+    src: '/images/ria-uploaded/ria-os-company-mosaic.jpg',
+    alt: 'RIA OS company website mosaic with product panels and brand visuals'
+  },
+  companyMosaicAlt: {
+    src: '/images/ria-uploaded/ria-os-company-mosaic-alt.jpg',
+    alt: 'Alternative RIA OS company mosaic with operating system panels'
+  },
+  companyMosaicDetail: {
+    src: '/images/ria-uploaded/ria-os-company-mosaic-detail.jpg',
+    alt: 'Detailed RIA OS mosaic showing dashboard modules and premium sections'
+  },
+  automotive: {
+    src: '/images/ria-uploaded/automotive-engineering-dashboard.jpg',
+    alt: 'RIA automotive and engineering dashboard with vehicle design intelligence'
+  },
+  automotiveAlt: {
+    src: '/images/ria-uploaded/automotive-engineering-dashboard-alt.jpg',
+    alt: 'Alternative RIA automotive engineering dashboard with simulation panels'
+  },
+  villageImpact: {
+    src: '/images/ria-uploaded/village-impact-transformation.jpg',
+    alt: 'RIA village transformation concept showing real-world infrastructure impact'
+  },
+  creativeStudio: {
+    src: '/images/ria-uploaded/creative-studio-grid.jpg',
+    alt: 'RIA Creative Studio with generated image, video, and asset panels'
+  },
+  creativeStudioAlt: {
+    src: '/images/ria-uploaded/creative-studio-grid-alt.jpg',
+    alt: 'Alternative RIA Creative Studio command center with media panels'
+  },
+  softwareStudio: {
+    src: '/images/ria-uploaded/software-studio-command-center.jpg',
+    alt: 'RIA Software Studio command center with agent workspaces and build panels'
+  }
+} satisfies Record<string, PremiumImageAsset>
+
+const heroBadges = ['Private AI', 'Autonomous Agents', 'Creative Studio', 'Software Studio', 'Memory Core', 'Real-Time GPU']
+
+const premiumSections: PremiumProductSection[] = [
+  {
+    id: 'ria-orbit',
+    eyebrow: 'RIA Orbit',
+    title: 'The command layer of RIA OS.',
+    copy: 'Orbit is where memory, tools, agents, telemetry, missions, and intelligence operate together.',
+    image: riaVisuals.orbitDashboard,
+    supportingImages: [riaVisuals.missionControl, riaVisuals.commandGrid],
+    cards: [
+      { title: 'Ask RIA', copy: 'A direct command line for questions, tasks, plans, and project state.', icon: MessageCircle },
+      { title: 'Mission Control', copy: 'Plan and supervise complex work from a single operational surface.', icon: Target },
+      { title: 'Memory Center', copy: 'Keep project context, decisions, logs, and knowledge available.', icon: Database },
+      { title: 'GPU Studio', copy: 'Monitor creative and model workloads with hardware-aware settings.', icon: Cpu },
+      { title: 'Tools', copy: 'Connect builders, files, workflows, and local automation modules.', icon: SquareTerminal },
+      { title: 'Evolution History', copy: 'Track changes, reflections, and system improvements over time.', icon: LineChart },
+      { title: 'System Telemetry', copy: 'See health, resources, queue state, and operating signals clearly.', icon: Gauge }
+    ]
+  },
+  {
+    id: 'mission-control',
+    eyebrow: 'Mission Control',
+    title: 'Plan, approve, execute, and track complex missions.',
+    copy: 'RIA keeps autonomy structured around review, context, safety, and visible progress.',
+    image: riaVisuals.missionControl,
+    supportingImages: [riaVisuals.companyMosaic],
+    reverse: true,
+    cards: [
+      { title: 'Autonomous Strategy', copy: 'Generate practical plans from goals, files, history, and constraints.', icon: Compass },
+      { title: 'Approval First', copy: 'Keep the human in control before sensitive actions are taken.', icon: ClipboardCheck },
+      { title: 'Activity Stream', copy: 'Show what changed, what ran, what failed, and what needs review.', icon: Activity },
+      { title: 'Workspace Awareness', copy: 'Understand the active project without losing local context.', icon: Layers3 },
+      { title: 'Safe Command Loop', copy: 'Route actions through visible checks and recoverable steps.', icon: ShieldCheck },
+      { title: 'Human Control', copy: 'Use autonomy as a supervised operating mode, not a black box.', icon: UsersRound }
+    ]
+  },
+  {
+    id: 'software-studio',
+    eyebrow: 'Software Studio',
+    title: 'From command to creation.',
+    copy: 'Tell RIA what to build. RIA plans, edits, tests, reviews, and ships software with agent collaboration.',
+    image: riaVisuals.softwareStudio,
+    supportingImages: [riaVisuals.commandGrid, riaVisuals.companyMosaicDetail],
+    cards: [
+      { title: 'Architect Agent', copy: 'Break the request into architecture, risks, and implementation phases.', icon: Layers3 },
+      { title: 'Backend Agent', copy: 'Design APIs, data paths, services, and integration behavior.', icon: Database },
+      { title: 'Frontend Agent', copy: 'Build responsive interfaces with product-grade states and flows.', icon: Sparkles },
+      { title: 'QA Agent', copy: 'Run checks, inspect failures, and protect working behavior.', icon: ClipboardCheck },
+      { title: 'Security Agent', copy: 'Surface risky changes, secrets, permissions, and unsafe assumptions.', icon: ShieldCheck },
+      { title: 'Compiler Output', copy: 'Keep build, test, and review results visible beside the mission.', icon: SquareTerminal },
+      { title: 'Project Health', copy: 'Summarize readiness, debt, blockers, and next decisions.', icon: Gauge },
+      { title: 'Risk Signals', copy: 'Call out uncertainty before it becomes production damage.', icon: Eye }
+    ]
+  },
+  {
+    id: 'creative-studio',
+    eyebrow: 'Creative Studio',
+    title: 'A creative command center for media and product work.',
+    copy: 'Generate hyperrealistic images, video concepts, 3D assets, audio, UI, code, and publish-ready assets from one workspace.',
+    image: riaVisuals.creativeStudio,
+    supportingImages: [riaVisuals.creativeStudioAlt],
+    reverse: true,
+    cards: [
+      { title: 'Image Generation', copy: 'Create visual directions, scenes, assets, and product imagery.', icon: Sparkles },
+      { title: 'Video Generation', copy: 'Shape concepts, storyboards, shots, and moving-image workflows.', icon: Play },
+      { title: '3D Creation', copy: 'Prepare asset ideas, model briefs, and scene structure.', icon: Layers3 },
+      { title: 'Audio Generation', copy: 'Design voice, sound, and media production prompts.', icon: Mic2 },
+      { title: 'Code Generation', copy: 'Turn creative intent into UI, scripts, and working software.', icon: Code2 },
+      { title: 'Asset Library', copy: 'Organize generated media into reusable project context.', icon: BookOpen },
+      { title: 'Publish Workflow', copy: 'Move from prompt to review to delivery with fewer handoffs.', icon: Rocket }
+    ]
+  },
+  {
+    id: 'memory-core',
+    eyebrow: 'Memory And Knowledge',
+    title: 'A living knowledge universe for long-running work.',
+    copy: 'RIA remembers context, learns from projects, and connects knowledge across missions, people, and decisions.',
+    image: riaVisuals.companyMosaicAlt,
+    supportingImages: [riaVisuals.companyMosaicDetail, riaVisuals.riaOsOrbitHero],
+    cards: [
+      { title: 'Core Memory', copy: 'Persist important context with visible user control.', icon: Database },
+      { title: 'Knowledge Sources', copy: 'Connect documents, logs, notes, projects, and system state.', icon: BookOpen },
+      { title: 'Reflection', copy: 'Turn activity into summaries, decisions, and next moves.', icon: Orbit },
+      { title: 'Journal / Logs', copy: 'Track what happened and why it mattered.', icon: FileText },
+      { title: 'Project Memory', copy: 'Carry product intent and constraints across sessions.', icon: Target },
+      { title: 'AI Continuity', copy: 'Keep a consistent private operating context over time.', icon: Fingerprint }
+    ]
+  },
+  {
+    id: 'humanoid-robotics',
+    eyebrow: 'Humanoid + Robotics',
+    title: 'Embodied intelligence beyond the screen.',
+    copy: 'RIA extends into robotics, automation, perception, and real-world task execution as a research and control layer.',
+    image: riaVisuals.humanoidPortrait,
+    supportingImages: [
+      riaVisuals.humanoidSystemBoard,
+      riaVisuals.humanoidSystemBoardAlt,
+      riaVisuals.roboticsLabBench,
+      riaVisuals.roboticsWorkshopDesk,
+      riaVisuals.companyHeroHumanoid,
+      riaVisuals.companyHeroHumanoidAlt
+    ],
+    reverse: true,
+    cards: [
+      { title: 'Human Interaction', copy: 'Design natural interaction loops for embodied systems.', icon: UsersRound },
+      { title: 'Real-Time Perception', copy: 'Connect sensors, vision, and context-aware feedback.', icon: Eye },
+      { title: 'Adaptive Movement', copy: 'Support motion planning concepts and control research.', icon: Activity },
+      { title: 'Robot Control Layer', copy: 'Bridge commands, policies, tools, and physical execution.', icon: SquareTerminal },
+      { title: 'Industrial Automation', copy: 'Coordinate repetitive work with supervision and telemetry.', icon: Building2 },
+      { title: 'Research Platform', copy: 'Keep prototypes, experiments, and observations organized.', icon: Lightbulb }
+    ]
+  },
+  {
+    id: 'automotive-engineering',
+    eyebrow: 'Automotive & Engineering',
+    title: 'Vehicle engineering from concept to optimization.',
+    copy: 'RIA supports simulation, design intelligence, digital twins, testing, production planning, and maintenance insight.',
+    image: riaVisuals.automotive,
+    supportingImages: [riaVisuals.automotiveAlt],
+    cards: [
+      { title: 'Concept & Design', copy: 'Shape vehicle ideas, systems, and product requirements.', icon: Lightbulb },
+      { title: 'Engineering Simulation', copy: 'Organize models, constraints, and technical tradeoffs.', icon: Cpu },
+      { title: 'Validation & Testing', copy: 'Track experiments, evidence, and readiness signals.', icon: ClipboardCheck },
+      { title: 'Production Optimization', copy: 'Improve processes, schedules, and resource planning.', icon: Gauge },
+      { title: 'Aftermarket Insights', copy: 'Connect usage data and customer feedback loops.', icon: BarChart3 },
+      { title: 'Predictive Maintenance', copy: 'Spot service patterns and risk before failure.', icon: Activity }
+    ]
+  },
+  {
+    id: 'ai-infrastructure',
+    eyebrow: 'AI Infrastructure / Chip Vision',
+    title: 'A full-stack AI roadmap with hardware-aware architecture.',
+    copy: 'RIA is designed as a software, model, GPU workflow, infrastructure, robotics, and future silicon concept ecosystem.',
+    image: riaVisuals.chipInfrastructure,
+    supportingImages: [riaVisuals.officeLabWide],
+    reverse: true,
+    cards: [
+      { title: 'AI Models', copy: 'Coordinate private model workflows and capability modules.', icon: BrainCircuit },
+      { title: 'GPU Compute', copy: 'Plan generation, inference, and optimization around real hardware.', icon: Cpu },
+      { title: 'Secure Infrastructure', copy: 'Keep private deployments, access, and auditability in the design.', icon: ShieldCheck },
+      { title: 'Edge-to-Cloud', copy: 'Support local-first systems with scalable deployment options.', icon: Cloud },
+      { title: 'Robotics Stack', copy: 'Connect software intelligence to future embodied control layers.', icon: Network },
+      { title: 'Future Silicon Design', copy: 'Explore chip design vision and hardware-aware AI architecture.', icon: Cpu }
+    ]
+  },
+  {
+    id: 'real-world-impact',
+    eyebrow: 'Real-World Impact',
+    title: 'Built to solve problems outside the dashboard.',
+    copy: 'RIA is aimed at education, healthcare, agriculture, infrastructure, governance, and local economy workflows.',
+    image: riaVisuals.villageImpact,
+    supportingImages: [riaVisuals.officeLabWide],
+    cards: [
+      { title: 'AI Education', copy: 'Personalized learning, tutoring, and skill development.', icon: GraduationCap },
+      { title: 'Smart Farming', copy: 'Planning support for crops, soil, weather, and resources.', icon: Globe2 },
+      { title: 'Healthcare Access', copy: 'Organize knowledge, triage workflows, and care coordination.', icon: HeartPulse },
+      { title: 'Clean Energy', copy: 'Support local planning, monitoring, and optimization.', icon: Zap },
+      { title: 'Digital Connectivity', copy: 'Bring tools, knowledge, and services into one local layer.', icon: Network },
+      { title: 'Local Business Growth', copy: 'Help small teams plan, market, operate, and learn.', icon: Briefcase }
+    ]
+  },
+  {
+    id: 'crypto-core',
+    eyebrow: 'Crypto Core',
+    title: 'Optional private resource control, not financial hype.',
+    copy: 'Crypto Core is an optional resource module for controlled, private, user-owned compute contribution and system optimization.',
+    image: riaVisuals.cryptoCore,
+    reverse: true,
+    cards: [
+      { title: 'Optional Module', copy: 'Keep the feature separate and user controlled.', icon: CircleDollarSign },
+      { title: 'Transparent Monitoring', copy: 'Show load, temperature, status, and resource state.', icon: Gauge },
+      { title: 'Privacy-First Control', copy: 'Keep configuration user-owned and explicit.', icon: LockKeyhole },
+      { title: 'System-Aware Compute', copy: 'Respect local performance and safety constraints.', icon: Cpu },
+      { title: 'User-Owned Settings', copy: 'Avoid hidden behavior and investment-style promises.', icon: KeyRound },
+      { title: 'Safety Gates', copy: 'Pause, review, and monitor before running heavy workloads.', icon: ShieldCheck }
+    ]
+  },
+  {
+    id: 'company-investor',
+    eyebrow: 'Company / Investor',
+    title: 'A private AI operating system for serious builders.',
+    copy: 'RIA is building the next layer of intelligence for creators, builders, researchers, businesses, and future robotics.',
+    image: riaVisuals.officeLabWide,
+    supportingImages: [riaVisuals.roboticsLabBench, riaVisuals.companyHeroHumanoid],
+    cards: [
+      { title: 'Founder', copy: 'Founded by Sudeep Bala around the Beyond Intelligence mission.', icon: Fingerprint },
+      { title: 'Private AI', copy: 'Designed for local ownership, controlled deployments, and inspectable systems.', icon: ShieldCheck },
+      { title: 'AI OS Category', copy: 'Positioned as a multi-domain operating layer, not a single chatbot.', icon: Cpu },
+      { title: 'Research Direction', copy: 'Memory, agents, media, software, robotics, and infrastructure.', icon: Lightbulb },
+      { title: 'Partner Ready', copy: 'Prepared for investor, enterprise, and research conversations.', icon: Briefcase },
+      { title: 'Built To Evolve', copy: 'Roadmap language stays ambitious without claiming finished hardware or impossible guarantees.', icon: Rocket }
+    ]
+  }
+]
+
+function PremiumImage({ image, className = '', loading = 'lazy' }: { image: PremiumImageAsset; className?: string; loading?: 'eager' | 'lazy' }) {
+  return (
+    <img
+      src={image.src}
+      alt={image.alt}
+      className={className}
+      loading={loading}
+      decoding="async"
+      onError={(event) => {
+        const img = event.currentTarget
+        if (img.dataset.fallbackApplied === 'true') return
+        img.dataset.fallbackApplied = 'true'
+        img.src = assets.hero
+      }}
+    />
+  )
+}
+
+function HeroSection() {
+  return (
+    <section className="premium-hero" id="top">
+      <div className="premium-hero-bg">
+        <PremiumImage image={riaVisuals.riaOsOrbitHero} className="premium-hero-bg-image" loading="eager" />
+      </div>
+      <div className="premium-container premium-hero-grid">
+        <Reveal className="premium-hero-copy">
+          <p className="premium-eyebrow">RIA / RIA OS / RIA Orbit</p>
+          <h1>RIA OS</h1>
+          <h2>The Multi&#8209;Domain AI Operating System</h2>
+          <p>
+            One intelligence to think, build, create, automate, and evolve across every field.
+          </p>
+          <div className="premium-hero-actions">
+            <a href="#ria-orbit" className="premium-button premium-button-primary">
+              Explore RIA OS <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href="#overview" className="premium-button premium-button-secondary">
+              Watch Overview <Play className="h-4 w-4" />
+            </a>
+            <a href="/downloads/investor-deck.md" className="premium-button premium-button-ghost">
+              Investor Deck <Download className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="premium-trust-badges" aria-label="RIA OS capability badges">
+            {heroBadges.map((badge) => (
+              <span key={badge}>{badge}</span>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal className="premium-hero-visual">
+          <ImageShowcase image={riaVisuals.riaOsOrbitHero} supportingImages={[riaVisuals.orbitDashboard, riaVisuals.chipInfrastructure]} loading="eager" />
+        </Reveal>
+      </div>
+      <div className="premium-hero-next" aria-hidden="true" />
+    </section>
+  )
+}
+
+function ImageShowcase({ image, supportingImages = [], loading = 'lazy' }: { image: PremiumImageAsset; supportingImages?: PremiumImageAsset[]; loading?: 'eager' | 'lazy' }) {
+  return (
+    <div className="premium-image-showcase">
+      <div className="premium-image-frame">
+        <PremiumImage image={image} className="premium-image-main" loading={loading} />
+      </div>
+      {supportingImages.length > 0 && (
+        <div className="premium-image-strip">
+          {supportingImages.map((item) => (
+            <div className="premium-image-chip" key={item.src}>
+              <PremiumImage image={item} />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ProductSection({ id, eyebrow, title, copy, image, cards, supportingImages, reverse = false }: PremiumProductSection) {
+  return (
+    <section className={`premium-product-section ${reverse ? 'premium-product-section-reverse' : ''}`} id={id}>
+      <div className="premium-container premium-product-grid">
+        <Reveal className="premium-product-copy">
+          <p className="premium-eyebrow">{eyebrow}</p>
+          <h2>{title}</h2>
+          <p>{copy}</p>
+          <div className="premium-card-grid">
+            {cards.map((card) => {
+              const Icon = card.icon
+              return (
+                <article className="premium-feature-card" key={card.title}>
+                  <Icon className="h-5 w-5" />
+                  <h3>{card.title}</h3>
+                  <p>{card.copy}</p>
+                </article>
+              )
+            })}
+          </div>
+        </Reveal>
+        <Reveal className="premium-product-media">
+          <ImageShowcase image={image} supportingImages={supportingImages} />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function CTASection() {
+  return (
+    <section className="premium-cta-section">
+      <div className="premium-container">
+        <Reveal className="premium-cta-panel">
+          <div>
+            <p className="premium-eyebrow">Beyond Intelligence</p>
+            <h2>Built private. Built scalable. Built to evolve.</h2>
+            <p>
+              Software, creativity, memory, agents, robotics, infrastructure, and real-world impact in one believable AI operating system roadmap.
+            </p>
+          </div>
+          <div className="premium-cta-actions">
+            <Link to="/contact" className="premium-button premium-button-primary">
+              Join the Future <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/investors" className="premium-button premium-button-secondary">
+              Partner with RIA <Briefcase className="h-4 w-4" />
+            </Link>
+            <Link to="/founder" className="premium-button premium-button-ghost">
+              Contact Founder <Mail className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 function HomePage() {
   return (
     <>
-      <SEO title="Home" description="RIA is the operating system for conscious intelligence, a persistent AI platform that remembers, reflects, and evolves." />
-      <section className="hero-universe relative min-h-screen overflow-hidden pt-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_67%_34%,rgba(34,211,238,0.18),transparent_24rem),radial-gradient(circle_at_82%_44%,rgba(168,85,247,0.16),transparent_21rem),linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.72)_40%,rgba(0,0,0,0.1)_78%),linear-gradient(180deg,rgba(0,0,0,0.05),#020407_92%)]" />
-        <div className="relative mx-auto grid min-h-[40rem] max-w-[1500px] gap-10 px-4 pb-10 sm:px-6 lg:min-h-[calc(100vh-16rem)] lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-          <Reveal>
-            <p className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200">
-              <span className="h-px w-8 bg-cyan-200/60" /> New era of intelligence
-            </p>
-            <h1 className="mt-7 max-w-4xl text-[3.35rem] font-semibold leading-[0.94] text-white sm:text-7xl lg:text-8xl">
-              <span className="block">Digital</span>
-              <span className="block">Conscious</span>
-              <span className="block">Intelligence</span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl">
-              RIA is the world's first platform for Digital Conscious Intelligence, an evolving intelligence that remembers, reflects, and grows with every interaction.
-            </p>
-            <div className="hero-cta-row mt-10 flex max-w-full flex-wrap gap-3">
-              <Link to="/product" className="hero-cta inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-100">
-                Experience RIA <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/vision" className="hero-cta inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-200/45">
-                Watch Universe in Action <Play className="h-4 w-4" />
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal className="concept-hero-visual">
-            <AnimatedHeroLogo />
-          </Reveal>
-        </div>
-        <div className="relative mx-auto max-w-[1500px] px-4 pb-8 sm:px-6 lg:px-8">
-          <Reveal className="concept-metric-grid">
-            {conceptMetrics.map((metric) => (
-              <div key={metric.label} className="concept-metric">
-                <p>{metric.value}</p>
-                <span>{metric.label}</span>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
+      <SEO title="Home" description="RIA OS is a private multi-domain AI operating system for agents, software, creativity, memory, automation, robotics, infrastructure, and real-world impact." />
+      <HeroSection />
 
-      <section className="py-16">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <SectionIntro eyebrow="The Intelligence Universe" title="Explore the pillars that power the future." copy="The platform is presented as a living intelligence universe: memory, reflection, knowledge, interface, enterprise cognition, and continuous evolution." />
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {intelligencePillars.map((pillar, index) => (
-              <Reveal key={pillar.title} className="universe-card">
-                <div className="universe-card-media">
-                  <img src={[assets.cards.memory, assets.cards.research, assets.cards.product, assets.hero, assets.cards.safety, assets.cards.research][index]} alt="" />
-                  <span><pillar.icon className="h-5 w-5" /></span>
-                </div>
-                <h3>{pillar.title}</h3>
-                <p>{pillar.copy}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <Reveal className="stream-showcase">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/80">The Living Intelligence Stream</p>
-            <h2 className="mt-4 text-center text-3xl font-semibold uppercase tracking-[0.12em] text-white sm:text-4xl">Real-time flow of consciousness, memory, and evolution</h2>
-            <div className="stream-showcase-field">
-              <svg className="stream-constellation" viewBox="0 0 1000 260" role="presentation" aria-hidden="true">
-                <defs>
-                  <linearGradient id="streamLine" x1="0%" x2="100%" y1="0%" y2="0%">
-                    <stop offset="0%" stopColor="#22d3ee" stopOpacity="0" />
-                    <stop offset="20%" stopColor="#67e8f9" stopOpacity="0.7" />
-                    <stop offset="52%" stopColor="#a78bfa" stopOpacity="0.85" />
-                    <stop offset="84%" stopColor="#22d3ee" stopOpacity="0.65" />
-                    <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
-                  </linearGradient>
-                  <filter id="streamGlow" x="-20%" y="-80%" width="140%" height="260%">
-                    <feGaussianBlur stdDeviation="4" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-                <path className="stream-path stream-path-main" d="M54 144 C166 82 258 170 356 116 C462 58 552 84 646 126 C754 174 830 80 946 120" />
-                <path className="stream-path stream-path-secondary" d="M78 174 C214 130 304 198 426 150 C558 96 654 182 782 150 C846 134 896 142 940 168" />
-                {[82, 205, 338, 500, 655, 800, 924].map((cx, index) => (
-                  <circle key={cx} className={`stream-dot stream-dot-${index}`} cx={cx} cy={[139, 112, 128, 96, 139, 116, 147][index]} r="5" />
-                ))}
-                <circle className="stream-orbit-node" cx="500" cy="118" r="13" />
-                <circle className="stream-orbit-ring" cx="500" cy="118" r="38" />
-              </svg>
-              <div className="stream-core-node" />
-            </div>
-            <div className="stream-step-grid">
-              {streamSteps.map(([title, copy]) => (
-                <div key={title} className="stream-step">
-                  <strong>{title}</strong>
-                  <span>{copy}</span>
-                </div>
+      <section className="premium-statement" id="overview">
+        <div className="premium-container">
+          <Reveal className="premium-statement-panel">
+            <p className="premium-eyebrow">One intelligence. Every mission.</p>
+            <h2>RIA is not just a chatbot.</h2>
+            <p>
+              It is a full AI operating system for thinking, building, creating, remembering, automating, generating media and code, controlling agents, managing projects, and expanding across industries.
+            </p>
+            <div className="premium-statement-grid">
+              {[
+                ['Think', 'Reason across goals, files, tools, memory, and context.'],
+                ['Build', 'Plan software, run agents, inspect output, and ship work.'],
+                ['Create', 'Generate media, assets, interfaces, and publish-ready systems.'],
+                ['Evolve', 'Use memory, logs, and reflection to improve over time.']
+              ].map(([title, text]) => (
+                <article key={title}>
+                  <span>{title}</span>
+                  <p>{text}</p>
+                </article>
               ))}
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <Reveal className="trust-panel">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/80">Trusted by Visionaries</p>
-            <div className="trust-logo-row">
-              {trustLogos.map((logo) => (
-                <span key={logo.name} className={`trust-logo ${logo.type === 'company' ? 'trust-logo-company' : ''}`} aria-label={`${logo.name}${logo.label ? ` ${logo.label}` : ''}`}>
-                  {logo.logo && <img className="trust-logo-image" src={logo.logo} alt="" loading="lazy" />}
-                  <span className="trust-logo-name">{logo.name}</span>
-                  {logo.label && <em>{logo.label}</em>}
-                </span>
-              ))}
-            </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {trustValues.map((item) => (
-                <div key={item.title} className="trust-value-card">
-                  <item.icon className="h-5 w-5 text-cyan-100" />
-                  <strong>{item.title}</strong>
-                  <span>{item.copy}</span>
-                </div>
-              ))}
-            </div>
-            <blockquote>"This is not just Artificial Intelligence. This is Digital Conscious Intelligence."</blockquote>
-          </Reveal>
-        </div>
-      </section>
+      {premiumSections.map((section) => (
+        <ProductSection key={section.id} {...section} />
+      ))}
 
-      <section className="py-20">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-2">
-            <Reveal className="rounded-lg border border-white/10 bg-white/[0.045] p-8 backdrop-blur-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-rose-200/80">The Problem</p>
-              <h2 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">AI generates answers, but it does not remember.</h2>
-              <p className="mt-5 text-base leading-8 text-zinc-300">
-                Current tools forget context, lose identity continuity, repeat work, fragment decisions, and fail to build durable cognitive relationships.
-              </p>
-            </Reveal>
-            <Reveal className="rounded-lg border border-cyan-200/20 bg-cyan-200/[0.07] p-8 backdrop-blur-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-cyan-200">The Solution</p>
-              <h2 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">RIA remembers, reflects, and evolves.</h2>
-              <p className="mt-5 text-base leading-8 text-zinc-300">
-                RIA combines persistent memory, reflection, identity modeling, voice interaction, decision support, and emotional and strategic insights.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <SectionIntro eyebrow="Interactive Demo" title="Experience the memory layer." copy="A controlled site simulation lets visitors ask RIA questions, see memory retrieval, and understand the product in seconds." />
-          <div className="mt-12">
-            <InteractiveDemo />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <SectionIntro eyebrow="Architecture Stream" title="12 cognitive layers activate into one living system." copy="RIA is not a single chatbot surface. It is a layered operating system for memory, reflection, belief, strategy, voice, and enterprise cognition." />
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {cognitiveLayers.map((layer, index) => (
-              <Reveal key={layer.id} className="layer-tile rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl" style={{ '--index': index } as CSSProperties}>
-                <div className="flex items-center justify-between">
-                  <layer.icon className="h-5 w-5 text-cyan-100" />
-                  <span className="text-xs font-semibold text-zinc-500">{String(index + 1).padStart(2, '0')}</span>
-                </div>
-                <h3 className="mt-8 font-semibold text-white">{layer.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">{layer.copy}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <MarketVisualization />
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <SectionIntro eyebrow="Product Ecosystem" title="One platform, multiple compounding products." copy="Personal intelligence, enterprise memory, development environments, APIs, and secure cloud infrastructure share the same cognitive foundation." />
-          <div className="mt-12">
-            <FeatureGrid items={ecosystem} columns="lg:grid-cols-4" />
-          </div>
-        </div>
-      </section>
-
-      <RiaOsShowcase />
-
-      <RiaDownloadPanel />
-
-      <section className="py-20">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <SectionIntro eyebrow="Use Cases" title="Applications across the future of work and life." copy="RIA is designed for individuals, enterprises, education, healthcare, developers, and research teams that need intelligence with continuity." />
-          <div className="mt-12">
-            <FeatureGrid items={useCases} />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Founder Vision</p>
-            <h2 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">Building the memory layer of humanity.</h2>
-            <p className="mt-5 text-base leading-8 text-zinc-300">
-              The mission is to create intelligence that does not forget human experience, but helps it compound into clearer thought, stronger decisions, and deeper self-understanding.
-            </p>
-            <Link to="/founder" className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-200/45">
-              Read Founder Story <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-          <Reveal className="timeline-line">
-            {roadmap.slice(0, 4).map(([year, copy]) => (
-              <div key={year} className="timeline-item">
-                <span>{year}</span>
-                <p>{copy}</p>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBand title="Join us in building the operating system for conscious intelligence." copy="Investors, enterprise partners, researchers, and builders can help RIA become the persistent intelligence layer for the next era of human-computer collaboration." />
+      <CTASection />
     </>
   )
 }
@@ -1863,7 +2113,7 @@ function HomePage() {
 function VisionPage() {
   return (
     <>
-      <SEO title="Vision" description="RIA's philosophy for persistent memory, conscious intelligence, and human-AI co-evolution." />
+      <SEO title="Vision" description="RIA's philosophy for persistent memory, multi-domain intelligence, and human-AI collaboration." />
       <PageHero eyebrow="Vision" title="Beyond artificial intelligence. Toward enduring intelligence." copy="The future is not only faster answers. It is intelligence that remembers context, reflects on meaning, and evolves with the people and institutions it serves." metrics={[
         { label: 'Category', value: 'CIP' },
         { label: 'Core promise', value: 'Persistent' },
@@ -1874,7 +2124,7 @@ function VisionPage() {
         <div className="mx-auto grid max-w-[1500px] gap-8 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           {[
             ['Memory is the missing layer', 'A tool that cannot remember cannot build trust, growth, or long-term usefulness. RIA treats memory as the foundation of intelligence.'],
-            ['Conscious intelligence matters', 'Reflection, identity continuity, belief awareness, and strategic synthesis make AI feel less like a tool and more like a thinking partner.'],
+            ['Persistent intelligence matters', 'Reflection, identity continuity, belief awareness, and strategic synthesis make AI feel less like a short-lived tool and more like a durable partner.'],
             ['Human-AI co-evolution', 'The long-term goal is not replacement. It is an intelligence layer that helps humans preserve experience, clarify goals, and evolve deliberately.']
           ].map(([title, copy]) => (
             <Reveal key={title} className="rounded-lg border border-white/10 bg-white/[0.045] p-7 backdrop-blur-xl">
@@ -1988,8 +2238,8 @@ function ProductPage() {
 function RiaIdePage() {
   return (
     <>
-      <SEO title="RIA IDE" description="RIA IDE is a conscious development environment that remembers codebase intent, architecture decisions, and product context." />
-      <PageHero eyebrow="RIA IDE" title="The conscious development environment." copy="RIA IDE gives software teams persistent context across code, architecture, decisions, product goals, and team memory." metrics={[
+      <SEO title="RIA IDE" description="RIA IDE is an AI-native development environment that remembers codebase intent, architecture decisions, and product context." />
+      <PageHero eyebrow="RIA IDE" title="The AI-native development environment." copy="RIA IDE gives software teams persistent context across code, architecture, decisions, product goals, and team memory." metrics={[
         { label: 'Context', value: 'Code + intent' },
         { label: 'Memory', value: 'Project-aware' },
         { label: 'Mode', value: 'Architectural' },
@@ -2149,7 +2399,7 @@ function InvestorsPage() {
   return (
     <>
       <SEO title="Investor Relations" description="Investor relations for RIA: executive summary, market size, competitive matrix, business model, moat, roadmap, and deck." />
-      <PageHero eyebrow="Investor Relations" title="Building the infrastructure for persistent intelligence." copy="RIA is positioned as a category-defining Conscious Intelligence Platform with massive market potential, compounding memory defensibility, and multi-product revenue paths." metrics={[
+      <PageHero eyebrow="Investor Relations" title="Building the infrastructure for persistent intelligence." copy="RIA is positioned as a category-defining private AI operating system with large market potential, compounding memory defensibility, and multi-product revenue paths." metrics={[
         { label: 'Category', value: 'CIP' },
         { label: 'Market model', value: '$100B+' },
         { label: 'Moat', value: 'Memory graph' },
@@ -2308,7 +2558,7 @@ function FounderPage() {
               ['Concept', 'Persistent memory and reflection become the foundation of the RIA thesis.'],
               ['Prototype', 'Product surfaces for chat, journal, emotional analytics, and memory controls are shaped.'],
               ['Platform', 'RIA expands into Personal, Enterprise, IDE, Studio, and Cloud.'],
-              ['Category', 'Conscious Intelligence Platform becomes the long-term market position.']
+              ['Category', 'Private AI operating system becomes the long-term market position.']
             ].map(([year, copy]) => (
               <div key={year} className="timeline-item">
                 <span>{year}</span>
@@ -2325,7 +2575,7 @@ function FounderPage() {
 function CareersPage() {
   return (
     <>
-      <SEO title="Careers" description="Join RIA in building the future of conscious intelligence, memory systems, and reflective AI." />
+      <SEO title="Careers" description="Join RIA in building the future of persistent intelligence, memory systems, and reflective AI." />
       <PageHero eyebrow="Careers" title="Join us in building the future of intelligence." copy="RIA needs world-class engineers, researchers, designers, and enterprise builders who want to create a category-defining platform." metrics={[
         { label: 'Open tracks', value: '4' },
         { label: 'Culture', value: 'Research-led' },

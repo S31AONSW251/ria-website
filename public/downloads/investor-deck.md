@@ -2,11 +2,11 @@
 
 ## Core Thesis
 
-RIA is the operating system for conscious intelligence: a persistent AI platform that remembers, reflects, evolves, and becomes more valuable every day.
+RIA OS is a private multi-domain AI operating system for agents, software, creativity, memory, automation, robotics, infrastructure, and real-world impact.
 
 ## Category
 
-Conscious Intelligence Platform (CIP)
+Private AI Operating System
 
 ## Why Now
 
@@ -16,7 +16,7 @@ Generative AI made intelligence abundant, but most tools still lack durable memo
 
 - RIA Personal: lifelong second brain and reflection companion.
 - RIA Enterprise: institutional memory and decision intelligence.
-- RIA IDE: conscious development environment for software teams.
+- RIA IDE: AI-native development environment for software teams.
 - RIA Studio: developer platform and cognitive module marketplace.
 - RIA Cloud: secure hosted and private deployment infrastructure.
 
