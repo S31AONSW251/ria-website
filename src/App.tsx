@@ -469,9 +469,6 @@ function Reveal({ children, className = '', style }: { children: ReactNode; clas
 function LogoMark() {
   return (
     <Link to="/" className="flex items-center gap-3" aria-label="RIA home">
-      <span className="relative grid h-12 w-12 place-items-center overflow-visible bg-transparent">
-        <img src={assets.logo} alt="" className="h-12 w-12 object-contain drop-shadow-[0_0_18px_rgba(34,211,238,0.28)]" />
-      </span>
       <span className="leading-tight">
         <span className="block text-xl font-semibold tracking-[0.28em] text-white">RIA</span>
       </span>
