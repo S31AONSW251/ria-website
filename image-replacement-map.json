@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-06-02T00:00:00Z",
+  "changes": [
+    {
+      "key": "assets.logo",
+      "old": "/images/aion-uploaded/ria-brain-logo.webp",
+      "new": "/images/logos/ria-logo.png",
+      "confidence": 0.95,
+      "note": "Replace header logo with provided RIA logo file."
+    },
+    {
+      "key": "assets.hero",
+      "old": "/images/aion-uploaded/defensecore-dashboard.png",
+      "new": "/images/ria-uploaded/ria-os-orbit-hero.jpg",
+      "confidence": 0.9,
+      "note": "Use RIA orbit hero image for main hero section."
+    },
+    {
+      "key": "assets.aion.brainLogo",
+      "old": "/images/aion-uploaded/ria-brain-logo.webp",
+      "new": "/images/logos/ria-conscious-logo.png",
+      "confidence": 0.85,
+      "note": "Use consciousness-mark variant for internal brand placements."
+    }
+  ]
+}

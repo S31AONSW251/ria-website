@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
-import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useLocation, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import CosmosBackground from './components/CosmosBackground'
 import {
@@ -94,8 +94,22 @@ type TrustLogo = {
 }
 
 const assets = {
-  logo: '/images/logos/ria-conscious-logo.png',
-  hero: '/images/hero/ria-hero.jpg',
+  // Primary brand logo: use RIA logos folder (production-ready)
+  logo: '/images/logos/ria-logo.png',
+  // Page hero: strong visual using RIA orbit imagery
+  hero: '/images/ria-uploaded/ria-os-orbit-hero.jpg',
+  aion: {
+    // AION archives (kept for historical reference)
+    hero: '/images/aion-uploaded/defensecore-dashboard.png',
+    command: '/images/aion-uploaded/defensecore-command.png',
+    creativeWall: '/images/aion-uploaded/creative-intelligence-wall.jpg',
+    creativeWallAlt: '/images/aion-uploaded/creative-intelligence-wall-alt.jpg',
+    creativeStudio: '/images/aion-uploaded/creative-studio-dashboard.png',
+    brainLogo: '/images/logos/ria-conscious-logo.png',
+    brainStructure: '/images/aion-uploaded/ria-brain-structure.png',
+    launchPoster: '/images/aion-uploaded/launch-poster.png',
+    ringMark: '/images/aion-uploaded/ria-ring-mark.png'
+  },
   cards: {
     product: '/images/cards/product.jpg',
     research: '/images/cards/research.jpg',
@@ -110,13 +124,17 @@ const contact = {
   location: 'India'
 }
 
+const WEB_APP_URL = '/'
+const riaReleaseDate = 'June 21, 2026'
+const riaReleaseDateShort = '21 June 2026'
+
 const pageLinks: PageLink[] = [
-  { label: 'Home', path: '/', group: 'Core', description: 'Cinematic category introduction.' },
+  { label: 'RIA Home', path: '/', group: 'Core', description: 'Premium launch experience.' },
   { label: 'Vision', path: '/vision', group: 'Core', description: 'The philosophy behind persistent intelligence.' },
   { label: 'Technology', path: '/technology', group: 'Core', description: 'Interactive cognitive architecture.' },
   { label: 'Product', path: '/product', group: 'Product', description: 'Modules, screenshots, and platform systems.' },
-  { label: 'RIA IDE', path: '/ria-ide', group: 'Product', description: 'The AI-native development environment.' },
-  { label: 'RIA Personal', path: '/ria-personal', group: 'Product', description: 'A second brain for individuals.' },
+  { label: 'RIA Studio', path: '/ria-ide', group: 'Product', description: 'The AI-native development environment.' },
+  { label: 'RIA OS', path: '/ria-personal', group: 'Product', description: 'The private intelligence operating layer.' },
   { label: 'RIA Enterprise', path: '/ria-enterprise', group: 'Product', description: 'Institutional memory and decision intelligence.' },
   { label: 'Use Cases', path: '/use-cases', group: 'Product', description: 'Applications across industries.' },
   { label: 'Research Lab', path: '/research-lab', group: 'Core', description: 'Memory, cognition, and reflection R&D.' },
@@ -125,7 +143,7 @@ const pageLinks: PageLink[] = [
   { label: 'Careers', path: '/careers', group: 'Company', description: 'Join the team building RIA.' },
   { label: 'Newsroom', path: '/newsroom', group: 'Company', description: 'Announcements, releases, and updates.' },
   { label: 'Documentation', path: '/documentation', group: 'Trust', description: 'API references and developer guides.' },
-  { label: 'Download RIA', path: '/download', group: 'Trust', description: 'Release access, requirements, and install guide.' },
+  { label: 'RIA Launch', path: '/download', group: 'Trust', description: 'Server launch status, requirements, and install guide.' },
   { label: 'Security & Privacy', path: '/security-privacy', group: 'Trust', description: 'Enterprise-grade trust center.' },
   { label: 'Contact', path: '/contact', group: 'Trust', description: 'Meetings, partnerships, and inquiries.' }
 ]
@@ -166,7 +184,7 @@ const streamSteps = [
 ]
 
 const trustLogos: TrustLogo[] = [
-  { name: 'AION', type: 'partner' },
+  { name: 'RIA', type: 'partner' },
   { name: 'NASA', type: 'partner', logo: '/images/trust/nasa.svg' },
   { name: 'Google Cloud', type: 'partner', logo: '/images/trust/google-cloud.svg' },
   { name: 'Microsoft', type: 'partner', logo: '/images/trust/microsoft.svg' },
@@ -373,7 +391,6 @@ const downloads = [
   { title: 'RIA Release Guide', href: '/downloads/ria-release-guide.md', copy: 'Release date, requirements, one-click launcher, and local install path.' }
 ]
 
-const riaReleaseDate = 'June 21, 2026'
 
 const releaseHighlights: Feature[] = [
   { title: 'Local-First Runtime', icon: Database, copy: 'Memory, logs, generated media, reflections, and user state are designed around local ownership and inspection.' },
@@ -406,11 +423,18 @@ const newsItems = [
 ]
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
+    if (hash) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+      return
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [pathname])
+  }, [hash, pathname])
 
   return null
 }
@@ -430,15 +454,14 @@ function SEO({ title, description }: { title: string; description: string }) {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const fullTitle = title === 'Home' ? 'RIA OS | Beyond Intelligence' : `${title} | RIA`
+    const fullTitle = title === 'Home' ? 'RIA | Private AI Studio' : `${title} | RIA`
     document.title = fullTitle
     setMeta('description', 'name', description)
     setMeta('og:title', 'property', fullTitle)
     setMeta('og:description', 'property', description)
     setMeta('twitter:title', 'name', fullTitle)
     setMeta('twitter:description', 'name', description)
-
-    const canonicalHref = `https://ria-intelligence.com${pathname === '/' ? '/' : pathname}`
+    const canonicalHref = `${window.location.origin}${pathname === '/' ? '/' : pathname}`
     let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
     if (!canonical) {
       canonical = document.createElement('link')
@@ -471,6 +494,7 @@ function LogoMark() {
     <Link to="/" className="flex items-center gap-3" aria-label="RIA home">
       <span className="leading-tight">
         <span className="block text-xl font-semibold tracking-[0.28em] text-white">RIA</span>
+        <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-cyan-200/70">AIONtec</span>
       </span>
     </Link>
   )
@@ -481,7 +505,7 @@ function AnimatedHeroLogo() {
     <div className="hero-logo-stage" aria-hidden="true">
       <div className="hero-logo-aura" />
       <div className="hero-logo-core">
-        <img src={assets.logo} alt="" />
+        <img src={assets.logo} alt="RIA brain logo" />
       </div>
     </div>
   )
@@ -491,14 +515,12 @@ function Header() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const primary = [
-    { label: 'Home', path: '/' },
-    { label: 'Vision', path: '/vision' },
-    { label: 'Technology', path: '/technology' },
-    { label: 'Product', path: '/product' },
-    { label: 'Solutions', path: '/use-cases' },
-    { label: 'Research', path: '/research-lab' },
-    { label: 'Investor', path: '/investors' },
-    { label: 'Company', path: '/founder' }
+    { label: 'RIA', to: '/#top' },
+    { label: 'Studio', to: '/#what-is' },
+    { label: 'RIA OS Lab', to: '/#ria-orbit' },
+    { label: 'Try RIA', href: WEB_APP_URL },
+    { label: 'Roadmap', to: '/#roadmap' },
+    { label: 'Investor Brief', to: '/investors' }
   ]
   const groups = useMemo(() => ['Core', 'Product', 'Company', 'Trust'] as const, [])
 
@@ -512,15 +534,25 @@ function Header() {
         <LogoMark />
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
           {primary.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `rounded-full px-4 py-2 text-sm font-medium transition ${isActive ? 'bg-white text-black' : 'text-zinc-300 hover:bg-white/10 hover:text-white'}`
-              }
-            >
-              {item.label}
-            </NavLink>
+            'href' in item ? (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full px-4 py-2 text-sm font-medium text-zinc-300 transition hover:bg-white/10 hover:text-white"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${location.pathname === item.to ? 'bg-white text-black' : 'text-zinc-300 hover:bg-white/10 hover:text-white'}`}
+              >
+                {item.label}
+              </Link>
+            )
           ))}
           <button
             type="button"
@@ -532,11 +564,17 @@ function Header() {
           </button>
         </nav>
         <div className="hidden items-center gap-3 md:flex">
-          <Link to="/documentation" className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:border-white/35">
-            Docs
+          <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="rounded-md bg-cyan-500/10 border border-cyan-200/10 px-4 py-2 text-sm font-medium text-cyan-100 hover:bg-cyan-500/12">
+            Try RIA
+          </a>
+          <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noreferrer" className="rounded-md bg-purple-500/10 border border-purple-200/10 px-4 py-2 text-sm font-medium text-purple-100 hover:bg-purple-500/12">
+            Try AION
+          </a>
+          <Link to="/download" className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:border-white/35">
+            Launch Gate
           </Link>
           <Link to="/contact" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-100">
-            Schedule Meeting
+            Request Brief
           </Link>
         </div>
         <button
@@ -551,6 +589,14 @@ function Header() {
       </div>
       {open && (
         <div className="border-t border-white/10 bg-black/85 px-4 py-5 backdrop-blur-2xl">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-cyan-500/10 border border-cyan-200/20 px-4 py-3 text-sm font-semibold text-cyan-100">
+              Try RIA
+            </a>
+            <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-purple-500/10 border border-purple-200/20 px-4 py-3 text-sm font-semibold text-purple-100">
+              Try AION
+            </a>
+          </div>
           <div className="mx-auto max-h-[calc(100svh-5rem)] max-w-[1500px] overflow-y-auto pr-1 lg:max-h-none lg:overflow-visible lg:pr-0">
             <div className="grid gap-6 lg:grid-cols-4">
               {groups.map((group) => (
@@ -906,10 +952,10 @@ const neuralSpherePresets: Record<NeuralSphereVariant, NeuralSpherePreset> = {
   },
   contact: {
     nodeCount: 138,
-    pointColor: 0xfde68a,
-    lineColor: 0xfbbf24,
-    coreColor: 0xf97316,
-    ringColor: 0xfdba74,
+    pointColor: 0xcffafe,
+    lineColor: 0x67e8f9,
+    coreColor: 0x38bdf8,
+    ringColor: 0x93c5fd,
     pointOpacity: 0.9,
     lineOpacity: 0.17,
     spinY: 0.0022,
@@ -1445,6 +1491,316 @@ function RiaOsShowcase() {
   )
 }
 
+function ProblemSection() {
+  const cards = [
+    ['Generic AI looks temporary.', 'RIA feels like a studio product.', 'The site now leads with real app surfaces, launch assets, and a stronger product hierarchy.'],
+      ['Small brands over-explain.', 'RIA shows the system.', 'Dashboards, brain visuals, DefenseCore, Creative Studio, and launch materials carry the story visually.'],
+      ['Broken CTAs lose trust.', 'RIA sets a launch gate.', `Server access is framed clearly around ${riaReleaseDateShort}, so the button does not feel misleading.`],
+      ['RIA is a product layer.', 'RIA is the app brand.', 'RIA OS remains visible as the deeper private intelligence system inside the RIA ecosystem.']
+  ]
+
+  return (
+    <section className="ria-section" id="problem">
+      <div className="premium-container">
+        <Reveal>
+          <p className="premium-eyebrow">Brand Fix</p>
+          <h2 className="ria-section-title">RIA is the app. RIA OS is the intelligence system inside it.</h2>
+          <p className="ria-section-copy">The site now separates the public RIA launch from the RIA OS product universe, so visitors understand what they can try, when the server opens, and why the product feels bigger than a normal AI page.</p>
+        </Reveal>
+
+        <div className="ria-problem-grid">
+          {cards.map(([setup, title, copy]) => (
+            <Reveal key={title} className="ria-glass-card ria-problem-card">
+              <p>{setup}</p>
+              <h3>{title}</h3>
+              <span>{copy}</span>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function WhatIsSection() {
+  const modules: Feature[] = [
+    { title: 'RIA App', icon: Globe2, copy: 'The public browser entry point, branded as RIA and prepared for launch after the server opens.' },
+    { title: 'RIA OS Lab', icon: Cpu, copy: 'The private operating system layer for memory, commands, dashboards, and local intelligence.' },
+    { title: 'DefenseCore', icon: ShieldCheck, copy: 'A serious command surface with maps, intelligence panels, telemetry, and operational dashboards.' },
+    { title: 'Creative Studio', icon: Sparkles, copy: 'A visual production layer for AI imagery, concepts, media, and product storytelling.' },
+    { title: 'RIA Brain', icon: BrainCircuit, copy: 'The brain-structure identity asset for memory, reasoning, action, reflection, and evolution.' },
+    { title: 'Launch Gate', icon: LockKeyhole, copy: `The server availability message is visible: RIA opens after ${riaReleaseDateShort}.` },
+    { title: 'Investor Surface', icon: Briefcase, copy: 'A premium studio presentation for partners, early users, and future investors.' },
+    { title: 'Private Runtime', icon: Database, copy: 'A controlled private server and future desktop pathway instead of a toy landing page.' },
+    { title: 'RIA Brand', icon: Building2, copy: 'A cleaner parent-company story: made in India, built for a global AI product category.' }
+  ]
+
+  return (
+    <section className="ria-section" id="what-is">
+      <div className="premium-container">
+        <SectionIntro
+          eyebrow="What RIA Is"
+          title="A premium AI app and studio operating layer."
+          copy="RIA is the public app and brand experience for AIONtec. RIA OS, RIA Brain, DefenseCore, Creative Studio, and the private server launch sit inside that ecosystem."
+        />
+        <div className="ria-module-grid">
+          <FeatureGrid items={modules} />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ArchitectureBlueprint() {
+  const nodes = [
+    ['RIA User', 'The person entering through the public app and launch gateway.'],
+    ['RIA Interface', 'Try RIA, server gate, dashboard, app shell, and product navigation.'],
+    ['RIA Brain', 'Memory, reasoning, emotion, action, reflection, and evolution modules.'],
+    ['RIA OS Runtime', 'Private intelligence workspace for commands, tools, and local systems.'],
+    ['DefenseCore', 'Operational maps, intelligence streams, alerts, and command workflows.'],
+    ['Creative Studio', 'Image, video, media, UI, code, and campaign production surface.'],
+    ['Launch System', 'June 21 gate, release notice, install path, and controlled access.'],
+    ['AIONtec Studio', 'Brand, investor surface, roadmap, and long-term category direction.']
+  ]
+
+  return (
+    <section className="ria-section" id="architecture">
+      <div className="premium-container">
+        <Reveal>
+          <p className="premium-eyebrow">RIA Brain Architecture</p>
+          <h2 className="ria-section-title">The brain system becomes a premium visual asset.</h2>
+          <p className="ria-section-copy">The uploaded RIA Brain structure is now part of the site narrative: RIA is the app, RIA Brain is the intelligence diagram, and RIA OS is the deeper operating layer.</p>
+        </Reveal>
+
+        <div className="aion-brain-layout">
+          <Reveal className="aion-brain-media">
+            <ImageShowcase image={aionVisuals.brainStructure} supportingImages={[aionVisuals.brainLogo, aionVisuals.ringMark]} />
+          </Reveal>
+          <div className="ria-blueprint">
+            {nodes.map(([title, copy], index) => (
+              <Reveal key={title} className="ria-blueprint-step">
+                <div className="ria-blueprint-node">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </div>
+                {index < nodes.length - 1 && <ArrowRight className="ria-blueprint-arrow" aria-hidden="true" />}
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function TryRiaNow() {
+  const cards: Feature[] = [
+    { title: 'RIA Web App', icon: Globe2, copy: 'The public browser experience is branded as RIA.' },
+    { title: 'Server Launch Gate', icon: LockKeyhole, copy: `Access starts after ${riaReleaseDateShort}; the site makes that status visible.` },
+    { title: 'No Desktop Setup', icon: Cloud, copy: 'The first public path is browser-first while deeper RIA OS systems stay staged.' },
+    { title: 'Launch Poster Ready', icon: Sparkles, copy: 'The uploaded June 21 poster now supports the official release story.' },
+    { title: 'RIA OS Preview', icon: Download, copy: 'Screenshots stay visible as product proof and future desktop direction.' }
+  ]
+
+  return (
+    <section className="ria-section" id="try-now">
+      <div className="premium-container">
+        <Reveal>
+          <p className="premium-eyebrow">Try RIA</p>
+          <h2 className="ria-section-title">Try RIA after the June 21 server opening.</h2>
+          <p className="ria-section-copy">RIA is the app users will try. The CTA now points to the RIA web app while the page clearly says server access opens after {riaReleaseDateShort}.</p>
+        </Reveal>
+
+        <div className="ria-try-grid">
+          {cards.map((card) => {
+            const Icon = card.icon
+            return (
+              <Reveal key={card.title} className="ria-glass-card ria-try-card">
+                <Icon className="h-5 w-5" />
+                <h3>{card.title}</h3>
+                <p>{card.copy}</p>
+              </Reveal>
+            )
+          })}
+        </div>
+
+        <div className="ria-section-actions">
+          <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="premium-button premium-button-primary">
+            Try RIA <ArrowRight className="h-4 w-4" />
+          </a>
+          <Link to="/download" className="premium-button premium-button-secondary">
+            Launch Details <FileText className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function RiaOrbitSection() {
+  const features = [
+    'Private local memory',
+    'Project-aware intelligence',
+    'Teach-once memory',
+    'Avatar and voice',
+    'Software Studio',
+    'Safe self-upgrade system',
+    'Windows desktop build'
+  ]
+
+  return (
+    <section className="ria-section" id="ria-orbit">
+      <div className="premium-container ria-orbit-layout">
+        <Reveal>
+          <p className="premium-eyebrow">RIA Orbit</p>
+          <h2 className="ria-section-title">RIA Orbit — Desktop Intelligence for Windows</h2>
+          <p className="ria-section-copy">RIA Orbit is the first desktop body of RIA: a private AI workspace designed to run on your own machine with memory, tools, avatar, and local intelligence.</p>
+          <div className="ria-orbit-features">
+            {features.map((feature) => (
+              <span key={feature}>
+                <Check className="h-4 w-4" />
+                {feature}
+              </span>
+            ))}
+          </div>
+          <div className="ria-section-actions">
+            <Link to="/download" className="premium-button premium-button-primary">
+              Download RIA Orbit <Download className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
+        <Reveal className="ria-orbit-visual">
+          <ImageShowcase image={riaVisuals.riaOsOrbitHero} supportingImages={[riaVisuals.orbitDashboard]} />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function ProductJourney() {
+  const steps = ['RIA Web App', 'RIA Orbit Desktop', 'Memory Universe', 'Avatar Intelligence', 'Full RIA OS Ecosystem']
+
+  return (
+    <section className="ria-section" id="product-journey">
+      <div className="premium-container">
+        <Reveal>
+          <p className="premium-eyebrow">Product Journey</p>
+          <h2 className="ria-section-title">From Web Preview to RIA OS</h2>
+          <p className="ria-section-copy">The web app is the public entry point. RIA Orbit is the deeper desktop intelligence system with local memory, software studio, avatar, and private runtime.</p>
+        </Reveal>
+
+        <div className="ria-journey-flow">
+          {steps.map((step, index) => (
+            <Reveal key={step} className="ria-journey-step">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step}</h3>
+              {index < steps.length - 1 && <ArrowRight className="ria-journey-arrow" aria-hidden="true" />}
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function InvestorResearchSection() {
+  const cards: Feature[] = [
+    { title: 'Market Direction', icon: LineChart, copy: 'Personal intelligence is moving from disposable chat to persistent operating systems.' },
+    { title: 'Technical Direction', icon: Cpu, copy: 'Memory, reasoning, autonomy, local AI, and knowledge graphs become one architecture.' },
+    { title: 'Product Direction', icon: Rocket, copy: 'Web preview, desktop Orbit, avatar, voice, software tools, and safe evolution.' },
+    { title: 'Long-Term Vision', icon: Globe2, copy: 'A private intelligence ecosystem for life, work, research, creativity, and growth.' }
+  ]
+
+  return (
+    <section className="ria-section" id="investor-research">
+      <div className="premium-container">
+        <Reveal>
+          <p className="premium-eyebrow">Investor / Research</p>
+          <h2 className="ria-section-title">A New Category of Memory-Driven Personal Intelligence</h2>
+          <p className="ria-section-copy">RIA is not another chatbot. It is a persistent intelligence ecosystem combining memory, reasoning, autonomy, local AI, knowledge graphs, software tools, and safe evolution.</p>
+        </Reveal>
+
+        <FeatureGrid items={cards} columns="lg:grid-cols-4" />
+        <div className="ria-section-actions">
+          <Link to="/investors" className="premium-button premium-button-primary">
+            Request Investor Brief <FileText className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function TrustNote() {
+  return (
+    <section className="ria-trust-note" id="trust-note">
+      <div className="premium-container">
+        <div>
+          <strong>Early public preview.</strong>
+          <span>This is an early public preview. Features may evolve as RIA grows toward the full RIA OS ecosystem.</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function PublicDownloadSection() {
+  return (
+    <section className="ria-section" id="public-download">
+      <div className="premium-container">
+        <Reveal className="ria-download-callout">
+          <div>
+            <p className="premium-eyebrow">Public Download</p>
+            <h2 className="ria-section-title">Public Download</h2>
+            <p className="ria-section-copy">RIA Orbit public desktop release.</p>
+          </div>
+          <div className="ria-release-date">
+            <span>Public Download</span>
+            <strong>21 June 2026</strong>
+            <p>Made in India. Built for the World.</p>
+            <Link to="/download" className="premium-button premium-button-primary">
+              Download RIA Orbit <Download className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function RoadmapSection() {
+  const steps = [
+    ['Phase 1', 'RIA Orbit Desktop'],
+    ['Phase 2', 'Memory Universe'],
+    ['Phase 3', 'Avatar Intelligence'],
+    ['Phase 4', 'Software Studio'],
+    ['Phase 5', 'Autonomous Personal Intelligence'],
+    ['Phase 6', 'RIA OS Ecosystem']
+  ]
+
+  return (
+    <section className="ria-section" id="roadmap">
+      <div className="premium-container">
+        <Reveal>
+          <p className="premium-eyebrow">Roadmap</p>
+          <h2 className="ria-section-title">RIA OS Roadmap</h2>
+          <p className="ria-section-copy">A clean staged path from desktop intelligence to a full private personal intelligence operating system.</p>
+        </Reveal>
+
+        <div className="ria-roadmap-grid">
+          {steps.map(([phase, title]) => (
+            <Reveal key={phase} className="ria-glass-card ria-roadmap-card">
+              <p>{phase}</p>
+              <h3>{title}</h3>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function CtaBand({ title, copy, primary = 'Request Investor Deck', secondary = 'Schedule Meeting' }: { title: string; copy: string; primary?: string; secondary?: string }) {
   return (
     <section className="relative overflow-hidden py-20">
@@ -1736,11 +2092,47 @@ const riaVisuals = {
   }
 } satisfies Record<string, PremiumImageAsset>
 
-const heroBadges = ['Private AI', 'Autonomous Agents', 'Creative Studio', 'Software Studio', 'Memory Core', 'Real-Time GPU']
+const aionVisuals = {
+  defensecoreDashboard: {
+    src: assets.aion.hero,
+    alt: 'AION DefenseCore dashboard with satellite intelligence and command panels'
+  },
+  defensecoreCommand: {
+    src: assets.aion.command,
+    alt: 'AION DefenseCore command screen with operational metrics and intelligence cards'
+  },
+  creativeWall: {
+    src: assets.aion.creativeWall,
+    alt: 'RIA cinematic creative intelligence wall with generated visual assets'
+  },
+  creativeStudio: {
+    src: assets.aion.creativeStudio,
+    alt: 'RIA Creative Studio dashboard with media generation panels'
+  },
+  brainLogo: {
+    src: assets.aion.brainLogo,
+    alt: 'RIA brain logo designed for the RIA intelligence system'
+  },
+  brainStructure: {
+    src: assets.aion.brainStructure,
+    alt: 'RIA brain structure poster with intelligence modules and system diagram'
+  },
+  launchPoster: {
+    src: assets.aion.launchPoster,
+    alt: 'RIA launch poster announcing June 21, 2026'
+  },
+  ringMark: {
+    src: assets.aion.ringMark,
+    alt: 'RIA ring mark on a dark energy field'
+  }
+} satisfies Record<string, PremiumImageAsset>
+
+const heroBadges = ['RIA App', 'RIA OS Lab', 'DefenseCore', 'Creative Studio', 'Brain System', 'Private Server', '21 Jun', 'AIONtec']
+const riaCoreLabels = ['Memory', 'Reasoning', 'Reflection', 'Autonomy', 'Knowledge', 'Software', 'Avatar', 'Evolution']
 
 const premiumSections: PremiumProductSection[] = [
   {
-    id: 'ria-orbit',
+    id: 'ria-orbit-command',
     eyebrow: 'RIA Orbit',
     title: 'The command layer of RIA OS.',
     copy: 'Orbit is where memory, tools, agents, telemetry, missions, and intelligence operate together.',
@@ -1950,39 +2342,70 @@ function PremiumImage({ image, className = '', loading = 'lazy' }: { image: Prem
   )
 }
 
+function RiaCoreVisual() {
+  return (
+    <div className="ria-core-visual" aria-label="RIA OS core architecture visual">
+      <div className="ria-core-grid" aria-hidden="true" />
+      <div className="ria-core-orbit ria-core-orbit-a" aria-hidden="true" />
+      <div className="ria-core-orbit ria-core-orbit-b" aria-hidden="true" />
+      <div className="ria-core-orbit ria-core-orbit-c" aria-hidden="true" />
+      <div className="ria-core-nucleus">
+        <span>RIA</span>
+      </div>
+      {riaCoreLabels.map((label, index) => (
+        <span key={label} className={`ria-core-label ria-core-label-${index}`}>
+          {label}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 function HeroSection() {
   return (
     <section className="premium-hero" id="top">
-      <div className="premium-hero-bg">
-        <PremiumImage image={riaVisuals.riaOsOrbitHero} className="premium-hero-bg-image" loading="eager" />
+      <div className="premium-hero-bg" aria-hidden="true">
+        <PremiumImage image={aionVisuals.creativeWall} className="premium-hero-bg-image" loading="eager" />
       </div>
       <div className="premium-container premium-hero-grid">
         <Reveal className="premium-hero-copy">
-          <p className="premium-eyebrow">RIA / RIA OS / RIA Orbit</p>
-          <h1>RIA OS</h1>
-          <h2>The Multi&#8209;Domain AI Operating System</h2>
+          <p className="premium-eyebrow">RIA Studio / Launch Build</p>
+          <h1>RIA</h1>
+          <h2>The private AI app behind the RIA OS universe.</h2>
           <p>
-            One intelligence to think, build, create, automate, and evolve across every field.
+            RIA is the public app and command doorway for a private intelligence ecosystem: RIA OS, DefenseCore, Creative Studio, memory, brain structure, and future desktop intelligence.
+          </p>
+          <p className="premium-hero-support">
+            Server access opens after {riaReleaseDateShort}. Until launch, this site presents the studio build, product visuals, and the release path with a premium public face.
           </p>
           <div className="premium-hero-actions">
-            <a href="#ria-orbit" className="premium-button premium-button-primary">
-              Explore RIA OS <ArrowRight className="h-4 w-4" />
+            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="premium-button premium-button-primary">
+              Try RIA <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#overview" className="premium-button premium-button-secondary">
-              Watch Overview <Play className="h-4 w-4" />
-            </a>
-            <a href="/downloads/investor-deck.md" className="premium-button premium-button-ghost">
-              Investor Deck <Download className="h-4 w-4" />
-            </a>
+            <Link to="/download" className="premium-button premium-button-secondary">
+              Server Opens {riaReleaseDateShort} <LockKeyhole className="h-4 w-4" />
+            </Link>
+            <Link to="/#architecture" className="premium-button premium-button-ghost">
+              View RIA Brain <BrainCircuit className="h-4 w-4" />
+            </Link>
           </div>
-          <div className="premium-trust-badges" aria-label="RIA OS capability badges">
+          <div className="premium-trust-badges" aria-label="RIA capability badges">
             {heroBadges.map((badge) => (
               <span key={badge}>{badge}</span>
             ))}
           </div>
         </Reveal>
-        <Reveal className="premium-hero-visual">
-          <ImageShowcase image={riaVisuals.riaOsOrbitHero} supportingImages={[riaVisuals.orbitDashboard, riaVisuals.chipInfrastructure]} loading="eager" />
+        <Reveal className="premium-hero-visual aion-hero-visual">
+          <ImageShowcase
+            image={aionVisuals.launchPoster}
+            supportingImages={[aionVisuals.defensecoreDashboard, aionVisuals.creativeStudio, aionVisuals.brainStructure]}
+            loading="eager"
+          />
+          <div className="aion-hero-status">
+            <span>Launch Gate</span>
+            <strong>{riaReleaseDateShort}</strong>
+            <p>RIA server access begins after launch.</p>
+          </div>
         </Reveal>
       </div>
       <div className="premium-hero-next" aria-hidden="true" />
@@ -2044,21 +2467,21 @@ function CTASection() {
       <div className="premium-container">
         <Reveal className="premium-cta-panel">
           <div>
-            <p className="premium-eyebrow">Beyond Intelligence</p>
+            <p className="premium-eyebrow">AIONTEC / RIA OS</p>
             <h2>Built private. Built scalable. Built to evolve.</h2>
             <p>
-              Software, creativity, memory, agents, robotics, infrastructure, and real-world impact in one believable AI operating system roadmap.
+              The operating system for personal intelligence, designed from India for a global generation of builders, researchers, creators, and everyday users.
             </p>
           </div>
           <div className="premium-cta-actions">
-            <Link to="/contact" className="premium-button premium-button-primary">
-              Join the Future <ArrowRight className="h-4 w-4" />
+            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="premium-button premium-button-primary">
+              Try RIA Web App <ArrowRight className="h-4 w-4" />
+            </a>
+            <Link to="/download" className="premium-button premium-button-secondary">
+              Download RIA Orbit <Download className="h-4 w-4" />
             </Link>
-            <Link to="/investors" className="premium-button premium-button-secondary">
-              Partner with RIA <Briefcase className="h-4 w-4" />
-            </Link>
-            <Link to="/founder" className="premium-button premium-button-ghost">
-              Contact Founder <Mail className="h-4 w-4" />
+            <Link to="/investors" className="premium-button premium-button-ghost">
+              Request Investor Brief <FileText className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>
@@ -2067,26 +2490,231 @@ function CTASection() {
   )
 }
 
+function AionPage() {
+  return (
+    <>
+      <SEO
+        title="AION | Private AI Studio"
+        description="AION is an advanced creative intelligence and defense AI system. Explore the previous generation of AIONTEC's private AI studio built for production work."
+      />
+      <section className="ria-hero min-h-screen pt-32">
+        <div className="premium-container py-20">
+          <Reveal>
+            <p className="premium-eyebrow">AION Legacy</p>
+            <h1 className="ria-hero-title text-6xl">AION: The Creative Intelligence System</h1>
+            <h2 className="ria-hero-subtitle">Advanced creative dashboards, DefenseCore intelligence, and production-grade creative studios.</h2>
+            <p className="ria-hero-copy max-w-3xl text-lg">
+              AION was AIONTEC's foundational studio for creative intelligence and defense systems. While development has shifted to RIA OS, AION remains a powerful reference for the creative and intelligence architecture that powers modern AI studios.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-8">
+              <a
+                href="https://aion-aiontype1.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="premium-button premium-button-primary"
+              >
+                Try AION Studio <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link to="/" className="premium-button premium-button-ghost">
+                Back to RIA <ArrowLeft className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal className="premium-hero-visual aion-hero-visual mt-12">
+            <ImageShowcase
+              image={aionVisuals.defensecoreDashboard}
+              supportingImages={[aionVisuals.creativeStudio, aionVisuals.brainStructure]}
+              loading="eager"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="ria-section">
+        <div className="premium-container">
+          <Reveal>
+            <p className="premium-eyebrow">AION Systems</p>
+            <h2 className="ria-section-title">Three Core Intelligence Layers</h2>
+            <p className="ria-section-copy">DefenseCore, Creative Studio, and Brain Architecture formed the foundation of AION's intelligent systems.</p>
+          </Reveal>
+
+          <div className="ria-try-grid">
+            {[
+              {
+                icon: Shield,
+                title: 'DefenseCore',
+                copy: 'Advanced satellite intelligence, threat detection, and command-level decision support systems.'
+              },
+              {
+                icon: Sparkles,
+                title: 'Creative Studio',
+                copy: 'AI-native creative dashboards for image generation, video concepts, and asset design workflows.'
+              },
+              {
+                icon: BrainCircuit,
+                title: 'Brain Architecture',
+                copy: 'Sophisticated neural architecture for reasoning, memory, and multi-modal intelligence synthesis.'
+              }
+            ].map((card) => {
+              const Icon = card.icon
+              return (
+                <Reveal key={card.title} className="ria-glass-card ria-try-card">
+                  <Icon className="h-5 w-5" />
+                  <h3>{card.title}</h3>
+                  <p>{card.copy}</p>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="ria-section">
+        <div className="premium-container">
+          <Reveal>
+            <p className="premium-eyebrow">AION Dashboards</p>
+            <h2 className="ria-section-title">Production-Grade Interfaces</h2>
+            <p className="ria-section-copy">AION pioneered cinematic dashboards for intelligence operations and creative workflows.</p>
+          </Reveal>
+
+          <div className="ria-try-grid">
+            {[
+              {
+                icon: Gauge,
+                title: 'DefenseCore Command',
+                copy: 'Real-time operational dashboard with satellite views, threat intelligence, and command controls.'
+              },
+              {
+                icon: Palette,
+                title: 'Creative Intelligence Wall',
+                copy: 'Multi-panel creative workspace for visual generation, asset management, and creative direction.'
+              },
+              {
+                icon: Database,
+                title: 'Brain System Visualization',
+                copy: 'System architecture dashboard showing memory layers, reasoning networks, and intelligence flows.'
+              }
+            ].map((card) => {
+              const Icon = card.icon
+              return (
+                <Reveal key={card.title} className="ria-glass-card ria-try-card">
+                  <Icon className="h-5 w-5" />
+                  <h3>{card.title}</h3>
+                  <p>{card.copy}</p>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="ria-section">
+        <div className="premium-container">
+          <Reveal>
+            <p className="premium-eyebrow">AION and RIA</p>
+            <h2 className="ria-section-title">The Evolution of Intelligent Systems</h2>
+            <p className="ria-section-copy">AION's creative and defense intelligence systems inform the next generation of persistent AI architecture in RIA OS.</p>
+          </Reveal>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {[
+              {
+                title: 'AION Era',
+                items: [
+                  'Creative Intelligence dashboards',
+                  'DefenseCore operations systems',
+                  'Cinematic UI design language',
+                  'Multi-modal intelligence synthesis',
+                  'Production-grade security'
+                ]
+              },
+              {
+                title: 'RIA OS Direction',
+                items: [
+                  'Persistent memory architecture',
+                  'Reflective intelligence systems',
+                  'Desktop operating system layer',
+                  'Private local-first deployment',
+                  'Institutional memory and knowledge graphs'
+                ]
+              }
+            ].map((section) => (
+              <Reveal key={section.title} className="rounded-lg border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
+                <h3 className="mb-6 text-2xl font-semibold text-white">{section.title}</h3>
+                <ul className="space-y-3">
+                  {section.items.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400" />
+                      <span className="text-base text-zinc-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="ria-section">
+        <div className="premium-container">
+          <Reveal>
+            <p className="premium-eyebrow">What's Next</p>
+            <h2 className="ria-section-title">From AION to RIA OS</h2>
+            <p className="ria-section-copy">AION demonstrated the power of intelligent dashboards. RIA OS expands that vision to persistent memory, reflection, and lifelong intelligence.</p>
+          </Reveal>
+
+          <div className="flex flex-col gap-6 py-8">
+            {[
+              ['Jun 2026', 'RIA OS launches with persistent memory, voice, and local-first architecture'],
+              ['2027', 'Enterprise memory systems and institutional knowledge foundations'],
+              ['2028+', 'Global cognitive infrastructure across teams, education, and research']
+            ].map(([date, description]) => (
+              <Reveal key={date} className="grid gap-4 rounded-lg border border-white/10 bg-white/[0.04] p-6 lg:grid-cols-[200px_1fr]">
+                <span className="text-lg font-semibold text-cyan-200">{date}</span>
+                <p className="text-base text-zinc-300">{description}</p>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal className="mt-12 flex flex-wrap gap-4">
+            <a
+              href="https://aion-aiontype1.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="premium-button premium-button-primary"
+            >
+              Explore AION <ArrowRight className="h-4 w-4" />
+            </a>
+            <Link to="/" className="premium-button premium-button-secondary">
+              Learn About RIA <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  )
+}
+
 function HomePage() {
   return (
     <>
-      <SEO title="Home" description="RIA OS is a private multi-domain AI operating system for agents, software, creativity, memory, automation, robotics, infrastructure, and real-world impact." />
+      <SEO title="Home" description="AION is the premium AI app and studio launch gateway for RIA OS, DefenseCore, Creative Studio, RIA Brain, and private intelligence systems opening after June 21, 2026." />
       <HeroSection />
 
       <section className="premium-statement" id="overview">
         <div className="premium-container">
           <Reveal className="premium-statement-panel">
-            <p className="premium-eyebrow">One intelligence. Every mission.</p>
-            <h2>RIA is not just a chatbot.</h2>
+            <p className="premium-eyebrow">Made in India. Built for the World.</p>
+            <h2>AION is not a small chatbot website.</h2>
             <p>
-              It is a full AI operating system for thinking, building, creating, remembering, automating, generating media and code, controlling agents, managing projects, and expanding across industries.
+              AION is the launch brand for a serious AI studio: product systems, RIA OS visuals, brain architecture, creative intelligence, command dashboards, and a private server experience opening after {riaReleaseDateShort}.
             </p>
             <div className="premium-statement-grid">
               {[
-                ['Think', 'Reason across goals, files, tools, memory, and context.'],
-                ['Build', 'Plan software, run agents, inspect output, and ship work.'],
-                ['Create', 'Generate media, assets, interfaces, and publish-ready systems.'],
-                ['Evolve', 'Use memory, logs, and reflection to improve over time.']
+                ['Studio Grade', 'A cinematic brand system with real screenshots, launch assets, and clear product hierarchy.'],
+                ['AION App', 'The public app entry point and server-gated experience for users after launch.'],
+                ['RIA OS Lab', 'The deeper private intelligence operating layer, shown through dashboards and architecture.'],
+                ['Launch Ready', 'June 21 messaging, release gates, and premium investor-ready positioning.']
               ].map(([title, text]) => (
                 <article key={title}>
                   <span>{title}</span>
@@ -2098,9 +2726,21 @@ function HomePage() {
         </div>
       </section>
 
+      <ProblemSection />
+      <WhatIsSection />
+      <TryRiaNow />
+      <TrustNote />
+      <ArchitectureBlueprint />
+      <RiaOrbitSection />
+      <ProductJourney />
+      <InvestorResearchSection />
+      <PublicDownloadSection />
+
       {premiumSections.map((section) => (
         <ProductSection key={section.id} {...section} />
       ))}
+
+      <RoadmapSection />
 
       <CTASection />
     </>
@@ -2837,28 +3477,47 @@ function NotFoundPage() {
 function Footer() {
   return (
     <footer className="relative border-t border-white/10 py-12">
-      <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1.6fr] lg:px-8">
-        <div>
-          <LogoMark />
-          <p className="mt-5 max-w-md text-sm leading-7 text-zinc-400">
-            RIA is building persistent intelligence that remembers, reflects, evolves, and helps humanity think better.
-          </p>
+      <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
+        <div className="rounded-lg border border-white/10 bg-white/[0.03] p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-white">AIONTEC / RIA OS</p>
+            <p className="mt-1 text-sm text-zinc-300">Made in India. Built for the World.</p>
+          </div>
+          <div className="flex gap-3">
+            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
+              Try RIA Web App <ArrowRight className="h-4 w-4" />
+            </a>
+            <Link to="/download" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200">
+              Download RIA Orbit <Download className="h-4 w-4" />
+            </Link>
+            <Link to="/investors" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200">
+              Request Investor Brief <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {(['Core', 'Product', 'Company', 'Trust'] as const).map((group) => (
-            <div key={group}>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">{group}</p>
-              <div className="mt-4 grid gap-2">
-                {pageLinks
-                  .filter((item) => item.group === group)
-                  .map((item) => (
-                    <Link key={item.path} to={item.path} className="text-sm text-zinc-400 transition hover:text-white">
-                      {item.label}
-                    </Link>
-                  ))}
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
+          <div>
+            <LogoMark />
+            <p className="mt-5 max-w-md text-sm leading-7 text-zinc-400">
+              AIONTEC builds RIA OS, a private memory-driven operating system for personal intelligence.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {(['Core', 'Product', 'Company', 'Trust'] as const).map((group) => (
+              <div key={group}>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">{group}</p>
+                <div className="mt-4 grid gap-2">
+                  {pageLinks
+                    .filter((item) => item.group === group)
+                    .map((item) => (
+                      <Link key={item.path} to={item.path} className="text-sm text-zinc-400 transition hover:text-white">
+                        {item.label}
+                      </Link>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </footer>
@@ -2866,6 +3525,15 @@ function Footer() {
 }
 
 export default function App() {
+  const location = useLocation()
+
+  // Redirect workspace route to homepage
+  useEffect(() => {
+    if (location.pathname === '/workspace') {
+      window.location.hash = '#/'
+    }
+  }, [location.pathname])
+
   return (
     <main className="ria-site cosmos min-h-screen bg-[#020407] text-white">
       <ScrollToTop />
@@ -2874,6 +3542,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/aion" element={<AionPage />} />
         <Route path="/vision" element={<VisionPage />} />
         <Route path="/technology" element={<TechnologyPage />} />
         <Route path="/product" element={<ProductPage />} />
@@ -2894,6 +3563,7 @@ export default function App() {
         <Route path="/funding" element={<InvestorsPage />} />
         <Route path="/download" element={<DownloadPage />} />
         <Route path="/demo" element={<ProductPage />} />
+        <Route path="/workspace" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
