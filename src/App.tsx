@@ -86,13 +86,6 @@ type DemoMessage = {
   text: string
 }
 
-type TrustLogo = {
-  name: string
-  type: 'partner' | 'company'
-  logo?: string
-  label?: string
-}
-
 const assets = {
   // Primary brand logo: use RIA logos folder (production-ready)
   logo: '/images/logos/ria-logo.png',
@@ -124,7 +117,6 @@ const contact = {
   location: 'India'
 }
 
-const WEB_APP_URL = '/'
 const riaReleaseDate = 'June 21, 2026'
 const riaReleaseDateShort = '21 June 2026'
 
@@ -181,23 +173,6 @@ const streamSteps = [
   ['Knowledge', 'Graph update'],
   ['Evolution', 'Learning and growth'],
   ['Response', 'Insightful output']
-]
-
-const trustLogos: TrustLogo[] = [
-  { name: 'RIA', type: 'partner' },
-  { name: 'NASA', type: 'partner', logo: '/images/trust/nasa.svg' },
-  { name: 'Google Cloud', type: 'partner', logo: '/images/trust/google-cloud.svg' },
-  { name: 'Microsoft', type: 'partner', logo: '/images/trust/microsoft.svg' },
-  { name: 'NVIDIA', type: 'partner', logo: '/images/trust/nvidia.svg' },
-  { name: 'AMD', type: 'partner', logo: '/images/trust/amd.svg' },
-  { name: 'MSI', type: 'partner', logo: '/images/trust/msi.svg' },
-  { name: 'Corsair', type: 'partner', logo: '/images/trust/corsair.svg' },
-  { name: 'GitHub', type: 'partner', logo: '/images/trust/github.svg' },
-  { name: 'Vercel', type: 'partner', logo: '/images/trust/vercel.svg' },
-  { name: 'AWS', type: 'partner', logo: '/images/trust/aws.svg' },
-  { name: 'Adobe', type: 'partner', logo: '/images/trust/adobe.svg' },
-  { name: 'Deloitte', type: 'partner', logo: '/images/trust/deloitte.svg' },
-  { name: 'Siemens', type: 'partner', logo: '/images/trust/siemens.svg' }
 ]
 
 const trustValues: Feature[] = [
@@ -516,10 +491,9 @@ function Header() {
   const location = useLocation()
   const primary = [
     { label: 'RIA', to: '/#top' },
-    { label: 'Studio', to: '/#what-is' },
-    { label: 'RIA OS Lab', to: '/#ria-orbit' },
-    { label: 'Try RIA', href: WEB_APP_URL },
-    { label: 'Roadmap', to: '/#roadmap' },
+    { label: 'Product Proof', to: '/#what-is' },
+    { label: 'Architecture', to: '/#architecture' },
+    { label: 'Launch', to: '/download' },
     { label: 'Investor Brief', to: '/investors' }
   ]
   const groups = useMemo(() => ['Core', 'Product', 'Company', 'Trust'] as const, [])
@@ -529,30 +503,18 @@ function Header() {
   }, [location.pathname])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-2xl">
-      <div className="mx-auto flex h-20 max-w-[1500px] items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-2xl">
+      <div className="site-header-inner mx-auto flex h-20 max-w-[1500px] items-center justify-between px-4 sm:px-6 lg:px-8">
         <LogoMark />
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+        <nav className="site-nav-primary hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
           {primary.map((item) => (
-            'href' in item ? (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full px-4 py-2 text-sm font-medium text-zinc-300 transition hover:bg-white/10 hover:text-white"
-              >
-                {item.label}
-              </a>
-            ) : (
-              <Link
-                key={item.label}
-                to={item.to}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${location.pathname === item.to ? 'bg-white text-black' : 'text-zinc-300 hover:bg-white/10 hover:text-white'}`}
-              >
-                {item.label}
-              </Link>
-            )
+            <Link
+              key={item.label}
+              to={item.to}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${location.pathname === item.to ? 'bg-white text-black' : 'text-zinc-300 hover:bg-white/10 hover:text-white'}`}
+            >
+              {item.label}
+            </Link>
           ))}
           <button
             type="button"
@@ -563,39 +525,40 @@ function Header() {
             Pages <ChevronDown className={`h-4 w-4 transition ${open ? 'rotate-180' : ''}`} />
           </button>
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="rounded-md bg-cyan-500/10 border border-cyan-200/10 px-4 py-2 text-sm font-medium text-cyan-100 hover:bg-cyan-500/12">
-            Try RIA
-          </a>
-          <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noreferrer" className="rounded-md bg-purple-500/10 border border-purple-200/10 px-4 py-2 text-sm font-medium text-purple-100 hover:bg-purple-500/12">
-            Try AION
-          </a>
+        <div className="site-nav-actions hidden items-center gap-3 md:flex">
           <Link to="/download" className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:border-white/35">
             Launch Gate
           </Link>
+          <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-100">
+            Try AION
+          </a>
           <Link to="/contact" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-100">
-            Request Brief
+            Request Investor Brief
           </Link>
         </div>
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-white lg:hidden"
+          className="site-menu-button inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-2 text-sm font-semibold text-white"
           aria-label="Open navigation"
           aria-expanded={open}
         >
+          <span>Menu</span>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
       {open && (
         <div className="border-t border-white/10 bg-black/85 px-4 py-5 backdrop-blur-2xl">
           <div className="mb-4 flex items-center justify-center gap-3">
-            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-cyan-500/10 border border-cyan-200/20 px-4 py-3 text-sm font-semibold text-cyan-100">
-              Try RIA
-            </a>
-            <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-purple-500/10 border border-purple-200/20 px-4 py-3 text-sm font-semibold text-purple-100">
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-lg bg-cyan-500/10 border border-cyan-200/20 px-4 py-3 text-sm font-semibold text-cyan-100">
+              Request Brief
+            </Link>
+            <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/15 px-4 py-3 text-sm font-semibold text-zinc-100">
               Try AION
             </a>
+            <Link to="/download" className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/15 px-4 py-3 text-sm font-semibold text-zinc-100">
+              Launch Gate
+            </Link>
           </div>
           <div className="mx-auto max-h-[calc(100svh-5rem)] max-w-[1500px] overflow-y-auto pr-1 lg:max-h-none lg:overflow-visible lg:pr-0">
             <div className="grid gap-6 lg:grid-cols-4">
@@ -1554,7 +1517,7 @@ function WhatIsSection() {
 function ArchitectureBlueprint() {
   const nodes = [
     ['RIA User', 'The person entering through the public app and launch gateway.'],
-    ['RIA Interface', 'Try RIA, server gate, dashboard, app shell, and product navigation.'],
+    ['RIA Interface', 'Investor request path, server gate, dashboard, app shell, and product navigation.'],
     ['RIA Brain', 'Memory, reasoning, emotion, action, reflection, and evolution modules.'],
     ['RIA OS Runtime', 'Private intelligence workspace for commands, tools, and local systems.'],
     ['DefenseCore', 'Operational maps, intelligence streams, alerts, and command workflows.'],
@@ -1596,10 +1559,10 @@ function ArchitectureBlueprint() {
 
 function TryRiaNow() {
   const cards: Feature[] = [
-    { title: 'RIA Web App', icon: Globe2, copy: 'The public browser experience is branded as RIA.' },
-    { title: 'Server Launch Gate', icon: LockKeyhole, copy: `Access starts after ${riaReleaseDateShort}; the site makes that status visible.` },
-    { title: 'No Desktop Setup', icon: Cloud, copy: 'The first public path is browser-first while deeper RIA OS systems stay staged.' },
-    { title: 'Launch Poster Ready', icon: Sparkles, copy: 'The uploaded June 21 poster now supports the official release story.' },
+    { title: 'Investor Access', icon: Briefcase, copy: 'Before launch, serious inquiries move through the founder contact path.' },
+    { title: 'Server Launch Gate', icon: LockKeyhole, copy: `Access starts after ${riaReleaseDateShort}; the site keeps that status visible.` },
+    { title: 'Product Proof', icon: Cloud, copy: 'RIA OS visuals, architecture, and module previews show the depth behind the public brand.' },
+    { title: 'Launch Assets', icon: Sparkles, copy: 'June 21 materials stay available as supporting evidence instead of driving the main hero.' },
     { title: 'RIA OS Preview', icon: Download, copy: 'Screenshots stay visible as product proof and future desktop direction.' }
   ]
 
@@ -1607,9 +1570,9 @@ function TryRiaNow() {
     <section className="ria-section" id="try-now">
       <div className="premium-container">
         <Reveal>
-          <p className="premium-eyebrow">Try RIA</p>
-          <h2 className="ria-section-title">Try RIA after the June 21 server opening.</h2>
-          <p className="ria-section-copy">RIA is the app users will try. The CTA now points to the RIA web app while the page clearly says server access opens after {riaReleaseDateShort}.</p>
+          <p className="premium-eyebrow">Investor Access</p>
+          <h2 className="ria-section-title">Request RIA access before the June 21 server opening.</h2>
+          <p className="ria-section-copy">RIA stays gated until launch. Investors, partners, and early collaborators can request a direct founder conversation while the release path remains visible.</p>
         </Reveal>
 
         <div className="ria-try-grid">
@@ -1626,9 +1589,9 @@ function TryRiaNow() {
         </div>
 
         <div className="ria-section-actions">
-          <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="premium-button premium-button-primary">
-            Try RIA <ArrowRight className="h-4 w-4" />
-          </a>
+          <Link to="/contact" className="premium-button premium-button-primary">
+            Request Investor Access <ArrowRight className="h-4 w-4" />
+          </Link>
           <Link to="/download" className="premium-button premium-button-secondary">
             Launch Details <FileText className="h-4 w-4" />
           </Link>
@@ -1927,7 +1890,26 @@ function ContactForm({ intent = 'General inquiry' }: { intent?: string }) {
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const data = new FormData(event.currentTarget)
+    const name = String(data.get('name') || '').trim()
+    const email = String(data.get('email') || '').trim()
+    const organization = String(data.get('organization') || '').trim()
+    const type = String(data.get('type') || intent).trim()
+    const message = String(data.get('message') || '').trim()
+    const subject = encodeURIComponent(`RIA inquiry: ${type || intent}`)
+    const body = encodeURIComponent([
+      `Name: ${name}`,
+      `Email: ${email}`,
+      organization ? `Organization: ${organization}` : 'Organization: Not provided',
+      `Inquiry type: ${type || intent}`,
+      '',
+      message
+    ].join('\n'))
+
     setSubmitted(true)
+    const mailto = `mailto:${contact.email}?subject=${subject}&body=${body}`
+    const opened = window.open(mailto, '_blank', 'noopener,noreferrer')
+    if (!opened) window.location.href = mailto
   }
 
   return (
@@ -1964,11 +1946,11 @@ function ContactForm({ intent = 'General inquiry' }: { intent?: string }) {
         <textarea required name="message" rows={5} className="resize-none rounded-lg border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition focus:border-cyan-200/55" />
       </label>
       <button type="submit" className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-100">
-        Send Request <SendHorizontal className="h-4 w-4" />
+        Prepare Email Request <SendHorizontal className="h-4 w-4" />
       </button>
       {submitted && (
         <p className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-sm text-emerald-100">
-          Request captured for this prototype. Production can connect this form to email notifications and CRM webhooks.
+          Your email draft is prepared for direct founder contact. Send it from your mail app so the request reaches RIA.
         </p>
       )}
     </form>
@@ -1978,6 +1960,8 @@ function ContactForm({ intent = 'General inquiry' }: { intent?: string }) {
 type PremiumImageAsset = {
   src: string
   alt: string
+  srcSet?: string
+  sizes?: string
 }
 
 type PremiumFeature = {
@@ -2127,7 +2111,7 @@ const aionVisuals = {
   }
 } satisfies Record<string, PremiumImageAsset>
 
-const heroBadges = ['RIA App', 'RIA OS Lab', 'DefenseCore', 'Creative Studio', 'Brain System', 'Private Server', '21 Jun', 'AIONtec']
+const heroBadges = ['Private AI', 'Persistent Memory', 'RIA OS Lab', 'DefenseCore', 'Creative Studio', 'Founder-Led', '21 Jun', 'AIONTEC']
 const riaCoreLabels = ['Memory', 'Reasoning', 'Reflection', 'Autonomy', 'Knowledge', 'Software', 'Avatar', 'Evolution']
 
 const premiumSections: PremiumProductSection[] = [
@@ -2324,14 +2308,29 @@ const premiumSections: PremiumProductSection[] = [
   }
 ]
 
-function PremiumImage({ image, className = '', loading = 'lazy' }: { image: PremiumImageAsset; className?: string; loading?: 'eager' | 'lazy' }) {
+function PremiumImage({
+  image,
+  className = '',
+  loading = 'lazy',
+  sizes,
+  fetchPriority
+}: {
+  image: PremiumImageAsset
+  className?: string
+  loading?: 'eager' | 'lazy'
+  sizes?: string
+  fetchPriority?: 'high' | 'low' | 'auto'
+}) {
   return (
     <img
       src={image.src}
+      srcSet={image.srcSet}
+      sizes={sizes || image.sizes || '(max-width: 767px) 92vw, 50vw'}
       alt={image.alt}
       className={className}
       loading={loading}
-      decoding="async"
+      decoding={loading === 'eager' ? 'sync' : 'async'}
+      fetchPriority={fetchPriority}
       onError={(event) => {
         const img = event.currentTarget
         if (img.dataset.fallbackApplied === 'true') return
@@ -2365,23 +2364,23 @@ function HeroSection() {
   return (
     <section className="premium-hero" id="top">
       <div className="premium-hero-bg" aria-hidden="true">
-        <PremiumImage image={aionVisuals.creativeWall} className="premium-hero-bg-image" loading="eager" />
+        <PremiumImage image={riaVisuals.companyMosaic} className="premium-hero-bg-image" loading="eager" fetchPriority="high" sizes="100vw" />
       </div>
       <div className="premium-container premium-hero-grid">
         <Reveal className="premium-hero-copy">
-          <p className="premium-eyebrow">RIA Studio / Launch Build</p>
+          <p className="premium-eyebrow">RIA / Investor Launch Build</p>
           <h1>RIA</h1>
-          <h2>The private AI app behind the RIA OS universe.</h2>
+          <h2>The private intelligence layer built to remember, reason, and execute.</h2>
           <p>
-            RIA is the public app and command doorway for a private intelligence ecosystem: RIA OS, DefenseCore, Creative Studio, memory, brain structure, and future desktop intelligence.
+            RIA is a private AI operating layer for persistent memory, reflective reasoning, product execution, creative systems, and future local-first intelligence.
           </p>
           <p className="premium-hero-support">
-            Server access opens after {riaReleaseDateShort}. Until launch, this site presents the studio build, product visuals, and the release path with a premium public face.
+            Server access opens after {riaReleaseDateShort}. Until launch, investor and partner conversations move through direct founder contact.
           </p>
           <div className="premium-hero-actions">
-            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="premium-button premium-button-primary">
-              Try RIA <ArrowRight className="h-4 w-4" />
-            </a>
+            <Link to="/contact" className="premium-button premium-button-primary">
+              Request Investor Brief <ArrowRight className="h-4 w-4" />
+            </Link>
             <Link to="/download" className="premium-button premium-button-secondary">
               Server Opens {riaReleaseDateShort} <LockKeyhole className="h-4 w-4" />
             </Link>
@@ -2397,14 +2396,15 @@ function HeroSection() {
         </Reveal>
         <Reveal className="premium-hero-visual aion-hero-visual">
           <ImageShowcase
-            image={aionVisuals.launchPoster}
-            supportingImages={[aionVisuals.defensecoreDashboard, aionVisuals.creativeStudio, aionVisuals.brainStructure]}
+            image={riaVisuals.riaOsOrbitHero}
+            supportingImages={[riaVisuals.orbitDashboard, aionVisuals.brainStructure, riaVisuals.commandGrid]}
             loading="eager"
+            priority
           />
           <div className="aion-hero-status">
-            <span>Launch Gate</span>
+            <span>Investor Access</span>
             <strong>{riaReleaseDateShort}</strong>
-            <p>RIA server access begins after launch.</p>
+            <p>RIA server access begins after launch; briefings are available now.</p>
           </div>
         </Reveal>
       </div>
@@ -2413,17 +2413,27 @@ function HeroSection() {
   )
 }
 
-function ImageShowcase({ image, supportingImages = [], loading = 'lazy' }: { image: PremiumImageAsset; supportingImages?: PremiumImageAsset[]; loading?: 'eager' | 'lazy' }) {
+function ImageShowcase({
+  image,
+  supportingImages = [],
+  loading = 'lazy',
+  priority = false
+}: {
+  image: PremiumImageAsset
+  supportingImages?: PremiumImageAsset[]
+  loading?: 'eager' | 'lazy'
+  priority?: boolean
+}) {
   return (
     <div className="premium-image-showcase">
       <div className="premium-image-frame">
-        <PremiumImage image={image} className="premium-image-main" loading={loading} />
+        <PremiumImage image={image} className="premium-image-main" loading={loading} fetchPriority={priority ? 'high' : 'auto'} sizes="(max-width: 767px) 96vw, 46vw" />
       </div>
       {supportingImages.length > 0 && (
         <div className="premium-image-strip">
           {supportingImages.map((item) => (
             <div className="premium-image-chip" key={item.src}>
-              <PremiumImage image={item} />
+              <PremiumImage image={item} sizes="(max-width: 767px) 45vw, 14vw" />
             </div>
           ))}
         </div>
@@ -2467,21 +2477,21 @@ function CTASection() {
       <div className="premium-container">
         <Reveal className="premium-cta-panel">
           <div>
-            <p className="premium-eyebrow">AIONTEC / RIA OS</p>
-            <h2>Built private. Built scalable. Built to evolve.</h2>
+            <p className="premium-eyebrow">RIA / Investor Access</p>
+            <h2>Built private. Built scalable. Ready for serious conversations.</h2>
             <p>
-              The operating system for personal intelligence, designed from India for a global generation of builders, researchers, creators, and everyday users.
+              RIA is designed from India for a global generation of builders, researchers, creators, teams, and institutions that need AI with memory and continuity.
             </p>
           </div>
           <div className="premium-cta-actions">
-            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="premium-button premium-button-primary">
-              Try RIA Web App <ArrowRight className="h-4 w-4" />
-            </a>
+            <Link to="/contact" className="premium-button premium-button-primary">
+              Request Investor Brief <ArrowRight className="h-4 w-4" />
+            </Link>
             <Link to="/download" className="premium-button premium-button-secondary">
-              Download RIA Orbit <Download className="h-4 w-4" />
+              View Launch Gate <Download className="h-4 w-4" />
             </Link>
             <Link to="/investors" className="premium-button premium-button-ghost">
-              Request Investor Brief <FileText className="h-4 w-4" />
+              Investor Page <FileText className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>
@@ -2698,23 +2708,23 @@ function AionPage() {
 function HomePage() {
   return (
     <>
-      <SEO title="Home" description="AION is the premium AI app and studio launch gateway for RIA OS, DefenseCore, Creative Studio, RIA Brain, and private intelligence systems opening after June 21, 2026." />
+      <SEO title="Home" description="RIA is a private intelligence platform for persistent memory, reasoning, execution, creative systems, and RIA OS launch access after June 21, 2026." />
       <HeroSection />
 
       <section className="premium-statement" id="overview">
         <div className="premium-container">
           <Reveal className="premium-statement-panel">
             <p className="premium-eyebrow">Made in India. Built for the World.</p>
-            <h2>AION is not a small chatbot website.</h2>
+            <h2>RIA is not another short-lived chatbot.</h2>
             <p>
-              AION is the launch brand for a serious AI studio: product systems, RIA OS visuals, brain architecture, creative intelligence, command dashboards, and a private server experience opening after {riaReleaseDateShort}.
+              RIA is the primary product: a private intelligence system for memory, strategy, software, creative work, and future local-first execution. AIONTEC is the company context; AION remains a legacy studio reference.
             </p>
             <div className="premium-statement-grid">
               {[
-                ['Studio Grade', 'A cinematic brand system with real screenshots, launch assets, and clear product hierarchy.'],
-                ['AION App', 'The public app entry point and server-gated experience for users after launch.'],
+                ['Investor Grade', 'A focused company story with product proof, launch status, architecture, and founder contact.'],
+                ['RIA Primary', 'One clear product brand across the public site, routes, hero, CTAs, and footer.'],
                 ['RIA OS Lab', 'The deeper private intelligence operating layer, shown through dashboards and architecture.'],
-                ['Launch Ready', 'June 21 messaging, release gates, and premium investor-ready positioning.']
+                ['Launch Ready', 'June 21 messaging, release gates, and investor-ready positioning without false partner claims.']
               ].map(([title, text]) => (
                 <article key={title}>
                   <span>{title}</span>
@@ -2974,7 +2984,7 @@ function RiaEnterprisePage() {
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
           <SectionIntro eyebrow="Enterprise Credibility" title="Built for serious institutions from day one." copy="The site surfaces public-company readiness, certification roadmap, security commitments, ecosystem targets, and research depth without claiming credentials before they exist." />
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {['Private company, public-company governance roadmap', 'SOC 2 and ISO 27001 planning', 'Partner ecosystem in formation', 'Design partner deployments target'].map((item) => (
+            {['Private company, public-company governance roadmap', 'SOC 2 and ISO 27001 planning', 'Ecosystem roadmap in formation', 'Design partner deployment target'].map((item) => (
               <Reveal key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-6">
                 <BadgeCheck className="h-5 w-5 text-cyan-100" />
                 <p className="mt-6 text-sm font-semibold leading-6 text-white">{item}</p>
@@ -3480,18 +3490,18 @@ function Footer() {
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
         <div className="rounded-lg border border-white/10 bg-white/[0.03] p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-white">AIONTEC / RIA OS</p>
+            <p className="text-sm font-semibold text-white">RIA / AIONTEC</p>
             <p className="mt-1 text-sm text-zinc-300">Made in India. Built for the World.</p>
           </div>
           <div className="flex gap-3">
-            <a href={WEB_APP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
-              Try RIA Web App <ArrowRight className="h-4 w-4" />
-            </a>
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
+              Request Investor Brief <ArrowRight className="h-4 w-4" />
+            </Link>
             <Link to="/download" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200">
-              Download RIA Orbit <Download className="h-4 w-4" />
+              View Launch Gate <Download className="h-4 w-4" />
             </Link>
             <Link to="/investors" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-zinc-200">
-              Request Investor Brief <ArrowRight className="h-4 w-4" />
+              Investor Page <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -3499,7 +3509,7 @@ function Footer() {
           <div>
             <LogoMark />
             <p className="mt-5 max-w-md text-sm leading-7 text-zinc-400">
-              AIONTEC builds RIA OS, a private memory-driven operating system for personal intelligence.
+              AIONTEC builds RIA, a private memory-driven intelligence platform with RIA OS as its deeper operating layer.
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
