@@ -2150,7 +2150,7 @@ select option {
 }
 
 .premium-container {
-  width: min(100% - 2rem, 1500px);
+  width: min(100% - 2rem, 1320px);
   margin-inline: auto;
 }
 
@@ -2739,7 +2739,7 @@ select option {
 
 @media (max-width: 767px) {
   .premium-container {
-    width: min(100% - 1.25rem, 1500px);
+    width: min(100% - 1.25rem, 1320px);
   }
 
   .premium-hero {
@@ -3655,5 +3655,315 @@ body {
   footer .flex.gap-3 {
     width: 100%;
     flex-wrap: wrap;
+  }
+}
+
+/* Production company polish */
+.brand-lockup {
+  min-width: 0;
+}
+
+.brand-logo-mark {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.18), transparent 1.3rem),
+    linear-gradient(135deg, rgba(125, 211, 252, 0.12), rgba(168, 85, 247, 0.08)),
+    rgba(2, 6, 23, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 14px 34px rgba(0, 0, 0, 0.34),
+    0 0 34px rgba(34, 211, 238, 0.12);
+}
+
+.brand-logo-mark img {
+  display: block;
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(186, 230, 253, 0.28));
+}
+
+.site-header {
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.36);
+}
+
+.ria-visual-atlas {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(56, 189, 248, 0.08), transparent 26rem),
+    radial-gradient(circle at 82% 36%, rgba(168, 85, 247, 0.07), transparent 28rem),
+    linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.22), transparent);
+}
+
+.ria-atlas-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.35fr);
+  gap: 2rem;
+  align-items: end;
+}
+
+.ria-atlas-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ria-atlas-metrics span {
+  min-height: 6.2rem;
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+    rgba(2, 6, 23, 0.66);
+  padding: 1rem;
+  color: #9fb0bd;
+  font-size: 0.74rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.ria-atlas-metrics strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.ria-atlas-feature-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+
+.ria-atlas-feature-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 28rem;
+  border: 1px solid rgba(191, 219, 254, 0.18);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.68);
+  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.34);
+}
+
+.ria-atlas-feature-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 28rem;
+  object-fit: cover;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.ria-atlas-feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 22%, rgba(0, 0, 0, 0.26) 58%, rgba(2, 4, 7, 0.92)),
+    radial-gradient(circle at 18% 12%, rgba(125, 211, 252, 0.12), transparent 14rem);
+}
+
+.ria-atlas-feature-card div {
+  position: absolute;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.72);
+  padding: 1rem;
+  backdrop-filter: blur(18px);
+}
+
+.ria-atlas-feature-card span,
+.ria-atlas-group-header span,
+.ria-atlas-tile figcaption span {
+  display: block;
+  color: #67e8f9;
+  font-size: 0.68rem;
+  font-weight: 850;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.ria-atlas-feature-card strong {
+  display: block;
+  margin-top: 0.45rem;
+  color: #ffffff;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.ria-atlas-feature-card p {
+  margin: 0.55rem 0 0;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.ria-atlas-groups {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.ria-atlas-group {
+  border: 1px solid rgba(125, 211, 252, 0.13);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(2, 6, 23, 0.58);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+}
+
+.ria-atlas-group-header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.ria-atlas-group-header h3 {
+  margin: 0.35rem 0 0;
+  color: #ffffff;
+  font-size: clamp(1.35rem, 2.4vw, 2.15rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.ria-atlas-group-header p {
+  margin: 0;
+  color: #9fb0bd;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.ria-atlas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.ria-atlas-tile {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.ria-atlas-tile-wide {
+  grid-column: span 2;
+}
+
+.ria-atlas-tile-tall {
+  grid-row: span 2;
+}
+
+.ria-atlas-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  opacity: 0.93;
+  transition: transform 340ms ease, opacity 340ms ease;
+}
+
+.ria-atlas-tile-square img {
+  aspect-ratio: 1;
+}
+
+.ria-atlas-tile-tall img {
+  height: 100%;
+  min-height: 25rem;
+  aspect-ratio: 3 / 4;
+}
+
+.ria-atlas-tile:hover img {
+  transform: scale(1.035);
+  opacity: 1;
+}
+
+.ria-atlas-tile figcaption {
+  position: absolute;
+  inset-inline: 0.55rem;
+  bottom: 0.55rem;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.76);
+  padding: 0.62rem;
+  backdrop-filter: blur(14px);
+}
+
+.ria-atlas-tile figcaption strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+.ria-atlas-tile figcaption span {
+  margin-top: 0.25rem;
+  color: #94a3b8;
+  font-size: 0.62rem;
+  text-transform: none;
+}
+
+@media (max-width: 1180px) {
+  .ria-atlas-header,
+  .ria-atlas-group-header {
+    grid-template-columns: 1fr;
+  }
+
+  .ria-atlas-feature-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ria-atlas-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .brand-logo-mark {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .ria-atlas-metrics,
+  .ria-atlas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ria-atlas-feature-card,
+  .ria-atlas-feature-card img {
+    min-height: 22rem;
+  }
+
+  .ria-atlas-tile-wide,
+  .ria-atlas-tile-tall {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .ria-atlas-tile img,
+  .ria-atlas-tile-square img,
+  .ria-atlas-tile-tall img {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
   }
 }

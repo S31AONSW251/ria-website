@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import CosmosBackground from './components/CosmosBackground'
 import {
   Activity,
+  ArrowLeft,
   ArrowRight,
   BadgeCheck,
   Banknote,
@@ -46,6 +47,7 @@ import {
   Rocket,
   Search,
   SendHorizontal,
+  Shield,
   ShieldCheck,
   Sparkles,
   SquareTerminal,
@@ -90,7 +92,7 @@ const assets = {
   // Primary brand logo: use RIA logos folder (production-ready)
   logo: '/images/logos/ria-logo.png',
   // Page hero: strong visual using RIA orbit imagery
-  hero: '/images/ria-uploaded/ria-os-orbit-hero.jpg',
+  hero: '/assets/ria/ria-os-orbit-hero.jpg',
   aion: {
     // AION archives (kept for historical reference)
     hero: '/images/aion-uploaded/defensecore-dashboard.png',
@@ -429,7 +431,7 @@ function SEO({ title, description }: { title: string; description: string }) {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const fullTitle = title === 'Home' ? 'RIA | Private AI Studio' : `${title} | RIA`
+    const fullTitle = title === 'Home' ? 'RIA | Private Intelligence Company' : `${title} | RIA`
     document.title = fullTitle
     setMeta('description', 'name', description)
     setMeta('og:title', 'property', fullTitle)
@@ -466,10 +468,10 @@ function Reveal({ children, className = '', style }: { children: ReactNode; clas
 
 function LogoMark() {
   return (
-    <Link to="/" className="flex items-center gap-3" aria-label="RIA home">
+    <Link to="/" className="brand-lockup flex items-center gap-3" aria-label="RIA home">
       <span className="leading-tight">
         <span className="block text-xl font-semibold tracking-[0.28em] text-white">RIA</span>
-        <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-cyan-200/70">AIONtec</span>
+        <span className="block text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-cyan-200/70">AIONTEC</span>
       </span>
     </Link>
   )
@@ -491,10 +493,11 @@ function Header() {
   const location = useLocation()
   const primary = [
     { label: 'RIA', to: '/#top' },
-    { label: 'Product Proof', to: '/#what-is' },
+    { label: 'Product', to: '/#what-is' },
     { label: 'Architecture', to: '/#architecture' },
+    { label: 'Visual Atlas', to: '/#visual-atlas' },
     { label: 'Launch', to: '/download' },
-    { label: 'Investor Brief', to: '/investors' }
+    { label: 'Investors', to: '/investors' }
   ]
   const groups = useMemo(() => ['Core', 'Product', 'Company', 'Trust'] as const, [])
 
@@ -530,7 +533,7 @@ function Header() {
             Launch Gate
           </Link>
           <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-100">
-            Try AION
+            AION Legacy
           </a>
           <Link to="/contact" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-100">
             Request Investor Brief
@@ -554,7 +557,7 @@ function Header() {
               Request Brief
             </Link>
             <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/15 px-4 py-3 text-sm font-semibold text-zinc-100">
-              Try AION
+              AION Legacy
             </a>
             <Link to="/download" className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/15 px-4 py-3 text-sm font-semibold text-zinc-100">
               Launch Gate
@@ -1456,19 +1459,19 @@ function RiaOsShowcase() {
 
 function ProblemSection() {
   const cards = [
-    ['Generic AI looks temporary.', 'RIA feels like a studio product.', 'The site now leads with real app surfaces, launch assets, and a stronger product hierarchy.'],
-      ['Small brands over-explain.', 'RIA shows the system.', 'Dashboards, brain visuals, DefenseCore, Creative Studio, and launch materials carry the story visually.'],
-      ['Broken CTAs lose trust.', 'RIA sets a launch gate.', `Server access is framed clearly around ${riaReleaseDateShort}, so the button does not feel misleading.`],
-      ['RIA is a product layer.', 'RIA is the app brand.', 'RIA OS remains visible as the deeper private intelligence system inside the RIA ecosystem.']
+    ['Category Thesis', 'Private intelligence should remember.', 'RIA is designed around persistent context, reflective reasoning, private execution, and long-term continuity.'],
+    ['Product Proof', 'The system is visible.', 'Orbit dashboards, RIA Brain architecture, DefenseCore, Creative Studio, robotics, and infrastructure concepts show a real product universe.'],
+    ['Launch Discipline', 'Access opens through a controlled gate.', `RIA keeps the ${riaReleaseDateShort} release path clear for users, partners, and early investor conversations.`],
+    ['Company Focus', 'RIA is the product brand.', 'AIONTEC provides the company context while RIA carries the public app, OS layer, memory system, and product roadmap.']
   ]
 
   return (
     <section className="ria-section" id="problem">
       <div className="premium-container">
         <Reveal>
-          <p className="premium-eyebrow">Brand Fix</p>
+          <p className="premium-eyebrow">Company Thesis</p>
           <h2 className="ria-section-title">RIA is the app. RIA OS is the intelligence system inside it.</h2>
-          <p className="ria-section-copy">The site now separates the public RIA launch from the RIA OS product universe, so visitors understand what they can try, when the server opens, and why the product feels bigger than a normal AI page.</p>
+          <p className="ria-section-copy">RIA presents one clear product story: a private AI operating layer with memory, tools, command surfaces, launch discipline, and a roadmap big enough for personal, enterprise, creative, and embodied intelligence.</p>
         </Reveal>
 
         <div className="ria-problem-grid">
@@ -1487,12 +1490,12 @@ function ProblemSection() {
 
 function WhatIsSection() {
   const modules: Feature[] = [
-    { title: 'RIA App', icon: Globe2, copy: 'The public browser entry point, branded as RIA and prepared for launch after the server opens.' },
+    { title: 'RIA App', icon: Globe2, copy: 'The public entry point for launch access, product proof, investor inquiry, and future user onboarding.' },
     { title: 'RIA OS Lab', icon: Cpu, copy: 'The private operating system layer for memory, commands, dashboards, and local intelligence.' },
     { title: 'DefenseCore', icon: ShieldCheck, copy: 'A serious command surface with maps, intelligence panels, telemetry, and operational dashboards.' },
     { title: 'Creative Studio', icon: Sparkles, copy: 'A visual production layer for AI imagery, concepts, media, and product storytelling.' },
     { title: 'RIA Brain', icon: BrainCircuit, copy: 'The brain-structure identity asset for memory, reasoning, action, reflection, and evolution.' },
-    { title: 'Launch Gate', icon: LockKeyhole, copy: `The server availability message is visible: RIA opens after ${riaReleaseDateShort}.` },
+    { title: 'Launch Gate', icon: LockKeyhole, copy: `Controlled server availability begins after ${riaReleaseDateShort}.` },
     { title: 'Investor Surface', icon: Briefcase, copy: 'A premium studio presentation for partners, early users, and future investors.' },
     { title: 'Private Runtime', icon: Database, copy: 'A controlled private server and future desktop pathway instead of a toy landing page.' },
     { title: 'RIA Brand', icon: Building2, copy: 'A cleaner parent-company story: made in India, built for a global AI product category.' }
@@ -1504,7 +1507,7 @@ function WhatIsSection() {
         <SectionIntro
           eyebrow="What RIA Is"
           title="A premium AI app and studio operating layer."
-          copy="RIA is the public app and brand experience for AIONtec. RIA OS, RIA Brain, DefenseCore, Creative Studio, and the private server launch sit inside that ecosystem."
+          copy="RIA is the public product experience for AIONTEC. RIA OS, RIA Brain, DefenseCore, Creative Studio, and the private server launch sit inside one coherent ecosystem."
         />
         <div className="ria-module-grid">
           <FeatureGrid items={modules} />
@@ -1560,9 +1563,9 @@ function ArchitectureBlueprint() {
 function TryRiaNow() {
   const cards: Feature[] = [
     { title: 'Investor Access', icon: Briefcase, copy: 'Before launch, serious inquiries move through the founder contact path.' },
-    { title: 'Server Launch Gate', icon: LockKeyhole, copy: `Access starts after ${riaReleaseDateShort}; the site keeps that status visible.` },
-    { title: 'Product Proof', icon: Cloud, copy: 'RIA OS visuals, architecture, and module previews show the depth behind the public brand.' },
-    { title: 'Launch Assets', icon: Sparkles, copy: 'June 21 materials stay available as supporting evidence instead of driving the main hero.' },
+    { title: 'Server Launch Gate', icon: LockKeyhole, copy: `Access starts after ${riaReleaseDateShort} with a clear private-build status and release path.` },
+    { title: 'Product Proof', icon: Cloud, copy: 'RIA OS visuals, architecture, and module previews show the depth behind the public product.' },
+    { title: 'Launch Assets', icon: Sparkles, copy: 'June 21 materials support the release narrative without overwhelming the core product message.' },
     { title: 'RIA OS Preview', icon: Download, copy: 'Screenshots stay visible as product proof and future desktop direction.' }
   ]
 
@@ -1714,16 +1717,16 @@ function PublicDownloadSection() {
       <div className="premium-container">
         <Reveal className="ria-download-callout">
           <div>
-            <p className="premium-eyebrow">Public Download</p>
-            <h2 className="ria-section-title">Public Download</h2>
-            <p className="ria-section-copy">RIA Orbit public desktop release.</p>
+            <p className="premium-eyebrow">Release Gate</p>
+            <h2 className="ria-section-title">RIA Orbit public desktop release.</h2>
+            <p className="ria-section-copy">The public desktop package is positioned as a controlled launch: clear date, private build status, local-first runtime notes, and direct access requests for serious partners before release.</p>
           </div>
           <div className="ria-release-date">
-            <span>Public Download</span>
+            <span>Server Opens</span>
             <strong>21 June 2026</strong>
             <p>Made in India. Built for the World.</p>
             <Link to="/download" className="premium-button premium-button-primary">
-              Download RIA Orbit <Download className="h-4 w-4" />
+              View Launch Gate <Download className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>
@@ -1970,6 +1973,13 @@ type PremiumFeature = {
   icon: LucideIcon
 }
 
+type VisualAtlasItem = PremiumImageAsset & {
+  title: string
+  category: string
+  source: string
+  emphasis?: 'wide' | 'tall' | 'square'
+}
+
 type PremiumProductSection = {
   id: string
   eyebrow: string
@@ -1983,95 +1993,95 @@ type PremiumProductSection = {
 
 const riaVisuals = {
   humanoidPortrait: {
-    src: '/images/ria-uploaded/humanoid-portrait.jpg',
+    src: '/assets/ria/humanoid-portrait.jpg',
     alt: 'White RIA humanoid robotics concept with interface overlays'
   },
   chipInfrastructure: {
-    src: '/images/ria-uploaded/chip-infrastructure-vision.jpg',
+    src: '/assets/ria/chip-infrastructure-vision.jpg',
     alt: 'RIA AI infrastructure chip concept with dark technical interface'
   },
   officeLabWide: {
-    src: '/images/ria-uploaded/ria-office-lab-wide.jpg',
+    src: '/assets/ria/ria-office-lab-wide.jpg',
     alt: 'RIA office and robotics laboratory with engineers working'
   },
   roboticsWorkshopDesk: {
-    src: '/images/ria-uploaded/robotics-workshop-desk.jpg',
+    src: '/assets/ria/robotics-workshop-desk.jpg',
     alt: 'RIA robotics workshop desk with humanoid prototype and development hardware'
   },
   companyHeroHumanoid: {
-    src: '/images/ria-uploaded/company-hero-humanoid.jpg',
+    src: '/assets/ria/company-hero-humanoid.jpg',
     alt: 'RIA company hero page with humanoid robot and dark lab environment'
   },
   companyHeroHumanoidAlt: {
-    src: '/images/ria-uploaded/company-hero-humanoid-alt.jpg',
+    src: '/assets/ria/company-hero-humanoid-alt.jpg',
     alt: 'Alternative RIA company hero visual with humanoid robot and laboratory'
   },
   roboticsLabBench: {
-    src: '/images/ria-uploaded/robotics-lab-bench.jpg',
+    src: '/assets/ria/robotics-lab-bench.jpg',
     alt: 'RIA robotics lab bench with humanoid robot, monitors, and tools'
   },
   humanoidSystemBoard: {
-    src: '/images/ria-uploaded/humanoid-system-board.jpg',
+    src: '/assets/ria/humanoid-system-board.jpg',
     alt: 'RIA humanoid robotics system board with modular technical views'
   },
   humanoidSystemBoardAlt: {
-    src: '/images/ria-uploaded/humanoid-system-board-alt.jpg',
+    src: '/assets/ria/humanoid-system-board-alt.jpg',
     alt: 'RIA humanoid robotics system board with engineering panels'
   },
   commandGrid: {
-    src: '/images/ria-uploaded/ria-command-grid.jpg',
+    src: '/assets/ria/ria-command-grid.jpg',
     alt: 'RIA command grid interface showing multi-panel operations'
   },
   riaOsOrbitHero: {
-    src: '/images/ria-uploaded/ria-os-orbit-hero.jpg',
+    src: '/assets/ria/ria-os-orbit-hero.jpg',
     alt: 'RIA OS Orbit dashboard hero screen in a premium dark interface'
   },
   cryptoCore: {
-    src: '/images/ria-uploaded/crypto-core-dashboard.jpg',
+    src: '/assets/ria/crypto-core-dashboard.jpg',
     alt: 'RIA Crypto Core dashboard showing private compute monitoring'
   },
   missionControl: {
-    src: '/images/ria-uploaded/mission-control-orbit-room.jpg',
+    src: '/assets/ria/mission-control-orbit-room.jpg',
     alt: 'RIA Orbit mission control dashboard in a cinematic command room'
   },
   orbitDashboard: {
-    src: '/images/ria-uploaded/orbit-dashboard-desktop.jpg',
+    src: '/assets/ria/orbit-dashboard-desktop.jpg',
     alt: 'RIA Orbit desktop dashboard with telemetry and mission panels'
   },
   companyMosaic: {
-    src: '/images/ria-uploaded/ria-os-company-mosaic.jpg',
+    src: '/assets/ria/ria-os-company-mosaic.jpg',
     alt: 'RIA OS company website mosaic with product panels and brand visuals'
   },
   companyMosaicAlt: {
-    src: '/images/ria-uploaded/ria-os-company-mosaic-alt.jpg',
+    src: '/assets/ria/ria-os-company-mosaic-alt.jpg',
     alt: 'Alternative RIA OS company mosaic with operating system panels'
   },
   companyMosaicDetail: {
-    src: '/images/ria-uploaded/ria-os-company-mosaic-detail.jpg',
+    src: '/assets/ria/ria-os-company-mosaic-detail.jpg',
     alt: 'Detailed RIA OS mosaic showing dashboard modules and premium sections'
   },
   automotive: {
-    src: '/images/ria-uploaded/automotive-engineering-dashboard.jpg',
+    src: '/assets/ria/automotive-engineering-dashboard.jpg',
     alt: 'RIA automotive and engineering dashboard with vehicle design intelligence'
   },
   automotiveAlt: {
-    src: '/images/ria-uploaded/automotive-engineering-dashboard-alt.jpg',
+    src: '/assets/ria/automotive-engineering-dashboard-alt.jpg',
     alt: 'Alternative RIA automotive engineering dashboard with simulation panels'
   },
   villageImpact: {
-    src: '/images/ria-uploaded/village-impact-transformation.jpg',
+    src: '/assets/ria/village-impact-transformation.jpg',
     alt: 'RIA village transformation concept showing real-world infrastructure impact'
   },
   creativeStudio: {
-    src: '/images/ria-uploaded/creative-studio-grid.jpg',
+    src: '/assets/ria/creative-studio-grid.jpg',
     alt: 'RIA Creative Studio with generated image, video, and asset panels'
   },
   creativeStudioAlt: {
-    src: '/images/ria-uploaded/creative-studio-grid-alt.jpg',
+    src: '/assets/ria/creative-studio-grid-alt.jpg',
     alt: 'Alternative RIA Creative Studio command center with media panels'
   },
   softwareStudio: {
-    src: '/images/ria-uploaded/software-studio-command-center.jpg',
+    src: '/assets/ria/software-studio-command-center.jpg',
     alt: 'RIA Software Studio command center with agent workspaces and build panels'
   }
 } satisfies Record<string, PremiumImageAsset>
@@ -2113,6 +2123,321 @@ const aionVisuals = {
 
 const heroBadges = ['Private AI', 'Persistent Memory', 'RIA OS Lab', 'DefenseCore', 'Creative Studio', 'Founder-Led', '21 Jun', 'AIONTEC']
 const riaCoreLabels = ['Memory', 'Reasoning', 'Reflection', 'Autonomy', 'Knowledge', 'Software', 'Avatar', 'Evolution']
+
+const visualAtlasItems: VisualAtlasItem[] = [
+  {
+    title: 'RIA Orbit Premium Desktop',
+    category: 'Orbit Command',
+    source: '73ee4ef0',
+    src: '/assets/ria/concept-atlas/orbit/ria-orbit-premium-desktop.jpg',
+    alt: 'Curved desktop monitor showing the RIA Orbit command dashboard in a premium office',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Energy Ring Mark',
+    category: 'Brand System',
+    source: '8583(2)',
+    src: '/assets/ria/concept-atlas/brand/ria-energy-ring-mark.jpg',
+    alt: 'RIA wordmark inside a luminous circular energy ring',
+    emphasis: 'square'
+  },
+  {
+    title: 'Spectrum Brain Logo',
+    category: 'Brand System',
+    source: '8711',
+    src: '/assets/ria/concept-atlas/brand/ria-spectrum-brain-logo.jpg',
+    alt: 'Color spectrum RIA brain logo on a light background',
+    emphasis: 'square'
+  },
+  {
+    title: 'Spectrum Brain Logo Alt',
+    category: 'Brand System',
+    source: '8716',
+    src: '/assets/ria/concept-atlas/brand/ria-spectrum-brain-logo-alt.jpg',
+    alt: 'Alternative color spectrum RIA brain logo on a light background',
+    emphasis: 'square'
+  },
+  {
+    title: 'RIA Orbit Launch Poster',
+    category: 'Launch',
+    source: '8724',
+    src: '/assets/ria/concept-atlas/launch/ria-orbit-launch-poster.jpg',
+    alt: 'RIA Orbit launch poster with June 21 2026 download date',
+    emphasis: 'square'
+  },
+  {
+    title: 'DefenseCore Live Map',
+    category: 'DefenseCore',
+    source: '8971',
+    src: '/assets/ria/concept-atlas/defensecore/defensecore-live-satellite-map.jpg',
+    alt: 'RIA DefenseCore live satellite map dashboard with command panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Intelligence Wall',
+    category: 'Creative Studio',
+    source: '8972',
+    src: '/assets/ria/concept-atlas/creative/creative-intelligence-wall.jpg',
+    alt: 'RIA Creative Intelligence wall with generated visual asset cards',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Intelligence Wall Alt',
+    category: 'Creative Studio',
+    source: '8973',
+    src: '/assets/ria/concept-atlas/creative/creative-intelligence-wall-alt.jpg',
+    alt: 'Alternative RIA Creative Intelligence wall with cinematic visual cards',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Orbit Dashboard Square',
+    category: 'Orbit Command',
+    source: '9001',
+    src: '/assets/ria/concept-atlas/orbit/orbit-dashboard-square.jpg',
+    alt: 'Square RIA Orbit dashboard concept with dark command interface',
+    emphasis: 'square'
+  },
+  {
+    title: 'Orbit Dashboard Square Alt',
+    category: 'Orbit Command',
+    source: '9001(1)',
+    src: '/assets/ria/concept-atlas/orbit/orbit-dashboard-square-alt.jpg',
+    alt: 'Alternative square RIA Orbit dashboard concept',
+    emphasis: 'square'
+  },
+  {
+    title: 'DefenseCore Command Grid',
+    category: 'DefenseCore',
+    source: '9006',
+    src: '/assets/ria/concept-atlas/defensecore/defensecore-command-grid.jpg',
+    alt: 'RIA DefenseCore command grid with intelligence panels and operations feed',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Brain Structure Poster',
+    category: 'RIA Brain',
+    source: '9062',
+    src: '/assets/ria/concept-atlas/brain/ria-brain-structure-poster.jpg',
+    alt: 'RIA Brain structure poster showing cognitive modules and memory architecture',
+    emphasis: 'tall'
+  },
+  {
+    title: 'Beyond Intelligence Comparison',
+    category: 'Positioning',
+    source: '10:42',
+    src: '/assets/ria/concept-atlas/positioning/beyond-intelligence-comparison.jpg',
+    alt: 'RIA beyond intelligence comparison board positioning RIA against generic AI',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Humanoid Presence Portrait',
+    category: 'Robotics',
+    source: '10:44',
+    src: '/assets/ria/concept-atlas/robotics/humanoid-presence-portrait.jpg',
+    alt: 'RIA humanoid concept portrait with interface annotations',
+    emphasis: 'tall'
+  },
+  {
+    title: 'RIA Silicon Investor Board',
+    category: 'Infrastructure',
+    source: '10:46',
+    src: '/assets/ria/concept-atlas/infrastructure/ria-silicon-investor-board.jpg',
+    alt: 'RIA silicon family investor board showing chip and infrastructure roadmap',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Robotics Lab Wide',
+    category: 'Robotics',
+    source: '10:48',
+    src: '/assets/ria/concept-atlas/robotics/ria-robotics-lab-wide.jpg',
+    alt: 'Wide robotics laboratory with RIA branding, engineers, and humanoid systems',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Robotics Workshop Desk',
+    category: 'Robotics',
+    source: '10:55',
+    src: '/assets/ria/concept-atlas/robotics/robotics-workshop-desk.jpg',
+    alt: 'RIA robotics workshop desk with humanoid prototype and development monitors',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Building The Next Layer',
+    category: 'Company',
+    source: '10:56',
+    src: '/assets/ria/concept-atlas/company/building-next-layer-hero.jpg',
+    alt: 'RIA company hero concept with humanoid robot and next intelligence layer messaging',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Building The Next Layer Alt',
+    category: 'Company',
+    source: '10:57',
+    src: '/assets/ria/concept-atlas/company/building-next-layer-hero-alt.jpg',
+    alt: 'Alternative RIA company hero concept with humanoid robot and lab scene',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Robotics Lab Bench',
+    category: 'Robotics',
+    source: '10:58',
+    src: '/assets/ria/concept-atlas/robotics/robotics-lab-bench.jpg',
+    alt: 'RIA robotics lab bench with prototype, monitors, and engineering tools',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Humanoid System Board',
+    category: 'Robotics',
+    source: '10:59',
+    src: '/assets/ria/concept-atlas/robotics/humanoid-system-board.jpg',
+    alt: 'RIA humanoid system board with modular technical views',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Humanoid System Board Alt',
+    category: 'Robotics',
+    source: '11:00',
+    src: '/assets/ria/concept-atlas/robotics/humanoid-system-board-alt.jpg',
+    alt: 'Alternative RIA humanoid system board with engineering panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Command Grid',
+    category: 'Orbit Command',
+    source: '11:06',
+    src: '/assets/ria/concept-atlas/orbit/ria-command-grid.jpg',
+    alt: 'RIA command grid with multi-panel operating system interface',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA OS Beyond Limits',
+    category: 'Orbit Command',
+    source: '11:16',
+    src: '/assets/ria/concept-atlas/orbit/ria-os-beyond-limits.jpg',
+    alt: 'RIA OS beyond limits product page with Orbit dashboard modules',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Crypto Core Security Dashboard',
+    category: 'Crypto Core',
+    source: '11:17',
+    src: '/assets/ria/concept-atlas/crypto/crypto-core-security-dashboard.jpg',
+    alt: 'RIA Crypto Core security dashboard with private compute controls',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Orbit Mission Control Display',
+    category: 'Orbit Command',
+    source: '11:20',
+    src: '/assets/ria/concept-atlas/orbit/orbit-mission-control-display.jpg',
+    alt: 'Large Orbit mission control screen in a dark command room',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Operating System Mosaic',
+    category: 'Company',
+    source: '11:26',
+    src: '/assets/ria/concept-atlas/company/ria-operating-system-mosaic.jpg',
+    alt: 'RIA operating system company mosaic with dashboards and product panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Operating System Mosaic Alt',
+    category: 'Company',
+    source: '11:31A',
+    src: '/assets/ria/concept-atlas/company/ria-operating-system-mosaic-alt.jpg',
+    alt: 'Alternative RIA operating system company mosaic with product cards',
+    emphasis: 'wide'
+  },
+  {
+    title: 'RIA Operating System Detail',
+    category: 'Company',
+    source: '11:31B',
+    src: '/assets/ria/concept-atlas/company/ria-operating-system-mosaic-detail.jpg',
+    alt: 'Detailed RIA operating system mosaic showing brand and dashboard modules',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Work Design Evolve Automotive',
+    category: 'Engineering',
+    source: '11:40',
+    src: '/assets/ria/concept-atlas/engineering/work-design-evolve-automotive.jpg',
+    alt: 'RIA automotive engineering dashboard with vehicle design and simulation panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Work Design Evolve Automotive Alt',
+    category: 'Engineering',
+    source: '11:41A',
+    src: '/assets/ria/concept-atlas/engineering/work-design-evolve-automotive-alt.jpg',
+    alt: 'Alternative RIA automotive engineering dashboard with simulation and production panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Village Transformation Impact',
+    category: 'Real-World Impact',
+    source: '11:41B',
+    src: '/assets/ria/concept-atlas/impact/village-transformation-impact.jpg',
+    alt: 'RIA village transformation concept with technology-enabled infrastructure impact',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Studio Production Grid',
+    category: 'Creative Studio',
+    source: '11:44A',
+    src: '/assets/ria/concept-atlas/creative/creative-studio-production-grid.jpg',
+    alt: 'RIA Creative Studio production grid with generated imagery and asset controls',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Studio Production Grid Alt',
+    category: 'Creative Studio',
+    source: '11:44B',
+    src: '/assets/ria/concept-atlas/creative/creative-studio-production-grid-alt.jpg',
+    alt: 'Alternative RIA Creative Studio production grid with media generation panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Software Studio Command Center',
+    category: 'Software Studio',
+    source: '11:45',
+    src: '/assets/ria/concept-atlas/software/software-studio-command-center.jpg',
+    alt: 'RIA Software Studio command center with agent workspace and build panels',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Studio Dashboard',
+    category: 'Creative Studio',
+    source: '11:54',
+    src: '/assets/ria/concept-atlas/creative/creative-studio-dashboard.jpg',
+    alt: 'RIA Creative Studio dashboard with generated media and creative controls',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Render Archive A',
+    category: 'Creative Studio',
+    source: 'creative-cce',
+    src: '/assets/ria/concept-atlas/creative/creative-render-archive-a.jpg',
+    alt: 'Archived RIA creative render concept for visual production testing',
+    emphasis: 'wide'
+  },
+  {
+    title: 'Creative Render Archive B',
+    category: 'Creative Studio',
+    source: 'creative-fa',
+    src: '/assets/ria/concept-atlas/creative/creative-render-archive-b.jpg',
+    alt: 'Second archived RIA creative render concept for visual production testing',
+    emphasis: 'wide'
+  },
+  {
+    title: 'DefenseCore Dashboard Wide',
+    category: 'DefenseCore',
+    source: 'image(6)',
+    src: '/assets/ria/concept-atlas/defensecore/defensecore-dashboard-wide.png',
+    alt: 'Wide RIA DefenseCore dashboard with live satellite visualization and system health panels',
+    emphasis: 'wide'
+  }
+]
 
 const premiumSections: PremiumProductSection[] = [
   {
@@ -2471,6 +2796,85 @@ function ProductSection({ id, eyebrow, title, copy, image, cards, supportingImag
   )
 }
 
+function VisualSystemsAtlas() {
+  const grouped = visualAtlasItems.reduce<Record<string, VisualAtlasItem[]>>((groups, item) => {
+    groups[item.category] = groups[item.category] ? [...groups[item.category], item] : [item]
+    return groups
+  }, {})
+  const featured = [
+    visualAtlasItems.find((item) => item.title === 'RIA Orbit Premium Desktop'),
+    visualAtlasItems.find((item) => item.title === 'RIA Robotics Lab Wide'),
+    visualAtlasItems.find((item) => item.title === 'Creative Studio Production Grid')
+  ].filter(Boolean) as VisualAtlasItem[]
+
+  return (
+    <section className="ria-section ria-visual-atlas" id="visual-atlas">
+      <div className="premium-container">
+        <Reveal className="ria-atlas-header">
+          <div>
+            <p className="premium-eyebrow">Visual Systems Atlas</p>
+            <h2 className="ria-section-title">Every uploaded RIA concept organized into a production asset system.</h2>
+            <p className="ria-section-copy">
+              The strongest images lead the product story. The complete upload set is preserved below as a curated visual library for Orbit, RIA Brain, robotics, DefenseCore, Creative Studio, infrastructure, launch, and real-world impact.
+            </p>
+          </div>
+          <div className="ria-atlas-metrics" aria-label="RIA concept image analysis summary">
+            {[
+              ['Raw uploads analyzed', String(visualAtlasItems.length)],
+              ['Asset folders', String(Object.keys(grouped).length)],
+              ['Primary hero candidates', '3'],
+              ['Display set', 'Lazy loaded']
+            ].map(([label, value]) => (
+              <span key={label}>
+                <strong>{value}</strong>
+                {label}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+
+        <div className="ria-atlas-feature-row">
+          {featured.map((item) => (
+            <Reveal key={item.title} className="ria-atlas-feature-card">
+              <PremiumImage image={item} sizes="(max-width: 767px) 96vw, 31vw" />
+              <div>
+                <span>{item.category}</span>
+                <strong>{item.title}</strong>
+                <p>{item.alt}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="ria-atlas-groups">
+          {Object.entries(grouped).map(([category, items]) => (
+            <Reveal key={category} className="ria-atlas-group">
+              <div className="ria-atlas-group-header">
+                <div>
+                  <span>{String(items.length).padStart(2, '0')} Assets</span>
+                  <h3>{category}</h3>
+                </div>
+                <p>Source mapped, renamed, compressed where possible, and kept visible for brand continuity.</p>
+              </div>
+              <div className="ria-atlas-grid">
+                {items.map((item) => (
+                  <figure key={`${item.category}-${item.title}`} className={`ria-atlas-tile ria-atlas-tile-${item.emphasis ?? 'wide'}`}>
+                    <PremiumImage image={item} sizes="(max-width: 767px) 48vw, (max-width: 1180px) 24vw, 14vw" />
+                    <figcaption>
+                      <strong>{item.title}</strong>
+                      <span>{item.source}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function CTASection() {
   return (
     <section className="premium-cta-section">
@@ -2708,7 +3112,7 @@ function AionPage() {
 function HomePage() {
   return (
     <>
-      <SEO title="Home" description="RIA is a private intelligence platform for persistent memory, reasoning, execution, creative systems, and RIA OS launch access after June 21, 2026." />
+      <SEO title="Home" description="RIA is a private AI company platform for persistent memory, reasoning, execution, creative systems, RIA OS, and controlled launch access after June 21, 2026." />
       <HeroSection />
 
       <section className="premium-statement" id="overview">
@@ -2749,6 +3153,8 @@ function HomePage() {
       {premiumSections.map((section) => (
         <ProductSection key={section.id} {...section} />
       ))}
+
+      <VisualSystemsAtlas />
 
       <RoadmapSection />
 
