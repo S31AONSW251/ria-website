@@ -70,7 +70,7 @@ export default function CosmosBackground() {
           map: starSprite,
           vertexColors: true,
           transparent: true,
-          opacity,
+          opacity: opacity * 0.55,
           blending: THREE.AdditiveBlending,
           depthWrite: false,
           sizeAttenuation: true
@@ -90,9 +90,9 @@ export default function CosmosBackground() {
         ctx.globalCompositeOperation = 'lighter'
 
         const fields: Array<[number, number, number, string, string]> = [
-          [0.24, 0.32, 0.72, 'rgba(34,211,238,0.12)', 'rgba(14,165,233,0.035)'],
-          [0.72, 0.22, 0.62, 'rgba(168,85,247,0.1)', 'rgba(59,130,246,0.026)'],
-          [0.52, 0.78, 0.82, 'rgba(45,212,191,0.07)', 'rgba(2,6,23,0)']
+          [0.24, 0.32, 0.72, 'rgba(186,230,253,0.22)', 'rgba(14,165,233,0.06)'],
+          [0.72, 0.22, 0.62, 'rgba(221,214,254,0.18)', 'rgba(99,102,241,0.05)'],
+          [0.52, 0.78, 0.82, 'rgba(167,243,232,0.14)', 'rgba(248,251,255,0)']
         ]
 
         fields.forEach(([x, y, scale, inner, outer]) => {
@@ -121,7 +121,7 @@ export default function CosmosBackground() {
         new THREE.MeshBasicMaterial({
           map: nebulaTexture,
           transparent: true,
-          opacity: 0.42,
+          opacity: 0.22,
           blending: THREE.AdditiveBlending,
           depthWrite: false
         })

@@ -9,11 +9,17 @@ export default {
       },
       colors: {
         'brand-lime': '#a3e635',
-        ink: '#070809'
+        ink: '#111827',
+        'glass-surface': 'rgba(255, 255, 255, 0.78)',
+        'glass-line': 'rgba(15, 23, 42, 0.08)'
       },
       boxShadow: {
-        glow: '0 0 36px rgba(87, 245, 255, 0.18)',
-        violet: '0 0 42px rgba(139, 92, 246, 0.22)'
+        glow: '0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 36px rgba(15, 23, 42, 0.06)',
+        violet: '0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 36px rgba(15, 23, 42, 0.06)',
+        glass: '0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 36px rgba(15, 23, 42, 0.06)'
+      },
+      backdropBlur: {
+        glass: '14px'
       }
     }
   },
