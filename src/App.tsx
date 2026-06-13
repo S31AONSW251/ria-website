@@ -44,6 +44,7 @@ import {
   Network,
   Newspaper,
   Orbit,
+  Palette,
   Play,
   Rocket,
   Search,
@@ -468,15 +469,89 @@ function Reveal({ children, className = '', style }: { children: ReactNode; clas
   )
 }
 
-function LogoMark({ variant = 'header' }: { variant?: 'header' | 'footer' }) {
+// Inline SVG brand mark — exact recreation of the AION "A" glyph.
+// Bold geometric A: two thick angled legs, sharp apex, rectangular crossbar void.
+// Uses fill="currentColor" — no background, no box. Transparent by nature.
+function AionMark({ size = 32, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className={className}
+    >
+      {/*
+        Single closed path tracing the full A silhouette:
+        apex → right outer leg → crossbar notch → left inner leg → left outer leg → close
+        The rectangular notch at (44-56, 57-67) forms the crossbar void.
+      */}
+      <path
+        fillRule="nonzero"
+        fill="currentColor"
+        d="
+          M 50 5
+          L 93 94
+          L 77 94
+          L 56 57
+          L 56 67
+          L 44 67
+          L 44 57
+          L 23 94
+          L 7 94
+          Z
+        "
+      />
+    </svg>
+  )
+}
+
+// Pure CSS animated star field — cinematic background
+function CosmicStarField() {
+  return (
+    <div className="cosmic-stage" aria-hidden="true">
+      <div className="star-hero-glow" />
+      <div className="star-layer star-layer-c" />
+      <div className="star-layer star-layer-b" />
+      <div className="star-layer star-layer-a" />
+      <div className="star-mist" />
+    </div>
+  )
+}
+
+function LogoMark({ variant = 'header' }: { variant?: 'header' | 'footer' | 'badge' | 'watermark' }) {
+  if (variant === 'watermark') {
+    return (
+      <div className="flex items-center gap-1.5 opacity-15 select-none pointer-events-none">
+        <AionMark size={16} className="text-slate-500" />
+        <span className="text-[9px] font-bold tracking-[0.22em] text-slate-450 uppercase">AION</span>
+      </div>
+    )
+  }
+  if (variant === 'badge') {
+    return (
+      <div className="inline-flex items-center gap-2 rounded-lg border border-white/8 bg-black/40 px-3 py-1.5 text-xs font-semibold text-slate-100 backdrop-blur-md shadow-sm">
+        <AionMark size={14} className="text-slate-100" />
+        <span className="tracking-[0.18em] uppercase text-[10px]">Built by AION</span>
+      </div>
+    )
+  }
+  const isFooter = variant === 'footer'
   return (
     <Link
       to="/"
-      className={`brand-lockup brand-wordmark${variant === 'footer' ? ' brand-wordmark-footer' : ''}`}
-      aria-label="RIA home"
+      className="inline-flex items-center gap-2.5 group focus:outline-none"
+      aria-label="AION home"
     >
-      <span className="brand-wordmark-ria">RIA</span>
-      <span className="brand-wordmark-aion">AIONTEC</span>
+      <AionMark
+        size={isFooter ? 36 : 30}
+        className={`${isFooter ? 'text-slate-100' : 'text-slate-100'} transition-opacity group-hover:opacity-70 shrink-0`}
+      />
+      <span className={`${isFooter ? 'text-base font-bold tracking-[0.22em]' : 'text-sm font-bold tracking-[0.18em]'} text-slate-100 group-hover:text-slate-300 transition-colors uppercase`}>
+        AION
+      </span>
     </Link>
   )
 }
@@ -518,7 +593,7 @@ function Header() {
             <Link
               key={item.label}
               to={item.to}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${location.pathname === item.to ? 'bg-white text-black' : 'hover:bg-white/60'}`}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition ${location.pathname === item.to ? 'border border-white/16 bg-[rgb(255_255_255_/_0.12)] text-white' : 'text-slate-300 hover:bg-[rgb(255_255_255_/_0.08)] hover:text-white'}`}
             >
               {item.label}
             </Link>
@@ -526,27 +601,27 @@ function Header() {
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="ml-1 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium transition hover:border-cyan-200/45"
+            className="ml-1 inline-flex items-center gap-2 rounded-md border border-white/12 bg-[rgb(255_255_255_/_0.06)] px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-white/20 hover:bg-[rgb(255_255_255_/_0.10)] hover:text-white"
             aria-expanded={open}
           >
             Pages <ChevronDown className={`h-4 w-4 transition ${open ? 'rotate-180' : ''}`} />
           </button>
         </nav>
         <div className="site-nav-actions hidden items-center gap-3 md:flex">
-          <Link to="/download" className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium transition hover:border-white/35">
+          <Link to="/download" className="rounded-md border border-white/12 bg-[rgb(255_255_255_/_0.06)] px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-white/20 hover:bg-[rgb(255_255_255_/_0.10)] hover:text-slate-100">
             Launch Gate
           </Link>
-          <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-50">
+          <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="rounded-md border border-white/12 bg-[rgb(255_255_255_/_0.06)] px-4 py-2 text-sm font-semibold text-slate-300 transition hover:bg-[rgb(255_255_255_/_0.10)] hover:text-slate-100">
             AION Legacy
           </a>
-          <Link to="/contact" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-cyan-50">
+          <Link to="/contact" className="rounded-md border border-white/20 bg-[rgb(255_255_255_/_0.10)] px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-[rgb(255_255_255_/_0.16)] hover:border-white/30">
             Request Investor Brief
           </Link>
         </div>
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="site-menu-button inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-2 text-sm font-semibold"
+          className="site-menu-button inline-flex items-center gap-2 rounded-md border border-white/12 bg-[rgb(255_255_255_/_0.08)] px-3 py-2 text-sm font-semibold text-slate-200 hover:border-white/20 hover:bg-[rgb(255_255_255_/_0.12)]"
           aria-label="Open navigation"
           aria-expanded={open}
         >
@@ -557,13 +632,13 @@ function Header() {
       {open && (
         <div className="site-nav-dropdown border-t border-white/10 px-4 py-5 backdrop-blur-2xl">
           <div className="mb-4 flex items-center justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 rounded-lg bg-cyan-500/10 border border-cyan-200/20 px-4 py-3 text-sm font-semibold text-cyan-100">
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-lg border border-white/18 bg-[rgb(255_255_255_/_0.12)] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:bg-[rgb(255_255_255_/_0.18)]">
               Request Brief
             </Link>
-            <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/15 px-4 py-3 text-sm font-semibold text-zinc-100">
+            <a href="https://aion-aiontype1.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-[rgb(255_255_255_/_0.06)] px-4 py-3 text-sm font-semibold text-slate-300 transition hover:bg-[rgb(255_255_255_/_0.10)]">
               AION Legacy
             </a>
-            <Link to="/download" className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/15 px-4 py-3 text-sm font-semibold text-zinc-100">
+            <Link to="/download" className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-[rgb(255_255_255_/_0.06)] px-4 py-3 text-sm font-semibold text-slate-300 transition hover:bg-[rgb(255_255_255_/_0.10)]">
               Launch Gate
             </Link>
           </div>
@@ -571,14 +646,14 @@ function Header() {
             <div className="grid gap-6 lg:grid-cols-4">
               {groups.map((group) => (
                 <div key={group}>
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-200/75">{group}</p>
+                  <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">{group}</p>
                   <div className="grid gap-2">
                     {pageLinks
-                      .filter((item) => item.group === group)
-                      .map((item) => (
-                        <Link key={item.path} to={item.path} className="rounded-lg border border-white/10 bg-white/[0.03] p-3 transition hover:border-cyan-200/35 hover:bg-white/[0.06]">
-                          <span className="block text-sm font-semibold text-white">{item.label}</span>
-                          <span className="mt-1 block text-xs leading-5 text-zinc-400">{item.description}</span>
+                       .filter((item) => item.group === group)
+                       .map((item) => (
+                        <Link key={item.path} to={item.path} className="rounded-lg border border-white/8 bg-[rgb(255_255_255_/_0.04)] p-3 transition hover:border-white/14 hover:bg-[rgb(255_255_255_/_0.08)]">
+                          <span className="block text-sm font-bold text-slate-200">{item.label}</span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-500">{item.description}</span>
                         </Link>
                       ))}
                   </div>
@@ -1102,11 +1177,11 @@ function NeuralSphere({ compact = false, variant = 'default' }: { compact?: bool
 
 function MetricStrip({ metrics }: { metrics: Metric[] }) {
   return (
-    <div className="grid w-full max-w-full min-w-0 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid w-full max-w-full min-w-0 gap-px overflow-hidden rounded-xl border border-white/10 bg-[rgb(255_255_255_/_0.06)] shadow-[0_22px_70px_rgba(0,0,0,0.34)] backdrop-blur-2xl sm:grid-cols-2 lg:grid-cols-4">
       {metrics.map((metric) => (
-        <div key={metric.label} className="min-w-0 bg-black/45 p-5 backdrop-blur-xl">
-          <p className="text-2xl font-semibold text-white">{metric.value}</p>
-          <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">{metric.label}</p>
+        <div key={metric.label} className="min-w-0 bg-[rgba(8,12,22,0.72)] p-5 backdrop-blur-md">
+          <p className="text-2xl font-bold text-slate-100">{metric.value}</p>
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{metric.label}</p>
         </div>
       ))}
     </div>
@@ -1116,9 +1191,9 @@ function MetricStrip({ metrics }: { metrics: Metric[] }) {
 function SectionIntro({ eyebrow, title, copy }: { eyebrow: string; title: string; copy: string }) {
   return (
     <Reveal className="mx-auto max-w-3xl text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">{eyebrow}</p>
-      <h2 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">{title}</h2>
-      <p className="mt-5 text-base leading-8 text-zinc-300 sm:text-lg">{copy}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">{eyebrow}</p>
+      <h2 className="mt-5 text-3xl font-bold leading-tight text-slate-100 sm:text-4xl">{title}</h2>
+      <p className="mt-5 text-base leading-8 text-slate-400 sm:text-lg">{copy}</p>
     </Reveal>
   )
 }
@@ -1127,15 +1202,15 @@ function FeatureGrid({ items, columns = 'lg:grid-cols-3' }: { items: Feature[]; 
   return (
     <div className={`grid gap-4 md:grid-cols-2 ${columns}`}>
       {items.map((item) => (
-        <Reveal key={item.title} className="group rounded-lg border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl transition hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.07]">
+        <Reveal key={item.title} className="group dark-glass-card p-6 transition hover:-translate-y-1">
           <div className="flex items-center justify-between gap-4">
-            <span className="grid h-12 w-12 place-items-center rounded-lg border border-cyan-200/20 bg-cyan-200/10 text-cyan-100">
+            <span className="icon-shell grid h-12 w-12 place-items-center rounded-lg">
               <item.icon className="h-5 w-5" />
             </span>
-            {item.meta && <span className="rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-zinc-400">{item.meta}</span>}
+            {item.meta && <span className="rounded-full border border-white/10 bg-[rgb(255_255_255_/_0.05)] px-3 py-1 text-xs font-semibold text-slate-400">{item.meta}</span>}
           </div>
-          <h3 className="mt-8 text-xl font-semibold text-white">{item.title}</h3>
-          <p className="mt-3 text-sm leading-7 text-zinc-400">{item.copy}</p>
+          <h3 className="mt-8 text-xl font-bold text-slate-100">{item.title}</h3>
+          <p className="mt-3 text-sm leading-7 text-slate-400">{item.copy}</p>
         </Reveal>
       ))}
     </div>
@@ -1147,12 +1222,12 @@ function PageHero({ eyebrow, title, copy, metrics, children }: { eyebrow: string
 
   return (
     <section className="relative overflow-hidden pt-32">
-      <div className="absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.11),transparent_32rem)]" />
+      <div className="absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_50%_0%,rgba(34,100,200,0.08),transparent_32rem)]" />
       <div className="mx-auto grid max-w-[1500px] min-w-0 gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-28">
         <Reveal className="relative z-10 min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/85">{eyebrow}</p>
-          <h1 className="mt-6 max-w-[21rem] break-words text-5xl font-semibold leading-[0.95] text-white sm:max-w-5xl sm:text-7xl lg:text-8xl">{title}</h1>
-          <p className="mt-7 max-w-[21rem] break-words text-lg leading-8 text-zinc-300 sm:max-w-2xl sm:text-xl">{copy}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">{eyebrow}</p>
+          <h1 className="mt-6 max-w-[21rem] break-words text-5xl font-bold leading-[1.02] text-slate-100 sm:max-w-5xl sm:text-6xl lg:text-7xl">{title}</h1>
+          <p className="mt-7 max-w-[21rem] break-words text-base leading-8 text-slate-400 sm:max-w-2xl sm:text-lg">{copy}</p>
           {metrics && (
             <div className="mt-10 max-w-[21rem] sm:max-w-none">
               <MetricStrip metrics={metrics} />
@@ -1242,10 +1317,10 @@ function InteractiveDemo() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-      <div className="rounded-lg border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/80">Live RIA Simulation</p>
-        <h3 className="mt-5 text-3xl font-semibold text-white">Talk to the persistent intelligence layer.</h3>
-        <p className="mt-4 text-sm leading-7 text-zinc-400">
+      <div className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.34)] backdrop-blur-2xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Live RIA Simulation</p>
+        <h3 className="mt-5 text-2xl font-bold text-slate-100">Talk to the persistent intelligence layer.</h3>
+        <p className="mt-4 text-sm leading-7 text-slate-400">
           This front-end simulation demonstrates memory retrieval, reflection summaries, and investor-grade product explanation while the production backend is prepared.
         </p>
         <div className="mt-6 grid gap-2">
@@ -1255,34 +1330,34 @@ function InteractiveDemo() {
             'Show my recurring beliefs',
             'Create a strategic plan for next week'
           ].map((prompt) => (
-            <button key={prompt} type="button" onClick={() => send(prompt)} className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-left text-sm text-zinc-200 transition hover:border-cyan-200/35">
+            <button key={prompt} type="button" onClick={() => send(prompt)} className="rounded-lg border border-white/10 bg-[rgb(255_255_255_/_0.04)] px-4 py-3 text-left text-sm text-slate-300 shadow-sm transition hover:border-cyan-300/25 hover:bg-[rgb(255_255_255_/_0.08)] hover:text-slate-100">
               {prompt}
             </button>
           ))}
         </div>
       </div>
-      <div className="rounded-lg border border-white/10 bg-black/45 p-4 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl sm:p-5">
+      <div className="rounded-xl border border-white/10 bg-[rgba(10,16,30,0.78)] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-5">
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-cyan-200/10 text-cyan-100">
+            <span className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-300/15 bg-cyan-300/[0.08] text-cyan-300">
               <BrainCircuit className="h-5 w-5" />
             </span>
             <div>
-              <p className="font-semibold text-white">RIA Cognitive Session</p>
-              <p className="text-xs text-zinc-500">Memory, reflection, belief, strategy</p>
+              <p className="font-bold text-slate-100">RIA Cognitive Session</p>
+              <p className="text-xs text-slate-500">Memory, reflection, belief, strategy</p>
             </div>
           </div>
-          <span className="rounded-full border border-emerald-300/25 px-3 py-1 text-xs font-medium text-emerald-200">Active</span>
+          <span className="rounded-full border border-emerald-300/20 bg-emerald-300/[0.08] px-3 py-1 text-xs font-semibold text-emerald-300">Active</span>
         </div>
         <div className="mt-5 h-[24rem] overflow-y-auto pr-2">
           <div className="space-y-4">
             {messages.map((message, index) => (
-              <div key={`${message.role}-${index}`} className={`max-w-[88%] rounded-lg border p-4 text-sm leading-7 ${message.role === 'user' ? 'ml-auto border-cyan-200/25 bg-cyan-200/10 text-cyan-50' : 'border-white/10 bg-white/[0.045] text-zinc-200'}`}>
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-zinc-500">{message.role === 'user' ? 'Visitor' : 'RIA'}</p>
+              <div key={`${message.role}-${index}`} className={`max-w-[88%] rounded-lg border p-4 text-sm leading-7 ${message.role === 'user' ? 'ml-auto border-cyan-300/20 bg-cyan-300/[0.08] text-slate-200 shadow-sm' : 'border-white/10 bg-[rgb(255_255_255_/_0.05)] text-slate-300 shadow-sm'}`}>
+                <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">{message.role === 'user' ? 'Visitor' : 'RIA'}</p>
                 {message.text}
               </div>
             ))}
-            {thinking && <div className="rounded-lg border border-white/10 bg-white/[0.045] p-4 text-sm text-zinc-300">Routing through memory, reflection, belief classification, and strategy...</div>}
+            {thinking && <div className="rounded-lg border border-cyan-300/15 bg-cyan-300/[0.05] p-4 text-sm text-slate-400 animate-pulse">Routing through memory, reflection, belief classification, and strategy...</div>}
           </div>
         </div>
         <form
@@ -1290,10 +1365,10 @@ function InteractiveDemo() {
             event.preventDefault()
             send()
           }}
-          className="mt-4 flex gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3"
+          className="mt-4 flex gap-3 rounded-lg border border-white/10 bg-black/30 p-3 shadow-sm"
         >
-          <input value={input} onChange={(event) => setInput(event.target.value)} className="min-w-0 flex-1 bg-transparent px-2 text-sm text-white outline-none placeholder:text-zinc-600" placeholder="Ask RIA..." />
-          <button type="submit" className="grid h-11 w-11 place-items-center rounded-lg bg-white text-black" aria-label="Send message">
+          <input value={input} onChange={(event) => setInput(event.target.value)} className="min-w-0 flex-1 bg-transparent px-2 text-sm text-slate-100 outline-none placeholder:text-slate-500" placeholder="Ask RIA..." />
+          <button type="submit" className="grid h-11 w-11 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/[0.10] text-cyan-200 transition hover:bg-cyan-300/[0.16]" aria-label="Send message">
             <SendHorizontal className="h-4 w-4" />
           </button>
         </form>
@@ -1313,36 +1388,36 @@ function ArchitectureExplorer() {
             key={layer.id}
             type="button"
             onClick={() => setSelected(layer)}
-            className={`rounded-lg border p-4 text-left transition hover:-translate-y-1 ${selected.id === layer.id ? 'border-cyan-200/50 bg-cyan-200/10' : 'border-white/10 bg-white/[0.04] hover:border-white/25'}`}
+            className={`rounded-lg border p-4 text-left transition hover:-translate-y-0.5 ${selected.id === layer.id ? 'border-cyan-300/30 bg-cyan-300/[0.08]' : 'border-white/10 bg-[rgb(255_255_255_/_0.04)] hover:border-cyan-300/20 hover:bg-[rgb(255_255_255_/_0.07)]'}`}
           >
             <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 bg-black/30 text-cyan-100">
+              <span className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-300/15 bg-cyan-300/[0.07] text-cyan-300">
                 <layer.icon className="h-5 w-5" />
               </span>
-              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">Layer {index + 1}</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Layer {index + 1}</span>
             </div>
-            <p className="mt-5 font-semibold text-white">{layer.title}</p>
-            <p className="mt-2 text-sm leading-6 text-zinc-400">{layer.copy}</p>
+            <p className="mt-5 font-bold text-slate-100">{layer.title}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{layer.copy}</p>
           </button>
         ))}
       </div>
-      <div className="architecture-console rounded-lg border border-white/10 bg-black/50 p-6 backdrop-blur-xl lg:sticky lg:top-28 lg:self-start">
+      <div className="architecture-console rounded-xl border border-white/10 bg-[rgba(10,16,30,0.78)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-2xl lg:sticky lg:top-28 lg:self-start">
         <div className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-center">
           <NeuralSphere compact />
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/80">Active Module</p>
-            <h3 className="mt-4 text-4xl font-semibold text-white">{selected.title}</h3>
-            <p className="mt-4 text-base leading-8 text-zinc-300">{selected.detail}</p>
-            <div className="mt-6 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Active Module</p>
+            <h3 className="mt-4 text-2xl font-bold text-slate-100">{selected.title}</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-400">{selected.detail}</p>
+            <div className="mt-6 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-[rgb(255_255_255_/_0.06)]">
               {[
                 ['System signal', selected.signal],
                 ['Memory policy', 'Visible and editable'],
                 ['Deployment path', 'Cloud, private, device'],
                 ['Moat effect', 'Compounding context']
               ].map(([label, value]) => (
-                <div key={label} className="bg-black/40 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">{label}</p>
-                  <p className="mt-2 text-sm font-semibold text-white">{value}</p>
+                <div key={label} className="bg-black/20 p-4">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{label}</p>
+                  <p className="mt-2 text-sm font-semibold text-slate-200">{value}</p>
                 </div>
               ))}
             </div>
@@ -1357,9 +1432,9 @@ function MarketVisualization() {
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
       <Reveal>
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Market Opportunity</p>
-        <h3 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">Persistent intelligence can become a platform market.</h3>
-        <p className="mt-5 text-base leading-8 text-zinc-300">
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Market Opportunity</p>
+        <h3 className="mt-5 text-3xl font-bold leading-tight text-slate-100 sm:text-4xl">Persistent intelligence can become a platform market.</h3>
+        <p className="mt-5 text-base leading-8 text-slate-400">
           RIA spans consumer second brain, enterprise knowledge systems, education, healthcare and coaching, developer APIs, and private intelligence infrastructure.
         </p>
       </Reveal>
@@ -1370,11 +1445,11 @@ function MarketVisualization() {
           ['Developer platform', 12, 'layers'],
           ['Retention potential', 10, 'x']
         ].map(([label, value, suffix]) => (
-          <div key={label as string} className="rounded-lg border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl">
-            <p className="text-5xl font-semibold text-white">
+          <div key={label as string} className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.70)] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+            <p className="text-4xl font-bold text-slate-100">
               <CountUp value={value as number} suffix={suffix as string} />
             </p>
-            <p className="mt-4 text-sm uppercase tracking-[0.2em] text-zinc-500">{label}</p>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{label}</p>
           </div>
         ))}
       </Reveal>
@@ -1397,7 +1472,7 @@ function RiaOsShowcase() {
         <Reveal className="ria-os-showcase">
           <div className="ria-os-header">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">RIA OS Preview</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400">RIA OS Preview</p>
               <h2>Cosmic command layer for persistent intelligence.</h2>
               <p>
                 The product direction now reflects the RIA OS screenshots: a space-native interface for memory, conversation, coding, creative work, GPU control, and optional crypto compute.
@@ -1466,7 +1541,7 @@ function ProblemSection() {
     ['Category Thesis', 'Private intelligence should remember.', 'RIA is designed around persistent context, reflective reasoning, private execution, and long-term continuity.'],
     ['Product Proof', 'The system is visible.', 'Orbit dashboards, RIA Brain architecture, DefenseCore, Creative Studio, robotics, and infrastructure concepts show a real product universe.'],
     ['Launch Discipline', 'Access opens through a controlled gate.', `RIA keeps the ${riaReleaseDateShort} release path clear for users, partners, and early investor conversations.`],
-    ['Company Focus', 'RIA is the product brand.', 'AIONTEC provides the company context while RIA carries the public app, OS layer, memory system, and product roadmap.']
+    ['Company Focus', 'RIA is the product brand.', 'AION is the company identity while RIA carries the public app, OS layer, memory system, and product roadmap.']
   ]
 
   return (
@@ -1511,7 +1586,7 @@ function WhatIsSection() {
         <SectionIntro
           eyebrow="What RIA Is"
           title="A premium AI app and studio operating layer."
-          copy="RIA is the public product experience for AIONTEC. RIA OS, RIA Brain, DefenseCore, Creative Studio, and the private server launch sit inside one coherent ecosystem."
+          copy="RIA is the public product experience from AION. RIA OS, RIA Brain, DefenseCore, Creative Studio, and the private server launch sit inside one coherent ecosystem."
         />
         <div className="ria-module-grid">
           <FeatureGrid items={modules} />
@@ -1530,7 +1605,7 @@ function ArchitectureBlueprint() {
     ['DefenseCore', 'Operational maps, intelligence streams, alerts, and command workflows.'],
     ['Creative Studio', 'Image, video, media, UI, code, and campaign production surface.'],
     ['Launch System', 'June 21 gate, release notice, install path, and controlled access.'],
-    ['AIONtec Studio', 'Brand, investor surface, roadmap, and long-term category direction.']
+    ['AION Studio', 'Brand, investor surface, roadmap, and long-term category direction.']
   ]
 
   return (
@@ -1771,24 +1846,24 @@ function RoadmapSection() {
   )
 }
 
-function CtaBand({ title, copy, primary = 'Request Investor Deck', secondary = 'Schedule Meeting' }: { title: string; copy: string; primary?: string; secondary?: string }) {
+function CtaBand({ title, copy, primary = 'Request Investor Brief', secondary = 'Schedule Meeting' }: { title: string; copy: string; primary?: string; secondary?: string }) {
   return (
     <section className="relative overflow-hidden py-20">
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-        <Reveal className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.05] p-8 backdrop-blur-xl sm:p-12">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.11),transparent_24rem),radial-gradient(circle_at_20%_70%,rgba(255,255,255,0.08),transparent_22rem)]" />
+        <Reveal className="relative overflow-hidden rounded-xl border border-white/10 bg-[rgba(8,12,22,0.76)] p-8 shadow-[0_26px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-12">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(103,232,249,0.10),transparent_24rem),radial-gradient(circle_at_20%_70%,rgba(59,130,246,0.08),transparent_22rem)]" />
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">RIA</p>
-              <h2 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-6xl">{title}</h2>
-              <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-300">{copy}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300">RIA</p>
+              <h2 className="mt-5 text-3xl font-bold leading-tight text-slate-100 sm:text-5xl">{title}</h2>
+              <p className="mt-5 max-w-3xl text-base leading-8 text-slate-400">{copy}</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href="/downloads/investor-deck.md" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-100">
-                {primary} <Download className="h-4 w-4" />
-              </a>
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-200/45">
-                {secondary} <ArrowRight className="h-4 w-4" />
+              <Link to="/contact" className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/[0.10] px-5 py-3 text-sm font-semibold text-cyan-100 shadow-md transition hover:bg-cyan-300/[0.16]">
+                {primary} <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/download" className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-[rgb(255_255_255_/_0.05)] px-5 py-3 text-sm font-semibold text-slate-200 shadow-sm transition hover:border-white/20 hover:bg-[rgb(255_255_255_/_0.08)]">
+                {secondary} <Download className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -1802,13 +1877,13 @@ function DownloadCenter() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {downloads.map((item) => (
-        <a key={item.title} href={item.href} className="group rounded-lg border border-white/10 bg-white/[0.045] p-6 transition hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.07]">
-          <span className="grid h-12 w-12 place-items-center rounded-lg border border-white/10 bg-black/30 text-cyan-100">
+        <a key={item.title} href={item.href} className="group dark-glass-card p-6 transition hover:-translate-y-1 block">
+          <span className="icon-shell grid h-12 w-12 place-items-center rounded-lg">
             <FileText className="h-5 w-5" />
           </span>
-          <h3 className="mt-8 text-xl font-semibold text-white">{item.title}</h3>
-          <p className="mt-3 text-sm leading-7 text-zinc-400">{item.copy}</p>
-          <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
+          <h3 className="mt-8 text-lg font-bold text-slate-100">{item.title}</h3>
+          <p className="mt-3 text-sm leading-7 text-slate-400">{item.copy}</p>
+          <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300">
             Download <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
           </span>
         </a>
@@ -1824,7 +1899,7 @@ function RiaDownloadPanel() {
         <Reveal className="ria-download-panel">
           <div className="ria-download-hero">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-200/80">Download RIA</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-400">Download RIA</p>
               <h2>Private build. Public release opens {riaReleaseDate}.</h2>
               <p>
                 RIA is currently hidden while the complete build, security review, packaging, and release documentation are finished. The download area is ready now, but source access and installer packages stay locked until the release date.
@@ -1851,7 +1926,7 @@ function RiaDownloadPanel() {
           <div className="ria-download-grid">
             {releaseHighlights.map((item) => (
               <div key={item.title} className="ria-download-card">
-                <item.icon className="h-5 w-5 text-cyan-100" />
+                <item.icon className="h-5 w-5 text-cyan-400" />
                 <strong>{item.title}</strong>
                 <span>{item.copy}</span>
               </div>
@@ -1920,26 +1995,26 @@ function ContactForm({ intent = 'General inquiry' }: { intent?: string }) {
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-4 rounded-lg border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl sm:p-6">
+    <form onSubmit={submit} className="grid gap-4 rounded-xl border border-white/10 bg-[rgba(8,12,22,0.76)] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.40)] backdrop-blur-2xl sm:p-6">
       <input type="hidden" name="intent" value={intent} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-zinc-300">
+        <label className="grid gap-2 text-sm font-semibold text-slate-300">
           Name
-          <input required name="name" className="rounded-lg border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition focus:border-cyan-200/55" />
+          <input required name="name" className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/30 focus:bg-black/40" />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-zinc-300">
+        <label className="grid gap-2 text-sm font-semibold text-slate-300">
           Email
-          <input required type="email" name="email" className="rounded-lg border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition focus:border-cyan-200/55" />
+          <input required type="email" name="email" className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/30 focus:bg-black/40" />
         </label>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-zinc-300">
+        <label className="grid gap-2 text-sm font-semibold text-slate-300">
           Organization
-          <input name="organization" className="rounded-lg border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition focus:border-cyan-200/55" />
+          <input name="organization" className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/30 focus:bg-black/40" />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-zinc-300">
+        <label className="grid gap-2 text-sm font-semibold text-slate-300">
           Inquiry Type
-          <select name="type" defaultValue={intent} className="rounded-lg border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition focus:border-cyan-200/55">
+          <select name="type" defaultValue={intent} className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-300/30 focus:bg-black/40">
             <option>Investor meeting</option>
             <option>Enterprise inquiry</option>
             <option>Partnership</option>
@@ -1948,15 +2023,15 @@ function ContactForm({ intent = 'General inquiry' }: { intent?: string }) {
           </select>
         </label>
       </div>
-      <label className="grid gap-2 text-sm font-medium text-zinc-300">
+      <label className="grid gap-2 text-sm font-semibold text-slate-300">
         Message
-        <textarea required name="message" rows={5} className="resize-none rounded-lg border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition focus:border-cyan-200/55" />
+        <textarea required name="message" rows={5} className="resize-none rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/30 focus:bg-black/40" />
       </label>
-      <button type="submit" className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-100">
+      <button type="submit" className="inline-flex w-fit items-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/[0.10] px-5 py-3 text-sm font-semibold text-cyan-100 shadow-md transition hover:bg-cyan-300/[0.16]">
         Prepare Email Request <SendHorizontal className="h-4 w-4" />
       </button>
       {submitted && (
-        <p className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-sm text-emerald-100">
+        <p className="rounded-lg border border-emerald-300/20 bg-emerald-300/[0.08] px-4 py-3 text-sm text-emerald-300 font-semibold shadow-sm">
           Your email draft is prepared for direct founder contact. Send it from your mail app so the request reaches RIA.
         </p>
       )}
@@ -2118,7 +2193,7 @@ const aionVisuals = {
   }
 } satisfies Record<string, PremiumImageAsset>
 
-const heroBadges = ['Private AI', 'Persistent Memory', 'RIA OS Lab', 'DefenseCore', 'Creative Studio', 'Founder-Led', '21 Jun', 'AIONTEC']
+const heroBadges = ['Private AI', 'Persistent Memory', 'RIA OS Lab', 'DefenseCore', 'Creative Studio', 'Founder-Led', '21 Jun', 'AION']
 const riaCoreLabels = ['Memory', 'Reasoning', 'Reflection', 'Autonomy', 'Knowledge', 'Software', 'Avatar', 'Evolution']
 
 const premiumSections: PremiumProductSection[] = [
@@ -2509,7 +2584,7 @@ function ImageLibraryPage() {
 
           <p className="image-library-count">{filteredImages.length} visuals</p>
 
-          <div className="image-library-grid">
+          <div className="image-library-masonry">
             {filteredImages.map((image) => (
               <button
                 key={image.src}
@@ -2661,11 +2736,23 @@ function HeroSection() {
       </div>
       <div className="premium-container home-hero-grid">
         <Reveal className="home-hero-panel">
-          <p className="premium-eyebrow">AIONTEC / RIA</p>
+          <div className="mb-4">
+            <LogoMark variant="badge" />
+          </div>
           <h1>RIA is a private intelligence system for memory, reasoning, and autonomous work.</h1>
           <p>
-            Built by AIONTEC, RIA combines long-term memory, local-first infrastructure, creative production, and command surfaces for builders, teams, and future institutions.
+            Built by AION, RIA combines long-term memory, local-first infrastructure, creative production, and command surfaces for builders, teams, and future institutions.
           </p>
+          
+          <div className="flex flex-wrap gap-2.5 mt-5 mb-1" aria-label="System pillars">
+            {['Local-first', 'Memory Engine', 'Autonomous Workflows'].map((badge) => (
+              <span key={badge} className="inline-flex items-center rounded-md border border-white/10 bg-black/30 px-2.5 py-1 text-[11px] font-semibold text-slate-300 shadow-sm backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 mr-1.5 animate-pulse" />
+                {badge}
+              </span>
+            ))}
+          </div>
+
           <div className="home-hero-actions">
             <Link to="/#product" className="premium-button premium-button-primary">
               Explore RIA <ArrowRight className="h-4 w-4" />
@@ -2684,14 +2771,31 @@ function HeroSection() {
           </div>
         </Reveal>
 
-        <Reveal className="home-hero-product">
-          <div className="brain-hero-visual">
-            <PremiumImage
-              image={{ ...aionVisuals.brainLogo, alt: 'RIA brain intelligence symbol' }}
-              loading="eager"
-              fetchPriority="high"
-              sizes="(max-width: 900px) 92vw, 420px"
-            />
+        <Reveal className="home-hero-product flex justify-center items-center w-full">
+          <div className="w-full max-w-lg overflow-hidden rounded-xl border border-white/10 bg-[rgba(8,12,22,0.70)] p-0 shadow-[0_30px_90px_rgba(0,0,0,0.48)] backdrop-blur-2xl transition-all duration-300 hover:border-cyan-300/20 hover:shadow-[0_30px_90px_rgba(8,47,73,0.28)]">
+            {/* Browser/Window Command Bar */}
+            <div className="flex items-center justify-between border-b border-white/10 bg-black/25 px-4 py-3 select-none">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-[rgb(100_116_139_/_0.75)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[rgb(100_116_139_/_0.75)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-cyan-300/70" />
+              </div>
+              <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase font-mono">RIA OS Orbit v1.0</span>
+              <div className="w-10" />
+            </div>
+            {/* Viewport Image */}
+            <div className="relative aspect-[16/10] overflow-hidden bg-slate-900 group">
+              <img
+                src="/assets/ria/ria-os-orbit-hero.jpg"
+                alt="RIA OS Orbit Dashboard"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-103"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded border border-white/10 bg-black/60 px-2 py-1 text-[9px] font-bold tracking-wider text-cyan-400 backdrop-blur-md">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                OS RUNTIME ACTIVE
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>
@@ -2791,7 +2895,7 @@ function AionPage() {
     <>
       <SEO
         title="AION | Private AI Studio"
-        description="AION is an advanced creative intelligence and defense AI system. Explore the previous generation of AIONTEC's private AI studio built for production work."
+        description="AION is an advanced creative intelligence and defense AI system. Explore AION's private AI studio foundation built for production work."
       />
       <section className="ria-hero min-h-screen pt-32">
         <div className="premium-container py-20">
@@ -2800,7 +2904,7 @@ function AionPage() {
             <h1 className="ria-hero-title text-6xl">AION: The Creative Intelligence System</h1>
             <h2 className="ria-hero-subtitle">Advanced creative dashboards, DefenseCore intelligence, and production-grade creative studios.</h2>
             <p className="ria-hero-copy max-w-3xl text-lg">
-              AION was AIONTEC's foundational studio for creative intelligence and defense systems. While development has shifted to RIA OS, AION remains a powerful reference for the creative and intelligence architecture that powers modern AI studios.
+              AION began as the foundational studio for creative intelligence and defense systems. While development has shifted to RIA OS, AION remains a powerful reference for the creative and intelligence architecture that powers modern AI studios.
             </p>
             <div className="flex flex-wrap gap-4 pt-8">
               <a
@@ -2935,13 +3039,13 @@ function AionPage() {
                 ]
               }
             ].map((section) => (
-              <Reveal key={section.title} className="rounded-lg border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
-                <h3 className="mb-6 text-2xl font-semibold text-white">{section.title}</h3>
+              <Reveal key={section.title} className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+                <h3 className="mb-6 text-2xl font-bold text-slate-100">{section.title}</h3>
                 <ul className="space-y-3">
                   {section.items.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400" />
-                      <span className="text-base text-zinc-300">{item}</span>
+                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-300" />
+                      <span className="text-base text-slate-400">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -2965,9 +3069,9 @@ function AionPage() {
               ['2027', 'Enterprise memory systems and institutional knowledge foundations'],
               ['2028+', 'Global cognitive infrastructure across teams, education, and research']
             ].map(([date, description]) => (
-              <Reveal key={date} className="grid gap-4 rounded-lg border border-white/10 bg-white/[0.04] p-6 lg:grid-cols-[200px_1fr]">
-                <span className="text-lg font-semibold text-cyan-200">{date}</span>
-                <p className="text-base text-zinc-300">{description}</p>
+              <Reveal key={date} className="grid gap-4 rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl lg:grid-cols-[200px_1fr]">
+                <span className="text-lg font-bold text-cyan-300">{date}</span>
+                <p className="text-base text-slate-400">{description}</p>
               </Reveal>
             ))}
           </div>
@@ -3023,9 +3127,9 @@ function VisionPage() {
             ['Persistent intelligence matters', 'Reflection, identity continuity, belief awareness, and strategic synthesis make AI feel less like a short-lived tool and more like a durable partner.'],
             ['Human-AI co-evolution', 'The long-term goal is not replacement. It is an intelligence layer that helps humans preserve experience, clarify goals, and evolve deliberately.']
           ].map(([title, copy]) => (
-            <Reveal key={title} className="rounded-lg border border-white/10 bg-white/[0.045] p-7 backdrop-blur-xl">
-              <h2 className="text-2xl font-semibold text-white">{title}</h2>
-              <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
+            <Reveal key={title} className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+              <h2 className="text-xl font-bold text-slate-100">{title}</h2>
+              <p className="mt-4 text-sm leading-7 text-slate-400">{copy}</p>
             </Reveal>
           ))}
         </div>
@@ -3033,7 +3137,7 @@ function VisionPage() {
       <section className="py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal className="prose-panel">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Philosophy</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300">Philosophy</p>
             <h2>Intelligence becomes profound when it has continuity.</h2>
             <p>
               Most AI systems are brilliant in the moment and empty afterward. They generate, but they do not become. RIA is built around the opposite premise: memory, reflection, and evolution are not optional features. They are the infrastructure required for intelligence to become personally and institutionally meaningful.
@@ -3117,11 +3221,11 @@ function ProductPage() {
             [assets.cards.product, 'RIA Command Surface', 'A premium operating layer for chat, reflection, strategy, goals, and intelligence status.'],
             [assets.cards.research, 'Reflection Dashboard', 'Longitudinal patterns, belief shifts, emotional trends, and strategic recommendations.']
           ].map(([src, title, copy]) => (
-            <Reveal key={title} className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.045]">
+            <Reveal key={title} className="overflow-hidden rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl transition hover:border-cyan-300/20">
               <img src={src} alt="" className="aspect-[16/10] w-full object-cover" />
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-zinc-400">{copy}</p>
+                <h3 className="text-lg font-bold text-slate-100">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-400">{copy}</p>
               </div>
             </Reveal>
           ))}
@@ -3234,9 +3338,9 @@ function RiaEnterprisePage() {
           <SectionIntro eyebrow="Enterprise Credibility" title="Built for serious institutions from day one." copy="The site surfaces public-company readiness, certification roadmap, security commitments, ecosystem targets, and research depth without claiming credentials before they exist." />
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {['Private company, public-company governance roadmap', 'SOC 2 and ISO 27001 planning', 'Ecosystem roadmap in formation', 'Design partner deployment target'].map((item) => (
-              <Reveal key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-6">
-                <BadgeCheck className="h-5 w-5 text-cyan-100" />
-                <p className="mt-6 text-sm font-semibold leading-6 text-white">{item}</p>
+              <Reveal key={item} className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+                <BadgeCheck className="h-5 w-5 text-cyan-300" />
+                <p className="mt-6 text-sm font-semibold leading-6 text-slate-300">{item}</p>
               </Reveal>
             ))}
           </div>
@@ -3308,9 +3412,9 @@ function InvestorsPage() {
             ['Why is it different?', 'RIA remembers, reflects, models identity, tracks evolution, and becomes more valuable with every interaction.'],
             ['Why now?', 'Generative AI adoption is high, but durable memory, enterprise continuity, and trustworthy personal cognition remain unsolved.']
           ].map(([title, copy]) => (
-            <Reveal key={title} className="rounded-lg border border-white/10 bg-white/[0.045] p-7">
-              <h2 className="text-2xl font-semibold text-white">{title}</h2>
-              <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
+            <Reveal key={title} className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+              <h2 className="text-xl font-bold text-slate-100">{title}</h2>
+              <p className="mt-4 text-sm leading-7 text-slate-400">{copy}</p>
             </Reveal>
           ))}
         </div>
@@ -3320,26 +3424,26 @@ function InvestorsPage() {
           <SectionIntro eyebrow="Competitive Matrix" title="RIA is designed to win on continuity." copy="The wedge is not generic generation. It is memory, reflection, belief analysis, identity continuity, and evolution tracking." />
           <div className="mt-12 space-y-3 md:hidden">
             {competitiveRows.map((row) => (
-              <Reveal key={`mobile-${row[0]}`} className="rounded-lg border border-white/10 bg-black/40 p-4">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200/80">{row[0]}</p>
+              <Reveal key={`mobile-${row[0]}`} className="rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">{row[0]}</p>
                 <div className="mt-3 space-y-2">
                   {competitiveHeaders.slice(1).map((heading, index) => {
                     const cell = row[index + 1]
                     const isRia = heading.label === 'RIA'
                     return (
-                      <div key={`${row[0]}-${heading.label}`} className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-black/35 px-3 py-2">
-                        <span className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-300">
+                      <div key={`${row[0]}-${heading.label}`} className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-[rgb(255_255_255_/_0.04)] px-3 py-2.5">
+                        <span className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400">
                           {heading.logo ? (
                             <img
                               src={heading.logo}
                               alt=""
-                              className={`h-3.5 w-3.5 shrink-0 object-contain ${heading.invert ? 'invert opacity-90' : 'opacity-95'}`}
+                              className="h-3.5 w-3.5 shrink-0 object-contain opacity-95"
                               loading="lazy"
                             />
                           ) : null}
                           {heading.label}
                         </span>
-                        <span className={`text-sm font-semibold ${isRia ? 'text-cyan-100' : 'text-zinc-200'}`}>{cell}</span>
+                        <span className={`text-xs font-bold ${isRia ? 'text-cyan-300' : 'text-slate-300'}`}>{cell}</span>
                       </div>
                     )
                   })}
@@ -3347,18 +3451,18 @@ function InvestorsPage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-12 hidden overflow-x-auto rounded-lg border border-white/10 md:block">
-            <table className="w-full min-w-[760px] border-collapse bg-black/40 text-left text-sm">
+          <div className="mt-12 hidden overflow-x-auto rounded-xl border border-white/10 bg-[rgba(8,12,22,0.72)] shadow-[0_18px_60px_rgba(0,0,0,0.30)] backdrop-blur-2xl md:block">
+            <table className="w-full min-w-[760px] border-collapse bg-transparent text-left text-sm">
               <thead>
-                <tr className="border-b border-white/10 text-zinc-400">
+                <tr className="border-b border-white/10 bg-[rgb(255_255_255_/_0.04)] text-slate-500">
                   {competitiveHeaders.map((heading) => (
-                    <th key={heading.label} className="px-5 py-4 font-semibold">
+                    <th key={heading.label} className="px-6 py-4.5 font-bold tracking-wide text-xs uppercase text-slate-300">
                       {heading.logo ? (
                         <span className="inline-flex items-center gap-2 whitespace-nowrap">
                           <img
                             src={heading.logo}
                             alt=""
-                            className={`h-4 w-4 shrink-0 object-contain ${heading.invert ? 'invert opacity-90' : 'opacity-95'}`}
+                            className="h-4 w-4 shrink-0 object-contain opacity-95"
                             loading="lazy"
                           />
                           <span>{heading.label}</span>
@@ -3372,9 +3476,9 @@ function InvestorsPage() {
               </thead>
               <tbody>
                 {competitiveRows.map((row) => (
-                  <tr key={row[0]} className="border-b border-white/10 last:border-0">
+                  <tr key={row[0]} className="border-b border-white/10 transition-colors last:border-0 hover:bg-[rgb(255_255_255_/_0.05)]">
                     {row.map((cell, index) => (
-                      <td key={`${row[0]}-${cell}`} className={`px-5 py-4 ${index === row.length - 1 ? 'font-semibold text-cyan-100' : 'text-zinc-300'}`}>
+                      <td key={`${row[0]}-${cell}`} className={`px-6 py-4.5 ${index === row.length - 1 ? 'font-bold text-cyan-300' : 'text-slate-400'}`}>
                         {cell}
                       </td>
                     ))}
@@ -3396,15 +3500,15 @@ function InvestorsPage() {
       <section className="py-20">
         <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Roadmap</p>
-            <h2 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">From personal platform to global cognitive infrastructure.</h2>
-            <p className="mt-5 text-base leading-8 text-zinc-300">Capital accelerates core engineering, memory infrastructure, research, security, product design, and enterprise sales.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300">Roadmap</p>
+            <h2 className="mt-5 text-4xl font-bold leading-tight text-slate-100 sm:text-5xl">From personal platform to global cognitive infrastructure.</h2>
+            <p className="mt-5 text-base leading-8 text-slate-400">Capital accelerates core engineering, memory infrastructure, research, security, product design, and enterprise sales.</p>
           </Reveal>
           <Reveal className="timeline-line">
             {roadmap.map(([year, copy]) => (
               <div key={year} className="timeline-item">
-                <span>{year}</span>
-                <p>{copy}</p>
+                <span className="font-bold">{year}</span>
+                <p className="text-slate-400">{copy}</p>
               </div>
             ))}
           </Reveal>
@@ -3440,7 +3544,7 @@ function FounderPage() {
       <section className="py-20">
         <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <Reveal className="prose-panel">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Why I Built RIA</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400">Why I Built RIA</p>
             <h2>"I wanted to create an intelligence that does not forget."</h2>
             <p>
               RIA is a response to a simple frustration: powerful AI still loses the human story. It can answer a question, but it cannot carry years of growth, doubt, ambition, decisions, relationships, and learning unless memory becomes the operating layer.
@@ -3513,11 +3617,11 @@ function NewsroomPage() {
       <section className="py-20">
         <div className="mx-auto grid max-w-[1500px] gap-4 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
           {newsItems.map(([type, title, copy]) => (
-            <Reveal key={title} className="rounded-lg border border-white/10 bg-white/[0.045] p-7">
-              <Newspaper className="h-5 w-5 text-cyan-100" />
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">{type}</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white">{title}</h2>
-              <p className="mt-4 text-sm leading-7 text-zinc-400">{copy}</p>
+            <Reveal key={title} className="dark-glass-card p-7 transition hover:-translate-y-1">
+              <Newspaper className="h-5 w-5 text-cyan-400" />
+              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">{type}</p>
+              <h2 className="mt-3 text-2xl font-semibold text-slate-100">{title}</h2>
+              <p className="mt-4 text-sm leading-7 text-slate-400">{copy}</p>
             </Reveal>
           ))}
         </div>
@@ -3631,7 +3735,7 @@ function DownloadPage() {
               ['Optional Crypto Core', 'Backend-configured crypto and wallet panels with private-key handling kept out of the UI and logs.']
             ].map(([title, copy]) => (
               <div key={title}>
-                <BadgeCheck className="h-5 w-5 text-cyan-100" />
+                <BadgeCheck className="h-5 w-5 text-cyan-400" />
                 <strong>{title}</strong>
                 <span>{copy}</span>
               </div>
@@ -3667,9 +3771,9 @@ function SecurityPage() {
           <SectionIntro eyebrow="Trust Center" title="Enterprise credibility without false claims." copy="RIA shows commitments, roadmaps, and deployment pathways clearly while leaving space for verified certifications as they are completed." />
           <div className="mt-12 grid gap-4 md:grid-cols-4">
             {['Data encryption', 'Memory export', 'Deletion controls', 'Compliance roadmap'].map((item) => (
-              <Reveal key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-6 text-center">
-                <ShieldCheck className="mx-auto h-6 w-6 text-cyan-100" />
-                <p className="mt-5 text-sm font-semibold text-white">{item}</p>
+              <Reveal key={item} className="dark-glass-card p-6 text-center transition hover:-translate-y-1">
+                <ShieldCheck className="mx-auto h-6 w-6 text-cyan-400" />
+                <p className="mt-5 text-sm font-semibold text-slate-100">{item}</p>
               </Reveal>
             ))}
           </div>
@@ -3691,18 +3795,18 @@ function ContactPage() {
       ]} />
       <section className="py-20">
         <div className="mx-auto grid max-w-[1500px] gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
-          <Reveal className="rounded-lg border border-white/10 bg-white/[0.045] p-7">
-            <Mail className="h-6 w-6 text-cyan-100" />
-            <h2 className="mt-6 text-3xl font-semibold text-white">Direct founder contact</h2>
-            <p className="mt-4 text-sm leading-7 text-zinc-400">
+          <Reveal className="dark-glass-card p-7">
+            <Mail className="h-6 w-6 text-cyan-400" />
+            <h2 className="mt-6 text-3xl font-semibold text-slate-100">Direct founder contact</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-400">
               For investment, partnership, or product funding, contact the founder directly through the form or email.
             </p>
             <div className="mt-8 grid gap-4">
-              <a href={`mailto:${contact.email}`} className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/30 p-4 text-sm text-zinc-200 transition hover:border-cyan-200/35">
-                <Mail className="h-4 w-4 text-cyan-100" /> {contact.email}
+              <a href={`mailto:${contact.email}`} className="flex items-center gap-3 rounded-lg border border-white/8 bg-[rgb(255_255_255_/_0.04)] p-4 text-sm text-slate-300 transition hover:border-cyan-400/30 hover:bg-[rgb(255_255_255_/_0.07)]">
+                <Mail className="h-4 w-4 text-cyan-400" /> {contact.email}
               </a>
-              <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/30 p-4 text-sm text-zinc-200">
-                <MapPin className="h-4 w-4 text-cyan-100" /> {contact.location}
+              <div className="flex items-center gap-3 rounded-lg border border-white/8 bg-[rgb(255_255_255_/_0.04)] p-4 text-sm text-slate-300">
+                <MapPin className="h-4 w-4 text-cyan-400" /> {contact.location}
               </div>
             </div>
           </Reveal>
@@ -3721,10 +3825,10 @@ function NotFoundPage() {
       <SEO title="Page Not Found" description="The requested RIA page could not be found." />
       <section className="flex min-h-screen items-center justify-center px-4 pt-24">
         <div className="max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">404</p>
-          <h1 className="mt-5 text-5xl font-semibold text-white">This memory node does not exist.</h1>
-          <p className="mt-5 text-zinc-400">Return to the main intelligence stream and continue exploring RIA.</p>
-          <Link to="/" className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400">404</p>
+          <h1 className="mt-5 text-5xl font-semibold text-slate-100">This memory node does not exist.</h1>
+          <p className="mt-5 text-slate-400">Return to the main intelligence stream and continue exploring RIA.</p>
+          <Link to="/" className="mt-8 inline-flex items-center gap-2 rounded-lg border border-white/14 bg-[rgb(255_255_255_/_0.10)] px-5 py-3 text-sm font-semibold text-slate-100 shadow-sm transition hover:bg-[rgb(255_255_255_/_0.16)]">
             Back Home <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -3764,7 +3868,7 @@ function Footer() {
           </div>
         </div>
         <div className="site-footer-bottom">
-          <span>© 2026 AIONTEC. RIA is the product system.</span>
+          <span>© 2026 AION. RIA is the private intelligence system.</span>
           <div>
             <Link to="/contact">Contact</Link>
             <Link to="/download">Launch Status</Link>
@@ -3789,6 +3893,7 @@ export default function App() {
   return (
     <main className="ria-site cosmos glass-theme min-h-screen">
       <ScrollToTop />
+      <CosmicStarField />
       <CosmosBackground />
       <LivingStream />
       <Header />
