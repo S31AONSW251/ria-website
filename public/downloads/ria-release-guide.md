@@ -1,6 +1,6 @@
 # RIA Release Guide
 
-**Release availability:** June 21, 2026
+**Release availability:** July 5, 2026
 
 RIA is currently private while the full build, packaging, and security review are completed. Public download access should open after the release gate is cleared.
 
@@ -91,4 +91,4 @@ The launcher starts:
 
 ## Current Status
 
-RIA is in private build/security hardening until the June 21, 2026 release gate.
+RIA is in private build/security hardening until the July 5, 2026 release gate.

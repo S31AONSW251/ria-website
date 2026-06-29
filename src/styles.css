@@ -6715,3 +6715,152 @@ a[aria-label="AION home"] svg {
       linear-gradient(180deg, rgba(3, 5, 10, 0.86), rgba(3, 5, 10, 0.68) 52%, rgba(3, 5, 10, 0.92)) !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HYPER-REAL AVATAR HERO  ·  Premium AI woman presence
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Full-bleed avatar canvas – positioned behind content */
+.home-hero-avatar-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 8%,
+    rgba(0,0,0,0.06) 25%,
+    rgba(0,0,0,0.5) 40%,
+    rgba(0,0,0,1) 56%,
+    rgba(0,0,0,1) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 8%,
+    rgba(0,0,0,0.06) 25%,
+    rgba(0,0,0,0.5) 40%,
+    rgba(0,0,0,1) 56%,
+    rgba(0,0,0,1) 100%
+  );
+}
+
+.home-hero-avatar-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Fix headline so it never overflows at wide viewports */
+.home-hero-headline {
+  margin: 1rem 0 0;
+  max-width: 14ch;
+  color: #e8edf5;
+  font-size: clamp(2.1rem, 3.0vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.06;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.home-hero-headline span {
+  display: block;
+}
+
+/* Sub-headline in dark hero */
+.home-hero-sub {
+  margin: 1.1rem 0 0;
+  max-width: 30rem;
+  color: rgba(200, 215, 240, 0.78);
+  font-size: clamp(0.9rem, 1.05vw, 1rem);
+  line-height: 1.72;
+}
+
+/* Ensure the hero itself is tall enough */
+.glass-theme .home-hero {
+  min-height: 100svh;
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+  background: #030608;
+}
+
+/* Override the old gradient overlay with cinematic one */
+.glass-theme .home-hero::after {
+  background:
+    linear-gradient(90deg,
+      rgba(2,4,9,0.97) 0%,
+      rgba(2,4,9,0.90) 34%,
+      rgba(2,4,9,0.32) 60%,
+      transparent 80%
+    ),
+    linear-gradient(180deg,
+      rgba(2,4,9,0) 0%,
+      rgba(2,4,9,0.85) 92%,
+      rgba(2,4,9,1) 100%
+    ) !important;
+}
+
+/* Hero grid: single flex row – avatar fills the canvas behind */
+.glass-theme .home-hero .home-hero-grid {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 7rem);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.glass-theme .home-hero .home-hero-panel {
+  max-width: 38rem;
+  position: relative;
+  z-index: 2;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+/* Dark hero – trust pills */
+.glass-theme .home-hero .hero-trust-pills span {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(200,215,240,0.72);
+}
+
+/* Dark hero – metric cards */
+.glass-theme .home-hero .home-hero-metrics span {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.10);
+  color: rgba(180,200,230,0.72);
+}
+
+.glass-theme .home-hero .home-hero-metrics strong {
+  color: #c8d7f0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .home-hero-avatar-wrap {
+    -webkit-mask-image: linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(0,0,0,0.12) 22%,
+      rgba(0,0,0,0.65) 52%,
+      rgba(0,0,0,1) 100%
+    );
+    mask-image: linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(0,0,0,0.12) 22%,
+      rgba(0,0,0,0.65) 52%,
+      rgba(0,0,0,1) 100%
+    );
+    opacity: 0.55;
+  }
+
+  .home-hero-headline {
+    font-size: clamp(1.9rem, 8.5vw, 2.4rem);
+  }
+}

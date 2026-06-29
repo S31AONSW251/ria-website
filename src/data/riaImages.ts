@@ -91,10 +91,10 @@ const rawImages: RiaImage[] = [
   { src: '/images/logos/ria-logo.png', title: 'RIA Logo', category: 'Brand Concepts', caption: 'Primary RIA brand logo.', ratio: 'square' },
 
   // Investor Visuals
-  { src: '/images/aion-uploaded/launch-poster.png', title: 'Launch Poster', category: 'Investor Visuals', caption: 'RIA launch poster announcing June 21, 2026.', ratio: 'wide' },
+  { src: '/images/aion-uploaded/launch-poster.png', title: 'Launch Poster', category: 'Investor Visuals', caption: 'RIA launch poster announcing July 5, 2026.', ratio: 'wide' },
   { src: '/assets/ria/chip-infrastructure-vision.jpg', title: 'Infrastructure Board', category: 'Investor Visuals', caption: 'AI infrastructure chip concept with technical interface.', ratio: 'wide' },
   { src: '/assets/ria/village-impact-transformation.jpg', title: 'Impact Vision', category: 'Investor Visuals', caption: 'Village transformation concept showing infrastructure impact.', ratio: 'wide' },
-  { src: '/assets/ria/concept-atlas/launch/ria-orbit-launch-poster.jpg', title: 'RIA Orbit Launch Poster', category: 'Investor Visuals', caption: 'RIA Orbit launch poster with June 21 2026 date.', ratio: 'square' },
+  { src: '/assets/ria/concept-atlas/launch/ria-orbit-launch-poster.jpg', title: 'RIA Orbit Launch Poster', category: 'Investor Visuals', caption: 'RIA Orbit launch poster with July 5 2026 date.', ratio: 'square' },
   { src: '/assets/ria/concept-atlas/infrastructure/ria-silicon-investor-board.jpg', title: 'RIA Silicon Investor Board', category: 'Investor Visuals', caption: 'Silicon family investor board showing chip roadmap.', ratio: 'wide' },
   { src: '/assets/ria/concept-atlas/positioning/beyond-intelligence-comparison.jpg', title: 'Beyond Intelligence Comparison', category: 'Investor Visuals', caption: 'RIA positioning board against generic AI.', ratio: 'wide' },
   { src: '/assets/ria/concept-atlas/impact/village-transformation-impact.jpg', title: 'Village Transformation Impact', category: 'Investor Visuals', caption: 'Technology-enabled village infrastructure impact concept.', ratio: 'wide' },
