@@ -596,11 +596,11 @@ function Header() {
   const location = useLocation()
   const navigate = useNavigate()
   const primary = [
-    { label: 'Intelligence', to: '/#chapter-brain',      id: 'chapter-brain'      },
-    { label: 'Architecture', to: '/#chapter-memory',     id: 'chapter-memory'     },
-    { label: 'Product proof', to: '/#chapter-knowledge', id: 'chapter-knowledge'  },
-    { label: 'Privacy',      to: '/#chapter-reflection', id: 'chapter-reflection' },
-    { label: 'Founder',      to: '/#chapter-skin',       id: 'chapter-skin'       }
+    { label: 'Intelligence', to: '/#chapter-brain', id: 'chapter-brain' },
+    { label: 'Architecture', to: '/#chapter-memory', id: 'chapter-memory' },
+    { label: 'Product proof', to: '/#chapter-knowledge', id: 'chapter-knowledge' },
+    { label: 'Privacy', to: '/#chapter-reflection', id: 'chapter-reflection' },
+    { label: 'Founder', to: '/#chapter-skin', id: 'chapter-skin' }
   ]
   const groups = useMemo(() => ['Core', 'Product', 'Company', 'Trust'] as const, [])
 
@@ -678,8 +678,8 @@ function Header() {
                   <p>{group}</p>
                   <div>
                     {pageLinks
-                       .filter((item) => item.group === group)
-                       .map((item) => (
+                      .filter((item) => item.group === group)
+                      .map((item) => (
                         <Link key={item.path} to={item.path}>
                           <span>{item.label}</span>
                           <small>{item.description}</small>
@@ -1929,38 +1929,59 @@ function RiaDownloadPanel() {
         <Reveal className="ria-download-panel">
           <div className="ria-download-hero">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-400">Download RIA</p>
-              <h2>Private build. Public release opens {riaReleaseDate}.</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-400">Download & Run RIA</p>
+              <h2>Download & Run RIA</h2>
               <p>
-                RIA is currently in final security hardening, launcher packaging, local memory validation, and release documentation. The download area is prepared, but installer access remains locked until the public release date.
+                RIA is not a simple chatbot. It is a local-first cognitive workspace for memory, reasoning, web research, creative generation, goals, tools, and system awareness. Developers can clone the repository, install dependencies, and run the frontend and backend locally.
               </p>
               <div className="ria-download-actions">
-                <span className="ria-download-lock">
-                  <LockKeyhole className="h-4 w-4" /> Download locked until {riaReleaseDate}
-                </span>
-                <Link to="/contact" className="ria-download-link">
-                  Request release notice <ArrowRight className="h-4 w-4" />
-                </Link>
-                <a href="/downloads/ria-release-guide.md" className="ria-download-link secondary">
-                  Read install guide <FileText className="h-4 w-4" />
-                </a>
+                <span className="ria-download-badge">Local First</span>
+                <span className="ria-download-badge">GitHub</span>
+                <span className="ria-download-badge">Developer Preview</span>
+                <span className="ria-download-badge">Windows Ready</span>
               </div>
             </div>
-            <div className="ria-release-status" aria-label="RIA release status">
-              <span>Release Gate</span>
-              <strong>{riaReleaseDate}</strong>
-              <p>Security hardening, launcher packaging, local memory safety, and private build review in progress.</p>
+            <div className="ria-release-status" aria-label="RIA developer install guide">
+              <span>Developer Guide</span>
+              <strong>GitHub source install</strong>
+              <p>Clone the RIA repository, install dependencies, and run the backend and frontend locally with standard Node and Vite tooling.</p>
             </div>
           </div>
 
           <div className="ria-download-grid">
-            {releaseHighlights.map((item) => (
-              <div key={item.title} className="ria-download-card">
-                <item.icon className="h-5 w-5 text-cyan-400" />
-                <strong>{item.title}</strong>
-                <span>{item.copy}</span>
-              </div>
-            ))}
+            <div className="ria-download-card">
+              <Download className="h-5 w-5 text-cyan-400" />
+              <strong>Requirements</strong>
+              <span>Windows 10/11 recommended</span>
+              <span>Node.js 20+ or latest LTS</span>
+              <span>Git installed</span>
+              <span>8 GB RAM minimum, 16 GB+ recommended</span>
+              <span>NVIDIA GPU optional for local AI acceleration</span>
+              <span>Internet required only for setup and updates</span>
+            </div>
+            <div className="ria-download-card ria-download-terminal-card">
+              <Download className="h-5 w-5 text-cyan-400" />
+              <strong>Download from GitHub</strong>
+              <div className="code-block">git clone https://github.com/S31AONSW251/RIA.git</div>
+              <div className="code-block">cd RIA</div>
+            </div>
+            <div className="ria-download-card ria-download-terminal-card">
+              <Download className="h-5 w-5 text-cyan-400" />
+              <strong>Install Backend</strong>
+              <div className="code-block">cd backend</div>
+              <div className="code-block">npm install</div>
+              <div className="code-block">npm run dev</div>
+              <span>Backend usually runs on local API port such as 3001.</span>
+            </div>
+            <div className="ria-download-card ria-download-terminal-card">
+              <Download className="h-5 w-5 text-cyan-400" />
+              <strong>Install Frontend</strong>
+              <div className="code-block">cd frontend</div>
+              <div className="code-block">npm install</div>
+              <div className="code-block">npm run dev</div>
+              <span>Open the local Vite URL shown in the terminal, usually:</span>
+              <span>http://localhost:5173</span>
+            </div>
           </div>
 
           <div className="ria-release-body">
@@ -1970,25 +1991,39 @@ function RiaDownloadPanel() {
                 <span />
                 <span />
               </div>
-              <pre>{`# RIA release path
-git clone https://github.com/YOUR_USERNAME/RIA.git
+              <pre>{`# GitHub source install
+git clone https://github.com/S31AONSW251/RIA.git
 cd RIA
 
+# Backend
+cd backend
 npm install
-npm --prefix backend install
-npm --prefix frontend install
+npm run dev
 
-# Windows one-click launch
-Start-RIA-OneClick.bat`}</pre>
+# Frontend
+cd frontend
+npm install
+npm run dev
+
+# One-click launcher
+Start-RIA-OneClick.bat
+Stop-RIA-OneClick.bat`}</pre>
             </div>
             <div className="ria-release-list">
-              <p>Install Flow</p>
-              {releaseInstallSteps.map(([title, copy]) => (
-                <div key={title}>
-                  <strong>{title}</strong>
-                  <span>{copy}</span>
-                </div>
-              ))}
+              <p>Install Notes</p>
+              <div>
+                <strong>One-Click Launcher</strong>
+                <span>If available, users can run Start-RIA-OneClick.bat and stop it with Stop-RIA-OneClick.bat.</span>
+              </div>
+              <div>
+                <strong>GitHub Repository</strong>
+                <span>View RIA on GitHub to inspect source, contribute, and track updates.</span>
+                <a href="https://github.com/S31AONSW251/RIA" target="_blank" rel="noreferrer" className="ria-download-link secondary">View RIA on GitHub</a>
+              </div>
+              <div>
+                <strong>Developer Note</strong>
+                <span>RIA is local-first. Some advanced features may require local models, API keys, GPU tools, or additional setup depending on the module.</span>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -2478,7 +2513,7 @@ function PremiumArchitectureSection() {
         <Reveal className="home-section-heading home-section-heading-split">
           <div>
             <p className="premium-eyebrow">Chapter 04 / Memory Core</p>
-            <h2>Chest / Memory Core</h2>
+            <h2 className="holograph-brain-title">Chest / Memory Core</h2>
           </div>
           <p>
             Stores durable context across projects, decisions, identity, goals, and time.
@@ -2865,13 +2900,12 @@ function HeroSection() {
           </div>
 
           <div className="home-hero-actions">
-            <a
-              href="#chapter-brain"
+            <Link
+              to="/download"
               className="premium-button premium-button-primary"
-              onClick={(e) => { e.preventDefault(); scrollToSection('chapter-brain') }}
             >
               Explore RIA <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             <a
               href="#chapter-memory"
               className="premium-button premium-button-secondary"
@@ -2959,7 +2993,6 @@ function CTASection() {
         <Reveal className="premium-cta-panel">
           <div>
             <p className="premium-eyebrow">Chapter 09 / Launch & Gate</p>
-            <h2>Private build. Public release opens July 5, 2026.</h2>
             <p>
               AION is building a private intelligence architecture for memory, reasoning, tools, and owner-controlled autonomy. Built in India for the world.
             </p>
@@ -3202,7 +3235,6 @@ function HomePage() {
       <CreativeCommandSection />
       <FounderVisionSection />
       <InvestorInfrastructureSection />
-      <CTASection />
     </>
   )
 }
@@ -3786,21 +3818,11 @@ function DownloadPage() {
   return (
     <>
       <SEO title="Download RIA" description="Download RIA release access, requirements, install guide, launcher instructions, and security-gated availability date." />
-      <PageHero eyebrow="Download RIA" title="The local-first RIA workspace is preparing for release." copy={`RIA remains private until ${riaReleaseDate} while the full build, security review, local launcher, and installation guide are finalized.`} metrics={[
-        { label: 'Release date', value: '5 Jul 2026' },
+      <PageHero eyebrow="Download RIA" title="Download & Run RIA" copy="RIA is available from GitHub for developers and early builders who want to run the private intelligence workspace locally." metrics={[
         { label: 'Runtime', value: 'Local-first' },
         { label: 'Launcher', value: 'One-click' },
-        { label: 'Status', value: 'Private build' }
-      ]}>
-        <div className="download-vault-visual">
-          <LogoMark />
-          <div>
-            <p>RIA Release Vault</p>
-            <strong>Locked for security hardening</strong>
-            <span>Desktop app, backend, frontend, memory stores, GPU tools, and optional integrations are being packaged for a controlled release.</span>
-          </div>
-        </div>
-      </PageHero>
+        { label: 'Status', value: 'Developer preview' }
+      ]} />
 
       <RiaDownloadPanel />
 
@@ -3972,6 +3994,7 @@ function Footer() {
 
 export default function App() {
   const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   // Redirect workspace route to homepage
   useEffect(() => {
@@ -3983,8 +4006,8 @@ export default function App() {
   return (
     <main className="ria-site cosmos glass-theme min-h-screen">
       <ScrollToTop />
-      <CosmicStarField />
-      <CosmosBackground />
+      {!isHomePage && <CosmicStarField />}
+      {!isHomePage && <CosmosBackground />}
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 
@@ -11,7 +11,13 @@
 
 :root {
   color-scheme: dark;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-code-display: "JetBrains Mono", "IBM Plex Mono", "Space Mono", monospace;
+  --font-code-body: "IBM Plex Mono", "JetBrains Mono", "Roboto Mono", monospace;
+  --font-code-ui: "JetBrains Mono", "IBM Plex Mono", monospace;
+  --font-display: var(--font-code-display);
+  --font-body: var(--font-code-body);
+  --font-tech: var(--font-code-ui);
+  font-family: var(--font-body);
   background: #03050a;
   --glass-ink: #e5edf7;
   --glass-ink-soft: #94a3b8;
@@ -52,9 +58,166 @@ body {
     radial-gradient(ellipse at 18% 72%, rgba(8, 18, 48, 0.12), transparent 40%),
     linear-gradient(180deg, #03050a 0%, #050814 48%, #03050a 100%);
   color: var(--glass-ink);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: var(--font-body);
+  letter-spacing: -0.025em;
+  font-feature-settings: "zero" 1, "ss01" 1, "cv02" 1, "cv03" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.hero-title,
+.section-title,
+.chapter-title,
+.download-title,
+.architecture-title,
+.home-hero-headline,
+.ria-hero-title,
+.ria-section-title,
+.premium-hero-copy h1,
+.premium-hero-copy h2,
+.home-hero-panel h1,
+.premium-button,
+.ria-download-badge,
+.hero-system-label,
+.premium-eyebrow,
+.home-hero-metrics span,
+.site-runtime-state,
+.site-command-menu-head span,
+.site-command-group p,
+.site-nav-primary a,
+.site-investor-link {
+  font-family: var(--font-display);
+}
+
+h1,
+.hero-title {
+  font-size: clamp(3.8rem, 5.5vw, 6.8rem);
+  letter-spacing: -0.07em;
+  font-weight: 800;
+  line-height: 0.92;
+}
+
+h2,
+.section-title,
+.chapter-title {
+  font-size: clamp(2.8rem, 4.3vw, 4.8rem);
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+}
+
+p,
+.section-copy,
+.card-copy,
+.download-copy {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.75;
+  letter-spacing: -0.025em;
+  color: rgba(203, 213, 225, 0.78);
+}
+
+h1,
+.home-hero-headline,
+.ria-hero-title {
+  letter-spacing: -0.07em;
+  font-weight: 800;
+  line-height: 0.92;
+}
+
+.premium-eyebrow,
+.hero-system-label,
+.home-hero-metrics span,
+.ria-download-badge,
+.site-runtime-state,
+.site-command-menu-head span,
+.site-command-group p,
+.site-investor-link,
+.site-nav-primary a {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+}
+
+p,
+.home-hero-panel > p:not(.premium-eyebrow),
+.premium-statement-panel > p:not(.premium-eyebrow),
+.premium-product-copy > p:not(.premium-eyebrow),
+.premium-cta-panel p:not(.premium-eyebrow),
+.ria-download-card span,
+.code-block,
+pre,
+.command-block {
+  font-family: var(--font-body);
+  letter-spacing: -0.012em;
+  line-height: 1.75;
+  color: #dbe6ef;
+}
+
+button,
+.premium-button,
+.site-investor-link,
+.ria-download-link,
+.site-nav-primary a,
+.site-command-trigger,
+.cta {
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-family: var(--font-tech);
+}
+
+.nav-link,
+button,
+.cta,
+.badge,
+.metric-label,
+.eyebrow,
+.section-kicker,
+.system-label,
+.module-label,
+code,
+pre,
+.command-block {
+  font-family: var(--font-tech);
+}
+
+.nav-link,
+.badge,
+.metric-label,
+.eyebrow,
+.section-kicker,
+.system-label,
+.module-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+button,
+.cta {
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+.card-title,
+.module-title {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+code,
+pre,
+.command-block,
+.code-block {
+  font-family: var(--font-tech);
 }
 
 h1,
@@ -1390,6 +1553,77 @@ select option {
 
 .ria-download-link.secondary:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+.ria-download-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  background: rgba(14, 116, 144, 0.12);
+  color: #dbeafe;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ria-download-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 18rem;
+  padding: 2rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(9, 12, 18, 0.82);
+}
+
+.ria-download-terminal-card {
+  background: rgba(5, 9, 17, 0.88);
+}
+
+.ria-download-card strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #f8fafc;
+}
+
+.ria-download-card span {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.code-block {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: rgba(10, 14, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #dbeafe;
+  font-family: var(--font-tech);
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+
+.ria-release-list > div {
+  margin-top: 1.5rem;
+}
+
+.ria-release-list strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #f8fafc;
+}
+
+.ria-release-list span {
+  display: block;
+  margin-top: 0.35rem;
+  color: #cbd5e1;
+  line-height: 1.75;
 }
 
 .ria-release-status {
@@ -4748,19 +4982,44 @@ body {
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .home-hero-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(25rem, 1.1fr);
+  }
+
+  .home-hero-panel {
+    max-width: 52rem;
+  }
+
+  .home-hero-panel h1 {
+    max-width: 50rem;
+    font-size: clamp(3.25rem, 4.2vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-hero-panel h1 {
+    max-width: 100%;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+}
+
 .home-hero-panel {
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  max-width: 36.5rem;
+  max-width: 48rem;
   padding: clamp(1.3rem, 2.35vw, 2rem) !important;
   border-radius: 24px !important;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .home-hero-panel h1 {
   margin: 1.05rem 0 0;
-  max-width: 17ch;
+  max-width: 42rem;
+  width: 100%;
   color: var(--glass-ink);
   font-size: clamp(2.35rem, 3.4vw, 3.65rem);
   font-weight: 680;
@@ -4768,6 +5027,8 @@ body {
   line-height: 1.04;
   overflow-wrap: break-word;
   text-wrap: balance;
+  white-space: normal;
+  word-break: normal;
 }
 
 .home-hero-panel > p:not(.premium-eyebrow) {

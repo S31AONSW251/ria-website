@@ -1,85 +1,206 @@
-import {
-  BrainCircuit,
-  Code2,
-  Database,
-  Fingerprint,
-  MessageCircle,
-  Network,
-  Orbit,
-  Palette,
-  ShieldCheck,
-  Sparkles
-} from 'lucide-react'
-import type { CSSProperties } from 'react'
+type ArchitectureModule = {
+  id: string
+  title: string
+  features: string
+}
 
-const modules = [
-  { title: 'Memory Engine', code: 'MEM-01', copy: 'Durable personal and project context.', icon: Database, x: 17, y: 17 },
-  { title: 'Executive Cortex', code: 'CTX-02', copy: 'Planning, reasoning, and priority control.', icon: BrainCircuit, x: 10, y: 41 },
-  { title: 'Knowledge Universe', code: 'KNO-03', copy: 'Source-linked connected understanding.', icon: Network, x: 14, y: 67 },
-  { title: 'Reflection Engine', code: 'REF-04', copy: 'Outcome review and learning loops.', icon: Orbit, x: 29, y: 84 },
-  { title: 'Autonomous CoreX', code: 'ACX-05', copy: 'Supervised proposals and execution.', icon: Sparkles, x: 83, y: 17 },
-  { title: 'DefenseCore', code: 'DFC-06', copy: 'Monitoring and decision intelligence.', icon: ShieldCheck, x: 90, y: 41 },
-  { title: 'Software Studio', code: 'SFT-07', copy: 'Build, test, and review software.', icon: Code2, x: 86, y: 67 },
-  { title: 'Creative Gallery', code: 'CRV-08', copy: 'Visual systems and creative memory.', icon: Palette, x: 71, y: 84 },
-  { title: 'Talk to RIA', code: 'VOC-09', copy: 'Private voice and avatar interaction.', icon: MessageCircle, x: 43, y: 89 },
-  { title: 'Digital Twin Layer', code: 'DTL-10', copy: 'Goals, preferences, and identity context.', icon: Fingerprint, x: 57, y: 89 }
+const leftModules: ArchitectureModule[] = [
+  {
+    id: '01',
+    title: 'Memory Engine',
+    features: 'Long-term memory · Episodic context · Semantic recall'
+  },
+  {
+    id: '02',
+    title: 'Knowledge Universe',
+    features: 'Web research · Source ranking · Knowledge graph'
+  },
+  {
+    id: '03',
+    title: 'Security Boundary',
+    features: 'Local-first · Owner permission · Private runtime'
+  },
+  {
+    id: '04',
+    title: 'Creative Studio',
+    features: 'Image · Design · Content generation'
+  }
 ]
+
+const rightModules: ArchitectureModule[] = [
+  {
+    id: '05',
+    title: 'Reasoning Cortex',
+    features: 'Planning · Reflection · Decision support'
+  },
+  {
+    id: '06',
+    title: 'Autonomous Core',
+    features: 'Goals · Tasks · Approval queue'
+  },
+  {
+    id: '07',
+    title: 'Tool Layer',
+    features: 'Files · Web · Workflows'
+  },
+  {
+    id: '08',
+    title: 'Interface Layer',
+    features: 'Chat · Dashboard · Mission Control'
+  }
+]
+
+const foundationModules: ArchitectureModule[] = [
+  {
+    id: '09',
+    title: 'Evolution Layer',
+    features: 'Self-review · Upgrade reports · Learning loop'
+  },
+  {
+    id: '10',
+    title: 'RIA Identity',
+    features: 'Preferences · Personality · Voice · Behavior'
+  }
+]
+
+const neuralNodes = [
+  [260, 105], [197, 132], [324, 138], [145, 190], [230, 185], [302, 198], [375, 193],
+  [112, 266], [181, 252], [260, 258], [340, 255], [405, 270], [148, 335], [219, 322],
+  [300, 330], [372, 342], [204, 397], [284, 406], [340, 390], [260, 458]
+]
+
+const neuralEdges = [
+  [0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6], [3, 7], [3, 8], [4, 8],
+  [4, 9], [4, 5], [5, 9], [5, 10], [5, 6], [6, 11], [7, 8], [7, 12], [8, 9],
+  [8, 12], [8, 13], [9, 10], [9, 13], [9, 14], [10, 11], [10, 14], [10, 15],
+  [11, 15], [12, 13], [12, 16], [13, 14], [13, 16], [13, 17], [14, 15], [14, 17],
+  [14, 18], [15, 18], [16, 17], [17, 18], [17, 19], [18, 19]
+]
+
+function ArchitectureModuleRow({ module }: { module: ArchitectureModule }) {
+  return (
+    <article className="ria-system-module">
+      <span className="ria-system-module-number">{module.id}</span>
+      <div>
+        <h3>{module.title}</h3>
+        <p>{module.features}</p>
+      </div>
+    </article>
+  )
+}
+
+function CognitiveCore() {
+  return (
+    <div className="ria-cognitive-core">
+      <svg className="ria-cognitive-sphere" viewBox="0 0 520 520" role="img" aria-label="Abstract layered neural sphere representing the RIA cognitive core">
+        <defs>
+          <radialGradient id="riaSphereVolume" cx="43%" cy="36%" r="65%">
+            <stop offset="0%" stopColor="#e8fcff" stopOpacity="0.16" />
+            <stop offset="36%" stopColor="#7ddceb" stopOpacity="0.09" />
+            <stop offset="78%" stopColor="#245b71" stopOpacity="0.025" />
+            <stop offset="100%" stopColor="#061018" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="riaSphereEdge" x1="10%" y1="5%" x2="92%" y2="95%">
+            <stop offset="0%" stopColor="#d7f8fc" stopOpacity="0.6" />
+            <stop offset="48%" stopColor="#79d9e8" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#3b8198" stopOpacity="0.09" />
+          </linearGradient>
+          <radialGradient id="riaSphereCenter" cx="45%" cy="38%" r="60%">
+            <stop offset="0%" stopColor="#e8fdff" stopOpacity="0.92" />
+            <stop offset="18%" stopColor="#a8edf5" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#3fa3ba" stopOpacity="0" />
+          </radialGradient>
+          <clipPath id="riaSphereClip">
+            <circle cx="260" cy="260" r="190" />
+          </clipPath>
+          <filter id="riaSphereSoftGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+
+        <circle className="ria-sphere-aura" cx="260" cy="260" r="232" />
+        <circle className="ria-sphere-volume" cx="260" cy="260" r="190" fill="url(#riaSphereVolume)" />
+        <circle className="ria-sphere-edge" cx="260" cy="260" r="190" stroke="url(#riaSphereEdge)" />
+
+        <g className="ria-sphere-latitudes" clipPath="url(#riaSphereClip)">
+          <ellipse cx="260" cy="260" rx="190" ry="68" />
+          <ellipse cx="260" cy="260" rx="190" ry="126" />
+          <ellipse cx="260" cy="260" rx="72" ry="190" />
+          <ellipse cx="260" cy="260" rx="132" ry="190" />
+        </g>
+
+        <g className="ria-sphere-mesh" clipPath="url(#riaSphereClip)">
+          {neuralEdges.map(([from, to]) => (
+            <line
+              key={`${from}-${to}`}
+              x1={neuralNodes[from][0]}
+              y1={neuralNodes[from][1]}
+              x2={neuralNodes[to][0]}
+              y2={neuralNodes[to][1]}
+            />
+          ))}
+          {neuralNodes.map(([cx, cy], index) => (
+            <circle
+              className="ria-sphere-node"
+              key={`${cx}-${cy}`}
+              cx={cx}
+              cy={cy}
+              r={index % 5 === 0 ? 3.3 : 2.1}
+              style={{ animationDelay: `${index * -0.18}s` }}
+            />
+          ))}
+        </g>
+
+        <circle className="ria-sphere-inner-ring" cx="260" cy="260" r="92" />
+        <circle className="ria-sphere-center" cx="260" cy="260" r="54" fill="url(#riaSphereCenter)" />
+        <circle className="ria-sphere-center-point" cx="260" cy="260" r="4" filter="url(#riaSphereSoftGlow)" />
+      </svg>
+
+      <div className="ria-cognitive-core-label">
+        <span>RIA CORE</span>
+        <strong>Reactive Intelligence Architecture</strong>
+      </div>
+
+      <div className="ria-cognitive-flow" aria-label="RIA cognitive workflow">
+        {['Memory', 'Reasoning', 'Tools', 'Action', 'Reflection'].map((stage, index) => (
+          <span key={stage}>{stage}{index < 4 && <i aria-hidden="true">→</i>}</span>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function ArchitectureBlueprint() {
   return (
-    <div className="blueprint-shell">
-      <div className="blueprint-toolbar">
-        <span><i /> RIA INTELLIGENCE BLUEPRINT</span>
-        <div><b>10 MODULES</b><b>OWNER BOUNDARY: ACTIVE</b><b>REV 01.6</b></div>
-      </div>
-      <div className="blueprint-canvas">
-        <div className="blueprint-atmosphere" aria-hidden="true" />
-        <div className="blueprint-scanlines" aria-hidden="true" />
-        <div className="blueprint-grid" aria-hidden="true" />
-        <div className="blueprint-crosshair" aria-hidden="true" />
-        <svg className="blueprint-connections" viewBox="0 0 1000 640" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <radialGradient id="blueprint-core-fill"><stop offset="0" stopColor="#d9fbff" stopOpacity=".5" /><stop offset=".45" stopColor="#7bdae8" stopOpacity=".13" /><stop offset="1" stopColor="#4c8fb5" stopOpacity="0" /></radialGradient>
-          </defs>
-          <g className="blueprint-paths">
-            <path d="M500 305 C400 280 280 150 170 110" /><path d="M500 305 C380 300 240 260 100 260" />
-            <path d="M500 305 C390 340 260 415 140 430" /><path d="M500 305 C420 390 350 500 290 540" />
-            <path d="M500 305 C600 280 720 150 830 110" /><path d="M500 305 C620 300 760 260 900 260" />
-            <path d="M500 305 C610 340 740 415 860 430" /><path d="M500 305 C580 390 650 500 710 540" />
-            <path d="M500 305 C470 400 445 500 430 570" /><path d="M500 305 C530 400 555 500 570 570" />
-            <circle cx="500" cy="305" r="130" /><circle cx="500" cy="305" r="176" />
-          </g>
-          <g className="blueprint-pulses"><circle r="4"><animateMotion dur="6s" repeatCount="indefinite" path="M170 110 C280 150 400 280 500 305" /></circle><circle r="4"><animateMotion dur="7s" repeatCount="indefinite" path="M830 110 C720 150 600 280 500 305" /></circle><circle r="3"><animateMotion dur="8s" repeatCount="indefinite" path="M140 430 C260 415 390 340 500 305" /></circle></g>
-          <circle cx="500" cy="305" r="124" fill="url(#blueprint-core-fill)" />
-        </svg>
+    <section id="architecture" className="ria-intelligence-architecture">
+      <header className="ria-architecture-heading">
+        <span>RIA SYSTEM MAP</span>
+        <h2>RIA Intelligence Architecture</h2>
+        <p>
+          A private cognitive system connecting memory, reasoning, knowledge, tools, autonomy, and owner-approved action.
+        </p>
+      </header>
 
-        <div className="blueprint-core">
-          <div className="blueprint-core-rings"><i /><i /><i /></div>
-          <span>REACTIVE</span>
-          <strong>RIA</strong>
-          <small>INTELLIGENCE CORE</small>
-          <em><i /> SYSTEM COHERENT</em>
+      <div className="ria-architecture-premium-panel">
+        <div className="ria-architecture-grid">
+          <div className="ria-architecture-column ria-architecture-column-left">
+            {leftModules.map((module) => <ArchitectureModuleRow module={module} key={module.id} />)}
+          </div>
+
+          <div className="ria-architecture-core-area">
+            <CognitiveCore />
+          </div>
+
+          <div className="ria-architecture-column ria-architecture-column-right">
+            {rightModules.map((module) => <ArchitectureModuleRow module={module} key={module.id} />)}
+          </div>
+
+          <div className="ria-architecture-foundation">
+            {foundationModules.map((module) => <ArchitectureModuleRow module={module} key={module.id} />)}
+          </div>
         </div>
-
-        {modules.map(({ title, code, copy, icon: Icon, x, y }, index) => (
-          <article
-            className="blueprint-module"
-            key={title}
-            style={{ '--module-x': `${x}%`, '--module-y': `${y}%`, '--module-index': index } as CSSProperties}
-          >
-            <div><Icon /><span>{code}</span></div>
-            <strong>{title}</strong>
-            <p>{copy}</p>
-            <i className="blueprint-module-port" />
-          </article>
-        ))}
       </div>
-      <div className="blueprint-legend">
-        <span><i className="is-core" /> Core intelligence</span>
-        <span><i /> Connected module</span>
-        <span><i className="is-gate" /> Approval boundary</span>
-        <strong>Architecture designed for inspectable, human-controlled operation.</strong>
-      </div>
-    </div>
+    </section>
   )
 }
