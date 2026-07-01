@@ -33,6 +33,8 @@ export default function ArchitectureBlueprint() {
         <div><b>10 MODULES</b><b>OWNER BOUNDARY: ACTIVE</b><b>REV 01.6</b></div>
       </div>
       <div className="blueprint-canvas">
+        <div className="blueprint-atmosphere" aria-hidden="true" />
+        <div className="blueprint-scanlines" aria-hidden="true" />
         <div className="blueprint-grid" aria-hidden="true" />
         <div className="blueprint-crosshair" aria-hidden="true" />
         <svg className="blueprint-connections" viewBox="0 0 1000 640" preserveAspectRatio="none" aria-hidden="true">

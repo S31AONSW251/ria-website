@@ -3985,7 +3985,6 @@ export default function App() {
       <ScrollToTop />
       <CosmicStarField />
       <CosmosBackground />
-      <LivingStream />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
