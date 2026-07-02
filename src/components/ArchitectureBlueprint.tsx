@@ -1,29 +1,54 @@
+import {
+  Activity,
+  Bot,
+  BrainCircuit,
+  Database,
+  Fingerprint,
+  Globe2,
+  Layers3,
+  Palette,
+  RefreshCcw,
+  ShieldCheck,
+  Wrench,
+  type LucideIcon
+} from 'lucide-react'
+
 type ArchitectureModule = {
   id: string
   title: string
   features: string
+  icon: LucideIcon
+  state: string
 }
 
 const leftModules: ArchitectureModule[] = [
   {
     id: '01',
     title: 'Memory Engine',
-    features: 'Long-term memory · Episodic context · Semantic recall'
+    features: 'Long-term memory · Episodic context · Semantic recall',
+    icon: Database,
+    state: 'Persistent'
   },
   {
     id: '02',
     title: 'Knowledge Universe',
-    features: 'Web research · Source ranking · Knowledge graph'
+    features: 'Web research · Source ranking · Knowledge graph',
+    icon: Globe2,
+    state: 'Indexed'
   },
   {
     id: '03',
     title: 'Security Boundary',
-    features: 'Local-first · Owner permission · Private runtime'
+    features: 'Local-first · Owner permission · Private runtime',
+    icon: ShieldCheck,
+    state: 'Protected'
   },
   {
     id: '04',
     title: 'Creative Studio',
-    features: 'Image · Design · Content generation'
+    features: 'Image · Design · Content generation',
+    icon: Palette,
+    state: 'Ready'
   }
 ]
 
@@ -31,22 +56,30 @@ const rightModules: ArchitectureModule[] = [
   {
     id: '05',
     title: 'Reasoning Cortex',
-    features: 'Planning · Reflection · Decision support'
+    features: 'Planning · Reflection · Decision support',
+    icon: BrainCircuit,
+    state: 'Reasoning'
   },
   {
     id: '06',
     title: 'Autonomous Core',
-    features: 'Goals · Tasks · Approval queue'
+    features: 'Goals · Tasks · Approval queue',
+    icon: Bot,
+    state: 'Supervised'
   },
   {
     id: '07',
     title: 'Tool Layer',
-    features: 'Files · Web · Workflows'
+    features: 'Files · Web · Workflows',
+    icon: Wrench,
+    state: 'Connected'
   },
   {
     id: '08',
     title: 'Interface Layer',
-    features: 'Chat · Dashboard · Mission Control'
+    features: 'Chat · Dashboard · Mission Control',
+    icon: Layers3,
+    state: 'Available'
   }
 ]
 
@@ -54,12 +87,16 @@ const foundationModules: ArchitectureModule[] = [
   {
     id: '09',
     title: 'Evolution Layer',
-    features: 'Self-review · Upgrade reports · Learning loop'
+    features: 'Self-review · Upgrade reports · Learning loop',
+    icon: RefreshCcw,
+    state: 'Adaptive'
   },
   {
     id: '10',
     title: 'RIA Identity',
-    features: 'Preferences · Personality · Voice · Behavior'
+    features: 'Preferences · Personality · Voice · Behavior',
+    icon: Fingerprint,
+    state: 'Owner-bound'
   }
 ]
 
@@ -78,12 +115,20 @@ const neuralEdges = [
 ]
 
 function ArchitectureModuleRow({ module }: { module: ArchitectureModule }) {
+  const Icon = module.icon
+
   return (
     <article className="ria-system-module">
-      <span className="ria-system-module-number">{module.id}</span>
-      <div>
+      <div className="ria-system-module-icon" aria-hidden="true"><Icon /></div>
+      <div className="ria-system-module-copy">
+        <div className="ria-system-module-meta">
+          <span className="ria-system-module-number">{module.id}</span>
+          <span className="ria-system-module-state"><i />{module.state}</span>
+        </div>
         <h3>{module.title}</h3>
-        <p>{module.features}</p>
+        <div className="ria-system-module-features">
+          {module.features.split(' · ').map((feature) => <span key={feature}>{feature}</span>)}
+        </div>
       </div>
     </article>
   )
@@ -92,6 +137,7 @@ function ArchitectureModuleRow({ module }: { module: ArchitectureModule }) {
 function CognitiveCore() {
   return (
     <div className="ria-cognitive-core">
+      <div className="ria-core-stage">
       <svg className="ria-cognitive-sphere" viewBox="0 0 520 520" role="img" aria-label="Abstract layered neural sphere representing the RIA cognitive core">
         <defs>
           <radialGradient id="riaSphereVolume" cx="43%" cy="36%" r="65%">
@@ -117,9 +163,15 @@ function CognitiveCore() {
             <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
+          <filter id="riaSphereWideGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="14" />
+          </filter>
         </defs>
 
+        <circle className="ria-sphere-backlight" cx="260" cy="260" r="158" filter="url(#riaSphereWideGlow)" />
         <circle className="ria-sphere-aura" cx="260" cy="260" r="232" />
+        <circle className="ria-sphere-orbit ria-sphere-orbit-one" cx="260" cy="260" r="218" />
+        <circle className="ria-sphere-orbit ria-sphere-orbit-two" cx="260" cy="260" r="204" />
         <circle className="ria-sphere-volume" cx="260" cy="260" r="190" fill="url(#riaSphereVolume)" />
         <circle className="ria-sphere-edge" cx="260" cy="260" r="190" stroke="url(#riaSphereEdge)" />
 
@@ -157,15 +209,31 @@ function CognitiveCore() {
         <circle className="ria-sphere-center-point" cx="260" cy="260" r="4" filter="url(#riaSphereSoftGlow)" />
       </svg>
 
+      <img
+        className="ria-cognitive-brain"
+        src="/assets/ria/ria-core-brain.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+
       <div className="ria-cognitive-core-label">
-        <span>RIA CORE</span>
+        <span><i /> RIA CORE</span>
         <strong>Reactive Intelligence Architecture</strong>
+      </div>
       </div>
 
       <div className="ria-cognitive-flow" aria-label="RIA cognitive workflow">
         {['Memory', 'Reasoning', 'Tools', 'Action', 'Reflection'].map((stage, index) => (
           <span key={stage}>{stage}{index < 4 && <i aria-hidden="true">→</i>}</span>
         ))}
+      </div>
+
+      <div className="ria-core-telemetry" aria-label="Core architecture telemetry">
+        <div><span>Modules</span><strong>10</strong></div>
+        <div><span>Runtime</span><strong>Private</strong></div>
+        <div><span>Control</span><strong>Owner</strong></div>
       </div>
     </div>
   )
@@ -183,6 +251,48 @@ export default function ArchitectureBlueprint() {
       </header>
 
       <div className="ria-architecture-premium-panel">
+        <div className="ria-architecture-panel-header">
+          <div>
+            <span className="ria-panel-overline">AION // COGNITIVE CONTROL PLANE</span>
+            <strong>Live architecture topology</strong>
+          </div>
+          <div className="ria-panel-runtime">
+            <span><i /> System nominal</span>
+            <span>Local-first runtime</span>
+            <span>Owner authority</span>
+          </div>
+        </div>
+
+        <div className="ria-architecture-panel-grid" aria-hidden="true" />
+        <div className="ria-architecture-panel-glow" aria-hidden="true" />
+
+        <svg className="ria-architecture-link-map" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="riaArchitectureLink" x1="0" x2="1">
+              <stop offset="0" stopColor="#75d9ea" stopOpacity="0.08" />
+              <stop offset="0.5" stopColor="#9aebf6" stopOpacity="0.62" />
+              <stop offset="1" stopColor="#75d9ea" stopOpacity="0.08" />
+            </linearGradient>
+          </defs>
+          <g className="ria-architecture-links">
+            <path d="M260 120 C410 120 430 270 535 300" />
+            <path d="M260 250 C410 250 440 320 535 330" />
+            <path d="M260 380 C410 380 440 360 535 350" />
+            <path d="M260 510 C410 510 430 400 535 380" />
+            <path d="M940 120 C790 120 770 270 665 300" />
+            <path d="M940 250 C790 250 760 320 665 330" />
+            <path d="M940 380 C790 380 760 360 665 350" />
+            <path d="M940 510 C790 510 770 400 665 380" />
+            <path d="M470 640 C500 560 540 505 575 455" />
+            <path d="M730 640 C700 560 660 505 625 455" />
+          </g>
+          <g className="ria-architecture-link-nodes">
+            {[[535, 300], [535, 330], [535, 350], [535, 380], [665, 300], [665, 330], [665, 350], [665, 380], [575, 455], [625, 455]].map(([cx, cy], index) => (
+              <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" style={{ animationDelay: `${index * -0.22}s` }} />
+            ))}
+          </g>
+        </svg>
+
         <div className="ria-architecture-grid">
           <div className="ria-architecture-column ria-architecture-column-left">
             {leftModules.map((module) => <ArchitectureModuleRow module={module} key={module.id} />)}
@@ -200,6 +310,12 @@ export default function ArchitectureBlueprint() {
             {foundationModules.map((module) => <ArchitectureModuleRow module={module} key={module.id} />)}
           </div>
         </div>
+
+        <footer className="ria-architecture-panel-footer">
+          <div><ShieldCheck aria-hidden="true" /><span>Trust boundary</span><strong>Private by design</strong></div>
+          <div><Database aria-hidden="true" /><span>Memory state</span><strong>Durable continuity</strong></div>
+          <div><Activity aria-hidden="true" /><span>Intelligence loop</span><strong>Observe · Reason · Act · Reflect</strong></div>
+        </footer>
       </div>
     </section>
   )
