@@ -64,6 +64,7 @@ import {
 } from 'lucide-react'
 
 const RiaCinematicBackground = lazy(() => import('./components/RiaCinematicBackground'))
+const SoftwareExchangePage = lazy(() => import('./pages/SoftwareExchangePage'))
 
 type PageLink = {
   label: string
@@ -137,6 +138,7 @@ const pageLinks: PageLink[] = [
   { label: 'RIA Studio', path: '/ria-ide', group: 'Product', description: 'The AI-native development environment.' },
   { label: 'RIA OS', path: '/ria-personal', group: 'Product', description: 'The private intelligence operating layer.' },
   { label: 'RIA Enterprise', path: '/ria-enterprise', group: 'Product', description: 'Institutional memory and decision intelligence.' },
+  { label: 'UPLOAD PROJECT', path: '/software-exchange', group: 'Product', description: 'Owner-approved tools, agents, plugins, and local software.' },
   { label: 'Use Cases', path: '/use-cases', group: 'Product', description: 'Applications across industries.' },
   { label: 'Research Lab', path: '/research-lab', group: 'Core', description: 'Memory, cognition, and reflection R&D.' },
   { label: 'Image Library', path: '/images', group: 'Core', description: 'Product visuals, brand concepts, and interface studies.' },
@@ -456,7 +458,7 @@ function SEO({ title, description }: { title: string; description: string }) {
     setMeta('og:description', 'property', description)
     setMeta('twitter:title', 'name', fullTitle)
     setMeta('twitter:description', 'name', description)
-    const canonicalHref = `${window.location.origin}${pathname === '/' ? '/' : pathname}`
+    const canonicalHref = new URL(pathname === '/' ? '/' : pathname, 'https://www.aiontec.co.in').href
     let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
     if (!canonical) {
       canonical = document.createElement('link')
@@ -464,6 +466,7 @@ function SEO({ title, description }: { title: string; description: string }) {
       document.head.appendChild(canonical)
     }
     canonical.href = canonicalHref
+    setMeta('og:url', 'property', canonicalHref)
   }, [description, pathname, title])
 
   return null
@@ -604,9 +607,7 @@ function Header() {
   ]
   const groups = useMemo(() => ['Core', 'Product', 'Company', 'Trust'] as const, [])
 
-  useEffect(() => {
-    setOpen(false)
-  }, [location.pathname])
+  useEffect(() => { setOpen(false) }, [location.pathname])
 
   useEffect(() => {
     const updateScrolled = () => setScrolled(window.scrollY > 18)
@@ -615,15 +616,18 @@ function Header() {
     return () => window.removeEventListener('scroll', updateScrolled)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: { to: string; id: string }) => {
     e.preventDefault()
-    if (location.pathname === '/') {
-      scrollToSection(item.id)
-    } else {
-      navigate(item.to)
-    }
+    if (location.pathname === '/') { scrollToSection(item.id) } else { navigate(item.to) }
     setOpen(false)
   }
+
+  const close = () => setOpen(false)
 
   return (
     <header className={`site-header site-header-float ${scrolled ? 'is-scrolled' : ''}`}>
@@ -634,19 +638,15 @@ function Header() {
         </div>
         <nav className="site-nav-primary" aria-label="Primary navigation">
           {primary.map((item) => (
-            <a
-              key={item.label}
-              href={item.to}
-              onClick={(e) => handleNavClick(e, item)}
-              className={location.hash === item.to.replace('/', '') ? 'is-current' : ''}
+            <a key={item.label} href={item.to} onClick={(e) => handleNavClick(e, item)}
+              className={`site-primary-link ${location.hash === item.to.replace('/', '') ? 'is-current' : ''}`}
             >{item.label}</a>
           ))}
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            className="site-command-trigger"
-            aria-expanded={open}
-          >
+          <NavLink to="/software-exchange" className={({ isActive }) => `exchange-nav-link${isActive ? ' is-current' : ''}`}>
+            UPLOAD PROJECT
+          </NavLink>
+          <button type="button" onClick={() => setOpen((v) => !v)} className="site-command-trigger"
+            aria-expanded={open} aria-controls="site-desktop-index-panel">
             Index <ChevronDown className={open ? 'is-open' : ''} />
           </button>
         </nav>
@@ -654,43 +654,84 @@ function Header() {
           <span className="site-runtime-state"><i /> System private</span>
           <Link to="/contact" className="site-investor-link">Investor access <ArrowRight /></Link>
         </div>
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          className="site-menu-button"
-          aria-label={open ? 'Close navigation' : 'Open navigation'}
-          aria-expanded={open}
-        >
+        <button type="button" onClick={() => setOpen((v) => !v)} className="site-menu-button"
+          aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} aria-controls="mobile-nav-panel">
           <span>{open ? 'Close' : 'Menu'}</span>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
+
       {open && (
-        <div className="site-nav-dropdown">
+        <div className="site-nav-dropdown site-desktop-dropdown" id="site-desktop-index-panel">
           <div className="site-nav-dropdown-inner">
             <div className="site-command-menu-head">
               <div><span>RIA SYSTEM INDEX</span><strong>Explore the intelligence architecture.</strong></div>
-              <Link to="/contact">Request investor brief <ArrowRight /></Link>
+              <Link to="/contact" onClick={close}>Request investor brief <ArrowRight /></Link>
             </div>
+            <nav className="site-mobile-focus-links" aria-label="Homepage sections">
+              {primary.map((item) => (
+                <a key={`desktop-${item.label}`} href={item.to} onClick={(event) => handleNavClick(event, item)}>
+                  <span>{item.label}</span><ArrowRight aria-hidden="true" />
+                </a>
+              ))}
+              <Link to="/software-exchange" onClick={close}><span>UPLOAD PROJECT</span><ArrowRight aria-hidden="true" /></Link>
+            </nav>
             <div className="site-command-menu-grid">
               {groups.map((group) => (
                 <div className="site-command-group" key={group}>
                   <p>{group}</p>
                   <div>
-                    {pageLinks
-                      .filter((item) => item.group === group)
-                      .map((item) => (
-                        <Link key={item.path} to={item.path}>
-                          <span>{item.label}</span>
-                          <small>{item.description}</small>
-                        </Link>
-                      ))}
+                    {pageLinks.filter((item) => item.group === group).map((item) => (
+                      <Link key={item.path} to={item.path} onClick={close}>
+                        <span>{item.label}</span><small>{item.description}</small>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
-            <div className="site-command-menu-foot"><span><i /> Local-first direction</span><span>Memory-first architecture</span><span>Human-controlled autonomy</span></div>
+            <div className="site-command-menu-foot">
+              <span><i /> Local-first direction</span>
+              <span>Memory-first architecture</span>
+              <span>Human-controlled autonomy</span>
+            </div>
           </div>
+        </div>
+      )}
+
+      {/* MOBILE NAV PANEL */}
+      {open && (
+        <div className="mobile-nav-panel" id="mobile-nav-panel" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+          <div className="mobile-nav-panel-head">
+            <span className="mobile-nav-panel-title">Navigation</span>
+            <button className="mobile-nav-close" onClick={close} aria-label="Close menu"><X /></button>
+          </div>
+          <p className="mobile-nav-section-label">Pages</p>
+          <Link className="mobile-nav-link" to="/" onClick={close}>RIA Home</Link>
+          {primary.map((item) => (
+            <a key={`mob-${item.label}`} className="mobile-nav-link" href={item.to}
+              onClick={(e) => { handleNavClick(e, item) }}>{item.label}</a>
+          ))}
+          <Link className="mobile-nav-link" to="/software-exchange" onClick={close}>UPLOAD PROJECT</Link>
+          <div className="mobile-nav-divider" />
+          {groups.map((group) => {
+            const gl = pageLinks.filter((i) => i.group === group)
+            if (!gl.length) return null
+            return (
+              <div key={group}>
+                <p className="mobile-nav-section-label">{group}</p>
+                {gl.map((item) => (
+                  <Link key={item.path} className="mobile-nav-link mobile-nav-link-sm" to={item.path} onClick={close}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )
+          })}
+          <div className="mobile-nav-divider" />
+          <Link className="mobile-nav-link mobile-nav-investor" to="/contact" onClick={close}>
+            Investor Access <ArrowRight style={{ width: 15, height: 15, marginLeft: 6 }} />
+          </Link>
         </div>
       )}
     </header>
@@ -1220,8 +1261,8 @@ function MetricStrip({ metrics }: { metrics: Metric[] }) {
 
 function SectionIntro({ eyebrow, title, copy }: { eyebrow: string; title: string; copy: string }) {
   return (
-    <Reveal className="mx-auto max-w-3xl text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">{eyebrow}</p>
+    <Reveal className="section-intro-premium mx-auto max-w-3xl text-center">
+      <p className="section-intro-eyebrow text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">{eyebrow}</p>
       <h2 className="mt-5 text-3xl font-bold leading-tight text-slate-100 sm:text-4xl">{title}</h2>
       <p className="mt-5 text-base leading-8 text-slate-400 sm:text-lg">{copy}</p>
     </Reveal>
@@ -1230,9 +1271,9 @@ function SectionIntro({ eyebrow, title, copy }: { eyebrow: string; title: string
 
 function FeatureGrid({ items, columns = 'lg:grid-cols-3' }: { items: Feature[]; columns?: string }) {
   return (
-    <div className={`grid gap-4 md:grid-cols-2 ${columns}`}>
+    <div className={`feature-grid-premium grid gap-4 md:grid-cols-2 ${columns}`}>
       {items.map((item) => (
-        <Reveal key={item.title} className="group dark-glass-card p-6 transition hover:-translate-y-1">
+        <Reveal key={item.title} className="feature-card-premium group dark-glass-card p-6 transition hover:-translate-y-1">
           <div className="flex items-center justify-between gap-4">
             <span className="icon-shell grid h-12 w-12 place-items-center rounded-lg">
               <item.icon className="h-5 w-5" />
@@ -1251,13 +1292,13 @@ function PageHero({ eyebrow, title, copy, metrics, children }: { eyebrow: string
   const sphereVariant = pageHeroSphereVariants[eyebrow] ?? 'default'
 
   return (
-    <section className="relative overflow-hidden pt-32">
+    <section className="interior-page-hero relative overflow-hidden pt-32">
       <div className="absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_50%_0%,rgba(34,100,200,0.08),transparent_32rem)]" />
-      <div className="mx-auto grid max-w-[1500px] min-w-0 gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-28">
+      <div className="interior-page-hero-grid mx-auto grid max-w-[1500px] min-w-0 gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-28">
         <Reveal className="relative z-10 min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">{eyebrow}</p>
-          <h1 className="mt-6 max-w-[21rem] break-words text-5xl font-bold leading-[1.02] text-slate-100 sm:max-w-5xl sm:text-6xl lg:text-7xl">{title}</h1>
-          <p className="mt-7 max-w-[21rem] break-words text-base leading-8 text-slate-400 sm:max-w-2xl sm:text-lg">{copy}</p>
+          <p className="interior-page-eyebrow text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">{eyebrow}</p>
+          <h1 className="interior-page-title mt-6 max-w-[21rem] break-words text-5xl font-bold leading-[1.02] text-slate-100 sm:max-w-5xl sm:text-6xl lg:text-7xl">{title}</h1>
+          <p className="interior-page-copy mt-7 max-w-[21rem] break-words text-base leading-8 text-slate-400 sm:max-w-2xl sm:text-lg">{copy}</p>
           {metrics && (
             <div className="mt-10 max-w-[21rem] sm:max-w-none">
               <MetricStrip metrics={metrics} />
@@ -2885,16 +2926,13 @@ function HeroSection() {
         <Reveal className="home-hero-panel">
           <div className="hero-system-label"><i /> AION / RIA PRIVATE INTELLIGENCE SYSTEM</div>
           <h1 className="home-hero-headline">
-            <span>Private Intelligence</span>
-            <span>With Memory,</span>
-            <span>Mind,</span>
-            <span>and Control.</span>
+            <span>RIA OrBiT</span>
           </h1>
           <p className="home-hero-sub">
             RIA connects memory, reasoning, reflection, knowledge, tools, and owner-approved action inside one private intelligence architecture.
           </p>
           <div className="hero-trust-pills" aria-label="System principles">
-            {['Local-first memory', 'Owner-approved action', 'Private runtime', 'Built by AION'].map((badge) => (
+            {['Local-first memory', 'Owner-approved action', 'Private runtime', 'Built by AION', 'Software Exchange', 'Intelligence architecture'].map((badge) => (
               <span key={badge}><i /> {badge}</span>
             ))}
           </div>
@@ -2923,6 +2961,17 @@ function HeroSection() {
             ))}
           </div>
         </Reveal>
+        <div className="home-hero-visual-stage" aria-hidden="true">
+          <div className="home-hero-stage-grid" />
+          <div className="home-hero-stage-halo" />
+          <div className="home-hero-stage-ring ring-one" />
+          <div className="home-hero-stage-ring ring-two" />
+          <img className="home-hero-mobile-brain" src="/assets/ria/ria-4k-neural-brain.png" alt="" decoding="async" />
+          <span className="home-hero-stage-index">RIA / COGNITIVE CORE</span>
+          <span className="home-hero-stage-signal signal-a"><i /> Memory continuity</span>
+          <span className="home-hero-stage-signal signal-b"><i /> Private runtime</span>
+          <span className="home-hero-stage-signal signal-c"><i /> Owner approval</span>
+        </div>
       </div>
     </section>
   )
@@ -3607,7 +3656,7 @@ function InvestorsPage() {
                 {competitiveRows.map((row) => (
                   <tr key={row[0]} className="border-b border-white/10 transition-colors last:border-0 hover:bg-[rgb(255_255_255_/_0.05)]">
                     {row.map((cell, index) => (
-                      <td key={`${row[0]}-${cell}`} className={`px-6 py-4.5 ${index === row.length - 1 ? 'font-bold text-cyan-300' : 'text-slate-400'}`}>
+                      <td key={`${row[0]}-${index}-${cell}`} className={`px-6 py-4.5 ${index === row.length - 1 ? 'font-bold text-cyan-300' : 'text-slate-400'}`}>
                         {cell}
                       </td>
                     ))}
@@ -3995,6 +4044,7 @@ function Footer() {
 export default function App() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
+  const routeClass = isHomePage ? 'route-home' : `route-interior route-${location.pathname.slice(1).replace(/[^a-z0-9]+/gi, '-') || 'home'}`
 
   // Redirect workspace route to homepage
   useEffect(() => {
@@ -4004,11 +4054,13 @@ export default function App() {
   }, [location.pathname])
 
   return (
-    <main className="ria-site cosmos glass-theme min-h-screen">
+    <main className={`ria-site cosmos glass-theme min-h-screen ${routeClass}`}>
       <ScrollToTop />
+      <a className="skip-to-content" href="#ria-page-content">Skip to page content</a>
       {!isHomePage && <CosmicStarField />}
       {!isHomePage && <CosmosBackground />}
       <Header />
+      <div id="ria-page-content" tabIndex={-1}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/aion" element={<AionPage />} />
@@ -4018,6 +4070,7 @@ export default function App() {
         <Route path="/ria-ide" element={<RiaIdePage />} />
         <Route path="/ria-personal" element={<RiaPersonalPage />} />
         <Route path="/ria-enterprise" element={<RiaEnterprisePage />} />
+        <Route path="/software-exchange" element={<Suspense fallback={<div className="exchange-state" role="status">Loading RIA Software Exchange…</div>}><SoftwareExchangePage /></Suspense>} />
         <Route path="/use-cases" element={<UseCasesPage />} />
         <Route path="/research-lab" element={<ResearchLabPage />} />
         <Route path="/investors" element={<InvestorsPage />} />
@@ -4036,6 +4089,7 @@ export default function App() {
         <Route path="/workspace" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </div>
       <Footer />
     </main>
   )

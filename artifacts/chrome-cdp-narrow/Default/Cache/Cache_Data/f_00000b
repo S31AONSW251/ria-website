@@ -1,0 +1,587 @@
+export const imageLibraryFilters = [
+	{
+		id: "all",
+		label: "All"
+	},
+	{
+		id: "orbit",
+		label: "Orbit OS",
+		category: "Orbit OS"
+	},
+	{
+		id: "defense",
+		label: "DefenseCore",
+		category: "DefenseCore"
+	},
+	{
+		id: "creative",
+		label: "Creative",
+		category: "Creative Studio"
+	},
+	{
+		id: "brand",
+		label: "Brand",
+		category: "Brand Concepts"
+	},
+	{
+		id: "investor",
+		label: "Investor",
+		category: "Investor Visuals"
+	},
+	{
+		id: "archive",
+		label: "Archive",
+		category: "Concept Archive"
+	}
+];
+const rawImages = [
+	(
+	// Orbit OS
+	{
+		src: "/assets/ria/orbit-dashboard-desktop.jpg",
+		title: "Orbit Dashboard",
+		category: "Orbit OS",
+		caption: "RIA Orbit desktop dashboard with telemetry and mission panels.",
+		ratio: "wide"
+	}),
+	{
+		src: "/assets/ria/ria-command-grid.jpg",
+		title: "Command Grid",
+		category: "Orbit OS",
+		caption: "Multi-panel command grid for operations and supervision.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/mission-control-orbit-room.jpg",
+		title: "Mission Control",
+		category: "Orbit OS",
+		caption: "Cinematic Orbit mission control in a command room environment.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/ria-os-orbit-hero.jpg",
+		title: "RIA OS Orbit Hero",
+		category: "Orbit OS",
+		caption: "RIA OS Orbit dashboard hero screen in a premium interface.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/orbit/ria-orbit-premium-desktop.jpg",
+		title: "RIA Orbit Premium Desktop",
+		category: "Orbit OS",
+		caption: "Curved desktop monitor showing the RIA Orbit command dashboard.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/orbit/orbit-dashboard-square.jpg",
+		title: "Orbit Dashboard Square",
+		category: "Orbit OS",
+		caption: "Square Orbit dashboard concept with dark command interface.",
+		ratio: "square"
+	},
+	{
+		src: "/assets/ria/concept-atlas/orbit/orbit-dashboard-square-alt.jpg",
+		title: "Orbit Dashboard Square Alt",
+		category: "Orbit OS",
+		caption: "Alternative square Orbit dashboard concept.",
+		ratio: "square"
+	},
+	{
+		src: "/assets/ria/concept-atlas/orbit/ria-command-grid.jpg",
+		title: "RIA Command Grid",
+		category: "Orbit OS",
+		caption: "Multi-panel operating system command grid.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/orbit/ria-os-beyond-limits.jpg",
+		title: "RIA OS Beyond Limits",
+		category: "Orbit OS",
+		caption: "RIA OS product page with Orbit dashboard modules.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/orbit/orbit-mission-control-display.jpg",
+		title: "Orbit Mission Control Display",
+		category: "Orbit OS",
+		caption: "Large Orbit mission control screen in a dark command room.",
+		ratio: "wide"
+	},
+	(
+	// DefenseCore
+	{
+		src: "/images/aion-uploaded/defensecore-dashboard.png",
+		title: "Defense Dashboard",
+		category: "DefenseCore",
+		caption: "DefenseCore dashboard with satellite intelligence and command panels.",
+		ratio: "wide"
+	}),
+	{
+		src: "/images/aion-uploaded/defensecore-command.png",
+		title: "Command Grid",
+		category: "DefenseCore",
+		caption: "DefenseCore command screen with operational metrics.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/defensecore/defensecore-live-satellite-map.jpg",
+		title: "DefenseCore Live Map",
+		category: "DefenseCore",
+		caption: "Live satellite map dashboard with command panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/defensecore/defensecore-command-grid.jpg",
+		title: "DefenseCore Command Grid",
+		category: "DefenseCore",
+		caption: "Command grid with intelligence panels and operations feed.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/defensecore/defensecore-dashboard-wide.png",
+		title: "DefenseCore Dashboard Wide",
+		category: "DefenseCore",
+		caption: "Wide DefenseCore dashboard with live satellite visualization.",
+		ratio: "wide"
+	},
+	(
+	// Creative Studio
+	{
+		src: "/assets/ria/creative-studio-grid.jpg",
+		title: "Production Grid",
+		category: "Creative Studio",
+		caption: "Creative Studio with generated image, video, and asset panels.",
+		ratio: "wide"
+	}),
+	{
+		src: "/assets/ria/creative-studio-grid-alt.jpg",
+		title: "Production Grid Alt",
+		category: "Creative Studio",
+		caption: "Alternative Creative Studio command center with media panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/images/aion-uploaded/creative-intelligence-wall.jpg",
+		title: "Creative Wall",
+		category: "Creative Studio",
+		caption: "Cinematic creative intelligence wall with visual assets.",
+		ratio: "wide"
+	},
+	{
+		src: "/images/aion-uploaded/creative-intelligence-wall-alt.jpg",
+		title: "Creative Wall Alt",
+		category: "Creative Studio",
+		caption: "Alternative creative intelligence wall concept.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/software-studio-command-center.jpg",
+		title: "Software Studio",
+		category: "Creative Studio",
+		caption: "Software Studio command center with agent workspaces.",
+		ratio: "wide"
+	},
+	{
+		src: "/images/aion-uploaded/creative-studio-dashboard.png",
+		title: "Creative Studio Dashboard",
+		category: "Creative Studio",
+		caption: "Creative Studio dashboard with media generation panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-intelligence-wall.jpg",
+		title: "Creative Intelligence Wall",
+		category: "Creative Studio",
+		caption: "Creative Intelligence wall with generated visual asset cards.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-intelligence-wall-alt.jpg",
+		title: "Creative Intelligence Wall Alt",
+		category: "Creative Studio",
+		caption: "Alternative Creative Intelligence wall with cinematic cards.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-studio-production-grid.jpg",
+		title: "Creative Studio Production Grid",
+		category: "Creative Studio",
+		caption: "Production grid with generated imagery and asset controls.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-studio-production-grid-alt.jpg",
+		title: "Creative Studio Production Grid Alt",
+		category: "Creative Studio",
+		caption: "Alternative production grid with media generation panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-studio-dashboard.jpg",
+		title: "Creative Studio Dashboard",
+		category: "Creative Studio",
+		caption: "Creative Studio dashboard with generated media controls.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-render-archive-a.jpg",
+		title: "Creative Render Archive A",
+		category: "Creative Studio",
+		caption: "Archived creative render concept for visual production testing.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/creative/creative-render-archive-b.jpg",
+		title: "Creative Render Archive B",
+		category: "Creative Studio",
+		caption: "Second archived creative render concept.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/software/software-studio-command-center.jpg",
+		title: "Software Studio Command Center",
+		category: "Creative Studio",
+		caption: "Software Studio with agent workspace and build panels.",
+		ratio: "wide"
+	},
+	(
+	// Brand Concepts
+	{
+		src: "/images/aion-uploaded/ria-ring-mark.png",
+		title: "Energy Ring",
+		category: "Brand Concepts",
+		caption: "RIA ring mark on a dark energy field.",
+		ratio: "square"
+	}),
+	{
+		src: "/images/logos/ria-conscious-logo.png",
+		title: "Brain Mark",
+		category: "Brand Concepts",
+		caption: "RIA brain logo for memory, reasoning, and autonomous work.",
+		ratio: "square"
+	},
+	{
+		src: "/assets/ria/ria-os-company-mosaic-detail.jpg",
+		title: "Company Mosaic",
+		category: "Brand Concepts",
+		caption: "Detailed RIA OS mosaic showing dashboard modules.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/brand/ria-energy-ring-mark.jpg",
+		title: "RIA Energy Ring Mark",
+		category: "Brand Concepts",
+		caption: "RIA wordmark inside a luminous circular energy ring.",
+		ratio: "square"
+	},
+	{
+		src: "/assets/ria/concept-atlas/brand/ria-spectrum-brain-logo.jpg",
+		title: "Spectrum Brain Logo",
+		category: "Brand Concepts",
+		caption: "Color spectrum RIA brain logo on a light background.",
+		ratio: "square"
+	},
+	{
+		src: "/assets/ria/concept-atlas/brand/ria-spectrum-brain-logo-alt.jpg",
+		title: "Spectrum Brain Logo Alt",
+		category: "Brand Concepts",
+		caption: "Alternative color spectrum RIA brain logo.",
+		ratio: "square"
+	},
+	{
+		src: "/images/aion-uploaded/ria-brain-structure.png",
+		title: "RIA Brain Structure",
+		category: "Brand Concepts",
+		caption: "RIA brain structure poster with intelligence modules.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/brain/ria-brain-structure-poster.jpg",
+		title: "RIA Brain Structure Poster",
+		category: "Brand Concepts",
+		caption: "Cognitive modules and memory architecture poster.",
+		ratio: "wide"
+	},
+	{
+		src: "/images/logos/ria-logo.png",
+		title: "RIA Logo",
+		category: "Brand Concepts",
+		caption: "Primary RIA brand logo.",
+		ratio: "square"
+	},
+	(
+	// Investor Visuals
+	{
+		src: "/images/aion-uploaded/launch-poster.png",
+		title: "Launch Poster",
+		category: "Investor Visuals",
+		caption: "RIA launch poster announcing July 5, 2026.",
+		ratio: "wide"
+	}),
+	{
+		src: "/assets/ria/chip-infrastructure-vision.jpg",
+		title: "Infrastructure Board",
+		category: "Investor Visuals",
+		caption: "AI infrastructure chip concept with technical interface.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/village-impact-transformation.jpg",
+		title: "Impact Vision",
+		category: "Investor Visuals",
+		caption: "Village transformation concept showing infrastructure impact.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/launch/ria-orbit-launch-poster.jpg",
+		title: "RIA Orbit Launch Poster",
+		category: "Investor Visuals",
+		caption: "RIA Orbit launch poster with July 5 2026 date.",
+		ratio: "square"
+	},
+	{
+		src: "/assets/ria/concept-atlas/infrastructure/ria-silicon-investor-board.jpg",
+		title: "RIA Silicon Investor Board",
+		category: "Investor Visuals",
+		caption: "Silicon family investor board showing chip roadmap.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/positioning/beyond-intelligence-comparison.jpg",
+		title: "Beyond Intelligence Comparison",
+		category: "Investor Visuals",
+		caption: "RIA positioning board against generic AI.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/impact/village-transformation-impact.jpg",
+		title: "Village Transformation Impact",
+		category: "Investor Visuals",
+		caption: "Technology-enabled village infrastructure impact concept.",
+		ratio: "wide"
+	},
+	(
+	// Product Screens
+	{
+		src: "/assets/ria/ria-os-company-mosaic.jpg",
+		title: "RIA OS Company Mosaic",
+		category: "Product Screens",
+		caption: "RIA OS company website mosaic with product panels.",
+		ratio: "wide"
+	}),
+	{
+		src: "/assets/ria/ria-os-company-mosaic-alt.jpg",
+		title: "RIA OS Company Mosaic Alt",
+		category: "Product Screens",
+		caption: "Alternative RIA OS company mosaic with OS panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/crypto-core-dashboard.jpg",
+		title: "Crypto Core Dashboard",
+		category: "Product Screens",
+		caption: "Crypto Core dashboard showing private compute monitoring.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/automotive-engineering-dashboard.jpg",
+		title: "Automotive Engineering Dashboard",
+		category: "Product Screens",
+		caption: "Automotive engineering dashboard with design intelligence.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/automotive-engineering-dashboard-alt.jpg",
+		title: "Automotive Engineering Dashboard Alt",
+		category: "Product Screens",
+		caption: "Alternative automotive engineering simulation panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/company/ria-operating-system-mosaic.jpg",
+		title: "RIA Operating System Mosaic",
+		category: "Product Screens",
+		caption: "Operating system company mosaic with dashboards.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/company/ria-operating-system-mosaic-alt.jpg",
+		title: "RIA Operating System Mosaic Alt",
+		category: "Product Screens",
+		caption: "Alternative operating system company mosaic.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/company/ria-operating-system-mosaic-detail.jpg",
+		title: "RIA Operating System Detail",
+		category: "Product Screens",
+		caption: "Detailed operating system mosaic with brand modules.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/engineering/work-design-evolve-automotive.jpg",
+		title: "Work Design Evolve Automotive",
+		category: "Product Screens",
+		caption: "Automotive engineering dashboard with simulation panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/engineering/work-design-evolve-automotive-alt.jpg",
+		title: "Work Design Evolve Automotive Alt",
+		category: "Product Screens",
+		caption: "Alternative automotive engineering dashboard.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/crypto/crypto-core-security-dashboard.jpg",
+		title: "Crypto Core Security Dashboard",
+		category: "Product Screens",
+		caption: "Crypto Core security dashboard with compute controls.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/company/building-next-layer-hero.jpg",
+		title: "Building The Next Layer",
+		category: "Product Screens",
+		caption: "Company hero with humanoid robot and next intelligence layer.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/company/building-next-layer-hero-alt.jpg",
+		title: "Building The Next Layer Alt",
+		category: "Product Screens",
+		caption: "Alternative company hero with humanoid robot and lab scene.",
+		ratio: "wide"
+	},
+	(
+	// Concept Archive
+	{
+		src: "/assets/ria/humanoid-portrait.jpg",
+		title: "Humanoid Presence",
+		category: "Concept Archive",
+		caption: "Humanoid robotics concept with interface overlays.",
+		ratio: "wide"
+	}),
+	{
+		src: "/assets/ria/robotics-lab-bench.jpg",
+		title: "Robotics Lab",
+		category: "Concept Archive",
+		caption: "Robotics lab bench with humanoid prototype and monitors.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/humanoid-system-board.jpg",
+		title: "System Board",
+		category: "Concept Archive",
+		caption: "Humanoid robotics system board with modular views.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/humanoid-system-board-alt.jpg",
+		title: "System Board Alt",
+		category: "Concept Archive",
+		caption: "Alternative humanoid system board with engineering panels.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/automotive-engineering-dashboard.jpg",
+		title: "Engineering Dashboard",
+		category: "Concept Archive",
+		caption: "Applied systems engineering dashboard concept.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/crypto-core-dashboard.jpg",
+		title: "Crypto Core",
+		category: "Concept Archive",
+		caption: "Private compute monitoring concept.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/ria-office-lab-wide.jpg",
+		title: "RIA Lab",
+		category: "Concept Archive",
+		caption: "RIA office and robotics laboratory wide view.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/robotics-workshop-desk.jpg",
+		title: "Robotics Workshop Desk",
+		category: "Concept Archive",
+		caption: "Robotics workshop desk with prototype and hardware.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/company-hero-humanoid.jpg",
+		title: "Company Hero Humanoid",
+		category: "Concept Archive",
+		caption: "Company hero with humanoid robot and lab environment.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/company-hero-humanoid-alt.jpg",
+		title: "Company Hero Humanoid Alt",
+		category: "Concept Archive",
+		caption: "Alternative company hero with humanoid robot.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/robotics/humanoid-presence-portrait.jpg",
+		title: "Humanoid Presence Portrait",
+		category: "Concept Archive",
+		caption: "Humanoid concept portrait with interface annotations.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/robotics/ria-robotics-lab-wide.jpg",
+		title: "RIA Robotics Lab Wide",
+		category: "Concept Archive",
+		caption: "Wide robotics laboratory with engineers and humanoid systems.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/robotics/robotics-workshop-desk.jpg",
+		title: "Robotics Workshop Desk",
+		category: "Concept Archive",
+		caption: "Workshop desk with humanoid prototype and monitors.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/robotics/robotics-lab-bench.jpg",
+		title: "Robotics Lab Bench",
+		category: "Concept Archive",
+		caption: "Lab bench with prototype, monitors, and engineering tools.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/robotics/humanoid-system-board.jpg",
+		title: "Humanoid System Board",
+		category: "Concept Archive",
+		caption: "Humanoid system board with modular technical views.",
+		ratio: "wide"
+	},
+	{
+		src: "/assets/ria/concept-atlas/robotics/humanoid-system-board-alt.jpg",
+		title: "Humanoid System Board Alt",
+		category: "Concept Archive",
+		caption: "Alternative humanoid system board.",
+		ratio: "wide"
+	}
+];
+function dedupeImages(images) {
+	const seen = new Set();
+	return images.filter((image) => {
+		if (seen.has(image.src)) return false;
+		seen.add(image.src);
+		return true;
+	});
+}
+export const riaImages = dedupeImages(rawImages);
+export function filterRiaImages(filterId) {
+	if (filterId === "all") return riaImages;
+	const filter = imageLibraryFilters.find((item) => item.id === filterId);
+	if (!filter || !("category" in filter)) return riaImages;
+	return riaImages.filter((image) => image.category === filter.category);
+}
+
+//# sourceMappingURL=data:application/json;base64,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QUFNLFNBQVMsb0JBQW9CLE1BQU0sU0FBUyxLQUFLLE9BQU8sU0FBUztDQUN2RSxJQUFJLENBQUMsVUFBVSxFQUFFLGNBQWMsU0FBUyxPQUFPO0NBQy9DLE9BQU8sVUFBVSxRQUFRLFVBQVUsTUFBTSxhQUFhLE9BQU8sU0FBUyIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJyaWFJbWFnZXMudHMiXSwidmVyc2lvbiI6Mywic291cmNlc0NvbnRlbnQiOlsiLy8gUklBIEltYWdlIExpYnJhcnkgUmVnaXN0cnlcclxuLy9cclxuLy8gVG8gYWRkIGEgbmV3IGltYWdlOlxyXG4vLyAxLiBQYXN0ZSBpbWFnZSBpbnRvIHB1YmxpYy9hc3NldHMvcmlhL2ltYWdlLWxpYnJhcnlcclxuLy8gMi4gQWRkIGEgbmV3IG9iamVjdCBiZWxvdzpcclxuLy8ge1xyXG4vLyAgIHNyYzogXCIvYXNzZXRzL3JpYS9pbWFnZS1saWJyYXJ5L215LW5ldy1pbWFnZS5wbmdcIixcclxuLy8gICB0aXRsZTogXCJNeSBOZXcgSW1hZ2VcIixcclxuLy8gICBjYXRlZ29yeTogXCJCcmFuZCBDb25jZXB0c1wiLFxyXG4vLyAgIGNhcHRpb246IFwiU2hvcnQgZGVzY3JpcHRpb24uXCIsXHJcbi8vICAgcmF0aW86IFwid2lkZVwiXHJcbi8vIH1cclxuLy9cclxuLy8gQ2F0ZWdvcmllczogT3JiaXQgT1MgfCBEZWZlbnNlQ29yZSB8IENyZWF0aXZlIFN0dWRpbyB8IEJyYW5kIENvbmNlcHRzIHwgSW52ZXN0b3IgVmlzdWFscyB8IFByb2R1Y3QgU2NyZWVucyB8IENvbmNlcHQgQXJjaGl2ZVxyXG4vLyBSYXRpbzogXCJ3aWRlXCIgKDE2OjkpIG9yIFwic3F1YXJlXCIgKDE6MSlcclxuXHJcbmV4cG9ydCB0eXBlIFJpYUltYWdlQ2F0ZWdvcnkgPVxyXG4gIHwgJ09yYml0IE9TJ1xyXG4gIHwgJ0RlZmVuc2VDb3JlJ1xyXG4gIHwgJ0NyZWF0aXZlIFN0dWRpbydcclxuICB8ICdCcmFuZCBDb25jZXB0cydcclxuICB8ICdJbnZlc3RvciBWaXN1YWxzJ1xyXG4gIHwgJ1Byb2R1Y3QgU2NyZWVucydcclxuICB8ICdDb25jZXB0IEFyY2hpdmUnXHJcblxyXG5leHBvcnQgdHlwZSBSaWFJbWFnZVJhdGlvID0gJ3dpZGUnIHwgJ3NxdWFyZSdcclxuXHJcbmV4cG9ydCB0eXBlIFJpYUltYWdlID0ge1xyXG4gIHNyYzogc3RyaW5nXHJcbiAgdGl0bGU6IHN0cmluZ1xyXG4gIGNhdGVnb3J5OiBSaWFJbWFnZUNhdGVnb3J5XHJcbiAgY2FwdGlvbjogc3RyaW5nXHJcbiAgcmF0aW8/OiBSaWFJbWFnZVJhdGlvXHJcbn1cclxuXHJcbmV4cG9ydCBjb25zdCBpbWFnZUxpYnJhcnlGaWx0ZXJzID0gW1xyXG4gIHsgaWQ6ICdhbGwnLCBsYWJlbDogJ0FsbCcgfSxcclxuICB7IGlkOiAnb3JiaXQnLCBsYWJlbDogJ09yYml0IE9TJywgY2F0ZWdvcnk6ICdPcmJpdCBPUycgYXMgUmlhSW1hZ2VDYXRlZ29yeSB9LFxyXG4gIHsgaWQ6ICdkZWZlbnNlJywgbGFiZWw6ICdEZWZlbnNlQ29yZScsIGNhdGVnb3J5OiAnRGVmZW5zZUNvcmUnIGFzIFJpYUltYWdlQ2F0ZWdvcnkgfSxcclxuICB7IGlkOiAnY3JlYXRpdmUnLCBsYWJlbDogJ0NyZWF0aXZlJywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nIGFzIFJpYUltYWdlQ2F0ZWdvcnkgfSxcclxuICB7IGlkOiAnYnJhbmQnLCBsYWJlbDogJ0JyYW5kJywgY2F0ZWdvcnk6ICdCcmFuZCBDb25jZXB0cycgYXMgUmlhSW1hZ2VDYXRlZ29yeSB9LFxyXG4gIHsgaWQ6ICdpbnZlc3RvcicsIGxhYmVsOiAnSW52ZXN0b3InLCBjYXRlZ29yeTogJ0ludmVzdG9yIFZpc3VhbHMnIGFzIFJpYUltYWdlQ2F0ZWdvcnkgfSxcclxuICB7IGlkOiAnYXJjaGl2ZScsIGxhYmVsOiAnQXJjaGl2ZScsIGNhdGVnb3J5OiAnQ29uY2VwdCBBcmNoaXZlJyBhcyBSaWFJbWFnZUNhdGVnb3J5IH1cclxuXSBhcyBjb25zdFxyXG5cclxuY29uc3QgcmF3SW1hZ2VzOiBSaWFJbWFnZVtdID0gW1xyXG4gIC8vIE9yYml0IE9TXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9vcmJpdC1kYXNoYm9hcmQtZGVza3RvcC5qcGcnLCB0aXRsZTogJ09yYml0IERhc2hib2FyZCcsIGNhdGVnb3J5OiAnT3JiaXQgT1MnLCBjYXB0aW9uOiAnUklBIE9yYml0IGRlc2t0b3AgZGFzaGJvYXJkIHdpdGggdGVsZW1ldHJ5IGFuZCBtaXNzaW9uIHBhbmVscy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9yaWEtY29tbWFuZC1ncmlkLmpwZycsIHRpdGxlOiAnQ29tbWFuZCBHcmlkJywgY2F0ZWdvcnk6ICdPcmJpdCBPUycsIGNhcHRpb246ICdNdWx0aS1wYW5lbCBjb21tYW5kIGdyaWQgZm9yIG9wZXJhdGlvbnMgYW5kIHN1cGVydmlzaW9uLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL21pc3Npb24tY29udHJvbC1vcmJpdC1yb29tLmpwZycsIHRpdGxlOiAnTWlzc2lvbiBDb250cm9sJywgY2F0ZWdvcnk6ICdPcmJpdCBPUycsIGNhcHRpb246ICdDaW5lbWF0aWMgT3JiaXQgbWlzc2lvbiBjb250cm9sIGluIGEgY29tbWFuZCByb29tIGVudmlyb25tZW50LicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL3JpYS1vcy1vcmJpdC1oZXJvLmpwZycsIHRpdGxlOiAnUklBIE9TIE9yYml0IEhlcm8nLCBjYXRlZ29yeTogJ09yYml0IE9TJywgY2FwdGlvbjogJ1JJQSBPUyBPcmJpdCBkYXNoYm9hcmQgaGVybyBzY3JlZW4gaW4gYSBwcmVtaXVtIGludGVyZmFjZS4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL29yYml0L3JpYS1vcmJpdC1wcmVtaXVtLWRlc2t0b3AuanBnJywgdGl0bGU6ICdSSUEgT3JiaXQgUHJlbWl1bSBEZXNrdG9wJywgY2F0ZWdvcnk6ICdPcmJpdCBPUycsIGNhcHRpb246ICdDdXJ2ZWQgZGVza3RvcCBtb25pdG9yIHNob3dpbmcgdGhlIFJJQSBPcmJpdCBjb21tYW5kIGRhc2hib2FyZC4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL29yYml0L29yYml0LWRhc2hib2FyZC1zcXVhcmUuanBnJywgdGl0bGU6ICdPcmJpdCBEYXNoYm9hcmQgU3F1YXJlJywgY2F0ZWdvcnk6ICdPcmJpdCBPUycsIGNhcHRpb246ICdTcXVhcmUgT3JiaXQgZGFzaGJvYXJkIGNvbmNlcHQgd2l0aCBkYXJrIGNvbW1hbmQgaW50ZXJmYWNlLicsIHJhdGlvOiAnc3F1YXJlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9vcmJpdC9vcmJpdC1kYXNoYm9hcmQtc3F1YXJlLWFsdC5qcGcnLCB0aXRsZTogJ09yYml0IERhc2hib2FyZCBTcXVhcmUgQWx0JywgY2F0ZWdvcnk6ICdPcmJpdCBPUycsIGNhcHRpb246ICdBbHRlcm5hdGl2ZSBzcXVhcmUgT3JiaXQgZGFzaGJvYXJkIGNvbmNlcHQuJywgcmF0aW86ICdzcXVhcmUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL29yYml0L3JpYS1jb21tYW5kLWdyaWQuanBnJywgdGl0bGU6ICdSSUEgQ29tbWFuZCBHcmlkJywgY2F0ZWdvcnk6ICdPcmJpdCBPUycsIGNhcHRpb246ICdNdWx0aS1wYW5lbCBvcGVyYXRpbmcgc3lzdGVtIGNvbW1hbmQgZ3JpZC4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL29yYml0L3JpYS1vcy1iZXlvbmQtbGltaXRzLmpwZycsIHRpdGxlOiAnUklBIE9TIEJleW9uZCBMaW1pdHMnLCBjYXRlZ29yeTogJ09yYml0IE9TJywgY2FwdGlvbjogJ1JJQSBPUyBwcm9kdWN0IHBhZ2Ugd2l0aCBPcmJpdCBkYXNoYm9hcmQgbW9kdWxlcy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL29yYml0L29yYml0LW1pc3Npb24tY29udHJvbC1kaXNwbGF5LmpwZycsIHRpdGxlOiAnT3JiaXQgTWlzc2lvbiBDb250cm9sIERpc3BsYXknLCBjYXRlZ29yeTogJ09yYml0IE9TJywgY2FwdGlvbjogJ0xhcmdlIE9yYml0IG1pc3Npb24gY29udHJvbCBzY3JlZW4gaW4gYSBkYXJrIGNvbW1hbmQgcm9vbS4nLCByYXRpbzogJ3dpZGUnIH0sXHJcblxyXG4gIC8vIERlZmVuc2VDb3JlXHJcbiAgeyBzcmM6ICcvaW1hZ2VzL2Fpb24tdXBsb2FkZWQvZGVmZW5zZWNvcmUtZGFzaGJvYXJkLnBuZycsIHRpdGxlOiAnRGVmZW5zZSBEYXNoYm9hcmQnLCBjYXRlZ29yeTogJ0RlZmVuc2VDb3JlJywgY2FwdGlvbjogJ0RlZmVuc2VDb3JlIGRhc2hib2FyZCB3aXRoIHNhdGVsbGl0ZSBpbnRlbGxpZ2VuY2UgYW5kIGNvbW1hbmQgcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9pbWFnZXMvYWlvbi11cGxvYWRlZC9kZWZlbnNlY29yZS1jb21tYW5kLnBuZycsIHRpdGxlOiAnQ29tbWFuZCBHcmlkJywgY2F0ZWdvcnk6ICdEZWZlbnNlQ29yZScsIGNhcHRpb246ICdEZWZlbnNlQ29yZSBjb21tYW5kIHNjcmVlbiB3aXRoIG9wZXJhdGlvbmFsIG1ldHJpY3MuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9kZWZlbnNlY29yZS9kZWZlbnNlY29yZS1saXZlLXNhdGVsbGl0ZS1tYXAuanBnJywgdGl0bGU6ICdEZWZlbnNlQ29yZSBMaXZlIE1hcCcsIGNhdGVnb3J5OiAnRGVmZW5zZUNvcmUnLCBjYXB0aW9uOiAnTGl2ZSBzYXRlbGxpdGUgbWFwIGRhc2hib2FyZCB3aXRoIGNvbW1hbmQgcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2NvbmNlcHQtYXRsYXMvZGVmZW5zZWNvcmUvZGVmZW5zZWNvcmUtY29tbWFuZC1ncmlkLmpwZycsIHRpdGxlOiAnRGVmZW5zZUNvcmUgQ29tbWFuZCBHcmlkJywgY2F0ZWdvcnk6ICdEZWZlbnNlQ29yZScsIGNhcHRpb246ICdDb21tYW5kIGdyaWQgd2l0aCBpbnRlbGxpZ2VuY2UgcGFuZWxzIGFuZCBvcGVyYXRpb25zIGZlZWQuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9kZWZlbnNlY29yZS9kZWZlbnNlY29yZS1kYXNoYm9hcmQtd2lkZS5wbmcnLCB0aXRsZTogJ0RlZmVuc2VDb3JlIERhc2hib2FyZCBXaWRlJywgY2F0ZWdvcnk6ICdEZWZlbnNlQ29yZScsIGNhcHRpb246ICdXaWRlIERlZmVuc2VDb3JlIGRhc2hib2FyZCB3aXRoIGxpdmUgc2F0ZWxsaXRlIHZpc3VhbGl6YXRpb24uJywgcmF0aW86ICd3aWRlJyB9LFxyXG5cclxuICAvLyBDcmVhdGl2ZSBTdHVkaW9cclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2NyZWF0aXZlLXN0dWRpby1ncmlkLmpwZycsIHRpdGxlOiAnUHJvZHVjdGlvbiBHcmlkJywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnQ3JlYXRpdmUgU3R1ZGlvIHdpdGggZ2VuZXJhdGVkIGltYWdlLCB2aWRlbywgYW5kIGFzc2V0IHBhbmVscy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jcmVhdGl2ZS1zdHVkaW8tZ3JpZC1hbHQuanBnJywgdGl0bGU6ICdQcm9kdWN0aW9uIEdyaWQgQWx0JywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgQ3JlYXRpdmUgU3R1ZGlvIGNvbW1hbmQgY2VudGVyIHdpdGggbWVkaWEgcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9pbWFnZXMvYWlvbi11cGxvYWRlZC9jcmVhdGl2ZS1pbnRlbGxpZ2VuY2Utd2FsbC5qcGcnLCB0aXRsZTogJ0NyZWF0aXZlIFdhbGwnLCBjYXRlZ29yeTogJ0NyZWF0aXZlIFN0dWRpbycsIGNhcHRpb246ICdDaW5lbWF0aWMgY3JlYXRpdmUgaW50ZWxsaWdlbmNlIHdhbGwgd2l0aCB2aXN1YWwgYXNzZXRzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9pbWFnZXMvYWlvbi11cGxvYWRlZC9jcmVhdGl2ZS1pbnRlbGxpZ2VuY2Utd2FsbC1hbHQuanBnJywgdGl0bGU6ICdDcmVhdGl2ZSBXYWxsIEFsdCcsIGNhdGVnb3J5OiAnQ3JlYXRpdmUgU3R1ZGlvJywgY2FwdGlvbjogJ0FsdGVybmF0aXZlIGNyZWF0aXZlIGludGVsbGlnZW5jZSB3YWxsIGNvbmNlcHQuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvc29mdHdhcmUtc3R1ZGlvLWNvbW1hbmQtY2VudGVyLmpwZycsIHRpdGxlOiAnU29mdHdhcmUgU3R1ZGlvJywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnU29mdHdhcmUgU3R1ZGlvIGNvbW1hbmQgY2VudGVyIHdpdGggYWdlbnQgd29ya3NwYWNlcy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvaW1hZ2VzL2Fpb24tdXBsb2FkZWQvY3JlYXRpdmUtc3R1ZGlvLWRhc2hib2FyZC5wbmcnLCB0aXRsZTogJ0NyZWF0aXZlIFN0dWRpbyBEYXNoYm9hcmQnLCBjYXRlZ29yeTogJ0NyZWF0aXZlIFN0dWRpbycsIGNhcHRpb246ICdDcmVhdGl2ZSBTdHVkaW8gZGFzaGJvYXJkIHdpdGggbWVkaWEgZ2VuZXJhdGlvbiBwYW5lbHMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9jcmVhdGl2ZS9jcmVhdGl2ZS1pbnRlbGxpZ2VuY2Utd2FsbC5qcGcnLCB0aXRsZTogJ0NyZWF0aXZlIEludGVsbGlnZW5jZSBXYWxsJywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnQ3JlYXRpdmUgSW50ZWxsaWdlbmNlIHdhbGwgd2l0aCBnZW5lcmF0ZWQgdmlzdWFsIGFzc2V0IGNhcmRzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2NvbmNlcHQtYXRsYXMvY3JlYXRpdmUvY3JlYXRpdmUtaW50ZWxsaWdlbmNlLXdhbGwtYWx0LmpwZycsIHRpdGxlOiAnQ3JlYXRpdmUgSW50ZWxsaWdlbmNlIFdhbGwgQWx0JywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgQ3JlYXRpdmUgSW50ZWxsaWdlbmNlIHdhbGwgd2l0aCBjaW5lbWF0aWMgY2FyZHMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9jcmVhdGl2ZS9jcmVhdGl2ZS1zdHVkaW8tcHJvZHVjdGlvbi1ncmlkLmpwZycsIHRpdGxlOiAnQ3JlYXRpdmUgU3R1ZGlvIFByb2R1Y3Rpb24gR3JpZCcsIGNhdGVnb3J5OiAnQ3JlYXRpdmUgU3R1ZGlvJywgY2FwdGlvbjogJ1Byb2R1Y3Rpb24gZ3JpZCB3aXRoIGdlbmVyYXRlZCBpbWFnZXJ5IGFuZCBhc3NldCBjb250cm9scy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2NyZWF0aXZlL2NyZWF0aXZlLXN0dWRpby1wcm9kdWN0aW9uLWdyaWQtYWx0LmpwZycsIHRpdGxlOiAnQ3JlYXRpdmUgU3R1ZGlvIFByb2R1Y3Rpb24gR3JpZCBBbHQnLCBjYXRlZ29yeTogJ0NyZWF0aXZlIFN0dWRpbycsIGNhcHRpb246ICdBbHRlcm5hdGl2ZSBwcm9kdWN0aW9uIGdyaWQgd2l0aCBtZWRpYSBnZW5lcmF0aW9uIHBhbmVscy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2NyZWF0aXZlL2NyZWF0aXZlLXN0dWRpby1kYXNoYm9hcmQuanBnJywgdGl0bGU6ICdDcmVhdGl2ZSBTdHVkaW8gRGFzaGJvYXJkJywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnQ3JlYXRpdmUgU3R1ZGlvIGRhc2hib2FyZCB3aXRoIGdlbmVyYXRlZCBtZWRpYSBjb250cm9scy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2NyZWF0aXZlL2NyZWF0aXZlLXJlbmRlci1hcmNoaXZlLWEuanBnJywgdGl0bGU6ICdDcmVhdGl2ZSBSZW5kZXIgQXJjaGl2ZSBBJywgY2F0ZWdvcnk6ICdDcmVhdGl2ZSBTdHVkaW8nLCBjYXB0aW9uOiAnQXJjaGl2ZWQgY3JlYXRpdmUgcmVuZGVyIGNvbmNlcHQgZm9yIHZpc3VhbCBwcm9kdWN0aW9uIHRlc3RpbmcuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9jcmVhdGl2ZS9jcmVhdGl2ZS1yZW5kZXItYXJjaGl2ZS1iLmpwZycsIHRpdGxlOiAnQ3JlYXRpdmUgUmVuZGVyIEFyY2hpdmUgQicsIGNhdGVnb3J5OiAnQ3JlYXRpdmUgU3R1ZGlvJywgY2FwdGlvbjogJ1NlY29uZCBhcmNoaXZlZCBjcmVhdGl2ZSByZW5kZXIgY29uY2VwdC4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL3NvZnR3YXJlL3NvZnR3YXJlLXN0dWRpby1jb21tYW5kLWNlbnRlci5qcGcnLCB0aXRsZTogJ1NvZnR3YXJlIFN0dWRpbyBDb21tYW5kIENlbnRlcicsIGNhdGVnb3J5OiAnQ3JlYXRpdmUgU3R1ZGlvJywgY2FwdGlvbjogJ1NvZnR3YXJlIFN0dWRpbyB3aXRoIGFnZW50IHdvcmtzcGFjZSBhbmQgYnVpbGQgcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuXHJcbiAgLy8gQnJhbmQgQ29uY2VwdHNcclxuICB7IHNyYzogJy9pbWFnZXMvYWlvbi11cGxvYWRlZC9yaWEtcmluZy1tYXJrLnBuZycsIHRpdGxlOiAnRW5lcmd5IFJpbmcnLCBjYXRlZ29yeTogJ0JyYW5kIENvbmNlcHRzJywgY2FwdGlvbjogJ1JJQSByaW5nIG1hcmsgb24gYSBkYXJrIGVuZXJneSBmaWVsZC4nLCByYXRpbzogJ3NxdWFyZScgfSxcclxuICB7IHNyYzogJy9pbWFnZXMvbG9nb3MvcmlhLWNvbnNjaW91cy1sb2dvLnBuZycsIHRpdGxlOiAnQnJhaW4gTWFyaycsIGNhdGVnb3J5OiAnQnJhbmQgQ29uY2VwdHMnLCBjYXB0aW9uOiAnUklBIGJyYWluIGxvZ28gZm9yIG1lbW9yeSwgcmVhc29uaW5nLCBhbmQgYXV0b25vbW91cyB3b3JrLicsIHJhdGlvOiAnc3F1YXJlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvcmlhLW9zLWNvbXBhbnktbW9zYWljLWRldGFpbC5qcGcnLCB0aXRsZTogJ0NvbXBhbnkgTW9zYWljJywgY2F0ZWdvcnk6ICdCcmFuZCBDb25jZXB0cycsIGNhcHRpb246ICdEZXRhaWxlZCBSSUEgT1MgbW9zYWljIHNob3dpbmcgZGFzaGJvYXJkIG1vZHVsZXMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9icmFuZC9yaWEtZW5lcmd5LXJpbmctbWFyay5qcGcnLCB0aXRsZTogJ1JJQSBFbmVyZ3kgUmluZyBNYXJrJywgY2F0ZWdvcnk6ICdCcmFuZCBDb25jZXB0cycsIGNhcHRpb246ICdSSUEgd29yZG1hcmsgaW5zaWRlIGEgbHVtaW5vdXMgY2lyY3VsYXIgZW5lcmd5IHJpbmcuJywgcmF0aW86ICdzcXVhcmUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2JyYW5kL3JpYS1zcGVjdHJ1bS1icmFpbi1sb2dvLmpwZycsIHRpdGxlOiAnU3BlY3RydW0gQnJhaW4gTG9nbycsIGNhdGVnb3J5OiAnQnJhbmQgQ29uY2VwdHMnLCBjYXB0aW9uOiAnQ29sb3Igc3BlY3RydW0gUklBIGJyYWluIGxvZ28gb24gYSBsaWdodCBiYWNrZ3JvdW5kLicsIHJhdGlvOiAnc3F1YXJlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9icmFuZC9yaWEtc3BlY3RydW0tYnJhaW4tbG9nby1hbHQuanBnJywgdGl0bGU6ICdTcGVjdHJ1bSBCcmFpbiBMb2dvIEFsdCcsIGNhdGVnb3J5OiAnQnJhbmQgQ29uY2VwdHMnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgY29sb3Igc3BlY3RydW0gUklBIGJyYWluIGxvZ28uJywgcmF0aW86ICdzcXVhcmUnIH0sXHJcbiAgeyBzcmM6ICcvaW1hZ2VzL2Fpb24tdXBsb2FkZWQvcmlhLWJyYWluLXN0cnVjdHVyZS5wbmcnLCB0aXRsZTogJ1JJQSBCcmFpbiBTdHJ1Y3R1cmUnLCBjYXRlZ29yeTogJ0JyYW5kIENvbmNlcHRzJywgY2FwdGlvbjogJ1JJQSBicmFpbiBzdHJ1Y3R1cmUgcG9zdGVyIHdpdGggaW50ZWxsaWdlbmNlIG1vZHVsZXMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9icmFpbi9yaWEtYnJhaW4tc3RydWN0dXJlLXBvc3Rlci5qcGcnLCB0aXRsZTogJ1JJQSBCcmFpbiBTdHJ1Y3R1cmUgUG9zdGVyJywgY2F0ZWdvcnk6ICdCcmFuZCBDb25jZXB0cycsIGNhcHRpb246ICdDb2duaXRpdmUgbW9kdWxlcyBhbmQgbWVtb3J5IGFyY2hpdGVjdHVyZSBwb3N0ZXIuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2ltYWdlcy9sb2dvcy9yaWEtbG9nby5wbmcnLCB0aXRsZTogJ1JJQSBMb2dvJywgY2F0ZWdvcnk6ICdCcmFuZCBDb25jZXB0cycsIGNhcHRpb246ICdQcmltYXJ5IFJJQSBicmFuZCBsb2dvLicsIHJhdGlvOiAnc3F1YXJlJyB9LFxyXG5cclxuICAvLyBJbnZlc3RvciBWaXN1YWxzXHJcbiAgeyBzcmM6ICcvaW1hZ2VzL2Fpb24tdXBsb2FkZWQvbGF1bmNoLXBvc3Rlci5wbmcnLCB0aXRsZTogJ0xhdW5jaCBQb3N0ZXInLCBjYXRlZ29yeTogJ0ludmVzdG9yIFZpc3VhbHMnLCBjYXB0aW9uOiAnUklBIGxhdW5jaCBwb3N0ZXIgYW5ub3VuY2luZyBKdWx5IDUsIDIwMjYuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY2hpcC1pbmZyYXN0cnVjdHVyZS12aXNpb24uanBnJywgdGl0bGU6ICdJbmZyYXN0cnVjdHVyZSBCb2FyZCcsIGNhdGVnb3J5OiAnSW52ZXN0b3IgVmlzdWFscycsIGNhcHRpb246ICdBSSBpbmZyYXN0cnVjdHVyZSBjaGlwIGNvbmNlcHQgd2l0aCB0ZWNobmljYWwgaW50ZXJmYWNlLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL3ZpbGxhZ2UtaW1wYWN0LXRyYW5zZm9ybWF0aW9uLmpwZycsIHRpdGxlOiAnSW1wYWN0IFZpc2lvbicsIGNhdGVnb3J5OiAnSW52ZXN0b3IgVmlzdWFscycsIGNhcHRpb246ICdWaWxsYWdlIHRyYW5zZm9ybWF0aW9uIGNvbmNlcHQgc2hvd2luZyBpbmZyYXN0cnVjdHVyZSBpbXBhY3QuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9sYXVuY2gvcmlhLW9yYml0LWxhdW5jaC1wb3N0ZXIuanBnJywgdGl0bGU6ICdSSUEgT3JiaXQgTGF1bmNoIFBvc3RlcicsIGNhdGVnb3J5OiAnSW52ZXN0b3IgVmlzdWFscycsIGNhcHRpb246ICdSSUEgT3JiaXQgbGF1bmNoIHBvc3RlciB3aXRoIEp1bHkgNSAyMDI2IGRhdGUuJywgcmF0aW86ICdzcXVhcmUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2luZnJhc3RydWN0dXJlL3JpYS1zaWxpY29uLWludmVzdG9yLWJvYXJkLmpwZycsIHRpdGxlOiAnUklBIFNpbGljb24gSW52ZXN0b3IgQm9hcmQnLCBjYXRlZ29yeTogJ0ludmVzdG9yIFZpc3VhbHMnLCBjYXB0aW9uOiAnU2lsaWNvbiBmYW1pbHkgaW52ZXN0b3IgYm9hcmQgc2hvd2luZyBjaGlwIHJvYWRtYXAuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9wb3NpdGlvbmluZy9iZXlvbmQtaW50ZWxsaWdlbmNlLWNvbXBhcmlzb24uanBnJywgdGl0bGU6ICdCZXlvbmQgSW50ZWxsaWdlbmNlIENvbXBhcmlzb24nLCBjYXRlZ29yeTogJ0ludmVzdG9yIFZpc3VhbHMnLCBjYXB0aW9uOiAnUklBIHBvc2l0aW9uaW5nIGJvYXJkIGFnYWluc3QgZ2VuZXJpYyBBSS4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2ltcGFjdC92aWxsYWdlLXRyYW5zZm9ybWF0aW9uLWltcGFjdC5qcGcnLCB0aXRsZTogJ1ZpbGxhZ2UgVHJhbnNmb3JtYXRpb24gSW1wYWN0JywgY2F0ZWdvcnk6ICdJbnZlc3RvciBWaXN1YWxzJywgY2FwdGlvbjogJ1RlY2hub2xvZ3ktZW5hYmxlZCB2aWxsYWdlIGluZnJhc3RydWN0dXJlIGltcGFjdCBjb25jZXB0LicsIHJhdGlvOiAnd2lkZScgfSxcclxuXHJcbiAgLy8gUHJvZHVjdCBTY3JlZW5zXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9yaWEtb3MtY29tcGFueS1tb3NhaWMuanBnJywgdGl0bGU6ICdSSUEgT1MgQ29tcGFueSBNb3NhaWMnLCBjYXRlZ29yeTogJ1Byb2R1Y3QgU2NyZWVucycsIGNhcHRpb246ICdSSUEgT1MgY29tcGFueSB3ZWJzaXRlIG1vc2FpYyB3aXRoIHByb2R1Y3QgcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL3JpYS1vcy1jb21wYW55LW1vc2FpYy1hbHQuanBnJywgdGl0bGU6ICdSSUEgT1MgQ29tcGFueSBNb3NhaWMgQWx0JywgY2F0ZWdvcnk6ICdQcm9kdWN0IFNjcmVlbnMnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgUklBIE9TIGNvbXBhbnkgbW9zYWljIHdpdGggT1MgcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2NyeXB0by1jb3JlLWRhc2hib2FyZC5qcGcnLCB0aXRsZTogJ0NyeXB0byBDb3JlIERhc2hib2FyZCcsIGNhdGVnb3J5OiAnUHJvZHVjdCBTY3JlZW5zJywgY2FwdGlvbjogJ0NyeXB0byBDb3JlIGRhc2hib2FyZCBzaG93aW5nIHByaXZhdGUgY29tcHV0ZSBtb25pdG9yaW5nLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2F1dG9tb3RpdmUtZW5naW5lZXJpbmctZGFzaGJvYXJkLmpwZycsIHRpdGxlOiAnQXV0b21vdGl2ZSBFbmdpbmVlcmluZyBEYXNoYm9hcmQnLCBjYXRlZ29yeTogJ1Byb2R1Y3QgU2NyZWVucycsIGNhcHRpb246ICdBdXRvbW90aXZlIGVuZ2luZWVyaW5nIGRhc2hib2FyZCB3aXRoIGRlc2lnbiBpbnRlbGxpZ2VuY2UuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvYXV0b21vdGl2ZS1lbmdpbmVlcmluZy1kYXNoYm9hcmQtYWx0LmpwZycsIHRpdGxlOiAnQXV0b21vdGl2ZSBFbmdpbmVlcmluZyBEYXNoYm9hcmQgQWx0JywgY2F0ZWdvcnk6ICdQcm9kdWN0IFNjcmVlbnMnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgYXV0b21vdGl2ZSBlbmdpbmVlcmluZyBzaW11bGF0aW9uIHBhbmVscy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2NvbXBhbnkvcmlhLW9wZXJhdGluZy1zeXN0ZW0tbW9zYWljLmpwZycsIHRpdGxlOiAnUklBIE9wZXJhdGluZyBTeXN0ZW0gTW9zYWljJywgY2F0ZWdvcnk6ICdQcm9kdWN0IFNjcmVlbnMnLCBjYXB0aW9uOiAnT3BlcmF0aW5nIHN5c3RlbSBjb21wYW55IG1vc2FpYyB3aXRoIGRhc2hib2FyZHMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9jb21wYW55L3JpYS1vcGVyYXRpbmctc3lzdGVtLW1vc2FpYy1hbHQuanBnJywgdGl0bGU6ICdSSUEgT3BlcmF0aW5nIFN5c3RlbSBNb3NhaWMgQWx0JywgY2F0ZWdvcnk6ICdQcm9kdWN0IFNjcmVlbnMnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgb3BlcmF0aW5nIHN5c3RlbSBjb21wYW55IG1vc2FpYy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2NvbXBhbnkvcmlhLW9wZXJhdGluZy1zeXN0ZW0tbW9zYWljLWRldGFpbC5qcGcnLCB0aXRsZTogJ1JJQSBPcGVyYXRpbmcgU3lzdGVtIERldGFpbCcsIGNhdGVnb3J5OiAnUHJvZHVjdCBTY3JlZW5zJywgY2FwdGlvbjogJ0RldGFpbGVkIG9wZXJhdGluZyBzeXN0ZW0gbW9zYWljIHdpdGggYnJhbmQgbW9kdWxlcy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2VuZ2luZWVyaW5nL3dvcmstZGVzaWduLWV2b2x2ZS1hdXRvbW90aXZlLmpwZycsIHRpdGxlOiAnV29yayBEZXNpZ24gRXZvbHZlIEF1dG9tb3RpdmUnLCBjYXRlZ29yeTogJ1Byb2R1Y3QgU2NyZWVucycsIGNhcHRpb246ICdBdXRvbW90aXZlIGVuZ2luZWVyaW5nIGRhc2hib2FyZCB3aXRoIHNpbXVsYXRpb24gcGFuZWxzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2NvbmNlcHQtYXRsYXMvZW5naW5lZXJpbmcvd29yay1kZXNpZ24tZXZvbHZlLWF1dG9tb3RpdmUtYWx0LmpwZycsIHRpdGxlOiAnV29yayBEZXNpZ24gRXZvbHZlIEF1dG9tb3RpdmUgQWx0JywgY2F0ZWdvcnk6ICdQcm9kdWN0IFNjcmVlbnMnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgYXV0b21vdGl2ZSBlbmdpbmVlcmluZyBkYXNoYm9hcmQuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9jcnlwdG8vY3J5cHRvLWNvcmUtc2VjdXJpdHktZGFzaGJvYXJkLmpwZycsIHRpdGxlOiAnQ3J5cHRvIENvcmUgU2VjdXJpdHkgRGFzaGJvYXJkJywgY2F0ZWdvcnk6ICdQcm9kdWN0IFNjcmVlbnMnLCBjYXB0aW9uOiAnQ3J5cHRvIENvcmUgc2VjdXJpdHkgZGFzaGJvYXJkIHdpdGggY29tcHV0ZSBjb250cm9scy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL2NvbXBhbnkvYnVpbGRpbmctbmV4dC1sYXllci1oZXJvLmpwZycsIHRpdGxlOiAnQnVpbGRpbmcgVGhlIE5leHQgTGF5ZXInLCBjYXRlZ29yeTogJ1Byb2R1Y3QgU2NyZWVucycsIGNhcHRpb246ICdDb21wYW55IGhlcm8gd2l0aCBodW1hbm9pZCByb2JvdCBhbmQgbmV4dCBpbnRlbGxpZ2VuY2UgbGF5ZXIuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9jb21wYW55L2J1aWxkaW5nLW5leHQtbGF5ZXItaGVyby1hbHQuanBnJywgdGl0bGU6ICdCdWlsZGluZyBUaGUgTmV4dCBMYXllciBBbHQnLCBjYXRlZ29yeTogJ1Byb2R1Y3QgU2NyZWVucycsIGNhcHRpb246ICdBbHRlcm5hdGl2ZSBjb21wYW55IGhlcm8gd2l0aCBodW1hbm9pZCByb2JvdCBhbmQgbGFiIHNjZW5lLicsIHJhdGlvOiAnd2lkZScgfSxcclxuXHJcbiAgLy8gQ29uY2VwdCBBcmNoaXZlXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9odW1hbm9pZC1wb3J0cmFpdC5qcGcnLCB0aXRsZTogJ0h1bWFub2lkIFByZXNlbmNlJywgY2F0ZWdvcnk6ICdDb25jZXB0IEFyY2hpdmUnLCBjYXB0aW9uOiAnSHVtYW5vaWQgcm9ib3RpY3MgY29uY2VwdCB3aXRoIGludGVyZmFjZSBvdmVybGF5cy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9yb2JvdGljcy1sYWItYmVuY2guanBnJywgdGl0bGU6ICdSb2JvdGljcyBMYWInLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdSb2JvdGljcyBsYWIgYmVuY2ggd2l0aCBodW1hbm9pZCBwcm90b3R5cGUgYW5kIG1vbml0b3JzLicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2h1bWFub2lkLXN5c3RlbS1ib2FyZC5qcGcnLCB0aXRsZTogJ1N5c3RlbSBCb2FyZCcsIGNhdGVnb3J5OiAnQ29uY2VwdCBBcmNoaXZlJywgY2FwdGlvbjogJ0h1bWFub2lkIHJvYm90aWNzIHN5c3RlbSBib2FyZCB3aXRoIG1vZHVsYXIgdmlld3MuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvaHVtYW5vaWQtc3lzdGVtLWJvYXJkLWFsdC5qcGcnLCB0aXRsZTogJ1N5c3RlbSBCb2FyZCBBbHQnLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdBbHRlcm5hdGl2ZSBodW1hbm9pZCBzeXN0ZW0gYm9hcmQgd2l0aCBlbmdpbmVlcmluZyBwYW5lbHMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvYXV0b21vdGl2ZS1lbmdpbmVlcmluZy1kYXNoYm9hcmQuanBnJywgdGl0bGU6ICdFbmdpbmVlcmluZyBEYXNoYm9hcmQnLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdBcHBsaWVkIHN5c3RlbXMgZW5naW5lZXJpbmcgZGFzaGJvYXJkIGNvbmNlcHQuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY3J5cHRvLWNvcmUtZGFzaGJvYXJkLmpwZycsIHRpdGxlOiAnQ3J5cHRvIENvcmUnLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdQcml2YXRlIGNvbXB1dGUgbW9uaXRvcmluZyBjb25jZXB0LicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL3JpYS1vZmZpY2UtbGFiLXdpZGUuanBnJywgdGl0bGU6ICdSSUEgTGFiJywgY2F0ZWdvcnk6ICdDb25jZXB0IEFyY2hpdmUnLCBjYXB0aW9uOiAnUklBIG9mZmljZSBhbmQgcm9ib3RpY3MgbGFib3JhdG9yeSB3aWRlIHZpZXcuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvcm9ib3RpY3Mtd29ya3Nob3AtZGVzay5qcGcnLCB0aXRsZTogJ1JvYm90aWNzIFdvcmtzaG9wIERlc2snLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdSb2JvdGljcyB3b3Jrc2hvcCBkZXNrIHdpdGggcHJvdG90eXBlIGFuZCBoYXJkd2FyZS4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb21wYW55LWhlcm8taHVtYW5vaWQuanBnJywgdGl0bGU6ICdDb21wYW55IEhlcm8gSHVtYW5vaWQnLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdDb21wYW55IGhlcm8gd2l0aCBodW1hbm9pZCByb2JvdCBhbmQgbGFiIGVudmlyb25tZW50LicsIHJhdGlvOiAnd2lkZScgfSxcclxuICB7IHNyYzogJy9hc3NldHMvcmlhL2NvbXBhbnktaGVyby1odW1hbm9pZC1hbHQuanBnJywgdGl0bGU6ICdDb21wYW55IEhlcm8gSHVtYW5vaWQgQWx0JywgY2F0ZWdvcnk6ICdDb25jZXB0IEFyY2hpdmUnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgY29tcGFueSBoZXJvIHdpdGggaHVtYW5vaWQgcm9ib3QuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9yb2JvdGljcy9odW1hbm9pZC1wcmVzZW5jZS1wb3J0cmFpdC5qcGcnLCB0aXRsZTogJ0h1bWFub2lkIFByZXNlbmNlIFBvcnRyYWl0JywgY2F0ZWdvcnk6ICdDb25jZXB0IEFyY2hpdmUnLCBjYXB0aW9uOiAnSHVtYW5vaWQgY29uY2VwdCBwb3J0cmFpdCB3aXRoIGludGVyZmFjZSBhbm5vdGF0aW9ucy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL3JvYm90aWNzL3JpYS1yb2JvdGljcy1sYWItd2lkZS5qcGcnLCB0aXRsZTogJ1JJQSBSb2JvdGljcyBMYWIgV2lkZScsIGNhdGVnb3J5OiAnQ29uY2VwdCBBcmNoaXZlJywgY2FwdGlvbjogJ1dpZGUgcm9ib3RpY3MgbGFib3JhdG9yeSB3aXRoIGVuZ2luZWVycyBhbmQgaHVtYW5vaWQgc3lzdGVtcy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL3JvYm90aWNzL3JvYm90aWNzLXdvcmtzaG9wLWRlc2suanBnJywgdGl0bGU6ICdSb2JvdGljcyBXb3Jrc2hvcCBEZXNrJywgY2F0ZWdvcnk6ICdDb25jZXB0IEFyY2hpdmUnLCBjYXB0aW9uOiAnV29ya3Nob3AgZGVzayB3aXRoIGh1bWFub2lkIHByb3RvdHlwZSBhbmQgbW9uaXRvcnMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9yb2JvdGljcy9yb2JvdGljcy1sYWItYmVuY2guanBnJywgdGl0bGU6ICdSb2JvdGljcyBMYWIgQmVuY2gnLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdMYWIgYmVuY2ggd2l0aCBwcm90b3R5cGUsIG1vbml0b3JzLCBhbmQgZW5naW5lZXJpbmcgdG9vbHMuJywgcmF0aW86ICd3aWRlJyB9LFxyXG4gIHsgc3JjOiAnL2Fzc2V0cy9yaWEvY29uY2VwdC1hdGxhcy9yb2JvdGljcy9odW1hbm9pZC1zeXN0ZW0tYm9hcmQuanBnJywgdGl0bGU6ICdIdW1hbm9pZCBTeXN0ZW0gQm9hcmQnLCBjYXRlZ29yeTogJ0NvbmNlcHQgQXJjaGl2ZScsIGNhcHRpb246ICdIdW1hbm9pZCBzeXN0ZW0gYm9hcmQgd2l0aCBtb2R1bGFyIHRlY2huaWNhbCB2aWV3cy4nLCByYXRpbzogJ3dpZGUnIH0sXHJcbiAgeyBzcmM6ICcvYXNzZXRzL3JpYS9jb25jZXB0LWF0bGFzL3JvYm90aWNzL2h1bWFub2lkLXN5c3RlbS1ib2FyZC1hbHQuanBnJywgdGl0bGU6ICdIdW1hbm9pZCBTeXN0ZW0gQm9hcmQgQWx0JywgY2F0ZWdvcnk6ICdDb25jZXB0IEFyY2hpdmUnLCBjYXB0aW9uOiAnQWx0ZXJuYXRpdmUgaHVtYW5vaWQgc3lzdGVtIGJvYXJkLicsIHJhdGlvOiAnd2lkZScgfVxyXG5dXHJcblxyXG5mdW5jdGlvbiBkZWR1cGVJbWFnZXMoaW1hZ2VzOiBSaWFJbWFnZVtdKTogUmlhSW1hZ2VbXSB7XHJcbiAgY29uc3Qgc2VlbiA9IG5ldyBTZXQ8c3RyaW5nPigpXHJcbiAgcmV0dXJuIGltYWdlcy5maWx0ZXIoKGltYWdlKSA9PiB7XHJcbiAgICBpZiAoc2Vlbi5oYXMoaW1hZ2Uuc3JjKSkgcmV0dXJuIGZhbHNlXHJcbiAgICBzZWVuLmFkZChpbWFnZS5zcmMpXHJcbiAgICByZXR1cm4gdHJ1ZVxyXG4gIH0pXHJcbn1cclxuXHJcbmV4cG9ydCBjb25zdCByaWFJbWFnZXMgPSBkZWR1cGVJbWFnZXMocmF3SW1hZ2VzKVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIGZpbHRlclJpYUltYWdlcyhmaWx0ZXJJZDogc3RyaW5nKTogUmlhSW1hZ2VbXSB7XHJcbiAgaWYgKGZpbHRlcklkID09PSAnYWxsJykgcmV0dXJuIHJpYUltYWdlc1xyXG4gIGNvbnN0IGZpbHRlciA9IGltYWdlTGlicmFyeUZpbHRlcnMuZmluZCgoaXRlbSkgPT4gaXRlbS5pZCA9PT0gZmlsdGVySWQpXHJcbiAgaWYgKCFmaWx0ZXIgfHwgISgnY2F0ZWdvcnknIGluIGZpbHRlcikpIHJldHVybiByaWFJbWFnZXNcclxuICByZXR1cm4gcmlhSW1hZ2VzLmZpbHRlcigoaW1hZ2UpID0+IGltYWdlLmNhdGVnb3J5ID09PSBmaWx0ZXIuY2F0ZWdvcnkpXHJcbn1cclxuIl19

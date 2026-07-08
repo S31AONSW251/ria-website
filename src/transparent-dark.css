@@ -1,0 +1,332 @@
+/* Final site-wide dark canvas and transparent panel treatment. */
+
+:root {
+  --transparent-dark-canvas: #000204;
+  --transparent-dark-line: rgba(158, 207, 218, 0.13);
+  --transparent-dark-line-hover: rgba(146, 221, 233, 0.26);
+}
+
+html,
+body,
+#root {
+  background: var(--transparent-dark-canvas) !important;
+}
+
+body,
+.ria-site,
+.ria-site.glass-theme,
+.glass-theme {
+  background:
+    radial-gradient(circle at 72% 24%, rgba(22, 92, 105, 0.055), transparent 32rem),
+    radial-gradient(circle at 18% 72%, rgba(20, 47, 74, 0.035), transparent 30rem),
+    var(--transparent-dark-canvas) !important;
+}
+
+.ria-site::before {
+  background: radial-gradient(circle at 50% -8%, rgba(67, 181, 197, 0.035), transparent 34rem) !important;
+  opacity: 0.35 !important;
+}
+
+.ria-site::after {
+  opacity: 0.06 !important;
+}
+
+.glass-theme .cosmic-stage,
+.glass-theme .cosmos-canvas,
+.glass-theme .living-stream {
+  opacity: 0.08 !important;
+}
+
+.glass-theme .home-hero,
+.glass-theme .premium-hero,
+.glass-theme .premium-statement,
+.glass-theme .premium-product-section,
+.glass-theme .premium-cta-section,
+.glass-theme .ria-section,
+.glass-theme .home-section,
+.route-interior section.py-20,
+.route-interior section.py-20:nth-of-type(odd) {
+  background: transparent !important;
+}
+
+/* Panels keep their geometry and borders, but no painted surface. */
+html body .ria-site.glass-theme :is(
+  [class*="-panel"],
+  [class*="-card"],
+  [class*="-window"],
+  [class*="-console"],
+  [class*="-shell"],
+  [class*="-surface"],
+  .glass-card,
+  .glass-panel,
+  .dark-glass-card,
+  .ria-glass-card,
+  .prose-panel,
+  .timeline-line,
+  form
+) {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body .ria-site.glass-theme :is(
+  [class*="-panel"],
+  [class*="-card"],
+  [class*="-window"],
+  [class*="-console"],
+  [class*="-shell"],
+  [class*="-surface"],
+  .glass-card,
+  .glass-panel,
+  .dark-glass-card,
+  .ria-glass-card,
+  .prose-panel,
+  .timeline-line,
+  form
+):hover {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .ria-site.glass-theme :is(
+  [class*="-panel"],
+  [class*="-card"],
+  [class*="-window"],
+  [class*="-console"],
+  [class*="-shell"],
+  [class*="-surface"],
+  .glass-card,
+  .glass-panel,
+  .dark-glass-card,
+  .ria-glass-card,
+  .prose-panel,
+  .timeline-line,
+  form
+) {
+  border-color: var(--transparent-dark-line) !important;
+}
+
+html body .ria-site.glass-theme :is(
+  .product-bento-panel,
+  .intelligence-capability,
+  .comparison-panel,
+  .privacy-pillar,
+  .feature-card-premium,
+  .premium-feature-card,
+  .dark-glass-card,
+  .ria-glass-card,
+  .exchange-project-card
+):hover {
+  border-color: var(--transparent-dark-line-hover) !important;
+}
+
+/* Remove decorative panel washes while retaining diagrams and real images. */
+html body .ria-site.glass-theme :is(
+  .product-bento-panel,
+  .feature-card-premium,
+  .premium-feature-card,
+  .intelligence-capability,
+  .comparison-panel,
+  .autonomy-flow-panel,
+  .founder-vision-panel,
+  .investor-panel,
+  .investor-roadmap,
+  .visual-system-preview-panel,
+  .premium-cta-panel
+)::before,
+html body .ria-site.glass-theme :is(
+  .product-bento-panel,
+  .feature-card-premium,
+  .premium-feature-card,
+  .intelligence-capability,
+  .comparison-panel,
+  .autonomy-flow-panel,
+  .founder-vision-panel,
+  .investor-panel,
+  .investor-roadmap,
+  .visual-system-preview-panel,
+  .premium-cta-panel
+)::after,
+.comparison-panel-aura {
+  background: transparent !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+}
+
+html body .ria-site.glass-theme .site-header-inner,
+html body .ria-site.glass-theme .site-header.is-scrolled .site-header-inner,
+html body .ria-site.glass-theme .site-nav-dropdown,
+html body .ria-site.glass-theme .site-nav-dropdown-inner,
+html body .ria-site.glass-theme .mobile-nav-panel,
+html body .ria-site.glass-theme .mobile-nav-panel-head,
+html body .ria-site.glass-theme .footer-command-shell {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body .ria-site.glass-theme .site-header-inner,
+html body .ria-site.glass-theme .site-header.is-scrolled .site-header-inner {
+  border-color: rgba(170, 215, 225, 0.14) !important;
+}
+
+.home-hero-visual-stage,
+.neural-sphere,
+.visual-card-image,
+.image-library-card,
+.image-library-lightbox-panel,
+.exchange-table-wrap,
+.exchange-dialog,
+.architecture-console {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.home-hero-stage-halo {
+  opacity: 0.36;
+}
+
+.home-hero-stage-signal,
+.hero-trust-pills span,
+.ria-brain-coordinate,
+.footer-system-strip,
+.release-requirement,
+.interior-page-hero-grid .mt-10 > .grid,
+.interior-page-hero-grid .mt-10 > .grid > div {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.image-library-card-media,
+.image-library-lightbox-panel > img {
+  background-color: transparent !important;
+}
+
+html body .ria-site.glass-theme article {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body .ria-site.glass-theme :is(
+  .premium-statement-grid,
+  .creative-feature-list,
+  .exchange-guideline-cards
+) article {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 760px) {
+  .mobile-nav-panel,
+  .mobile-nav-panel-head {
+    background: var(--transparent-dark-canvas) !important;
+  }
+
+  body .ria-site.glass-theme .home-hero {
+    position: relative !important;
+    isolation: isolate;
+    overflow: hidden !important;
+  }
+
+  body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid {
+    position: relative !important;
+    display: block !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel {
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-visual-stage {
+    position: absolute !important;
+    z-index: 0 !important;
+    inset: -1.5rem -52% -2rem 24% !important;
+    display: grid !important;
+    width: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    place-items: center !important;
+    overflow: visible !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    pointer-events: none !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.72) 24%, #000 58%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.72) 24%, #000 58%, #000 100%);
+  }
+
+  body .ria-site.glass-theme .home-hero-mobile-brain {
+    position: relative !important;
+    z-index: 1 !important;
+    display: block !important;
+    width: min(128vw, 590px) !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    opacity: 0.2 !important;
+    filter: saturate(0.72) contrast(1.08) brightness(0.72) drop-shadow(0 0 44px rgba(62, 207, 225, 0.12)) !important;
+    animation: mobileHeroBrainFloat 8s ease-in-out infinite !important;
+    will-change: transform;
+  }
+
+  .home-hero-stage-grid {
+    opacity: 0.07 !important;
+  }
+
+  .home-hero-stage-halo {
+    opacity: 0.22 !important;
+  }
+
+  .home-hero-stage-ring {
+    opacity: 0.12 !important;
+  }
+
+  .home-hero-stage-index,
+  .home-hero-stage-signal {
+    display: none !important;
+  }
+}
+
+@keyframes mobileHeroBrainFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 8px, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-10px, -10px, 0) scale(1.025);
+  }
+}
+
+@media (max-width: 360px) {
+  body .ria-site.glass-theme .home-hero-visual-stage {
+    inset-inline: 14% -66% !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-mobile-brain {
+    width: min(146vw, 560px) !important;
+    opacity: 0.18 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .ria-site.glass-theme .home-hero-mobile-brain {
+    animation: none !important;
+  }
+}

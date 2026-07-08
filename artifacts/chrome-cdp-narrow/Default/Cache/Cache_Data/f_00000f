@@ -1,0 +1,1131 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/ArchitectureBlueprint.tsx");const _jsxDEV = __vite__cjsImport1_react_jsxDevRuntime["jsxDEV"];import { Activity, Bot, BrainCircuit, Database, Fingerprint, Globe2, Layers3, Palette, RefreshCcw, ShieldCheck, Wrench } from "/node_modules/.vite/deps/lucide-react.js?v=e6fea97f";
+var _jsxFileName = "C:/Users/sudee/Projects/ria-website/src/components/ArchitectureBlueprint.tsx";
+import __vite__cjsImport1_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=c0a6c933";
+const leftModules = [
+	{
+		id: "01",
+		title: "Memory Engine",
+		features: "Long-term memory · Episodic context · Semantic recall",
+		icon: Database,
+		state: "Persistent"
+	},
+	{
+		id: "02",
+		title: "Knowledge Universe",
+		features: "Web research · Source ranking · Knowledge graph",
+		icon: Globe2,
+		state: "Indexed"
+	},
+	{
+		id: "03",
+		title: "Security Boundary",
+		features: "Local-first · Owner permission · Private runtime",
+		icon: ShieldCheck,
+		state: "Protected"
+	},
+	{
+		id: "04",
+		title: "Creative Studio",
+		features: "Image · Design · Content generation",
+		icon: Palette,
+		state: "Ready"
+	}
+];
+const rightModules = [
+	{
+		id: "05",
+		title: "Reasoning Cortex",
+		features: "Planning · Reflection · Decision support",
+		icon: BrainCircuit,
+		state: "Reasoning"
+	},
+	{
+		id: "06",
+		title: "Autonomous Core",
+		features: "Goals · Tasks · Approval queue",
+		icon: Bot,
+		state: "Supervised"
+	},
+	{
+		id: "07",
+		title: "Tool Layer",
+		features: "Files · Web · Workflows",
+		icon: Wrench,
+		state: "Connected"
+	},
+	{
+		id: "08",
+		title: "Interface Layer",
+		features: "Chat · Dashboard · Mission Control",
+		icon: Layers3,
+		state: "Available"
+	}
+];
+const foundationModules = [{
+	id: "09",
+	title: "Evolution Layer",
+	features: "Self-review · Upgrade reports · Learning loop",
+	icon: RefreshCcw,
+	state: "Adaptive"
+}, {
+	id: "10",
+	title: "RIA Identity",
+	features: "Preferences · Personality · Voice · Behavior",
+	icon: Fingerprint,
+	state: "Owner-bound"
+}];
+const neuralNodes = [
+	[260, 105],
+	[197, 132],
+	[324, 138],
+	[145, 190],
+	[230, 185],
+	[302, 198],
+	[375, 193],
+	[112, 266],
+	[181, 252],
+	[260, 258],
+	[340, 255],
+	[405, 270],
+	[148, 335],
+	[219, 322],
+	[300, 330],
+	[372, 342],
+	[204, 397],
+	[284, 406],
+	[340, 390],
+	[260, 458]
+];
+const neuralEdges = [
+	[0, 1],
+	[0, 2],
+	[1, 3],
+	[1, 4],
+	[2, 5],
+	[2, 6],
+	[3, 7],
+	[3, 8],
+	[4, 8],
+	[4, 9],
+	[4, 5],
+	[5, 9],
+	[5, 10],
+	[5, 6],
+	[6, 11],
+	[7, 8],
+	[7, 12],
+	[8, 9],
+	[8, 12],
+	[8, 13],
+	[9, 10],
+	[9, 13],
+	[9, 14],
+	[10, 11],
+	[10, 14],
+	[10, 15],
+	[11, 15],
+	[12, 13],
+	[12, 16],
+	[13, 14],
+	[13, 16],
+	[13, 17],
+	[14, 15],
+	[14, 17],
+	[14, 18],
+	[15, 18],
+	[16, 17],
+	[17, 18],
+	[17, 19],
+	[18, 19]
+];
+function ArchitectureModuleRow({ module }) {
+	const Icon = module.icon;
+	return /* @__PURE__ */ _jsxDEV("article", {
+		className: "ria-system-module",
+		children: [/* @__PURE__ */ _jsxDEV("div", {
+			className: "ria-system-module-icon",
+			"aria-hidden": "true",
+			children: /* @__PURE__ */ _jsxDEV(Icon, {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 122,
+				columnNumber: 66
+			}, this)
+		}, void 0, false, {
+			fileName: _jsxFileName,
+			lineNumber: 122,
+			columnNumber: 7
+		}, this), /* @__PURE__ */ _jsxDEV("div", {
+			className: "ria-system-module-copy",
+			children: [
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "ria-system-module-meta",
+					children: [/* @__PURE__ */ _jsxDEV("span", {
+						className: "ria-system-module-number",
+						children: module.id
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 125,
+						columnNumber: 11
+					}, this), /* @__PURE__ */ _jsxDEV("span", {
+						className: "ria-system-module-state",
+						children: [/* @__PURE__ */ _jsxDEV("i", {}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 126,
+							columnNumber: 53
+						}, this), module.state]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 126,
+						columnNumber: 11
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 124,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("h3", { children: module.title }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 128,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "ria-system-module-features",
+					children: module.features.split(" · ").map((feature) => /* @__PURE__ */ _jsxDEV("span", { children: feature }, feature, false, {
+						fileName: _jsxFileName,
+						lineNumber: 130,
+						columnNumber: 58
+					}, this))
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 129,
+					columnNumber: 9
+				}, this)
+			]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 123,
+			columnNumber: 7
+		}, this)]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 121,
+		columnNumber: 5
+	}, this);
+}
+_c = ArchitectureModuleRow;
+function CognitiveCore() {
+	return /* @__PURE__ */ _jsxDEV("div", {
+		className: "ria-cognitive-core",
+		children: [
+			/* @__PURE__ */ _jsxDEV("div", {
+				className: "ria-core-stage",
+				children: [
+					/* @__PURE__ */ _jsxDEV("svg", {
+						className: "ria-cognitive-sphere",
+						viewBox: "0 0 520 520",
+						role: "img",
+						"aria-label": "Abstract layered neural sphere representing the RIA cognitive core",
+						children: [
+							/* @__PURE__ */ _jsxDEV("defs", { children: [
+								/* @__PURE__ */ _jsxDEV("radialGradient", {
+									id: "riaSphereVolume",
+									cx: "43%",
+									cy: "36%",
+									r: "65%",
+									children: [
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "0%",
+											stopColor: "#e8fcff",
+											stopOpacity: "0.16"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 144,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "36%",
+											stopColor: "#7ddceb",
+											stopOpacity: "0.09"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 145,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "78%",
+											stopColor: "#245b71",
+											stopOpacity: "0.025"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 146,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "100%",
+											stopColor: "#061018",
+											stopOpacity: "0"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 147,
+											columnNumber: 13
+										}, this)
+									]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 143,
+									columnNumber: 11
+								}, this),
+								/* @__PURE__ */ _jsxDEV("linearGradient", {
+									id: "riaSphereEdge",
+									x1: "10%",
+									y1: "5%",
+									x2: "92%",
+									y2: "95%",
+									children: [
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "0%",
+											stopColor: "#d7f8fc",
+											stopOpacity: "0.6"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 150,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "48%",
+											stopColor: "#79d9e8",
+											stopOpacity: "0.28"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 151,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "100%",
+											stopColor: "#3b8198",
+											stopOpacity: "0.09"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 152,
+											columnNumber: 13
+										}, this)
+									]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 149,
+									columnNumber: 11
+								}, this),
+								/* @__PURE__ */ _jsxDEV("radialGradient", {
+									id: "riaSphereCenter",
+									cx: "45%",
+									cy: "38%",
+									r: "60%",
+									children: [
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "0%",
+											stopColor: "#e8fdff",
+											stopOpacity: "0.92"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 155,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "18%",
+											stopColor: "#a8edf5",
+											stopOpacity: "0.5"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 156,
+											columnNumber: 13
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "100%",
+											stopColor: "#3fa3ba",
+											stopOpacity: "0"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 157,
+											columnNumber: 13
+										}, this)
+									]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 154,
+									columnNumber: 11
+								}, this),
+								/* @__PURE__ */ _jsxDEV("clipPath", {
+									id: "riaSphereClip",
+									children: /* @__PURE__ */ _jsxDEV("circle", {
+										cx: "260",
+										cy: "260",
+										r: "190"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 160,
+										columnNumber: 13
+									}, this)
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 159,
+									columnNumber: 11
+								}, this),
+								/* @__PURE__ */ _jsxDEV("filter", {
+									id: "riaSphereSoftGlow",
+									x: "-80%",
+									y: "-80%",
+									width: "260%",
+									height: "260%",
+									children: [/* @__PURE__ */ _jsxDEV("feGaussianBlur", {
+										stdDeviation: "4",
+										result: "blur"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 163,
+										columnNumber: 13
+									}, this), /* @__PURE__ */ _jsxDEV("feMerge", { children: [/* @__PURE__ */ _jsxDEV("feMergeNode", { in: "blur" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 164,
+										columnNumber: 22
+									}, this), /* @__PURE__ */ _jsxDEV("feMergeNode", { in: "SourceGraphic" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 164,
+										columnNumber: 47
+									}, this)] }, void 0, true, {
+										fileName: _jsxFileName,
+										lineNumber: 164,
+										columnNumber: 13
+									}, this)]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 162,
+									columnNumber: 11
+								}, this),
+								/* @__PURE__ */ _jsxDEV("filter", {
+									id: "riaSphereWideGlow",
+									x: "-100%",
+									y: "-100%",
+									width: "300%",
+									height: "300%",
+									children: /* @__PURE__ */ _jsxDEV("feGaussianBlur", { stdDeviation: "14" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 167,
+										columnNumber: 13
+									}, this)
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 166,
+									columnNumber: 11
+								}, this)
+							] }, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 142,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-backlight",
+								cx: "260",
+								cy: "260",
+								r: "158",
+								filter: "url(#riaSphereWideGlow)"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 171,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-aura",
+								cx: "260",
+								cy: "260",
+								r: "232"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 172,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-orbit ria-sphere-orbit-one",
+								cx: "260",
+								cy: "260",
+								r: "218"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 173,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-orbit ria-sphere-orbit-two",
+								cx: "260",
+								cy: "260",
+								r: "204"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 174,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-volume",
+								cx: "260",
+								cy: "260",
+								r: "190",
+								fill: "url(#riaSphereVolume)"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 175,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-edge",
+								cx: "260",
+								cy: "260",
+								r: "190",
+								stroke: "url(#riaSphereEdge)"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 176,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("g", {
+								className: "ria-sphere-latitudes",
+								clipPath: "url(#riaSphereClip)",
+								children: [
+									/* @__PURE__ */ _jsxDEV("ellipse", {
+										cx: "260",
+										cy: "260",
+										rx: "190",
+										ry: "68"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 179,
+										columnNumber: 11
+									}, this),
+									/* @__PURE__ */ _jsxDEV("ellipse", {
+										cx: "260",
+										cy: "260",
+										rx: "190",
+										ry: "126"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 180,
+										columnNumber: 11
+									}, this),
+									/* @__PURE__ */ _jsxDEV("ellipse", {
+										cx: "260",
+										cy: "260",
+										rx: "72",
+										ry: "190"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 181,
+										columnNumber: 11
+									}, this),
+									/* @__PURE__ */ _jsxDEV("ellipse", {
+										cx: "260",
+										cy: "260",
+										rx: "132",
+										ry: "190"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 182,
+										columnNumber: 11
+									}, this)
+								]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 178,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("g", {
+								className: "ria-sphere-mesh",
+								clipPath: "url(#riaSphereClip)",
+								children: [neuralEdges.map(([from, to]) => /* @__PURE__ */ _jsxDEV("line", {
+									x1: neuralNodes[from][0],
+									y1: neuralNodes[from][1],
+									x2: neuralNodes[to][0],
+									y2: neuralNodes[to][1]
+								}, `${from}-${to}`, false, {
+									fileName: _jsxFileName,
+									lineNumber: 187,
+									columnNumber: 13
+								}, this)), neuralNodes.map(([cx, cy], index) => /* @__PURE__ */ _jsxDEV("circle", {
+									className: "ria-sphere-node",
+									cx,
+									cy,
+									r: index % 5 === 0 ? 3.3 : 2.1,
+									style: { animationDelay: `${index * -.18}s` }
+								}, `${cx}-${cy}`, false, {
+									fileName: _jsxFileName,
+									lineNumber: 196,
+									columnNumber: 13
+								}, this))]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 185,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-inner-ring",
+								cx: "260",
+								cy: "260",
+								r: "92"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 207,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-center",
+								cx: "260",
+								cy: "260",
+								r: "54",
+								fill: "url(#riaSphereCenter)"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 208,
+								columnNumber: 9
+							}, this),
+							/* @__PURE__ */ _jsxDEV("circle", {
+								className: "ria-sphere-center-point",
+								cx: "260",
+								cy: "260",
+								r: "4",
+								filter: "url(#riaSphereSoftGlow)"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 209,
+								columnNumber: 9
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 141,
+						columnNumber: 7
+					}, this),
+					/* @__PURE__ */ _jsxDEV("img", {
+						className: "ria-cognitive-brain",
+						src: "/assets/ria/ria-core-brain.png",
+						alt: "",
+						loading: "lazy",
+						decoding: "async",
+						"aria-hidden": "true"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 212,
+						columnNumber: 7
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", {
+						className: "ria-cognitive-core-label",
+						children: [/* @__PURE__ */ _jsxDEV("span", { children: [/* @__PURE__ */ _jsxDEV("i", {}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 222,
+							columnNumber: 15
+						}, this), " RIA CORE"] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 222,
+							columnNumber: 9
+						}, this), /* @__PURE__ */ _jsxDEV("strong", { children: "Reactive Intelligence Architecture" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 223,
+							columnNumber: 9
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 221,
+						columnNumber: 7
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 140,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("div", {
+				className: "ria-cognitive-flow",
+				"aria-label": "RIA cognitive workflow",
+				children: [
+					"Memory",
+					"Reasoning",
+					"Tools",
+					"Action",
+					"Reflection"
+				].map((stage, index) => /* @__PURE__ */ _jsxDEV("span", { children: [stage, index < 4 && /* @__PURE__ */ _jsxDEV("i", {
+					"aria-hidden": "true",
+					children: "→"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 229,
+					columnNumber: 50
+				}, this)] }, stage, true, {
+					fileName: _jsxFileName,
+					lineNumber: 229,
+					columnNumber: 11
+				}, this))
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 227,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("div", {
+				className: "ria-core-telemetry",
+				"aria-label": "Core architecture telemetry",
+				children: [
+					/* @__PURE__ */ _jsxDEV("div", { children: [/* @__PURE__ */ _jsxDEV("span", { children: "Modules" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 234,
+						columnNumber: 14
+					}, this), /* @__PURE__ */ _jsxDEV("strong", { children: "10" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 234,
+						columnNumber: 34
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 234,
+						columnNumber: 9
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { children: [/* @__PURE__ */ _jsxDEV("span", { children: "Runtime" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 235,
+						columnNumber: 14
+					}, this), /* @__PURE__ */ _jsxDEV("strong", { children: "Private" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 235,
+						columnNumber: 34
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 235,
+						columnNumber: 9
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { children: [/* @__PURE__ */ _jsxDEV("span", { children: "Control" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 236,
+						columnNumber: 14
+					}, this), /* @__PURE__ */ _jsxDEV("strong", { children: "Owner" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 236,
+						columnNumber: 34
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 236,
+						columnNumber: 9
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 233,
+				columnNumber: 7
+			}, this)
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 139,
+		columnNumber: 5
+	}, this);
+}
+_c2 = CognitiveCore;
+export default function ArchitectureBlueprint() {
+	return /* @__PURE__ */ _jsxDEV("section", {
+		id: "architecture",
+		className: "ria-intelligence-architecture",
+		children: [/* @__PURE__ */ _jsxDEV("header", {
+			className: "ria-architecture-heading",
+			children: [
+				/* @__PURE__ */ _jsxDEV("span", { children: "RIA SYSTEM MAP" }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 246,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("h2", { children: "RIA Intelligence Architecture" }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 247,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("p", { children: "A private cognitive system connecting memory, reasoning, knowledge, tools, autonomy, and owner-approved action." }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 248,
+					columnNumber: 9
+				}, this)
+			]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 245,
+			columnNumber: 7
+		}, this), /* @__PURE__ */ _jsxDEV("div", {
+			className: "ria-architecture-premium-panel",
+			children: [
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "ria-architecture-panel-header",
+					children: [/* @__PURE__ */ _jsxDEV("div", { children: [/* @__PURE__ */ _jsxDEV("span", {
+						className: "ria-panel-overline",
+						children: "AION // COGNITIVE CONTROL PLANE"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 256,
+						columnNumber: 13
+					}, this), /* @__PURE__ */ _jsxDEV("strong", { children: "Live architecture topology" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 257,
+						columnNumber: 13
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 255,
+						columnNumber: 11
+					}, this), /* @__PURE__ */ _jsxDEV("div", {
+						className: "ria-panel-runtime",
+						children: [
+							/* @__PURE__ */ _jsxDEV("span", { children: [/* @__PURE__ */ _jsxDEV("i", {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 260,
+								columnNumber: 19
+							}, this), " System nominal"] }, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 260,
+								columnNumber: 13
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", { children: "Local-first runtime" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 261,
+								columnNumber: 13
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", { children: "Owner authority" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 262,
+								columnNumber: 13
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 259,
+						columnNumber: 11
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 254,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "ria-architecture-panel-grid",
+					"aria-hidden": "true"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 266,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "ria-architecture-panel-glow",
+					"aria-hidden": "true"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 267,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("svg", {
+					className: "ria-architecture-link-map",
+					viewBox: "0 0 1200 720",
+					preserveAspectRatio: "none",
+					"aria-hidden": "true",
+					children: [
+						/* @__PURE__ */ _jsxDEV("defs", { children: /* @__PURE__ */ _jsxDEV("linearGradient", {
+							id: "riaArchitectureLink",
+							x1: "0",
+							x2: "1",
+							children: [
+								/* @__PURE__ */ _jsxDEV("stop", {
+									offset: "0",
+									stopColor: "#75d9ea",
+									stopOpacity: "0.08"
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 272,
+									columnNumber: 15
+								}, this),
+								/* @__PURE__ */ _jsxDEV("stop", {
+									offset: "0.5",
+									stopColor: "#9aebf6",
+									stopOpacity: "0.62"
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 273,
+									columnNumber: 15
+								}, this),
+								/* @__PURE__ */ _jsxDEV("stop", {
+									offset: "1",
+									stopColor: "#75d9ea",
+									stopOpacity: "0.08"
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 274,
+									columnNumber: 15
+								}, this)
+							]
+						}, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 271,
+							columnNumber: 13
+						}, this) }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 270,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("g", {
+							className: "ria-architecture-links",
+							children: [
+								/* @__PURE__ */ _jsxDEV("path", { d: "M260 120 C410 120 430 270 535 300" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 278,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M260 250 C410 250 440 320 535 330" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 279,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M260 380 C410 380 440 360 535 350" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 280,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M260 510 C410 510 430 400 535 380" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 281,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M940 120 C790 120 770 270 665 300" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 282,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M940 250 C790 250 760 320 665 330" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 283,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M940 380 C790 380 760 360 665 350" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 284,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M940 510 C790 510 770 400 665 380" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 285,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M470 640 C500 560 540 505 575 455" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 286,
+									columnNumber: 13
+								}, this),
+								/* @__PURE__ */ _jsxDEV("path", { d: "M730 640 C700 560 660 505 625 455" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 287,
+									columnNumber: 13
+								}, this)
+							]
+						}, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 277,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("g", {
+							className: "ria-architecture-link-nodes",
+							children: [
+								[535, 300],
+								[535, 330],
+								[535, 350],
+								[535, 380],
+								[665, 300],
+								[665, 330],
+								[665, 350],
+								[665, 380],
+								[575, 455],
+								[625, 455]
+							].map(([cx, cy], index) => /* @__PURE__ */ _jsxDEV("circle", {
+								cx,
+								cy,
+								r: "3",
+								style: { animationDelay: `${index * -.22}s` }
+							}, `${cx}-${cy}`, false, {
+								fileName: _jsxFileName,
+								lineNumber: 291,
+								columnNumber: 15
+							}, this))
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 289,
+							columnNumber: 11
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 269,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "ria-architecture-grid",
+					children: [
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "ria-architecture-column ria-architecture-column-left",
+							children: leftModules.map((module) => /* @__PURE__ */ _jsxDEV(ArchitectureModuleRow, { module }, module.id, false, {
+								fileName: _jsxFileName,
+								lineNumber: 298,
+								columnNumber: 42
+							}, this))
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 297,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "ria-architecture-core-area",
+							children: /* @__PURE__ */ _jsxDEV(CognitiveCore, {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 302,
+								columnNumber: 13
+							}, this)
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 301,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "ria-architecture-column ria-architecture-column-right",
+							children: rightModules.map((module) => /* @__PURE__ */ _jsxDEV(ArchitectureModuleRow, { module }, module.id, false, {
+								fileName: _jsxFileName,
+								lineNumber: 306,
+								columnNumber: 43
+							}, this))
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 305,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", {
+							className: "ria-architecture-foundation",
+							children: foundationModules.map((module) => /* @__PURE__ */ _jsxDEV(ArchitectureModuleRow, { module }, module.id, false, {
+								fileName: _jsxFileName,
+								lineNumber: 310,
+								columnNumber: 48
+							}, this))
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 309,
+							columnNumber: 11
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 296,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("footer", {
+					className: "ria-architecture-panel-footer",
+					children: [
+						/* @__PURE__ */ _jsxDEV("div", { children: [
+							/* @__PURE__ */ _jsxDEV(ShieldCheck, { "aria-hidden": "true" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 315,
+								columnNumber: 16
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", { children: "Trust boundary" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 315,
+								columnNumber: 50
+							}, this),
+							/* @__PURE__ */ _jsxDEV("strong", { children: "Private by design" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 315,
+								columnNumber: 77
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 315,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", { children: [
+							/* @__PURE__ */ _jsxDEV(Database, { "aria-hidden": "true" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 316,
+								columnNumber: 16
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", { children: "Memory state" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 316,
+								columnNumber: 47
+							}, this),
+							/* @__PURE__ */ _jsxDEV("strong", { children: "Durable continuity" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 316,
+								columnNumber: 72
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 316,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", { children: [
+							/* @__PURE__ */ _jsxDEV(Activity, { "aria-hidden": "true" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 317,
+								columnNumber: 16
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", { children: "Intelligence loop" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 317,
+								columnNumber: 47
+							}, this),
+							/* @__PURE__ */ _jsxDEV("strong", { children: "Observe · Reason · Act · Reflect" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 317,
+								columnNumber: 77
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 317,
+							columnNumber: 11
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 314,
+					columnNumber: 9
+				}, this)
+			]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 253,
+			columnNumber: 7
+		}, this)]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 244,
+		columnNumber: 5
+	}, this);
+}
+_c3 = ArchitectureBlueprint;
+var _c, _c2, _c3;
+$RefreshReg$(_c, "ArchitectureModuleRow");
+$RefreshReg$(_c2, "CognitiveCore");
+$RefreshReg$(_c3, "ArchitectureBlueprint");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+import * as __vite_react_currentExports from "/src/components/ArchitectureBlueprint.tsx";
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+
+  const currentExports = __vite_react_currentExports;
+  queueMicrotask(() => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/sudee/Projects/ria-website/src/components/ArchitectureBlueprint.tsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/sudee/Projects/ria-website/src/components/ArchitectureBlueprint.tsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/sudee/Projects/ria-website/src/components/ArchitectureBlueprint.tsx" + ' ' + id); }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJtYXBwaW5ncyI6IkFBQUEsU0FDRSxVQUNBLEtBQ0EsY0FDQSxVQUNBLGFBQ0EsUUFDQSxTQUNBLFNBQ0EsWUFDQSxhQUNBLGNBRUs7OztBQVVQLE1BQU0sY0FBb0M7Q0FDeEM7RUFDRSxJQUFJO0VBQ0osT0FBTztFQUNQLFVBQVU7RUFDVixNQUFNO0VBQ04sT0FBTztFQUNSO0NBQ0Q7RUFDRSxJQUFJO0VBQ0osT0FBTztFQUNQLFVBQVU7RUFDVixNQUFNO0VBQ04sT0FBTztFQUNSO0NBQ0Q7RUFDRSxJQUFJO0VBQ0osT0FBTztFQUNQLFVBQVU7RUFDVixNQUFNO0VBQ04sT0FBTztFQUNSO0NBQ0Q7RUFDRSxJQUFJO0VBQ0osT0FBTztFQUNQLFVBQVU7RUFDVixNQUFNO0VBQ04sT0FBTztFQUNSO0NBQ0Y7QUFFRCxNQUFNLGVBQXFDO0NBQ3pDO0VBQ0UsSUFBSTtFQUNKLE9BQU87RUFDUCxVQUFVO0VBQ1YsTUFBTTtFQUNOLE9BQU87RUFDUjtDQUNEO0VBQ0UsSUFBSTtFQUNKLE9BQU87RUFDUCxVQUFVO0VBQ1YsTUFBTTtFQUNOLE9BQU87RUFDUjtDQUNEO0VBQ0UsSUFBSTtFQUNKLE9BQU87RUFDUCxVQUFVO0VBQ1YsTUFBTTtFQUNOLE9BQU87RUFDUjtDQUNEO0VBQ0UsSUFBSTtFQUNKLE9BQU87RUFDUCxVQUFVO0VBQ1YsTUFBTTtFQUNOLE9BQU87RUFDUjtDQUNGO0FBRUQsTUFBTSxvQkFBMEMsQ0FDOUM7Q0FDRSxJQUFJO0NBQ0osT0FBTztDQUNQLFVBQVU7Q0FDVixNQUFNO0NBQ04sT0FBTztDQUNSLEVBQ0Q7Q0FDRSxJQUFJO0NBQ0osT0FBTztDQUNQLFVBQVU7Q0FDVixNQUFNO0NBQ04sT0FBTztDQUNSLENBQ0Y7QUFFRCxNQUFNLGNBQWM7Q0FDbEIsQ0FBQyxLQUFLLElBQUk7Q0FBRSxDQUFDLEtBQUssSUFBSTtDQUFFLENBQUMsS0FBSyxJQUFJO0NBQUUsQ0FBQyxLQUFLLElBQUk7Q0FBRSxDQUFDLEtBQUssSUFBSTtDQUFFLENBQUMsS0FBSyxJQUFJO0NBQUUsQ0FBQyxLQUFLLElBQUk7Q0FDbEYsQ0FBQyxLQUFLLElBQUk7Q0FBRSxDQUFDLEtBQUssSUFBSTtDQUFFLENBQUMsS0FBSyxJQUFJO0NBQUUsQ0FBQyxLQUFLLElBQUk7Q0FBRSxDQUFDLEtBQUssSUFBSTtDQUFFLENBQUMsS0FBSyxJQUFJO0NBQUUsQ0FBQyxLQUFLLElBQUk7Q0FDbEYsQ0FBQyxLQUFLLElBQUk7Q0FBRSxDQUFDLEtBQUssSUFBSTtDQUFFLENBQUMsS0FBSyxJQUFJO0NBQUUsQ0FBQyxLQUFLLElBQUk7Q0FBRSxDQUFDLEtBQUssSUFBSTtDQUFFLENBQUMsS0FBSyxJQUFJO0NBQ3ZFO0FBRUQsTUFBTSxjQUFjO0NBQ2xCLENBQUMsR0FBRyxFQUFFO0NBQUUsQ0FBQyxHQUFHLEVBQUU7Q0FBRSxDQUFDLEdBQUcsRUFBRTtDQUFFLENBQUMsR0FBRyxFQUFFO0NBQUUsQ0FBQyxHQUFHLEVBQUU7Q0FBRSxDQUFDLEdBQUcsRUFBRTtDQUFFLENBQUMsR0FBRyxFQUFFO0NBQUUsQ0FBQyxHQUFHLEVBQUU7Q0FBRSxDQUFDLEdBQUcsRUFBRTtDQUN0RSxDQUFDLEdBQUcsRUFBRTtDQUFFLENBQUMsR0FBRyxFQUFFO0NBQUUsQ0FBQyxHQUFHLEVBQUU7Q0FBRSxDQUFDLEdBQUcsR0FBRztDQUFFLENBQUMsR0FBRyxFQUFFO0NBQUUsQ0FBQyxHQUFHLEdBQUc7Q0FBRSxDQUFDLEdBQUcsRUFBRTtDQUFFLENBQUMsR0FBRyxHQUFHO0NBQUUsQ0FBQyxHQUFHLEVBQUU7Q0FDekUsQ0FBQyxHQUFHLEdBQUc7Q0FBRSxDQUFDLEdBQUcsR0FBRztDQUFFLENBQUMsR0FBRyxHQUFHO0NBQUUsQ0FBQyxHQUFHLEdBQUc7Q0FBRSxDQUFDLEdBQUcsR0FBRztDQUFFLENBQUMsSUFBSSxHQUFHO0NBQUUsQ0FBQyxJQUFJLEdBQUc7Q0FBRSxDQUFDLElBQUksR0FBRztDQUN6RSxDQUFDLElBQUksR0FBRztDQUFFLENBQUMsSUFBSSxHQUFHO0NBQUUsQ0FBQyxJQUFJLEdBQUc7Q0FBRSxDQUFDLElBQUksR0FBRztDQUFFLENBQUMs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QWIsT0FBTzs7OztlQUFNLENBQUM7T0FDcEY7Ozs7O01BRU4sd0JBQUMsT0FBRDtPQUFLLFdBQVU7aUJBQ1osa0JBQWtCLEtBQUssV0FBVyx3QkFBQyx1QkFBRCxFQUErQixRQUEwQixFQUFiLE9BQU87Ozs7ZUFBTSxDQUFDO09BQ3pGOzs7OztNQUNGOzs7Ozs7SUFFTix3QkFBQyxVQUFEO0tBQVEsV0FBVTtlQUFsQjtNQUNFLHdCQUFDLE9BQUQ7T0FBSyx3QkFBQyxhQUFELEVBQWEsZUFBWSxRQUFTOzs7OzsrQkFBQyxRQUFELFlBQU0sa0JBQXFCOzs7OzsrQkFBQyxVQUFELFlBQVEscUJBQTBCOzs7OztPQUFNOzs7OztNQUMxRyx3QkFBQyxPQUFEO09BQUssd0JBQUMsVUFBRCxFQUFVLGVBQVksUUFBUzs7Ozs7K0JBQUMsUUFBRCxZQUFNLGdCQUFtQjs7Ozs7K0JBQUMsVUFBRCxZQUFRLHNCQUEyQjs7Ozs7T0FBTTs7Ozs7TUFDdEcsd0JBQUMsT0FBRDtPQUFLLHdCQUFDLFVBQUQsRUFBVSxlQUFZLFFBQVM7Ozs7OytCQUFDLFFBQUQsWUFBTSxxQkFBd0I7Ozs7OytCQUFDLFVBQUQsWUFBUSxvQ0FBeUM7Ozs7O09BQU07Ozs7O01BQ2xIOzs7Ozs7SUFDTDs7Ozs7V0FDRSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJBcmNoaXRlY3R1cmVCbHVlcHJpbnQudHN4Il0sInZlcnNpb24iOjMsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7XG4gIEFjdGl2aXR5LFxuICBCb3QsXG4gIEJyYWluQ2lyY3VpdCxcbiAgRGF0YWJhc2UsXG4gIEZpbmdlcnByaW50LFxuICBHbG9iZTIsXG4gIExheWVyczMsXG4gIFBhbGV0dGUsXG4gIFJlZnJlc2hDY3csXG4gIFNoaWVsZENoZWNrLFxuICBXcmVuY2gsXG4gIHR5cGUgTHVjaWRlSWNvblxufSBmcm9tICdsdWNpZGUtcmVhY3QnXG5cbnR5cGUgQXJjaGl0ZWN0dXJlTW9kdWxlID0ge1xuICBpZDogc3RyaW5nXG4gIHRpdGxlOiBzdHJpbmdcbiAgZmVhdHVyZXM6IHN0cmluZ1xuICBpY29uOiBMdWNpZGVJY29uXG4gIHN0YXRlOiBzdHJpbmdcbn1cblxuY29uc3QgbGVmdE1vZHVsZXM6IEFyY2hpdGVjdHVyZU1vZHVsZVtdID0gW1xuICB7XG4gICAgaWQ6ICcwMScsXG4gICAgdGl0bGU6ICdNZW1vcnkgRW5naW5lJyxcbiAgICBmZWF0dXJlczogJ0xvbmctdGVybSBtZW1vcnkgwrcgRXBpc29kaWMgY29udGV4dCDCtyBTZW1hbnRpYyByZWNhbGwnLFxuICAgIGljb246IERhdGFiYXNlLFxuICAgIHN0YXRlOiAnUGVyc2lzdGVudCdcbiAgfSxcbiAge1xuICAgIGlkOiAnMDInLFxuICAgIHRpdGxlOiAnS25vd2xlZGdlIFVuaXZlcnNlJyxcbiAgICBmZWF0dXJlczogJ1dlYiByZXNlYXJjaCDCtyBTb3VyY2UgcmFua2luZyDCtyBLbm93bGVkZ2UgZ3JhcGgnLFxuICAgIGljb246IEdsb2JlMixcbiAgICBzdGF0ZTogJ0luZGV4ZWQnXG4gIH0sXG4gIHtcbiAgICBpZDogJzAzJyxcbiAgICB0aXRsZTogJ1NlY3VyaXR5IEJvdW5kYXJ5JyxcbiAgICBmZWF0dXJlczogJ0xvY2FsLWZpcnN0IMK3IE93bmVyIHBlcm1pc3Npb24gwrcgUHJpdmF0ZSBydW50aW1lJyxcbiAgICBpY29uOiBTaGllbGRDaGVjayxcbiAgICBzdGF0ZTogJ1Byb3RlY3RlZCdcbiAgfSxcbiAge1xuICAgIGlkOiAnMDQnLFxuICAgIHRpdGxlOiAnQ3JlYXRpdmUgU3R1ZGlvJyxcbiAgICBmZWF0dXJlczogJ0ltYWdlIMK3IERlc2lnbiDCtyBDb250ZW50IGdlbmVyYXRpb24nLFxuICAgIGljb246IFBhbGV0dGUsXG4gICAgc3RhdGU6ICdSZWFkeSdcbiAgfVxuXVxuXG5jb25zdCByaWdodE1vZHVsZXM6IEFyY2hpdGVjdHVyZU1vZHVsZVtdID0gW1xuICB7XG4gICAgaWQ6ICcwNScsXG4gICAgdGl0bGU6ICdSZWFzb25pbmcgQ29ydGV4JyxcbiAgICBmZWF0dXJlczogJ1BsYW5uaW5nIMK3IFJlZmxlY3Rpb24gwrcgRGVjaXNpb24gc3VwcG9ydCcsXG4gICAgaWNvbjogQnJhaW5DaXJjdWl0LFxuICAgIHN0YXRlOiAnUmVhc29uaW5nJ1xuICB9LFxuICB7XG4gICAgaWQ6ICcwNicsXG4gICAgdGl0bGU6ICdBdXRvbm9tb3VzIENvcmUnLFxuICAgIGZlYXR1cmVzOiAnR29hbHMgwrcgVGFza3MgwrcgQXBwcm92YWwgcXVldWUnLFxuICAgIGljb246IEJvdCxcbiAgICBzdGF0ZTogJ1N1cGVydmlzZWQnXG4gIH0sXG4gIHtcbiAgICBpZDogJzA3JyxcbiAgICB0aXRsZTogJ1Rvb2wgTGF5ZXInLFxuICAgIGZlYXR1cmVzOiAnRmlsZXMgwrcgV2ViIMK3IFdvcmtmbG93cycsXG4gICAgaWNvbjogV3JlbmNoLFxuICAgIHN0YXRlOiAnQ29ubmVjdGVkJ1xuICB9LFxuICB7XG4gICAgaWQ6ICcwOCcsXG4gICAgdGl0bGU6ICdJbnRlcmZhY2UgTGF5ZXInLFxuICAgIGZlYXR1cmVzOiAnQ2hhdCDCtyBEYXNoYm9hcmQgwrcgTWlzc2lvbiBDb250cm9sJyxcbiAgICBpY29uOiBMYXllcnMzLFxuICAgIHN0YXRlOiAnQXZhaWxhYmxlJ1xuICB9XG5dXG5cbmNvbnN0IGZvdW5kYXRpb25Nb2R1bGVzOiBBcmNoaXRlY3R1cmVNb2R1bGVbXSA9IFtcbiAge1xuICAgIGlkOiAnMDknLFxuICAgIHRpdGxlOiAnRXZvbHV0aW9uIExheWVyJyxcbiAgICBmZWF0dXJlczogJ1NlbGYtcmV2aWV3IMK3IFVwZ3JhZGUgcmVwb3J0cyDCtyBMZWFybmluZyBsb29wJyxcbiAgICBpY29uOiBSZWZyZXNoQ2N3LFxuICAgIHN0YXRlOiAnQWRhcHRpdmUnXG4gIH0sXG4gIHtcbiAgICBpZDogJzEwJyxcbiAgICB0aXRsZTogJ1JJQSBJZGVudGl0eScsXG4gICAgZmVhdHVyZXM6ICdQcmVmZXJlbmNlcyDCtyBQZXJzb25hbGl0eSDCtyBWb2ljZSDCtyBCZWhhdmlvcicsXG4gICAgaWNvbjogRmluZ2VycHJpbnQsXG4gICAgc3RhdGU6ICdPd25lci1ib3VuZCdcbiAgfVxuXVxuXG5jb25zdCBuZXVyYWxOb2RlcyA9IFtcbiAgWzI2MCwgMTA1XSwgWzE5NywgMTMyXSwgWzMyNCwgMTM4XSwgWzE0NSwgMTkwXSwgWzIzMCwgMTg1XSwgWzMwMiwgMTk4XSwgWzM3NSwgMTkzXSxcbiAgWzExMiwgMjY2XSwgWzE4MSwgMjUyXSwgWzI2MCwgMjU4XSwgWzM0MCwgMjU1XSwgWzQwNSwgMjcwXSwgWzE0OCwgMzM1XSwgWzIxOSwgMzIyXSxcbiAgWzMwMCwgMzMwXSwgWzM3MiwgMzQyXSwgWzIwNCwgMzk3XSwgWzI4NCwgNDA2XSwgWzM0MCwgMzkwXSwgWzI2MCwgNDU4XVxuXVxuXG5jb25zdCBuZXVyYWxFZGdlcyA9IFtcbiAgWzAsIDFdLCBbMCwgMl0sIFsxLCAzXSwgWzEsIDRdLCBbMiwgNV0sIFsyLCA2XSwgWzMsIDddLCBbMywgOF0sIFs0LCA4XSxcbiAgWzQsIDldLCBbNCwgNV0sIFs1LCA5XSwgWzUsIDEwXSwgWzUsIDZdLCBbNiwgMTFdLCBbNywgOF0sIFs3LCAxMl0sIFs4LCA5XSxcbiAgWzgsIDEyXSwgWzgsIDEzXSwgWzksIDEwXSwgWzksIDEzXSwgWzksIDE0XSwgWzEwLCAxMV0sIFsxMCwgMTRdLCBbMTAsIDE1XSxcbiAgWzExLCAxNV0sIFsxMiwgMTNdLCBbMTIsIDE2XSwgWzEzLCAxNF0sIFsxMywgMTZdLCBbMTMsIDE3XSwgWzE0LCAxNV0sIFsxNCwgMTddLFxuICBbMTQsIDE4XSwgWzE1LCAxOF0sIFsxNiwgMTddLCBbMTcsIDE4XSwgWzE3LCAxOV0sIFsxOCwgMTldXG5dXG5cbmZ1bmN0aW9uIEFyY2hpdGVjdHVyZU1vZHVsZVJvdyh7IG1vZHVsZSB9OiB7IG1vZHVsZTogQXJjaGl0ZWN0dXJlTW9kdWxlIH0pIHtcbiAgY29uc3QgSWNvbiA9IG1vZHVsZS5pY29uXG5cbiAgcmV0dXJuIChcbiAgICA8YXJ0aWNsZSBjbGFzc05hbWU9XCJyaWEtc3lzdGVtLW1vZHVsZVwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtc3lzdGVtLW1vZHVsZS1pY29uXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PEljb24gLz48L2Rpdj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLXN5c3RlbS1tb2R1bGUtY29weVwiPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1zeXN0ZW0tbW9kdWxlLW1ldGFcIj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJyaWEtc3lzdGVtLW1vZHVsZS1udW1iZXJcIj57bW9kdWxlLmlkfTwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJyaWEtc3lzdGVtLW1vZHVsZS1zdGF0ZVwiPjxpIC8+e21vZHVsZS5zdGF0ZX08L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8aDM+e21vZHVsZS50aXRsZX08L2gzPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1zeXN0ZW0tbW9kdWxlLWZlYXR1cmVzXCI+XG4gICAgICAgICAge21vZHVsZS5mZWF0dXJlcy5zcGxpdCgnIMK3ICcpLm1hcCgoZmVhdHVyZSkgPT4gPHNwYW4ga2V5PXtmZWF0dXJlfT57ZmVhdHVyZX08L3NwYW4+KX1cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICA8L2FydGljbGU+XG4gIClcbn1cblxuZnVuY3Rpb24gQ29nbml0aXZlQ29yZSgpIHtcbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1jb2duaXRpdmUtY29yZVwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtY29yZS1zdGFnZVwiPlxuICAgICAgPHN2ZyBjbGFzc05hbWU9XCJyaWEtY29nbml0aXZlLXNwaGVyZVwiIHZpZXdCb3g9XCIwIDAgNTIwIDUyMFwiIHJvbGU9XCJpbWdcIiBhcmlhLWxhYmVsPVwiQWJzdHJhY3QgbGF5ZXJlZCBuZXVyYWwgc3BoZXJlIHJlcHJlc2VudGluZyB0aGUgUklBIGNvZ25pdGl2ZSBjb3JlXCI+XG4gICAgICAgIDxkZWZzPlxuICAgICAgICAgIDxyYWRpYWxHcmFkaWVudCBpZD1cInJpYVNwaGVyZVZvbHVtZVwiIGN4PVwiNDMlXCIgY3k9XCIzNiVcIiByPVwiNjUlXCI+XG4gICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIwJVwiIHN0b3BDb2xvcj1cIiNlOGZjZmZcIiBzdG9wT3BhY2l0eT1cIjAuMTZcIiAvPlxuICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMzYlXCIgc3RvcENvbG9yPVwiIzdkZGNlYlwiIHN0b3BPcGFjaXR5PVwiMC4wOVwiIC8+XG4gICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCI3OCVcIiBzdG9wQ29sb3I9XCIjMjQ1YjcxXCIgc3RvcE9wYWNpdHk9XCIwLjAyNVwiIC8+XG4gICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIxMDAlXCIgc3RvcENvbG9yPVwiIzA2MTAxOFwiIHN0b3BPcGFjaXR5PVwiMFwiIC8+XG4gICAgICAgICAgPC9yYWRpYWxHcmFkaWVudD5cbiAgICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9XCJyaWFTcGhlcmVFZGdlXCIgeDE9XCIxMCVcIiB5MT1cIjUlXCIgeDI9XCI5MiVcIiB5Mj1cIjk1JVwiPlxuICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMCVcIiBzdG9wQ29sb3I9XCIjZDdmOGZjXCIgc3RvcE9wYWNpdHk9XCIwLjZcIiAvPlxuICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiNDglXCIgc3RvcENvbG9yPVwiIzc5ZDllOFwiIHN0b3BPcGFjaXR5PVwiMC4yOFwiIC8+XG4gICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIxMDAlXCIgc3RvcENvbG9yPVwiIzNiODE5OFwiIHN0b3BPcGFjaXR5PVwiMC4wOVwiIC8+XG4gICAgICAgICAgPC9saW5lYXJHcmFkaWVudD5cbiAgICAgICAgICA8cmFkaWFsR3JhZGllbnQgaWQ9XCJyaWFTcGhlcmVDZW50ZXJcIiBjeD1cIjQ1JVwiIGN5PVwiMzglXCIgcj1cIjYwJVwiPlxuICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMCVcIiBzdG9wQ29sb3I9XCIjZThmZGZmXCIgc3RvcE9wYWNpdHk9XCIwLjkyXCIgLz5cbiAgICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjE4JVwiIHN0b3BDb2xvcj1cIiNhOGVkZjVcIiBzdG9wT3BhY2l0eT1cIjAuNVwiIC8+XG4gICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIxMDAlXCIgc3RvcENvbG9yPVwiIzNmYTNiYVwiIHN0b3BPcGFjaXR5PVwiMFwiIC8+XG4gICAgICAgICAgPC9yYWRpYWxHcmFkaWVudD5cbiAgICAgICAgICA8Y2xpcFBhdGggaWQ9XCJyaWFTcGhlcmVDbGlwXCI+XG4gICAgICAgICAgICA8Y2lyY2xlIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByPVwiMTkwXCIgLz5cbiAgICAgICAgICA8L2NsaXBQYXRoPlxuICAgICAgICAgIDxmaWx0ZXIgaWQ9XCJyaWFTcGhlcmVTb2Z0R2xvd1wiIHg9XCItODAlXCIgeT1cIi04MCVcIiB3aWR0aD1cIjI2MCVcIiBoZWlnaHQ9XCIyNjAlXCI+XG4gICAgICAgICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPVwiNFwiIHJlc3VsdD1cImJsdXJcIiAvPlxuICAgICAgICAgICAgPGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPVwiYmx1clwiIC8+PGZlTWVyZ2VOb2RlIGluPVwiU291cmNlR3JhcGhpY1wiIC8+PC9mZU1lcmdlPlxuICAgICAgICAgIDwvZmlsdGVyPlxuICAgICAgICAgIDxmaWx0ZXIgaWQ9XCJyaWFTcGhlcmVXaWRlR2xvd1wiIHg9XCItMTAwJVwiIHk9XCItMTAwJVwiIHdpZHRoPVwiMzAwJVwiIGhlaWdodD1cIjMwMCVcIj5cbiAgICAgICAgICAgIDxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249XCIxNFwiIC8+XG4gICAgICAgICAgPC9maWx0ZXI+XG4gICAgICAgIDwvZGVmcz5cblxuICAgICAgICA8Y2lyY2xlIGNsYXNzTmFtZT1cInJpYS1zcGhlcmUtYmFja2xpZ2h0XCIgY3g9XCIyNjBcIiBjeT1cIjI2MFwiIHI9XCIxNThcIiBmaWx0ZXI9XCJ1cmwoI3JpYVNwaGVyZVdpZGVHbG93KVwiIC8+XG4gICAgICAgIDxjaXJjbGUgY2xhc3NOYW1lPVwicmlhLXNwaGVyZS1hdXJhXCIgY3g9XCIyNjBcIiBjeT1cIjI2MFwiIHI9XCIyMzJcIiAvPlxuICAgICAgICA8Y2lyY2xlIGNsYXNzTmFtZT1cInJpYS1zcGhlcmUtb3JiaXQgcmlhLXNwaGVyZS1vcmJpdC1vbmVcIiBjeD1cIjI2MFwiIGN5PVwiMjYwXCIgcj1cIjIxOFwiIC8+XG4gICAgICAgIDxjaXJjbGUgY2xhc3NOYW1lPVwicmlhLXNwaGVyZS1vcmJpdCByaWEtc3BoZXJlLW9yYml0LXR3b1wiIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByPVwiMjA0XCIgLz5cbiAgICAgICAgPGNpcmNsZSBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLXZvbHVtZVwiIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByPVwiMTkwXCIgZmlsbD1cInVybCgjcmlhU3BoZXJlVm9sdW1lKVwiIC8+XG4gICAgICAgIDxjaXJjbGUgY2xhc3NOYW1lPVwicmlhLXNwaGVyZS1lZGdlXCIgY3g9XCIyNjBcIiBjeT1cIjI2MFwiIHI9XCIxOTBcIiBzdHJva2U9XCJ1cmwoI3JpYVNwaGVyZUVkZ2UpXCIgLz5cblxuICAgICAgICA8ZyBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLWxhdGl0dWRlc1wiIGNsaXBQYXRoPVwidXJsKCNyaWFTcGhlcmVDbGlwKVwiPlxuICAgICAgICAgIDxlbGxpcHNlIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByeD1cIjE5MFwiIHJ5PVwiNjhcIiAvPlxuICAgICAgICAgIDxlbGxpcHNlIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByeD1cIjE5MFwiIHJ5PVwiMTI2XCIgLz5cbiAgICAgICAgICA8ZWxsaXBzZSBjeD1cIjI2MFwiIGN5PVwiMjYwXCIgcng9XCI3MlwiIHJ5PVwiMTkwXCIgLz5cbiAgICAgICAgICA8ZWxsaXBzZSBjeD1cIjI2MFwiIGN5PVwiMjYwXCIgcng9XCIxMzJcIiByeT1cIjE5MFwiIC8+XG4gICAgICAgIDwvZz5cblxuICAgICAgICA8ZyBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLW1lc2hcIiBjbGlwUGF0aD1cInVybCgjcmlhU3BoZXJlQ2xpcClcIj5cbiAgICAgICAgICB7bmV1cmFsRWRnZXMubWFwKChbZnJvbSwgdG9dKSA9PiAoXG4gICAgICAgICAgICA8bGluZVxuICAgICAgICAgICAgICBrZXk9e2Ake2Zyb219LSR7dG99YH1cbiAgICAgICAgICAgICAgeDE9e25ldXJhbE5vZGVzW2Zyb21dWzBdfVxuICAgICAgICAgICAgICB5MT17bmV1cmFsTm9kZXNbZnJvbV1bMV19XG4gICAgICAgICAgICAgIHgyPXtuZXVyYWxOb2Rlc1t0b11bMF19XG4gICAgICAgICAgICAgIHkyPXtuZXVyYWxOb2Rlc1t0b11bMV19XG4gICAgICAgICAgICAvPlxuICAgICAgICAgICkpfVxuICAgICAgICAgIHtuZXVyYWxOb2Rlcy5tYXAoKFtjeCwgY3ldLCBpbmRleCkgPT4gKFxuICAgICAgICAgICAgPGNpcmNsZVxuICAgICAgICAgICAgICBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLW5vZGVcIlxuICAgICAgICAgICAgICBrZXk9e2Ake2N4fS0ke2N5fWB9XG4gICAgICAgICAgICAgIGN4PXtjeH1cbiAgICAgICAgICAgICAgY3k9e2N5fVxuICAgICAgICAgICAgICByPXtpbmRleCAlIDUgPT09IDAgPyAzLjMgOiAyLjF9XG4gICAgICAgICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkRlbGF5OiBgJHtpbmRleCAqIC0wLjE4fXNgIH19XG4gICAgICAgICAgICAvPlxuICAgICAgICAgICkpfVxuICAgICAgICA8L2c+XG5cbiAgICAgICAgPGNpcmNsZSBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLWlubmVyLXJpbmdcIiBjeD1cIjI2MFwiIGN5PVwiMjYwXCIgcj1cIjkyXCIgLz5cbiAgICAgICAgPGNpcmNsZSBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLWNlbnRlclwiIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByPVwiNTRcIiBmaWxsPVwidXJsKCNyaWFTcGhlcmVDZW50ZXIpXCIgLz5cbiAgICAgICAgPGNpcmNsZSBjbGFzc05hbWU9XCJyaWEtc3BoZXJlLWNlbnRlci1wb2ludFwiIGN4PVwiMjYwXCIgY3k9XCIyNjBcIiByPVwiNFwiIGZpbHRlcj1cInVybCgjcmlhU3BoZXJlU29mdEdsb3cpXCIgLz5cbiAgICAgIDwvc3ZnPlxuXG4gICAgICA8aW1nXG4gICAgICAgIGNsYXNzTmFtZT1cInJpYS1jb2duaXRpdmUtYnJhaW5cIlxuICAgICAgICBzcmM9XCIvYXNzZXRzL3JpYS9yaWEtY29yZS1icmFpbi5wbmdcIlxuICAgICAgICBhbHQ9XCJcIlxuICAgICAgICBsb2FkaW5nPVwibGF6eVwiXG4gICAgICAgIGRlY29kaW5nPVwiYXN5bmNcIlxuICAgICAgICBhcmlhLWhpZGRlbj1cInRydWVcIlxuICAgICAgLz5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtY29nbml0aXZlLWNvcmUtbGFiZWxcIj5cbiAgICAgICAgPHNwYW4+PGkgLz4gUklBIENPUkU8L3NwYW4+XG4gICAgICAgIDxzdHJvbmc+UmVhY3RpdmUgSW50ZWxsaWdlbmNlIEFyY2hpdGVjdHVyZTwvc3Ryb25nPlxuICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtY29nbml0aXZlLWZsb3dcIiBhcmlhLWxhYmVsPVwiUklBIGNvZ25pdGl2ZSB3b3JrZmxvd1wiPlxuICAgICAgICB7WydNZW1vcnknLCAnUmVhc29uaW5nJywgJ1Rvb2xzJywgJ0FjdGlvbicsICdSZWZsZWN0aW9uJ10ubWFwKChzdGFnZSwgaW5kZXgpID0+IChcbiAgICAgICAgICA8c3BhbiBrZXk9e3N0YWdlfT57c3RhZ2V9e2luZGV4IDwgNCAmJiA8aSBhcmlhLWhpZGRlbj1cInRydWVcIj7ihpI8L2k+fTwvc3Bhbj5cbiAgICAgICAgKSl9XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtY29yZS10ZWxlbWV0cnlcIiBhcmlhLWxhYmVsPVwiQ29yZSBhcmNoaXRlY3R1cmUgdGVsZW1ldHJ5XCI+XG4gICAgICAgIDxkaXY+PHNwYW4+TW9kdWxlczwvc3Bhbj48c3Ryb25nPjEwPC9zdHJvbmc+PC9kaXY+XG4gICAgICAgIDxkaXY+PHNwYW4+UnVudGltZTwvc3Bhbj48c3Ryb25nPlByaXZhdGU8L3N0cm9uZz48L2Rpdj5cbiAgICAgICAgPGRpdj48c3Bhbj5Db250cm9sPC9zcGFuPjxzdHJvbmc+T3duZXI8L3N0cm9uZz48L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICApXG59XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEFyY2hpdGVjdHVyZUJsdWVwcmludCgpIHtcbiAgcmV0dXJuIChcbiAgICA8c2VjdGlvbiBpZD1cImFyY2hpdGVjdHVyZVwiIGNsYXNzTmFtZT1cInJpYS1pbnRlbGxpZ2VuY2UtYXJjaGl0ZWN0dXJlXCI+XG4gICAgICA8aGVhZGVyIGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtaGVhZGluZ1wiPlxuICAgICAgICA8c3Bhbj5SSUEgU1lTVEVNIE1BUDwvc3Bhbj5cbiAgICAgICAgPGgyPlJJQSBJbnRlbGxpZ2VuY2UgQXJjaGl0ZWN0dXJlPC9oMj5cbiAgICAgICAgPHA+XG4gICAgICAgICAgQSBwcml2YXRlIGNvZ25pdGl2ZSBzeXN0ZW0gY29ubmVjdGluZyBtZW1vcnksIHJlYXNvbmluZywga25vd2xlZGdlLCB0b29scywgYXV0b25vbXksIGFuZCBvd25lci1hcHByb3ZlZCBhY3Rpb24uXG4gICAgICAgIDwvcD5cbiAgICAgIDwvaGVhZGVyPlxuXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtcHJlbWl1bS1wYW5lbFwiPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtcGFuZWwtaGVhZGVyXCI+XG4gICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInJpYS1wYW5lbC1vdmVybGluZVwiPkFJT04gLy8gQ09HTklUSVZFIENPTlRST0wgUExBTkU8L3NwYW4+XG4gICAgICAgICAgICA8c3Ryb25nPkxpdmUgYXJjaGl0ZWN0dXJlIHRvcG9sb2d5PC9zdHJvbmc+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtcGFuZWwtcnVudGltZVwiPlxuICAgICAgICAgICAgPHNwYW4+PGkgLz4gU3lzdGVtIG5vbWluYWw8L3NwYW4+XG4gICAgICAgICAgICA8c3Bhbj5Mb2NhbC1maXJzdCBydW50aW1lPC9zcGFuPlxuICAgICAgICAgICAgPHNwYW4+T3duZXIgYXV0aG9yaXR5PC9zcGFuPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtcGFuZWwtZ3JpZFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWFyY2hpdGVjdHVyZS1wYW5lbC1nbG93XCIgYXJpYS1oaWRkZW49XCJ0cnVlXCIgLz5cblxuICAgICAgICA8c3ZnIGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtbGluay1tYXBcIiB2aWV3Qm94PVwiMCAwIDEyMDAgNzIwXCIgcHJlc2VydmVBc3BlY3RSYXRpbz1cIm5vbmVcIiBhcmlhLWhpZGRlbj1cInRydWVcIj5cbiAgICAgICAgICA8ZGVmcz5cbiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD1cInJpYUFyY2hpdGVjdHVyZUxpbmtcIiB4MT1cIjBcIiB4Mj1cIjFcIj5cbiAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMFwiIHN0b3BDb2xvcj1cIiM3NWQ5ZWFcIiBzdG9wT3BhY2l0eT1cIjAuMDhcIiAvPlxuICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIwLjVcIiBzdG9wQ29sb3I9XCIjOWFlYmY2XCIgc3RvcE9wYWNpdHk9XCIwLjYyXCIgLz5cbiAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMVwiIHN0b3BDb2xvcj1cIiM3NWQ5ZWFcIiBzdG9wT3BhY2l0eT1cIjAuMDhcIiAvPlxuICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD5cbiAgICAgICAgICA8L2RlZnM+XG4gICAgICAgICAgPGcgY2xhc3NOYW1lPVwicmlhLWFyY2hpdGVjdHVyZS1saW5rc1wiPlxuICAgICAgICAgICAgPHBhdGggZD1cIk0yNjAgMTIwIEM0MTAgMTIwIDQzMCAyNzAgNTM1IDMwMFwiIC8+XG4gICAgICAgICAgICA8cGF0aCBkPVwiTTI2MCAyNTAgQzQxMCAyNTAgNDQwIDMyMCA1MzUgMzMwXCIgLz5cbiAgICAgICAgICAgIDxwYXRoIGQ9XCJNMjYwIDM4MCBDNDEwIDM4MCA0NDAgMzYwIDUzNSAzNTBcIiAvPlxuICAgICAgICAgICAgPHBhdGggZD1cIk0yNjAgNTEwIEM0MTAgNTEwIDQzMCA0MDAgNTM1IDM4MFwiIC8+XG4gICAgICAgICAgICA8cGF0aCBkPVwiTTk0MCAxMjAgQzc5MCAxMjAgNzcwIDI3MCA2NjUgMzAwXCIgLz5cbiAgICAgICAgICAgIDxwYXRoIGQ9XCJNOTQwIDI1MCBDNzkwIDI1MCA3NjAgMzIwIDY2NSAzMzBcIiAvPlxuICAgICAgICAgICAgPHBhdGggZD1cIk05NDAgMzgwIEM3OTAgMzgwIDc2MCAzNjAgNjY1IDM1MFwiIC8+XG4gICAgICAgICAgICA8cGF0aCBkPVwiTTk0MCA1MTAgQzc5MCA1MTAgNzcwIDQwMCA2NjUgMzgwXCIgLz5cbiAgICAgICAgICAgIDxwYXRoIGQ9XCJNNDcwIDY0MCBDNTAwIDU2MCA1NDAgNTA1IDU3NSA0NTVcIiAvPlxuICAgICAgICAgICAgPHBhdGggZD1cIk03MzAgNjQwIEM3MDAgNTYwIDY2MCA1MDUgNjI1IDQ1NVwiIC8+XG4gICAgICAgICAgPC9nPlxuICAgICAgICAgIDxnIGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtbGluay1ub2Rlc1wiPlxuICAgICAgICAgICAge1tbNTM1LCAzMDBdLCBbNTM1LCAzMzBdLCBbNTM1LCAzNTBdLCBbNTM1LCAzODBdLCBbNjY1LCAzMDBdLCBbNjY1LCAzMzBdLCBbNjY1LCAzNTBdLCBbNjY1LCAzODBdLCBbNTc1LCA0NTVdLCBbNjI1LCA0NTVdXS5tYXAoKFtjeCwgY3ldLCBpbmRleCkgPT4gKFxuICAgICAgICAgICAgICA8Y2lyY2xlIGtleT17YCR7Y3h9LSR7Y3l9YH0gY3g9e2N4fSBjeT17Y3l9IHI9XCIzXCIgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6IGAke2luZGV4ICogLTAuMjJ9c2AgfX0gLz5cbiAgICAgICAgICAgICkpfVxuICAgICAgICAgIDwvZz5cbiAgICAgICAgPC9zdmc+XG5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtYXJjaGl0ZWN0dXJlLWdyaWRcIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtY29sdW1uIHJpYS1hcmNoaXRlY3R1cmUtY29sdW1uLWxlZnRcIj5cbiAgICAgICAgICAgIHtsZWZ0TW9kdWxlcy5tYXAoKG1vZHVsZSkgPT4gPEFyY2hpdGVjdHVyZU1vZHVsZVJvdyBtb2R1bGU9e21vZHVsZX0ga2V5PXttb2R1bGUuaWR9IC8+KX1cbiAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWFyY2hpdGVjdHVyZS1jb3JlLWFyZWFcIj5cbiAgICAgICAgICAgIDxDb2duaXRpdmVDb3JlIC8+XG4gICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1hcmNoaXRlY3R1cmUtY29sdW1uIHJpYS1hcmNoaXRlY3R1cmUtY29sdW1uLXJpZ2h0XCI+XG4gICAgICAgICAgICB7cmlnaHRNb2R1bGVzLm1hcCgobW9kdWxlKSA9PiA8QXJjaGl0ZWN0dXJlTW9kdWxlUm93IG1vZHVsZT17bW9kdWxlfSBrZXk9e21vZHVsZS5pZH0gLz4pfVxuICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtYXJjaGl0ZWN0dXJlLWZvdW5kYXRpb25cIj5cbiAgICAgICAgICAgIHtmb3VuZGF0aW9uTW9kdWxlcy5tYXAoKG1vZHVsZSkgPT4gPEFyY2hpdGVjdHVyZU1vZHVsZVJvdyBtb2R1bGU9e21vZHVsZX0ga2V5PXttb2R1bGUuaWR9IC8+KX1cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGZvb3RlciBjbGFzc05hbWU9XCJyaWEtYXJjaGl0ZWN0dXJlLXBhbmVsLWZvb3RlclwiPlxuICAgICAgICAgIDxkaXY+PFNoaWVsZENoZWNrIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIC8+PHNwYW4+VHJ1c3QgYm91bmRhcnk8L3NwYW4+PHN0cm9uZz5Qcml2YXRlIGJ5IGRlc2lnbjwvc3Ryb25nPjwvZGl2PlxuICAgICAgICAgIDxkaXY+PERhdGFiYXNlIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIC8+PHNwYW4+TWVtb3J5IHN0YXRlPC9zcGFuPjxzdHJvbmc+RHVyYWJsZSBjb250aW51aXR5PC9zdHJvbmc+PC9kaXY+XG4gICAgICAgICAgPGRpdj48QWN0aXZpdHkgYXJpYS1oaWRkZW49XCJ0cnVlXCIgLz48c3Bhbj5JbnRlbGxpZ2VuY2UgbG9vcDwvc3Bhbj48c3Ryb25nPk9ic2VydmUgwrcgUmVhc29uIMK3IEFjdCDCtyBSZWZsZWN0PC9zdHJvbmc+PC9kaXY+XG4gICAgICAgIDwvZm9vdGVyPlxuICAgICAgPC9kaXY+XG4gICAgPC9zZWN0aW9uPlxuICApXG59XG4iXX0=

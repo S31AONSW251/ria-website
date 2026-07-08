@@ -1,0 +1,819 @@
+/*
+ * responsive-premium.css
+ * Mobile fix layer — loaded last for max specificity.
+ * NO "all: unset" — explicit per-property overrides only.
+ */
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE NAV PANEL
+   Starts immediately below the fixed header (top = header height).
+   Fully opaque dark glass, full-height scroll.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hidden on desktop — desktop Index dropdown handles navigation there */
+.mobile-nav-panel {
+  display: none;
+}
+
+/* ── Show on mobile ── */
+@media (max-width: 1120px) {
+  .mobile-nav-panel {
+    display: block;
+    position: fixed;
+    /* Start just below the 80px header (inner 64px + 8px padding + 8px = 80px) */
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem 1.1rem 3rem;
+    background: #06101a;
+    background: linear-gradient(170deg, #091520 0%, #060e16 100%);
+    /* Prevent any bleeding or transparency */
+    opacity: 1;
+    visibility: visible;
+    /* Must not be clipped by header */
+    transform: none;
+  }
+
+  /* ── Panel header row ── */
+  .mobile-nav-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(180, 220, 232, 0.1);
+  }
+
+  .mobile-nav-panel-title {
+    display: block;
+    color: #6a8fa0;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 1;
+  }
+
+  .mobile-nav-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border: 1px solid rgba(180, 220, 232, 0.14);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #a0bfca;
+    cursor: pointer;
+    opacity: 1;
+  }
+
+  .mobile-nav-close svg {
+    width: 16px;
+    height: 16px;
+    color: #a0bfca;
+    opacity: 1;
+  }
+
+  /* ── Section labels ── */
+  .mobile-nav-section-label {
+    display: block;
+    margin: 1rem 0 0.3rem;
+    padding: 0;
+    color: #445e6c;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 1;
+    background: transparent;
+  }
+
+  /* ── Navigation links — NO "all: unset", explicit per-property overrides ── */
+  /*
+     Use very high specificity: element + class + context.
+     Override every property that could make links invisible.
+  */
+  .mobile-nav-panel a.mobile-nav-link,
+  .mobile-nav-panel .mobile-nav-link {
+    /* Layout */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 52px !important;
+    box-sizing: border-box !important;
+    /* Spacing */
+    padding: 0 1rem !important;
+    margin: 0 0 4px 0 !important;
+    /* Appearance */
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(180, 220, 232, 0.08) !important;
+    border-radius: 10px !important;
+    /* TEXT — must be explicitly visible */
+    color: #d8e8ee !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    font-family: inherit !important;
+    text-decoration: none !important;
+    letter-spacing: 0 !important;
+    /* Must not be hidden */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    /* No transforms */
+    transform: none !important;
+    /* Smooth hover */
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+  }
+
+  .mobile-nav-panel a.mobile-nav-link:hover,
+  .mobile-nav-panel .mobile-nav-link:hover,
+  .mobile-nav-panel a.mobile-nav-link:focus,
+  .mobile-nav-panel .mobile-nav-link:focus {
+    background: rgba(80, 195, 215, 0.09) !important;
+    border-color: rgba(120, 210, 228, 0.22) !important;
+    color: #eef8fa !important;
+    outline: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Smaller secondary links */
+  .mobile-nav-panel a.mobile-nav-link.mobile-nav-link-sm,
+  .mobile-nav-panel .mobile-nav-link.mobile-nav-link-sm {
+    min-height: 44px !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    color: #a8c4ce !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    opacity: 1 !important;
+  }
+
+  /* Investor CTA */
+  .mobile-nav-panel a.mobile-nav-link.mobile-nav-investor,
+  .mobile-nav-panel .mobile-nav-link.mobile-nav-investor {
+    margin-top: 0.5rem !important;
+    background: rgba(70, 185, 210, 0.1) !important;
+    border-color: rgba(80, 195, 215, 0.22) !important;
+    color: #80d0e2 !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+  }
+
+  /* Divider */
+  .mobile-nav-divider {
+    display: block !important;
+    height: 1px !important;
+    margin: 0.9rem 0 !important;
+    background: rgba(180, 220, 232, 0.08) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* ── Hide desktop index dropdown on mobile ── */
+  .site-desktop-dropdown {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* At 640px the header shrinks to 72px */
+@media (max-width: 640px) {
+  .mobile-nav-panel {
+    top: 72px;
+    padding: 0.75rem 1rem 3rem;
+  }
+
+  .mobile-nav-panel a.mobile-nav-link,
+  .mobile-nav-panel .mobile-nav-link {
+    font-size: 0.84rem !important;
+    min-height: 50px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO TOP-CUT FIX
+   Header is position:fixed. Hero needs padding-top > header height.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent Reveal animation from clipping hero content */
+body .glass-theme section.home-hero,
+body .ria-site.glass-theme section.home-hero,
+body .ria-site section.home-hero {
+  overflow: visible !important;
+}
+
+body .ria-site.glass-theme .home-hero > .premium-container,
+body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid {
+  overflow: visible !important;
+}
+
+@media (max-width: 1120px) {
+  /* header = ~80px. Add 28px breathing room = 108px */
+  body .glass-theme section.home-hero,
+  body .ria-site.glass-theme section.home-hero {
+    padding-top: 108px !important;
+    padding-bottom: 4rem !important;
+    min-height: 0 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .glass-theme section.home-hero,
+  body .ria-site.glass-theme section.home-hero {
+    padding-top: 110px !important;
+    min-height: 0 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid {
+    grid-template-columns: 1fr !important;
+    width: calc(100% - 2.5rem) !important;
+    max-width: 100% !important;
+    gap: 2.5rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* header = 72px + 6px padding = 78px. Add 20px = 98px */
+  body .glass-theme section.home-hero,
+  body .ria-site.glass-theme section.home-hero {
+    padding: 98px 0 3rem !important;
+    min-height: 0 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid {
+    width: calc(100% - 2.25rem) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  body .glass-theme section.home-hero,
+  body .ria-site.glass-theme section.home-hero {
+    padding: 94px 0 2.5rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BRAIN / VISUAL STAGE — order and sizing on mobile
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  body .ria-site.glass-theme .home-hero-panel {
+    order: 1 !important;
+    max-width: 100% !important;
+  }
+
+  .home-hero-visual-stage {
+    order: 2 !important;
+    min-height: 280px !important;
+    max-height: 360px !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+  }
+
+  .home-hero-mobile-brain {
+    display: block !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    max-height: 340px !important;
+    object-fit: contain !important;
+    opacity: 0.88 !important;
+    margin: 0 auto !important;
+  }
+
+  /* Hide floating telemetry chips */
+  .home-hero-stage-signal,
+  .hero-telemetry-chip,
+  .ria-brain-presence {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero-visual-stage {
+    min-height: 220px !important;
+    max-height: 290px !important;
+    border-radius: 14px !important;
+  }
+
+  .home-hero-mobile-brain {
+    max-height: 270px !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel h1.home-hero-headline {
+    font-size: clamp(2.2rem, 10.5vw, 2.75rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.05em !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel > p.home-hero-sub {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Buttons: full-width stacked */
+  .home-hero-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+
+  body .ria-site .home-hero-actions .premium-button {
+    width: 100% !important;
+    min-height: 52px !important;
+    justify-content: center !important;
+  }
+
+  /* Trust pills: 2 columns */
+  .hero-trust-pills {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+  }
+
+  /* Metrics: 3 columns */
+  .home-hero-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .home-hero-visual-stage {
+    min-height: 190px !important;
+    max-height: 240px !important;
+  }
+
+  .home-hero-mobile-brain {
+    max-height: 220px !important;
+  }
+
+  .hero-trust-pills {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-hero-metrics {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL OVERFLOW GUARD
+   ═══════════════════════════════════════════════════════════ */
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.ria-site {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Software Exchange mobile buttons */
+@media (max-width: 640px) {
+  .exchange-hero-actions {
+    display: grid !important;
+    width: 100% !important;
+  }
+  .exchange-hero-actions .exchange-button {
+    width: 100% !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SMARTPHONE COMPATIBILITY PATCH
+   Last-loaded, mobile-only rules that preserve the desktop layout.
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 760px) {
+  html,
+  body,
+  #root,
+  .ria-site {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: clip !important;
+  }
+
+  .ria-site *,
+  .ria-site *::before,
+  .ria-site *::after {
+    min-width: 0;
+  }
+
+  body .ria-site .premium-container,
+  body .ria-site .exchange-container,
+  body .ria-site.glass-theme .premium-container,
+  body .ria-site.glass-theme .exchange-container {
+    width: calc(100% - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+  }
+
+  body .glass-theme .site-header,
+  body .glass-theme .site-header-float {
+    min-height: 72px !important;
+    padding-top: 6px !important;
+  }
+
+  body .glass-theme .site-header-inner {
+    width: calc(100% - 0.75rem) !important;
+    max-width: calc(100vw - 0.75rem) !important;
+    height: 60px !important;
+    min-height: 60px !important;
+    margin-inline: auto !important;
+    padding-inline: 0.7rem !important;
+    gap: 0.6rem !important;
+    overflow: hidden !important;
+  }
+
+  .site-brand-lockup {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    gap: 0.55rem !important;
+  }
+
+  .site-brand-lockup > a {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .site-brand-lockup > span {
+    display: none !important;
+  }
+
+  body .glass-theme .site-menu-button {
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  body .glass-theme .site-menu-button span {
+    display: none !important;
+  }
+
+  body .glass-theme .site-menu-button svg {
+    width: 19px !important;
+    height: 19px !important;
+  }
+
+  .mobile-nav-panel {
+    top: 72px !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0.85rem 1rem calc(3rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  .mobile-nav-panel a.mobile-nav-link,
+  .mobile-nav-panel .mobile-nav-link {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body .ria-site.glass-theme section.home-hero {
+    display: block !important;
+    min-height: 0 !important;
+    padding: 92px 0 3.75rem !important;
+    overflow: hidden !important;
+  }
+
+  body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid {
+    display: grid !important;
+    width: calc(100% - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 2rem !important;
+    padding: 0 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel h1.home-hero-headline {
+    max-width: 100% !important;
+    font-size: clamp(2.15rem, 11vw, 2.8rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.045em !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-wrap: balance !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel > p.home-hero-sub {
+    max-width: 100% !important;
+    font-size: 0.98rem !important;
+    line-height: 1.68 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .hero-system-label {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+  }
+
+  .hero-system-label > span {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    border-left: 0 !important;
+  }
+
+  .hero-trust-pills {
+    display: grid !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.55rem !important;
+  }
+
+  body .glass-theme .home-hero .hero-trust-pills span {
+    width: 100% !important;
+    min-height: 40px !important;
+    justify-content: flex-start !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    text-align: left !important;
+  }
+
+  .home-hero-actions,
+  body .ria-site.glass-theme .home-hero-actions {
+    display: grid !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.7rem !important;
+  }
+
+  body .ria-site .home-hero-actions .premium-button,
+  body .ria-site.glass-theme .premium-button,
+  body .ria-site.glass-theme .ria-download-link,
+  body .ria-site.glass-theme .exchange-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .home-hero-metrics {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body .glass-theme .home-hero-metrics span {
+    display: grid !important;
+    min-height: 58px !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem 0 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(180, 218, 227, 0.08) !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+
+  body .glass-theme .home-hero-metrics strong {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    text-align: right !important;
+  }
+
+  .home-hero-visual-stage {
+    width: 100% !important;
+    min-height: 240px !important;
+    max-height: none !important;
+    border-radius: 16px !important;
+  }
+
+  .home-hero-mobile-brain {
+    width: min(100%, 340px) !important;
+    max-height: 230px !important;
+  }
+
+  .route-interior #ria-page-content {
+    overflow-x: clip !important;
+  }
+
+  .interior-page-hero {
+    min-height: 0 !important;
+    padding-top: 6rem !important;
+  }
+
+  .interior-page-hero-grid {
+    width: calc(100% - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 2.25rem !important;
+    padding: 0 0 3.5rem !important;
+  }
+
+  .interior-page-title {
+    max-width: 100% !important;
+    font-size: clamp(2.45rem, 12vw, 3.4rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.05em !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  .interior-page-copy {
+    max-width: 100% !important;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .interior-page-hero-grid > div:last-child {
+    min-height: 0 !important;
+  }
+
+  .neural-sphere {
+    min-height: 18rem !important;
+    border-radius: 16px !important;
+  }
+
+  .visual-card-image {
+    min-height: 18rem !important;
+    border-radius: 16px !important;
+  }
+
+  .visual-card-image img {
+    min-height: 18rem !important;
+  }
+
+  .visual-stack {
+    display: grid !important;
+    min-height: 0 !important;
+    gap: 0.75rem !important;
+    overflow: visible !important;
+  }
+
+  .visual-stack-image,
+  .visual-stack-image-0,
+  .visual-stack-image-1,
+  .visual-stack-image-2 {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    transform: none !important;
+    border-radius: 14px !important;
+  }
+
+  .feature-grid-premium,
+  .ria-download-grid,
+  .ria-release-body,
+  .ria-roadmap-grid,
+  .creative-feature-list,
+  .investor-grid,
+  .product-bento-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ria-os-header,
+  .ria-download-hero,
+  .footer-command-head,
+  .site-footer-bottom {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .ria-download-panel,
+  .code-console,
+  .release-notes-panel,
+  .timeline-line,
+  .prose-panel,
+  .dark-glass-card,
+  .feature-card-premium,
+  .ria-glass-card,
+  .glass-card {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .ria-download-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ria-download-badge {
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .code-block,
+  .code-console pre,
+  .ria-release-console pre,
+  pre,
+  code {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  form,
+  label,
+  input,
+  select,
+  textarea {
+    max-width: 100% !important;
+  }
+
+  .image-library-filters {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.55rem !important;
+  }
+
+  .image-library-filters button {
+    width: 100% !important;
+    min-height: 42px !important;
+    white-space: normal !important;
+  }
+
+  .image-library-lightbox {
+    padding: 0.75rem !important;
+  }
+
+  .image-library-lightbox-panel {
+    width: 100% !important;
+    max-height: calc(100svh - 1.5rem) !important;
+    border-radius: 14px !important;
+  }
+
+  .site-footer-premium .premium-container,
+  .site-footer-grid,
+  .site-footer-links,
+  .site-footer-bottom > div {
+    max-width: 100% !important;
+  }
+
+  .site-footer-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .site-footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+}
+
+@media (max-width: 430px) {
+  body .ria-site .premium-container,
+  body .ria-site .exchange-container,
+  body .ria-site.glass-theme .premium-container,
+  body .ria-site.glass-theme .exchange-container,
+  body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid,
+  .interior-page-hero-grid {
+    width: calc(100% - 1.5rem) !important;
+    max-width: calc(100vw - 1.5rem) !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel h1.home-hero-headline {
+    font-size: clamp(2rem, 11.5vw, 2.55rem) !important;
+  }
+
+  .interior-page-title {
+    font-size: clamp(2.15rem, 11.8vw, 3rem) !important;
+  }
+
+  .image-library-filters,
+  .site-footer-links {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}

@@ -1,0 +1,481 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/RiaBrainPresence.tsx");const useCallback = __vite__cjsImport0_react["useCallback"]; const useRef = __vite__cjsImport0_react["useRef"]; const useState = __vite__cjsImport0_react["useState"];const _jsxDEV = __vite__cjsImport1_react_jsxDevRuntime["jsxDEV"];import __vite__cjsImport0_react from "/node_modules/.vite/deps/react.js?v=c0a6c933";
+var _jsxFileName = "C:/Users/sudee/Projects/ria-website/src/components/RiaBrainPresence.tsx";
+import __vite__cjsImport1_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=c0a6c933";
+var _s = $RefreshSig$();
+const fallbackNodes = [
+	[
+		180,
+		170,
+		3.2
+	],
+	[
+		245,
+		108,
+		2.5
+	],
+	[
+		330,
+		116,
+		2.8
+	],
+	[
+		420,
+		108,
+		2.4
+	],
+	[
+		500,
+		170,
+		3.1
+	],
+	[
+		148,
+		256,
+		2.4
+	],
+	[
+		254,
+		242,
+		2.8
+	],
+	[
+		345,
+		220,
+		3.4
+	],
+	[
+		438,
+		244,
+		2.6
+	],
+	[
+		548,
+		260,
+		2.4
+	],
+	[
+		194,
+		356,
+		2.8
+	],
+	[
+		306,
+		350,
+		2.5
+	],
+	[
+		394,
+		350,
+		2.8
+	],
+	[
+		506,
+		356,
+		2.7
+	],
+	[
+		258,
+		446,
+		2.4
+	],
+	[
+		350,
+		470,
+		3.2
+	],
+	[
+		456,
+		446,
+		2.4
+	]
+];
+const fallbackLinks = [
+	"M180 170 C220 132 270 114 330 116 C382 118 432 132 500 170",
+	"M148 256 C214 230 281 224 345 220 C412 222 478 234 548 260",
+	"M194 356 C254 326 306 326 350 470 C392 326 448 326 506 356",
+	"M245 108 C254 180 254 214 254 242 C244 302 234 340 194 356",
+	"M420 108 C438 166 438 212 438 244 C454 302 472 340 506 356",
+	"M180 170 C178 246 188 304 258 446 M500 170 C514 246 506 304 456 446",
+	"M148 256 C206 284 254 314 306 350 C336 382 348 424 350 470",
+	"M548 260 C496 286 448 316 394 350 C366 382 352 424 350 470"
+];
+export default function RiaBrainPresence() {
+	_s();
+	const warnedRef = useRef(false);
+	const [imageReady, setImageReady] = useState(false);
+	const [imageMissing, setImageMissing] = useState(false);
+	const handleImageError = useCallback(() => {
+		setImageMissing(true);
+		setImageReady(false);
+		if (!warnedRef.current) {
+			warnedRef.current = true;
+			console.warn("RIA brain image missing: place ria-4k-neural-brain.png in public/assets/ria/");
+		}
+	}, []);
+	return /* @__PURE__ */ _jsxDEV("div", {
+		className: "ria-hero-scene-fallback",
+		"aria-hidden": "true",
+		children: /* @__PURE__ */ _jsxDEV("div", {
+			className: "ria-brain-presence",
+			"data-image-state": imageMissing ? "fallback" : imageReady ? "loaded" : "loading",
+			children: /* @__PURE__ */ _jsxDEV("div", {
+				className: "ria-brain-depth-shell",
+				children: [
+					!imageMissing && /* @__PURE__ */ _jsxDEV("img", {
+						src: "/assets/ria/ria-4k-neural-brain.png",
+						alt: "",
+						className: `ria-brain-image${imageReady ? " is-loaded" : ""}`,
+						loading: "eager",
+						decoding: "async",
+						onLoad: () => setImageReady(true),
+						onError: handleImageError
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 42,
+						columnNumber: 13
+					}, this),
+					(imageMissing || !imageReady) && /* @__PURE__ */ _jsxDEV("svg", {
+						className: "ria-brain-fallback-svg",
+						viewBox: "0 0 700 620",
+						preserveAspectRatio: "xMidYMid meet",
+						role: "img",
+						children: [
+							/* @__PURE__ */ _jsxDEV("defs", { children: [
+								/* @__PURE__ */ _jsxDEV("radialGradient", {
+									id: "riaBrainFallbackVolume",
+									cx: "50%",
+									cy: "46%",
+									r: "58%",
+									children: [
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "0%",
+											stopColor: "#dffcff",
+											stopOpacity: "0.44"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 57,
+											columnNumber: 19
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "34%",
+											stopColor: "#7de7f5",
+											stopOpacity: "0.18"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 58,
+											columnNumber: 19
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "72%",
+											stopColor: "#1b86a6",
+											stopOpacity: "0.055"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 59,
+											columnNumber: 19
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "100%",
+											stopColor: "#05131a",
+											stopOpacity: "0"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 60,
+											columnNumber: 19
+										}, this)
+									]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 56,
+									columnNumber: 17
+								}, this),
+								/* @__PURE__ */ _jsxDEV("linearGradient", {
+									id: "riaBrainFallbackEdge",
+									x1: "12%",
+									y1: "8%",
+									x2: "88%",
+									y2: "92%",
+									children: [
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "0%",
+											stopColor: "#ecfeff",
+											stopOpacity: "0.82"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 63,
+											columnNumber: 19
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "42%",
+											stopColor: "#86edf8",
+											stopOpacity: "0.42"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 64,
+											columnNumber: 19
+										}, this),
+										/* @__PURE__ */ _jsxDEV("stop", {
+											offset: "100%",
+											stopColor: "#22a6c7",
+											stopOpacity: "0.16"
+										}, void 0, false, {
+											fileName: _jsxFileName,
+											lineNumber: 65,
+											columnNumber: 19
+										}, this)
+									]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 62,
+									columnNumber: 17
+								}, this),
+								/* @__PURE__ */ _jsxDEV("filter", {
+									id: "riaBrainFallbackGlow",
+									x: "-60%",
+									y: "-60%",
+									width: "220%",
+									height: "220%",
+									children: [/* @__PURE__ */ _jsxDEV("feGaussianBlur", {
+										stdDeviation: "4",
+										result: "blur"
+									}, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 68,
+										columnNumber: 19
+									}, this), /* @__PURE__ */ _jsxDEV("feMerge", { children: [/* @__PURE__ */ _jsxDEV("feMergeNode", { in: "blur" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 70,
+										columnNumber: 21
+									}, this), /* @__PURE__ */ _jsxDEV("feMergeNode", { in: "SourceGraphic" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 71,
+										columnNumber: 21
+									}, this)] }, void 0, true, {
+										fileName: _jsxFileName,
+										lineNumber: 69,
+										columnNumber: 19
+									}, this)]
+								}, void 0, true, {
+									fileName: _jsxFileName,
+									lineNumber: 67,
+									columnNumber: 17
+								}, this)
+							] }, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 55,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("ellipse", {
+								className: "ria-brain-fallback-aura",
+								cx: "350",
+								cy: "308",
+								rx: "316",
+								ry: "252"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 76,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("path", {
+								className: "ria-brain-fallback-volume",
+								d: "M126 282 C87 217 118 143 186 116 C220 57 301 63 350 100 C404 59 485 57 520 116 C596 148 626 224 580 292 C615 356 580 436 505 458 C466 526 389 534 350 492 C304 535 224 525 190 462 C112 440 82 352 126 282 Z"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 77,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("path", {
+								className: "ria-brain-fallback-midline",
+								d: "M350 100 C323 166 335 228 350 292 C372 382 369 448 350 492"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 81,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("g", {
+								className: "ria-brain-fallback-folds",
+								children: [
+									/* @__PURE__ */ _jsxDEV("path", { d: "M186 116 C206 164 236 180 288 170 C316 168 333 184 345 218" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 87,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M520 116 C494 166 462 184 414 170 C388 166 366 184 354 218" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 88,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M126 282 C185 258 230 260 278 292 C305 310 329 310 350 292" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 89,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M580 292 C524 262 472 262 422 294 C394 312 371 311 350 292" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 90,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M190 462 C222 416 260 396 308 404 C331 408 344 434 350 470" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 91,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M505 458 C470 414 430 396 392 404 C366 409 354 434 350 470" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 92,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M148 256 C196 320 224 354 194 356 C169 358 140 334 126 282" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 93,
+										columnNumber: 17
+									}, this),
+									/* @__PURE__ */ _jsxDEV("path", { d: "M548 260 C506 316 482 350 506 356 C535 363 566 336 580 292" }, void 0, false, {
+										fileName: _jsxFileName,
+										lineNumber: 94,
+										columnNumber: 17
+									}, this)
+								]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 86,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("g", {
+								className: "ria-brain-fallback-links",
+								children: fallbackLinks.map((d) => /* @__PURE__ */ _jsxDEV("path", { d }, d, false, {
+									fileName: _jsxFileName,
+									lineNumber: 99,
+									columnNumber: 19
+								}, this))
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 97,
+								columnNumber: 15
+							}, this),
+							/* @__PURE__ */ _jsxDEV("g", {
+								className: "ria-brain-fallback-nodes",
+								children: fallbackNodes.map(([cx, cy, r], index) => /* @__PURE__ */ _jsxDEV("circle", {
+									cx,
+									cy,
+									r,
+									style: { animationDelay: `${index * -.28}s` }
+								}, `${cx}-${cy}`, false, {
+									fileName: _jsxFileName,
+									lineNumber: 105,
+									columnNumber: 19
+								}, this))
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 103,
+								columnNumber: 15
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 54,
+						columnNumber: 13
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { className: "ria-brain-glow" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 117,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { className: "ria-brain-particle-field" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 118,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { className: "ria-brain-scanline" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 119,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { className: "ria-brain-orbit-ring ring-1" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 120,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", { className: "ria-brain-orbit-ring ring-2" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 121,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", {
+						className: "ria-brain-telemetry-cluster",
+						children: [
+							/* @__PURE__ */ _jsxDEV("span", {
+								className: "ria-brain-coordinate",
+								children: "MEMORY / 12 LAYERS"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 123,
+								columnNumber: 13
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", {
+								className: "ria-brain-coordinate",
+								children: "RUNTIME / PRIVATE"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 124,
+								columnNumber: 13
+							}, this),
+							/* @__PURE__ */ _jsxDEV("span", {
+								className: "ria-brain-coordinate",
+								children: "ACTION / OWNER GATE"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 125,
+								columnNumber: 13
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 122,
+						columnNumber: 11
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 40,
+				columnNumber: 9
+			}, this)
+		}, void 0, false, {
+			fileName: _jsxFileName,
+			lineNumber: 39,
+			columnNumber: 7
+		}, this)
+	}, void 0, false, {
+		fileName: _jsxFileName,
+		lineNumber: 38,
+		columnNumber: 5
+	}, this);
+}
+_s(RiaBrainPresence, "wdBvR88O9nsiYW5sGTl9ks9HW7E=");
+_c = RiaBrainPresence;
+var _c;
+$RefreshReg$(_c, "RiaBrainPresence");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+import * as __vite_react_currentExports from "/src/components/RiaBrainPresence.tsx";
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+
+  const currentExports = __vite_react_currentExports;
+  queueMicrotask(() => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/sudee/Projects/ria-website/src/components/RiaBrainPresence.tsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/sudee/Projects/ria-website/src/components/RiaBrainPresence.tsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/sudee/Projects/ria-website/src/components/RiaBrainPresence.tsx" + ' ' + id); }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,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Q0gsT0FBTyxFQUFFLGdCQUFnQixHQUFHLFFBQVEsQ0FBQyxJQUFLLElBQUk7U0FDOUMsRUFMSyxHQUFHLEdBQUcsR0FBRzs7OztnQkFLZCxDQUNGO1FBQ0E7Ozs7O09BQ0E7Ozs7OztLQUdSLHdCQUFDLE9BQUQsRUFBSyxXQUFVLGtCQUFtQjs7Ozs7S0FDbEMsd0JBQUMsT0FBRCxFQUFLLFdBQVUsNEJBQTZCOzs7OztLQUM1Qyx3QkFBQyxPQUFELEVBQUssV0FBVSxzQkFBdUI7Ozs7O0tBQ3RDLHdCQUFDLE9BQUQsRUFBSyxXQUFVLCtCQUFnQzs7Ozs7S0FDL0Msd0JBQUMsT0FBRCxFQUFLLFdBQVUsK0JBQWdDOzs7OztLQUMvQyx3QkFBQyxPQUFEO01BQUssV0FBVTtnQkFBZjtPQUNFLHdCQUFDLFFBQUQ7UUFBTSxXQUFVO2tCQUF1QjtRQUF5Qjs7Ozs7T0FDaEUsd0JBQUMsUUFBRDtRQUFNLFdBQVU7a0JBQXVCO1FBQXdCOzs7OztPQUMvRCx3QkFBQyxRQUFEO1FBQU0sV0FBVTtrQkFBdUI7UUFBMEI7Ozs7O09BQzdEOzs7Ozs7S0FDRjs7Ozs7O0dBQ0Y7Ozs7O0VBQ0Y7Ozs7OztvREFFVCIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJSaWFCcmFpblByZXNlbmNlLnRzeCJdLCJ2ZXJzaW9uIjozLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VDYWxsYmFjaywgdXNlUmVmLCB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0J1xuXG5jb25zdCBmYWxsYmFja05vZGVzID0gW1xuICBbMTgwLCAxNzAsIDMuMl0sIFsyNDUsIDEwOCwgMi41XSwgWzMzMCwgMTE2LCAyLjhdLCBbNDIwLCAxMDgsIDIuNF0sXG4gIFs1MDAsIDE3MCwgMy4xXSwgWzE0OCwgMjU2LCAyLjRdLCBbMjU0LCAyNDIsIDIuOF0sIFszNDUsIDIyMCwgMy40XSxcbiAgWzQzOCwgMjQ0LCAyLjZdLCBbNTQ4LCAyNjAsIDIuNF0sIFsxOTQsIDM1NiwgMi44XSwgWzMwNiwgMzUwLCAyLjVdLFxuICBbMzk0LCAzNTAsIDIuOF0sIFs1MDYsIDM1NiwgMi43XSwgWzI1OCwgNDQ2LCAyLjRdLCBbMzUwLCA0NzAsIDMuMl0sXG4gIFs0NTYsIDQ0NiwgMi40XSxcbl1cblxuY29uc3QgZmFsbGJhY2tMaW5rcyA9IFtcbiAgJ00xODAgMTcwIEMyMjAgMTMyIDI3MCAxMTQgMzMwIDExNiBDMzgyIDExOCA0MzIgMTMyIDUwMCAxNzAnLFxuICAnTTE0OCAyNTYgQzIxNCAyMzAgMjgxIDIyNCAzNDUgMjIwIEM0MTIgMjIyIDQ3OCAyMzQgNTQ4IDI2MCcsXG4gICdNMTk0IDM1NiBDMjU0IDMyNiAzMDYgMzI2IDM1MCA0NzAgQzM5MiAzMjYgNDQ4IDMyNiA1MDYgMzU2JyxcbiAgJ00yNDUgMTA4IEMyNTQgMTgwIDI1NCAyMTQgMjU0IDI0MiBDMjQ0IDMwMiAyMzQgMzQwIDE5NCAzNTYnLFxuICAnTTQyMCAxMDggQzQzOCAxNjYgNDM4IDIxMiA0MzggMjQ0IEM0NTQgMzAyIDQ3MiAzNDAgNTA2IDM1NicsXG4gICdNMTgwIDE3MCBDMTc4IDI0NiAxODggMzA0IDI1OCA0NDYgTTUwMCAxNzAgQzUxNCAyNDYgNTA2IDMwNCA0NTYgNDQ2JyxcbiAgJ00xNDggMjU2IEMyMDYgMjg0IDI1NCAzMTQgMzA2IDM1MCBDMzM2IDM4MiAzNDggNDI0IDM1MCA0NzAnLFxuICAnTTU0OCAyNjAgQzQ5NiAyODYgNDQ4IDMxNiAzOTQgMzUwIEMzNjYgMzgyIDM1MiA0MjQgMzUwIDQ3MCcsXG5dXG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFJpYUJyYWluUHJlc2VuY2UoKSB7XG4gIGNvbnN0IHdhcm5lZFJlZiA9IHVzZVJlZihmYWxzZSlcbiAgY29uc3QgW2ltYWdlUmVhZHksIHNldEltYWdlUmVhZHldID0gdXNlU3RhdGUoZmFsc2UpXG4gIGNvbnN0IFtpbWFnZU1pc3NpbmcsIHNldEltYWdlTWlzc2luZ10gPSB1c2VTdGF0ZShmYWxzZSlcblxuICBjb25zdCBoYW5kbGVJbWFnZUVycm9yID0gdXNlQ2FsbGJhY2soKCkgPT4ge1xuICAgIHNldEltYWdlTWlzc2luZyh0cnVlKVxuICAgIHNldEltYWdlUmVhZHkoZmFsc2UpXG5cbiAgICBpZiAoIXdhcm5lZFJlZi5jdXJyZW50KSB7XG4gICAgICB3YXJuZWRSZWYuY3VycmVudCA9IHRydWVcbiAgICAgIGNvbnNvbGUud2FybignUklBIGJyYWluIGltYWdlIG1pc3Npbmc6IHBsYWNlIHJpYS00ay1uZXVyYWwtYnJhaW4ucG5nIGluIHB1YmxpYy9hc3NldHMvcmlhLycpXG4gICAgfVxuICB9LCBbXSlcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWhlcm8tc2NlbmUtZmFsbGJhY2tcIiBhcmlhLWhpZGRlbj1cInRydWVcIj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWJyYWluLXByZXNlbmNlXCIgZGF0YS1pbWFnZS1zdGF0ZT17aW1hZ2VNaXNzaW5nID8gJ2ZhbGxiYWNrJyA6IGltYWdlUmVhZHkgPyAnbG9hZGVkJyA6ICdsb2FkaW5nJ30+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWJyYWluLWRlcHRoLXNoZWxsXCI+XG4gICAgICAgICAgeyFpbWFnZU1pc3NpbmcgJiYgKFxuICAgICAgICAgICAgPGltZ1xuICAgICAgICAgICAgICBzcmM9XCIvYXNzZXRzL3JpYS9yaWEtNGstbmV1cmFsLWJyYWluLnBuZ1wiXG4gICAgICAgICAgICAgIGFsdD1cIlwiXG4gICAgICAgICAgICAgIGNsYXNzTmFtZT17YHJpYS1icmFpbi1pbWFnZSR7aW1hZ2VSZWFkeSA/ICcgaXMtbG9hZGVkJyA6ICcnfWB9XG4gICAgICAgICAgICAgIGxvYWRpbmc9XCJlYWdlclwiXG4gICAgICAgICAgICAgIGRlY29kaW5nPVwiYXN5bmNcIlxuICAgICAgICAgICAgICBvbkxvYWQ9eygpID0+IHNldEltYWdlUmVhZHkodHJ1ZSl9XG4gICAgICAgICAgICAgIG9uRXJyb3I9e2hhbmRsZUltYWdlRXJyb3J9XG4gICAgICAgICAgICAvPlxuICAgICAgICAgICl9XG5cbiAgICAgICAgICB7KGltYWdlTWlzc2luZyB8fCAhaW1hZ2VSZWFkeSkgJiYgKFxuICAgICAgICAgICAgPHN2ZyBjbGFzc05hbWU9XCJyaWEtYnJhaW4tZmFsbGJhY2stc3ZnXCIgdmlld0JveD1cIjAgMCA3MDAgNjIwXCIgcHJlc2VydmVBc3BlY3RSYXRpbz1cInhNaWRZTWlkIG1lZXRcIiByb2xlPVwiaW1nXCI+XG4gICAgICAgICAgICAgIDxkZWZzPlxuICAgICAgICAgICAgICAgIDxyYWRpYWxHcmFkaWVudCBpZD1cInJpYUJyYWluRmFsbGJhY2tWb2x1bWVcIiBjeD1cIjUwJVwiIGN5PVwiNDYlXCIgcj1cIjU4JVwiPlxuICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMCVcIiBzdG9wQ29sb3I9XCIjZGZmY2ZmXCIgc3RvcE9wYWNpdHk9XCIwLjQ0XCIgLz5cbiAgICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD1cIjM0JVwiIHN0b3BDb2xvcj1cIiM3ZGU3ZjVcIiBzdG9wT3BhY2l0eT1cIjAuMThcIiAvPlxuICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiNzIlXCIgc3RvcENvbG9yPVwiIzFiODZhNlwiIHN0b3BPcGFjaXR5PVwiMC4wNTVcIiAvPlxuICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiMTAwJVwiIHN0b3BDb2xvcj1cIiMwNTEzMWFcIiBzdG9wT3BhY2l0eT1cIjBcIiAvPlxuICAgICAgICAgICAgICAgIDwvcmFkaWFsR3JhZGllbnQ+XG4gICAgICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPVwicmlhQnJhaW5GYWxsYmFja0VkZ2VcIiB4MT1cIjEyJVwiIHkxPVwiOCVcIiB4Mj1cIjg4JVwiIHkyPVwiOTIlXCI+XG4gICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIwJVwiIHN0b3BDb2xvcj1cIiNlY2ZlZmZcIiBzdG9wT3BhY2l0eT1cIjAuODJcIiAvPlxuICAgICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PVwiNDIlXCIgc3RvcENvbG9yPVwiIzg2ZWRmOFwiIHN0b3BPcGFjaXR5PVwiMC40MlwiIC8+XG4gICAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9XCIxMDAlXCIgc3RvcENvbG9yPVwiIzIyYTZjN1wiIHN0b3BPcGFjaXR5PVwiMC4xNlwiIC8+XG4gICAgICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD5cbiAgICAgICAgICAgICAgICA8ZmlsdGVyIGlkPVwicmlhQnJhaW5GYWxsYmFja0dsb3dcIiB4PVwiLTYwJVwiIHk9XCItNjAlXCIgd2lkdGg9XCIyMjAlXCIgaGVpZ2h0PVwiMjIwJVwiPlxuICAgICAgICAgICAgICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj1cIjRcIiByZXN1bHQ9XCJibHVyXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxmZU1lcmdlPlxuICAgICAgICAgICAgICAgICAgICA8ZmVNZXJnZU5vZGUgaW49XCJibHVyXCIgLz5cbiAgICAgICAgICAgICAgICAgICAgPGZlTWVyZ2VOb2RlIGluPVwiU291cmNlR3JhcGhpY1wiIC8+XG4gICAgICAgICAgICAgICAgICA8L2ZlTWVyZ2U+XG4gICAgICAgICAgICAgICAgPC9maWx0ZXI+XG4gICAgICAgICAgICAgIDwvZGVmcz5cblxuICAgICAgICAgICAgICA8ZWxsaXBzZSBjbGFzc05hbWU9XCJyaWEtYnJhaW4tZmFsbGJhY2stYXVyYVwiIGN4PVwiMzUwXCIgY3k9XCIzMDhcIiByeD1cIjMxNlwiIHJ5PVwiMjUyXCIgLz5cbiAgICAgICAgICAgICAgPHBhdGhcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJyaWEtYnJhaW4tZmFsbGJhY2stdm9sdW1lXCJcbiAgICAgICAgICAgICAgICBkPVwiTTEyNiAyODIgQzg3IDIxNyAxMTggMTQzIDE4NiAxMTYgQzIyMCA1NyAzMDEgNjMgMzUwIDEwMCBDNDA0IDU5IDQ4NSA1NyA1MjAgMTE2IEM1OTYgMTQ4IDYyNiAyMjQgNTgwIDI5MiBDNjE1IDM1NiA1ODAgNDM2IDUwNSA0NTggQzQ2NiA1MjYgMzg5IDUzNCAzNTAgNDkyIEMzMDQgNTM1IDIyNCA1MjUgMTkwIDQ2MiBDMTEyIDQ0MCA4MiAzNTIgMTI2IDI4MiBaXCJcbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPHBhdGhcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJyaWEtYnJhaW4tZmFsbGJhY2stbWlkbGluZVwiXG4gICAgICAgICAgICAgICAgZD1cIk0zNTAgMTAwIEMzMjMgMTY2IDMzNSAyMjggMzUwIDI5MiBDMzcyIDM4MiAzNjkgNDQ4IDM1MCA0OTJcIlxuICAgICAgICAgICAgICAvPlxuXG4gICAgICAgICAgICAgIDxnIGNsYXNzTmFtZT1cInJpYS1icmFpbi1mYWxsYmFjay1mb2xkc1wiPlxuICAgICAgICAgICAgICAgIDxwYXRoIGQ9XCJNMTg2IDExNiBDMjA2IDE2NCAyMzYgMTgwIDI4OCAxNzAgQzMxNiAxNjggMzMzIDE4NCAzNDUgMjE4XCIgLz5cbiAgICAgICAgICAgICAgICA8cGF0aCBkPVwiTTUyMCAxMTYgQzQ5NCAxNjYgNDYyIDE4NCA0MTQgMTcwIEMzODggMTY2IDM2NiAxODQgMzU0IDIxOFwiIC8+XG4gICAgICAgICAgICAgICAgPHBhdGggZD1cIk0xMjYgMjgyIEMxODUgMjU4IDIzMCAyNjAgMjc4IDI5MiBDMzA1IDMxMCAzMjkgMzEwIDM1MCAyOTJcIiAvPlxuICAgICAgICAgICAgICAgIDxwYXRoIGQ9XCJNNTgwIDI5MiBDNTI0IDI2MiA0NzIgMjYyIDQyMiAyOTQgQzM5NCAzMTIgMzcxIDMxMSAzNTAgMjkyXCIgLz5cbiAgICAgICAgICAgICAgICA8cGF0aCBkPVwiTTE5MCA0NjIgQzIyMiA0MTYgMjYwIDM5NiAzMDggNDA0IEMzMzEgNDA4IDM0NCA0MzQgMzUwIDQ3MFwiIC8+XG4gICAgICAgICAgICAgICAgPHBhdGggZD1cIk01MDUgNDU4IEM0NzAgNDE0IDQzMCAzOTYgMzkyIDQwNCBDMzY2IDQwOSAzNTQgNDM0IDM1MCA0NzBcIiAvPlxuICAgICAgICAgICAgICAgIDxwYXRoIGQ9XCJNMTQ4IDI1NiBDMTk2IDMyMCAyMjQgMzU0IDE5NCAzNTYgQzE2OSAzNTggMTQwIDMzNCAxMjYgMjgyXCIgLz5cbiAgICAgICAgICAgICAgICA8cGF0aCBkPVwiTTU0OCAyNjAgQzUwNiAzMTYgNDgyIDM1MCA1MDYgMzU2IEM1MzUgMzYzIDU2NiAzMzYgNTgwIDI5MlwiIC8+XG4gICAgICAgICAgICAgIDwvZz5cblxuICAgICAgICAgICAgICA8ZyBjbGFzc05hbWU9XCJyaWEtYnJhaW4tZmFsbGJhY2stbGlua3NcIj5cbiAgICAgICAgICAgICAgICB7ZmFsbGJhY2tMaW5rcy5tYXAoKGQpID0+IChcbiAgICAgICAgICAgICAgICAgIDxwYXRoIGtleT17ZH0gZD17ZH0gLz5cbiAgICAgICAgICAgICAgICApKX1cbiAgICAgICAgICAgICAgPC9nPlxuXG4gICAgICAgICAgICAgIDxnIGNsYXNzTmFtZT1cInJpYS1icmFpbi1mYWxsYmFjay1ub2Rlc1wiPlxuICAgICAgICAgICAgICAgIHtmYWxsYmFja05vZGVzLm1hcCgoW2N4LCBjeSwgcl0sIGluZGV4KSA9PiAoXG4gICAgICAgICAgICAgICAgICA8Y2lyY2xlXG4gICAgICAgICAgICAgICAgICAgIGtleT17YCR7Y3h9LSR7Y3l9YH1cbiAgICAgICAgICAgICAgICAgICAgY3g9e2N4fVxuICAgICAgICAgICAgICAgICAgICBjeT17Y3l9XG4gICAgICAgICAgICAgICAgICAgIHI9e3J9XG4gICAgICAgICAgICAgICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkRlbGF5OiBgJHtpbmRleCAqIC0wLjI4fXNgIH19XG4gICAgICAgICAgICAgICAgICAvPlxuICAgICAgICAgICAgICAgICkpfVxuICAgICAgICAgICAgICA8L2c+XG4gICAgICAgICAgICA8L3N2Zz5cbiAgICAgICAgICApfVxuXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtYnJhaW4tZ2xvd1wiIC8+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtYnJhaW4tcGFydGljbGUtZmllbGRcIiAvPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWJyYWluLXNjYW5saW5lXCIgLz5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJpYS1icmFpbi1vcmJpdC1yaW5nIHJpbmctMVwiIC8+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyaWEtYnJhaW4tb3JiaXQtcmluZyByaW5nLTJcIiAvPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmlhLWJyYWluLXRlbGVtZXRyeS1jbHVzdGVyXCI+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJyaWEtYnJhaW4tY29vcmRpbmF0ZVwiPk1FTU9SWSAvIDEyIExBWUVSUzwvc3Bhbj5cbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInJpYS1icmFpbi1jb29yZGluYXRlXCI+UlVOVElNRSAvIFBSSVZBVEU8L3NwYW4+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJyaWEtYnJhaW4tY29vcmRpbmF0ZVwiPkFDVElPTiAvIE9XTkVSIEdBVEU8L3NwYW4+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gIClcbn1cbiJdfQ==

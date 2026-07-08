@@ -119,6 +119,11 @@ export default function RiaBrainPresence() {
           <div className="ria-brain-scanline" />
           <div className="ria-brain-orbit-ring ring-1" />
           <div className="ria-brain-orbit-ring ring-2" />
+          <div className="ria-brain-telemetry-cluster">
+            <span className="ria-brain-coordinate">MEMORY / 12 LAYERS</span>
+            <span className="ria-brain-coordinate">RUNTIME / PRIVATE</span>
+            <span className="ria-brain-coordinate">ACTION / OWNER GATE</span>
+          </div>
         </div>
       </div>
     </div>

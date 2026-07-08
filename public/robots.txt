@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ria-intelligence.com/sitemap.xml
+Sitemap: https://www.aiontec.co.in/sitemap.xml
