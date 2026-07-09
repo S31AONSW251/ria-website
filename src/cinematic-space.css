@@ -1,0 +1,422 @@
+/*
+ * Cinematic deep-space layer for AION / RIA.
+ * CSS-only star sky, orbital arcs, Earth-horizon glow, and restrained motion.
+ */
+
+:root {
+  --cinematic-space-base: #000103;
+  --cinematic-space-deep: #01050a;
+  --cinematic-space-ink: #020812;
+  --cinematic-star-soft: rgba(228, 247, 252, 0.62);
+  --cinematic-star-faint: rgba(178, 215, 224, 0.34);
+  --cinematic-cyan: rgba(111, 220, 235, 0.16);
+  --cinematic-silver: rgba(220, 237, 242, 0.12);
+}
+
+html,
+body,
+#root {
+  background: var(--cinematic-space-base) !important;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body .ria-site.glass-theme {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  background:
+    radial-gradient(ellipse at 70% 106%, rgba(95, 199, 220, 0.105), transparent 38rem),
+    radial-gradient(ellipse at 48% -12%, rgba(55, 102, 132, 0.055), transparent 42rem),
+    linear-gradient(180deg, var(--cinematic-space-deep) 0%, var(--cinematic-space-base) 46%, #000000 100%) !important;
+}
+
+body .ria-site.glass-theme::before,
+body .ria-site.glass-theme::after {
+  content: "";
+  position: fixed;
+  inset: -14vmax;
+  z-index: 0;
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Far and mid star layers: tiny, low-contrast, very slow drift. */
+body .ria-site.glass-theme::before {
+  opacity: 0.48 !important;
+  background:
+    radial-gradient(circle, rgba(245, 252, 255, 0.68) 0 0.7px, transparent 1.2px) 0 0 / 143px 143px repeat,
+    radial-gradient(circle, rgba(188, 226, 235, 0.42) 0 0.8px, transparent 1.3px) 72px 93px / 229px 229px repeat,
+    radial-gradient(circle, rgba(255, 255, 255, 0.44) 0 0.6px, transparent 1.1px) 211px 41px / 367px 367px repeat,
+    radial-gradient(circle, rgba(126, 211, 226, 0.28) 0 0.9px, transparent 1.6px) 320px 280px / 521px 521px repeat !important;
+  animation:
+    cinematicFarStars 180s linear infinite,
+    cinematicStarBreath 7.5s ease-in-out infinite alternate;
+}
+
+/* Near particles, silver dust, orbital atmosphere, and faint Earth horizon. */
+body .ria-site.glass-theme::after {
+  opacity: 0.78 !important;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(241, 250, 255, 0.18) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 86% 18%, rgba(210, 237, 244, 0.16) 0 1px, transparent 1.9px),
+    radial-gradient(circle at 64% 54%, rgba(204, 238, 245, 0.12) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at 72% 111%, rgba(215, 246, 251, 0.135), rgba(105, 217, 236, 0.06) 18%, transparent 42%),
+    radial-gradient(ellipse at 78% 115%, rgba(68, 177, 204, 0.12), transparent 48%),
+    radial-gradient(circle at 50% 42%, rgba(126, 180, 194, 0.025), transparent 42%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), transparent 34%, transparent 58%, rgba(0, 0, 0, 0.58) 100%),
+    radial-gradient(ellipse at center, transparent 48%, rgba(0, 0, 0, 0.46) 100%);
+  background-size: 540px 540px, 680px 680px, 780px 780px, auto, auto, auto, auto, auto;
+  animation:
+    cinematicNearDrift 92s linear infinite,
+    cinematicDustPulse 18s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+body .ria-site.glass-theme > :not(.cosmic-stage):not(.cosmos-canvas):not(.living-stream):not(.ria-cinematic-background) {
+  position: relative;
+  z-index: 3;
+}
+
+body .ria-site.glass-theme .cosmic-stage,
+body .ria-site.glass-theme .cosmos-canvas,
+body .ria-site.glass-theme .living-stream {
+  opacity: 0.16 !important;
+  mix-blend-mode: screen;
+}
+
+body .ria-site.glass-theme .cosmos-canvas {
+  opacity: 0.08 !important;
+}
+
+/* Homepage: orbital intelligence sky behind the brain and readable text field. */
+body .ria-site.glass-theme .ria-cinematic-background {
+  z-index: 1 !important;
+  background:
+    radial-gradient(ellipse at 77% 104%, rgba(204, 244, 250, 0.13), rgba(96, 208, 228, 0.07) 19%, transparent 45%),
+    radial-gradient(circle at 74% 38%, rgba(105, 225, 240, 0.115), transparent 23%),
+    radial-gradient(circle at 81% 63%, rgba(42, 116, 145, 0.11), transparent 34%),
+    linear-gradient(180deg, #01050a 0%, #000204 62%, #000000 100%) !important;
+}
+
+body .ria-site.glass-theme .ria-cinematic-background::before,
+body .ria-site.glass-theme .ria-cinematic-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body .ria-site.glass-theme .ria-cinematic-background::before {
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle, rgba(245, 252, 255, 0.72) 0 0.72px, transparent 1.22px),
+    radial-gradient(circle, rgba(165, 221, 232, 0.28) 0 0.85px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.22) 0 0.6px, transparent 1.1px);
+  background-size: 118px 118px, 183px 183px, 313px 313px;
+  background-position: 30px 24px, 90px 70px, 180px 120px;
+  animation: cinematicHeroStars 120s linear infinite;
+}
+
+body .ria-site.glass-theme .ria-cinematic-background::after {
+  z-index: 1;
+  opacity: 0.6;
+  background:
+    radial-gradient(ellipse at 76% 98%, rgba(224, 250, 252, 0.16), rgba(104, 223, 240, 0.08) 17%, transparent 44%),
+    radial-gradient(ellipse at 76% 50%, transparent 33%, rgba(145, 229, 239, 0.055) 33.25%, transparent 33.8%, transparent 42%, rgba(145, 229, 239, 0.045) 42.25%, transparent 42.75%),
+    radial-gradient(ellipse at 77% 51%, transparent 48%, rgba(211, 244, 248, 0.04) 48.2%, transparent 48.85%),
+    linear-gradient(90deg, rgba(0, 1, 3, 0.97) 0%, rgba(0, 1, 3, 0.88) 27%, rgba(0, 1, 3, 0.38) 50%, rgba(0, 1, 3, 0.08) 76%, rgba(0, 1, 3, 0.28) 100%);
+}
+
+body .ria-site.glass-theme .ria-cinematic-readability {
+  background:
+    linear-gradient(90deg, rgba(0, 2, 5, 0.98) 0%, rgba(0, 2, 5, 0.9) 27%, rgba(0, 2, 5, 0.42) 51%, rgba(0, 2, 5, 0.08) 76%),
+    linear-gradient(180deg, rgba(0, 2, 5, 0.16) 0%, transparent 32%, transparent 65%, rgba(0, 0, 0, 0.82) 100%) !important;
+}
+
+body .ria-site.glass-theme .home-hero {
+  background:
+    radial-gradient(ellipse at 75% 110%, rgba(201, 247, 252, 0.085), transparent 44rem),
+    radial-gradient(circle at 81% 44%, rgba(118, 225, 238, 0.045), transparent 26rem) !important;
+}
+
+body .ria-site.glass-theme .home-hero::before,
+body .ria-site.glass-theme .home-hero::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  z-index: 0 !important;
+}
+
+body .ria-site.glass-theme .home-hero::before {
+  background:
+    linear-gradient(90deg, rgba(0, 2, 5, 0.82) 0%, rgba(0, 2, 5, 0.5) 37%, transparent 66%),
+    radial-gradient(ellipse at 22% 48%, rgba(0, 2, 5, 0.68), transparent 28rem) !important;
+}
+
+body .ria-site.glass-theme .home-hero::after {
+  background:
+    radial-gradient(ellipse at 76% 105%, rgba(221, 250, 253, 0.15), rgba(103, 221, 238, 0.07) 18%, transparent 45%),
+    radial-gradient(ellipse at 74% 55%, transparent 42%, rgba(150, 232, 240, 0.05) 42.3%, transparent 43.05%, transparent 54%, rgba(150, 232, 240, 0.038) 54.3%, transparent 54.95%),
+    linear-gradient(180deg, transparent 54%, rgba(0, 0, 0, 0.5) 100%) !important;
+}
+
+body .ria-site.glass-theme .home-hero > .premium-container.home-hero-grid,
+body .ria-site.glass-theme .home-hero-panel {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+body .ria-site.glass-theme .home-hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: -2.2rem -2.8rem -1.8rem -2.8rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 24% 44%, rgba(0, 0, 0, 0.56), transparent 62%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.2), transparent);
+  filter: blur(1px);
+}
+
+body .ria-site.glass-theme .home-hero-stage-ring {
+  border-color: rgba(190, 241, 247, 0.13) !important;
+  box-shadow: 0 0 44px rgba(89, 211, 229, 0.055) !important;
+}
+
+body .ria-site.glass-theme .home-hero-stage-halo {
+  opacity: 0.34 !important;
+  background:
+    radial-gradient(circle, rgba(154, 234, 242, 0.16), rgba(72, 190, 213, 0.055) 30%, transparent 66%) !important;
+}
+
+body .ria-site.glass-theme .home-hero-stage-grid {
+  opacity: 0.14 !important;
+}
+
+body .ria-site.glass-theme .home-hero-visual-stage::before,
+body .ria-site.glass-theme .home-hero-visual-stage::after {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+body .ria-site.glass-theme .home-hero-visual-stage::before {
+  opacity: 0.5;
+  background:
+    radial-gradient(ellipse at 52% 50%, transparent 38%, rgba(183, 239, 246, 0.055) 38.3%, transparent 39%, transparent 51%, rgba(183, 239, 246, 0.04) 51.25%, transparent 52%),
+    radial-gradient(circle at 52% 48%, rgba(238, 252, 255, 0.08) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 63% 35%, rgba(238, 252, 255, 0.07) 0 0.8px, transparent 1.4px);
+  background-size: auto, 132px 132px, 194px 194px;
+  animation: cinematicOrbitFloat 28s linear infinite;
+}
+
+body .ria-site.glass-theme .home-hero-visual-stage::after {
+  opacity: 0.35;
+  background: radial-gradient(ellipse at 50% 78%, rgba(208, 248, 252, 0.11), rgba(102, 217, 235, 0.045) 28%, transparent 60%);
+}
+
+/* Interior/product pages: keep the cinematic space present without visual noise. */
+body .ria-site.glass-theme.route-interior {
+  background:
+    radial-gradient(ellipse at 68% 104%, rgba(126, 222, 236, 0.078), transparent 43rem),
+    radial-gradient(circle at 20% 18%, rgba(59, 106, 132, 0.04), transparent 34rem),
+    linear-gradient(180deg, #01050a 0%, #000204 48%, #000000 100%) !important;
+}
+
+body .ria-site.glass-theme :is(.route-interior section.py-20, .ai-ecosystem-section, .exchange-section) {
+  background: transparent !important;
+}
+
+body .ria-site.glass-theme .ai-ecosystem-page::before {
+  opacity: 0.16 !important;
+  background-image:
+    linear-gradient(rgba(151, 223, 234, 0.038) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(151, 223, 234, 0.038) 1px, transparent 1px),
+    radial-gradient(circle at 74% 108%, rgba(209, 248, 252, 0.11), transparent 36rem) !important;
+}
+
+body .ria-site.glass-theme .ai-ecosystem-visual {
+  background:
+    radial-gradient(ellipse at 66% 104%, rgba(203, 247, 252, 0.08), transparent 58%),
+    radial-gradient(circle at 50% 45%, rgba(103, 219, 235, 0.045), transparent 50%) !important;
+}
+
+body .ria-site.glass-theme .ai-ecosystem-visual::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(circle, rgba(239, 252, 255, 0.36) 0 0.7px, transparent 1.3px),
+    radial-gradient(ellipse at 50% 50%, transparent 43%, rgba(165, 234, 242, 0.045) 43.2%, transparent 43.85%, transparent 57%, rgba(165, 234, 242, 0.035) 57.2%, transparent 57.75%);
+  background-size: 148px 148px, auto;
+}
+
+body .ria-site.glass-theme .site-nav-dropdown,
+body .ria-site.glass-theme .mobile-nav-panel {
+  background:
+    radial-gradient(ellipse at 70% 110%, rgba(97, 208, 229, 0.06), transparent 34rem),
+    rgba(0, 2, 5, 0.98) !important;
+}
+
+@keyframes cinematicFarStars {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.01);
+  }
+
+  to {
+    transform: translate3d(-96px, -64px, 0) scale(1.01);
+  }
+}
+
+@keyframes cinematicNearDrift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.01);
+  }
+
+  to {
+    transform: translate3d(-72px, -46px, 0) scale(1.01);
+  }
+}
+
+@keyframes cinematicHeroStars {
+  from {
+    background-position: 30px 24px, 90px 70px, 180px 120px;
+  }
+
+  to {
+    background-position: -88px -94px, -93px -113px, -133px -193px;
+  }
+}
+
+@keyframes cinematicOrbitFloat {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes cinematicStarBreath {
+  0%,
+  100% {
+    filter: brightness(0.92);
+  }
+
+  52% {
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes cinematicDustPulse {
+  0% {
+    filter: brightness(0.94);
+  }
+
+  100% {
+    filter: brightness(1.08);
+  }
+}
+
+@media (max-width: 768px) {
+  body .ria-site.glass-theme {
+    overflow-x: hidden;
+  }
+
+  body .ria-site.glass-theme::before,
+  body .ria-site.glass-theme::after {
+    position: absolute;
+    inset: 0;
+    min-height: 100%;
+    transform: none;
+  }
+
+  body .ria-site.glass-theme::before {
+    opacity: 0.32 !important;
+    background-size: 160px 160px, 260px 260px, 420px 420px, 620px 620px;
+    animation-duration: 260s, 14s;
+  }
+
+  body .ria-site.glass-theme::after {
+    opacity: 0.5 !important;
+    animation: none;
+    mix-blend-mode: screen;
+  }
+
+  body .ria-site.glass-theme .cosmic-stage,
+  body .ria-site.glass-theme .cosmos-canvas,
+  body .ria-site.glass-theme .living-stream {
+    opacity: 0.07 !important;
+  }
+
+  body .ria-site.glass-theme .ria-cinematic-background::after,
+  body .ria-site.glass-theme .home-hero::after {
+    opacity: 0.52 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-panel::before {
+    inset: -1rem -1rem -1.2rem;
+    background: linear-gradient(180deg, rgba(0, 2, 5, 0.56), rgba(0, 2, 5, 0.16), transparent);
+  }
+
+  body .ria-site.glass-theme .home-hero-visual-stage::before,
+  body .ria-site.glass-theme .home-hero-visual-stage::after {
+    display: none !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-stage-ring {
+    opacity: 0.08 !important;
+  }
+
+  body .ria-site.glass-theme .home-hero-mobile-brain {
+    filter: saturate(0.68) contrast(1.08) brightness(0.68) drop-shadow(0 0 34px rgba(79, 212, 231, 0.12)) !important;
+  }
+
+  body .ria-site.glass-theme .ai-ecosystem-visual::before {
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 430px) {
+  body .ria-site.glass-theme::before {
+    opacity: 0.26 !important;
+  }
+
+  body .ria-site.glass-theme::after {
+    opacity: 0.42 !important;
+  }
+
+  body .ria-site.glass-theme .ria-cinematic-background::before {
+    opacity: 0.28;
+  }
+
+  body .ria-site.glass-theme .ria-cinematic-background::after {
+    opacity: 0.42 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .ria-site.glass-theme::before,
+  body .ria-site.glass-theme::after,
+  body .ria-site.glass-theme .ria-cinematic-background::before,
+  body .ria-site.glass-theme .home-hero-visual-stage::before {
+    animation: none !important;
+  }
+
+  body .ria-site.glass-theme::before {
+    opacity: 0.38 !important;
+  }
+}

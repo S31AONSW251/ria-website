@@ -58,6 +58,7 @@ import {
   SquareTerminal,
   Target,
   UsersRound,
+  Wrench,
   X,
   Zap,
   type LucideIcon
@@ -135,6 +136,7 @@ const pageLinks: PageLink[] = [
   { label: 'Vision', path: '/vision', group: 'Core', description: 'The philosophy behind persistent intelligence.' },
   { label: 'Technology', path: '/technology', group: 'Core', description: 'Interactive cognitive architecture.' },
   { label: 'Product', path: '/product', group: 'Product', description: 'Modules, screenshots, and platform systems.' },
+  { label: 'AI Ecosystem', path: '/ai-pc-ecosystem', group: 'Product', description: 'AI-ready PCs, local workstations, and private intelligence infrastructure.' },
   { label: 'RIA Studio', path: '/ria-ide', group: 'Product', description: 'The AI-native development environment.' },
   { label: 'RIA OS', path: '/ria-personal', group: 'Product', description: 'The private intelligence operating layer.' },
   { label: 'RIA Enterprise', path: '/ria-enterprise', group: 'Product', description: 'Institutional memory and decision intelligence.' },
@@ -302,6 +304,55 @@ const ecosystem: Feature[] = [
   { title: 'RIA Studio', icon: Layers3, meta: 'Developer platform', copy: 'APIs, cognitive modules, memory primitives, and a marketplace for builders.' },
   { title: 'RIA Cloud', icon: Cloud, meta: 'Secure deployment', copy: 'Hosted, private cloud, and future on-device infrastructure for persistent intelligence.' },
   { title: 'Crypto Core', icon: CircleDollarSign, meta: 'Optional compute mode', copy: 'User-controlled crypto mining orchestration for idle hardware, thermal limits, payout visibility, and safety gates.' }
+]
+
+const aiPcEcosystemMetrics: Metric[] = [
+  { label: 'Runtime', value: 'Local-first' },
+  { label: 'Compute', value: 'GPU-ready' },
+  { label: 'Memory', value: 'Private' },
+  { label: 'Stack', value: 'Software + hardware' }
+]
+
+const aiPcWhyPoints = [
+  ['Privacy', 'The next generation of AI needs personal context, private files, local memory, and ownership that should not depend entirely on remote sessions.'],
+  ['Speed', 'Local acceleration keeps reasoning, creative tools, retrieval, and repeated workflows close to the user instead of waiting on distant infrastructure.'],
+  ['Control', 'AI PCs give founders, students, creators, researchers, and businesses a machine they can inspect, upgrade, run offline, and dedicate to intelligence work.']
+]
+
+const aiPcEcosystemGrid: Feature[] = [
+  { title: 'AI Workstations', icon: Cpu, meta: 'Hardware layer', copy: 'High-performance desktop and workstation concepts designed for local models, creative generation, coding, analysis, and RIA runtime work.' },
+  { title: 'RIA Local Intelligence', icon: BrainCircuit, meta: 'Software layer', copy: 'RIA running on private machines with memory, reasoning, files, tools, and owner-approved workflows under one local intelligence surface.' },
+  { title: 'GPU Acceleration', icon: Gauge, meta: 'Compute layer', copy: 'GPU-ready configurations for local inference, image generation, retrieval, automation, and future multimodal workloads.' },
+  { title: 'Private Memory Systems', icon: Database, meta: 'Memory layer', copy: 'Personal and project knowledge bases designed to stay under user control while compounding into long-term intelligence.' },
+  { title: 'AI Creator Tools', icon: Palette, meta: 'Production layer', copy: 'Creative workflows for media, design, software concepts, visual systems, and builder output on machines prepared for serious AI work.' },
+  { title: 'Business AI Setup', icon: Building2, meta: 'Deployment layer', copy: 'Private AI setups for small teams and professionals who need documents, operations, customer context, and decisions handled locally.' },
+  { title: 'Future AI Hardware Stack', icon: Layers3, meta: 'Roadmap layer', copy: 'A full-stack direction combining configured machines, memory vaults, RIA OS, GPU workflows, automation, and dedicated AI infrastructure.' }
+]
+
+const aiPcUseCases: Feature[] = [
+  { title: 'Founders', icon: Rocket, copy: 'Run strategy, product planning, investor material, research, and private company memory on dedicated local infrastructure.' },
+  { title: 'Students', icon: GraduationCap, copy: 'Keep learning context, notes, projects, and tutoring workflows available across semesters without losing continuity.' },
+  { title: 'Researchers', icon: Search, copy: 'Work with papers, experiments, hypotheses, source libraries, and long-running reasoning on a controlled machine.' },
+  { title: 'Creators', icon: Palette, copy: 'Prepare GPU-backed systems for concept art, production assets, video workflows, scripts, and creative memory.' },
+  { title: 'Small Businesses', icon: Building2, copy: 'Bring documents, processes, customer notes, and operational intelligence into a private local setup.' },
+  { title: 'Developers', icon: Code2, copy: 'Use RIA as a project-aware coding partner that remembers architecture, decisions, and product intent.' },
+  { title: 'Private Power Users', icon: LockKeyhole, copy: 'Own the machine, the memory, the configuration, and the local intelligence workflows instead of renting every layer.' }
+]
+
+const aiPcCredibility: Feature[] = [
+  { title: 'Local-First Architecture', icon: ShieldCheck, copy: 'RIA is positioned around private runtime design, inspectable memory, and owner-approved action boundaries.' },
+  { title: 'GPU-Ready Setup', icon: Cpu, copy: 'The ecosystem direction prepares for local models, creative generation, retrieval, and acceleration-heavy workflows.' },
+  { title: 'Offline-Capable Workflows', icon: Cloud, copy: 'Core planning, memory, files, and private knowledge workflows should remain useful even when cloud services are unavailable.' },
+  { title: 'Private Knowledge Base', icon: Database, copy: 'Local documents, project context, identity memory, and source-linked knowledge become the intelligence substrate.' },
+  { title: 'Memory-Driven Intelligence', icon: BrainCircuit, copy: 'The system becomes more useful as memory, goals, decisions, work history, and context compound over time.' },
+  { title: 'Custom AI Machines', icon: Wrench, copy: 'Future expansion can include configured AI machines, workstation guidance, and dedicated private intelligence deployments.' }
+]
+
+const aiPcStack = [
+  ['01', 'Machine', 'AI-ready workstation, GPU, storage, thermal headroom, and reliable local runtime base.'],
+  ['02', 'Runtime', 'Local models, RIA workspace, files, project memory, creative tools, and automation services.'],
+  ['03', 'Memory', 'Private knowledge base, identity continuity, decisions, research, and reusable context.'],
+  ['04', 'Action', 'Owner-approved workflows for coding, content, research, business operations, and creative production.']
 ]
 
 const useCases: Feature[] = [
@@ -642,6 +693,9 @@ function Header() {
               className={`site-primary-link ${location.hash === item.to.replace('/', '') ? 'is-current' : ''}`}
             >{item.label}</a>
           ))}
+          <NavLink to="/ai-pc-ecosystem" className={({ isActive }) => `site-primary-link ecosystem-nav-link${isActive ? ' is-current' : ''}`}>
+            AI Ecosystem
+          </NavLink>
           <NavLink to="/software-exchange" className={({ isActive }) => `exchange-nav-link${isActive ? ' is-current' : ''}`}>
             UPLOAD PROJECT
           </NavLink>
@@ -674,6 +728,7 @@ function Header() {
                   <span>{item.label}</span><ArrowRight aria-hidden="true" />
                 </a>
               ))}
+              <Link to="/ai-pc-ecosystem" onClick={close}><span>AI Ecosystem</span><ArrowRight aria-hidden="true" /></Link>
               <Link to="/software-exchange" onClick={close}><span>UPLOAD PROJECT</span><ArrowRight aria-hidden="true" /></Link>
             </nav>
             <div className="site-command-menu-grid">
@@ -712,6 +767,7 @@ function Header() {
             <a key={`mob-${item.label}`} className="mobile-nav-link" href={item.to}
               onClick={(e) => { handleNavClick(e, item) }}>{item.label}</a>
           ))}
+          <Link className="mobile-nav-link" to="/ai-pc-ecosystem" onClick={close}>AI Ecosystem</Link>
           <Link className="mobile-nav-link" to="/software-exchange" onClick={close}>UPLOAD PROJECT</Link>
           <div className="mobile-nav-divider" />
           {groups.map((group) => {
@@ -3528,6 +3584,203 @@ function RiaEnterprisePage() {
   )
 }
 
+function AiPcEcosystemVisual() {
+  const nodes = [
+    ['RIA', 'Local intelligence'],
+    ['GPU', 'Acceleration'],
+    ['Memory', 'Private vault'],
+    ['Tools', 'Creator stack'],
+    ['Business', 'Private setup']
+  ]
+
+  return (
+    <div className="ai-ecosystem-visual" aria-label="AION AI PC ecosystem architecture">
+      <div className="ai-ecosystem-visual-grid" aria-hidden="true" />
+      <div className="ai-ecosystem-visual-orbit orbit-a" aria-hidden="true" />
+      <div className="ai-ecosystem-visual-orbit orbit-b" aria-hidden="true" />
+      <div className="ai-ecosystem-device">
+        <div className="ai-device-topline" aria-hidden="true"><span /><span /><span /></div>
+        <div className="ai-device-core">
+          <Cpu aria-hidden="true" />
+          <span>AION AI PC</span>
+          <strong>Private intelligence workstation</strong>
+        </div>
+        <div className="ai-device-rails" aria-hidden="true">
+          <span /><span /><span /><span /><span />
+        </div>
+      </div>
+      <div className="ai-ecosystem-node-grid">
+        {nodes.map(([label, value], index) => (
+          <div className={`ai-ecosystem-node node-${index + 1}`} key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+      <div className="ai-ecosystem-signal-strip" aria-hidden="true">
+        <span>Local models</span>
+        <span>Offline-ready</span>
+        <span>Owner controlled</span>
+      </div>
+    </div>
+  )
+}
+
+function AiPcEcosystemPage() {
+  return (
+    <div className="ai-ecosystem-page">
+      <SEO
+        title="AI PC & Ecosystem"
+        description="AION AI PC and ecosystem page for AI-ready PCs, local AI workstations, GPU-powered private intelligence, offline-first memory, and RIA running locally."
+      />
+
+      <section className="ai-ecosystem-hero">
+        <div className="premium-container ai-ecosystem-hero-grid">
+          <Reveal className="ai-ecosystem-hero-copy">
+            <p className="premium-eyebrow">AION / AI PC & Ecosystem</p>
+            <h1>AI PCs Built for the Private Intelligence Era</h1>
+            <p>
+              AION is building a complete AI ecosystem where powerful local machines, GPU acceleration,
+              private memory, and RIA intelligence work together as one system.
+            </p>
+            <div className="ai-ecosystem-hero-actions">
+              <a href="#ecosystem-grid" className="premium-button premium-button-primary">
+                Explore the Ecosystem <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link to="/contact" className="premium-button premium-button-secondary">
+                Contact AION <Mail className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="ai-ecosystem-metrics" aria-label="AI PC ecosystem highlights">
+              {aiPcEcosystemMetrics.map((metric) => (
+                <div key={metric.label}>
+                  <span>{metric.label}</span>
+                  <strong>{metric.value}</strong>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="ai-ecosystem-hero-visual">
+            <AiPcEcosystemVisual />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="ai-ecosystem-section ai-ecosystem-why-section">
+        <div className="premium-container ai-ecosystem-split">
+          <Reveal className="ai-ecosystem-section-copy">
+            <p className="premium-eyebrow">Why AI PC</p>
+            <h2>Normal computers were not designed for memory-driven AI work.</h2>
+            <p>
+              The next AI platform needs private files, local context, GPU power, offline workflows,
+              personal memory, and machine ownership. AION treats the computer itself as part of the
+              intelligence architecture, not just a screen for cloud chat.
+            </p>
+          </Reveal>
+          <Reveal className="ai-ecosystem-why-panel">
+            {aiPcWhyPoints.map(([title, copy]) => (
+              <article key={title}>
+                <span>{title}</span>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="ai-ecosystem-section" id="ecosystem-grid">
+        <div className="premium-container">
+          <SectionIntro
+            eyebrow="Ecosystem Grid"
+            title="Hardware, software, memory, and private infrastructure in one direction."
+            copy="AION's ecosystem extends RIA beyond software into the machines, workflows, and local infrastructure needed for serious AI ownership."
+          />
+          <div className="ai-ecosystem-card-grid">
+            <FeatureGrid items={aiPcEcosystemGrid} columns="lg:grid-cols-4" />
+          </div>
+        </div>
+      </section>
+
+      <section className="ai-ecosystem-section ai-ecosystem-vision-section">
+        <div className="premium-container ai-ecosystem-vision-grid">
+          <Reveal className="ai-ecosystem-vision-copy">
+            <p className="premium-eyebrow">Product Vision</p>
+            <h2>A full-stack private AI ecosystem.</h2>
+            <p>
+              AION's goal is to combine hardware, software, memory, automation, and private intelligence
+              into one integrated environment. RIA becomes the intelligence layer, while AI-ready machines
+              provide the compute, storage, and reliability needed for local-first work.
+            </p>
+            <p>
+              This is a long-term product direction for creators, founders, students, businesses, developers,
+              and professionals who want AI infrastructure they can own instead of a temporary remote session.
+            </p>
+          </Reveal>
+          <Reveal className="ai-ecosystem-stack-panel">
+            {aiPcStack.map(([step, title, copy]) => (
+              <article key={step}>
+                <span>{step}</span>
+                <div>
+                  <strong>{title}</strong>
+                  <p>{copy}</p>
+                </div>
+              </article>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="ai-ecosystem-section">
+        <div className="premium-container">
+          <SectionIntro
+            eyebrow="Use Cases"
+            title="Private AI machines for serious personal and professional work."
+            copy="The AI PC ecosystem is designed for people who need speed, privacy, continuity, and dedicated local intelligence across real work."
+          />
+          <div className="ai-ecosystem-card-grid">
+            <FeatureGrid items={aiPcUseCases} columns="lg:grid-cols-4" />
+          </div>
+        </div>
+      </section>
+
+      <section className="ai-ecosystem-section ai-ecosystem-credibility-section">
+        <div className="premium-container">
+          <SectionIntro
+            eyebrow="Technical Credibility"
+            title="Built around the architecture local AI actually needs."
+            copy="The ecosystem direction connects private runtime, GPU readiness, offline-capable workflows, knowledge bases, and memory-driven intelligence."
+          />
+          <div className="ai-ecosystem-card-grid">
+            <FeatureGrid items={aiPcCredibility} />
+          </div>
+        </div>
+      </section>
+
+      <section className="ai-ecosystem-final-cta">
+        <div className="premium-container">
+          <Reveal className="ai-ecosystem-cta-panel">
+            <p className="premium-eyebrow">AION AI Systems</p>
+            <h2>Build Your Private AI System With AION</h2>
+            <p>
+              Talk to AION about AI-ready PCs, local workstations, private memory, GPU workflows,
+              and RIA running on high-performance machines.
+            </p>
+            <div className="ai-ecosystem-hero-actions">
+              <Link to="/contact" className="premium-button premium-button-primary">
+                Request AI PC Consultation <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/download" className="premium-button premium-button-secondary">
+                Run RIA Locally <Download className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </div>
+  )
+}
+
 function UseCasesPage() {
   return (
     <>
@@ -4067,6 +4320,7 @@ export default function App() {
         <Route path="/vision" element={<VisionPage />} />
         <Route path="/technology" element={<TechnologyPage />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/ai-pc-ecosystem" element={<AiPcEcosystemPage />} />
         <Route path="/ria-ide" element={<RiaIdePage />} />
         <Route path="/ria-personal" element={<RiaPersonalPage />} />
         <Route path="/ria-enterprise" element={<RiaEnterprisePage />} />

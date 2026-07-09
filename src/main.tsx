@@ -10,6 +10,8 @@ import './luxury-responsive.css'
 import './responsive-premium.css'
 import './mobile-professional.css'
 import './transparent-dark.css'
+import './production-company.css'
+import './cinematic-space.css'
 
 // Touch file to trigger Vite HMR reload after CSS changes
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

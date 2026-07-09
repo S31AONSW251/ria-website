@@ -1,0 +1,785 @@
+/*
+ * Final production-company layer.
+ * Additive polish for the AION / RIA site plus the AI PC & Ecosystem page.
+ */
+
+:root {
+  --production-canvas: #000204;
+  --production-line: rgba(166, 220, 230, 0.16);
+  --production-line-strong: rgba(166, 230, 240, 0.32);
+  --production-text: #f1f7f8;
+  --production-copy: #9aa8b1;
+  --production-muted: #6f8089;
+  --production-accent: #9ee9f1;
+  --production-radius: 8px;
+}
+
+body .ria-site.glass-theme {
+  color: var(--production-text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body .ria-site.glass-theme :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  a,
+  button,
+  span,
+  strong,
+  small,
+  label,
+  input,
+  textarea,
+  select,
+  .home-hero-headline,
+  .interior-page-title,
+  .ria-section-title,
+  .home-section-heading h2,
+  .section-intro-premium h2
+) {
+  letter-spacing: 0 !important;
+}
+
+body .ria-site.glass-theme :is(
+  .home-hero-headline,
+  .interior-page-title,
+  .ria-section-title,
+  .home-section-heading h2,
+  .section-intro-premium h2,
+  .premium-product-copy h2,
+  .premium-cta-panel h2
+) {
+  color: var(--production-text) !important;
+  font-weight: 680 !important;
+}
+
+body .ria-site.glass-theme :is(
+  .home-hero-sub,
+  .interior-page-copy,
+  .ria-section-copy,
+  .section-intro-premium > p:last-child,
+  .premium-product-copy > p:not(.premium-eyebrow),
+  .dark-glass-card p,
+  .feature-card-premium p
+) {
+  color: var(--production-copy) !important;
+}
+
+body .ria-site.glass-theme :is(
+  .premium-button,
+  .exchange-button,
+  .site-investor-link,
+  .site-command-trigger,
+  .site-menu-button
+) {
+  border-radius: var(--production-radius) !important;
+  letter-spacing: 0 !important;
+}
+
+body .ria-site.glass-theme :is(.premium-button, .exchange-button) {
+  min-height: 50px !important;
+}
+
+body .ria-site.glass-theme :is(.premium-button-primary, .exchange-button-primary) {
+  border-color: rgba(173, 236, 244, 0.42) !important;
+  color: #031014 !important;
+  background: linear-gradient(180deg, #e6fbfd, #a9e8ef) !important;
+  box-shadow: none !important;
+}
+
+body .ria-site.glass-theme :is(.premium-button-secondary, .premium-button-ghost, .exchange-button-secondary) {
+  border-color: rgba(190, 222, 229, 0.18) !important;
+  color: #d7e3e7 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .ria-site.glass-theme :is(
+  .dark-glass-card,
+  .glass-card,
+  .glass-panel,
+  .ria-glass-card,
+  .feature-card-premium,
+  .premium-feature-card,
+  .prose-panel,
+  .timeline-line,
+  .footer-command-shell,
+  .site-nav-dropdown-inner
+) {
+  border-radius: var(--production-radius) !important;
+  border-color: var(--production-line) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .ria-site.glass-theme :is(
+  .dark-glass-card,
+  .glass-card,
+  .glass-panel,
+  .ria-glass-card,
+  .feature-card-premium,
+  .premium-feature-card
+):hover {
+  border-color: var(--production-line-strong) !important;
+}
+
+body .ria-site.glass-theme .route-interior section.py-20,
+body .ria-site.glass-theme.route-interior section.py-20 {
+  padding-block: 6rem !important;
+}
+
+body .ria-site.glass-theme .site-header-inner {
+  border-radius: var(--production-radius) !important;
+}
+
+body .ria-site.glass-theme .site-nav-primary {
+  gap: 0.45rem !important;
+}
+
+body .ria-site.glass-theme .site-nav-primary a,
+body .ria-site.glass-theme .site-command-trigger {
+  color: #aebbc2 !important;
+}
+
+body .ria-site.glass-theme .site-nav-primary a:hover,
+body .ria-site.glass-theme .site-nav-primary a.is-current,
+body .ria-site.glass-theme .site-nav-primary a[aria-current="page"],
+body .ria-site.glass-theme .ecosystem-nav-link.is-current {
+  color: #eefbfc !important;
+  border-color: rgba(158, 232, 242, 0.28) !important;
+  background: transparent !important;
+}
+
+body .ria-site.glass-theme .site-footer-premium {
+  border-top: 1px solid rgba(166, 220, 230, 0.1);
+}
+
+body .ria-site.glass-theme .footer-command-shell {
+  padding: 2rem !important;
+}
+
+body .ria-site.glass-theme .site-footer-links a {
+  min-height: 28px;
+}
+
+.ai-ecosystem-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-ecosystem-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(143, 211, 223, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 211, 223, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.72) 44%, transparent 100%);
+}
+
+.ai-ecosystem-page > section,
+.ai-ecosystem-page .premium-container {
+  position: relative;
+  z-index: 1;
+}
+
+.ai-ecosystem-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 9rem 0 6.5rem;
+  border-bottom: 1px solid rgba(166, 220, 230, 0.1);
+}
+
+.ai-ecosystem-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(163, 232, 241, 0.34), transparent);
+}
+
+.ai-ecosystem-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  gap: 5rem;
+  align-items: center;
+}
+
+.ai-ecosystem-hero-copy h1,
+.ai-ecosystem-section-copy h2,
+.ai-ecosystem-vision-copy h2,
+.ai-ecosystem-cta-panel h2 {
+  margin: 0;
+  color: var(--production-text);
+  font-family: var(--font-enterprise-display, "Segoe UI Variable Display", Arial, sans-serif);
+  font-weight: 680;
+  letter-spacing: 0 !important;
+}
+
+.ai-ecosystem-hero-copy h1 {
+  max-width: 760px;
+  margin-top: 1.35rem;
+  font-size: 4.7rem;
+  line-height: 0.98;
+}
+
+.ai-ecosystem-hero-copy > p:not(.premium-eyebrow) {
+  max-width: 690px;
+  margin: 1.55rem 0 0;
+  color: var(--production-copy);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.ai-ecosystem-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.ai-ecosystem-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 2.5rem;
+  border-block: 1px solid rgba(166, 220, 230, 0.13);
+}
+
+.ai-ecosystem-metrics div {
+  min-height: 84px;
+  padding: 1rem 1.1rem;
+  border-right: 1px solid rgba(166, 220, 230, 0.11);
+}
+
+.ai-ecosystem-metrics div:last-child {
+  border-right: 0;
+}
+
+.ai-ecosystem-metrics span {
+  display: block;
+  color: var(--production-muted);
+  font: 700 0.67rem/1.2 var(--font-code-ui, monospace);
+  text-transform: uppercase;
+}
+
+.ai-ecosystem-metrics strong {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--production-text);
+  font-size: 1.02rem;
+}
+
+.ai-ecosystem-hero-visual {
+  min-width: 0;
+}
+
+.ai-ecosystem-visual {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid rgba(166, 220, 230, 0.14);
+  border-radius: var(--production-radius);
+  background: transparent;
+}
+
+.ai-ecosystem-visual-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(166, 220, 230, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(166, 220, 230, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.ai-ecosystem-visual-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(151, 227, 238, 0.18);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: aiEcosystemOrbit 18s linear infinite;
+}
+
+.ai-ecosystem-visual-orbit.orbit-a {
+  width: 390px;
+  height: 390px;
+}
+
+.ai-ecosystem-visual-orbit.orbit-b {
+  width: 520px;
+  height: 520px;
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+.ai-ecosystem-device {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  width: 230px;
+  min-height: 330px;
+  padding: 1rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(166, 230, 240, 0.28);
+  border-radius: var(--production-radius);
+  background: transparent;
+}
+
+.ai-device-topline {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.ai-device-topline span {
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(166, 230, 240, 0.3);
+  border-radius: 999px;
+}
+
+.ai-device-core {
+  align-self: center;
+  text-align: center;
+}
+
+.ai-device-core svg {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 1rem;
+  color: var(--production-accent);
+}
+
+.ai-device-core span {
+  display: block;
+  color: var(--production-accent);
+  font: 700 0.7rem/1.2 var(--font-code-ui, monospace);
+  text-transform: uppercase;
+}
+
+.ai-device-core strong {
+  display: block;
+  margin-top: 0.65rem;
+  color: var(--production-text);
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.ai-device-rails {
+  display: grid;
+  gap: 0.45rem;
+  align-self: end;
+}
+
+.ai-device-rails span {
+  height: 7px;
+  border: 1px solid rgba(166, 220, 230, 0.13);
+  border-radius: 999px;
+}
+
+.ai-device-rails span:nth-child(2),
+.ai-device-rails span:nth-child(4) {
+  width: 74%;
+}
+
+.ai-ecosystem-node-grid {
+  position: absolute;
+  inset: 2rem;
+}
+
+.ai-ecosystem-node {
+  position: absolute;
+  width: 170px;
+  padding: 0.8rem;
+  border: 1px solid rgba(166, 220, 230, 0.18);
+  border-radius: var(--production-radius);
+  background: transparent;
+}
+
+.ai-ecosystem-node span {
+  display: block;
+  color: var(--production-muted);
+  font: 700 0.64rem/1.2 var(--font-code-ui, monospace);
+  text-transform: uppercase;
+}
+
+.ai-ecosystem-node strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #dfeaec;
+  font-size: 0.92rem;
+}
+
+.ai-ecosystem-node.node-1 { left: 0; top: 12%; }
+.ai-ecosystem-node.node-2 { right: 0; top: 8%; }
+.ai-ecosystem-node.node-3 { left: 4%; bottom: 18%; }
+.ai-ecosystem-node.node-4 { right: 5%; bottom: 22%; }
+.ai-ecosystem-node.node-5 { left: 50%; bottom: 3%; transform: translateX(-50%); }
+
+.ai-ecosystem-signal-strip {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: rgba(202, 231, 236, 0.68);
+  font: 700 0.66rem/1.2 var(--font-code-ui, monospace);
+  text-transform: uppercase;
+}
+
+.ai-ecosystem-section {
+  position: relative;
+  padding: 6rem 0;
+  border-bottom: 1px solid rgba(166, 220, 230, 0.08);
+}
+
+.ai-ecosystem-split,
+.ai-ecosystem-vision-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1.14fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+.ai-ecosystem-section-copy h2,
+.ai-ecosystem-vision-copy h2,
+.ai-ecosystem-cta-panel h2 {
+  margin-top: 1rem;
+  font-size: 3.25rem;
+  line-height: 1.02;
+}
+
+.ai-ecosystem-section-copy p:not(.premium-eyebrow),
+.ai-ecosystem-vision-copy p,
+.ai-ecosystem-cta-panel p {
+  margin-top: 1.2rem;
+  color: var(--production-copy);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.ai-ecosystem-why-panel,
+.ai-ecosystem-stack-panel,
+.ai-ecosystem-cta-panel {
+  border: 1px solid rgba(166, 220, 230, 0.16);
+  border-radius: var(--production-radius);
+  background: transparent;
+}
+
+.ai-ecosystem-why-panel article,
+.ai-ecosystem-stack-panel article {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 1.35rem 1.5rem;
+  border-bottom: 1px solid rgba(166, 220, 230, 0.11);
+}
+
+.ai-ecosystem-why-panel article:last-child,
+.ai-ecosystem-stack-panel article:last-child {
+  border-bottom: 0;
+}
+
+.ai-ecosystem-why-panel span,
+.ai-ecosystem-stack-panel span {
+  color: var(--production-accent);
+  font: 700 0.72rem/1.25 var(--font-code-ui, monospace);
+  text-transform: uppercase;
+}
+
+.ai-ecosystem-why-panel p,
+.ai-ecosystem-stack-panel p {
+  margin: 0;
+  color: var(--production-copy);
+  line-height: 1.7;
+}
+
+.ai-ecosystem-stack-panel strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--production-text);
+  font-size: 1.05rem;
+}
+
+.ai-ecosystem-card-grid {
+  margin-top: 3rem;
+}
+
+.ai-ecosystem-card-grid .feature-grid-premium {
+  align-items: stretch;
+}
+
+.ai-ecosystem-card-grid .feature-card-premium {
+  min-height: 260px;
+  border-radius: var(--production-radius) !important;
+}
+
+.ai-ecosystem-card-grid .feature-card-premium .icon-shell {
+  border-radius: var(--production-radius) !important;
+  background: transparent !important;
+}
+
+.ai-ecosystem-final-cta {
+  padding: 6rem 0 7rem;
+}
+
+.ai-ecosystem-cta-panel {
+  position: relative;
+  max-width: 980px;
+  padding: 3rem;
+}
+
+.ai-ecosystem-cta-panel h2 {
+  max-width: 760px;
+}
+
+.ai-ecosystem-cta-panel p {
+  max-width: 720px;
+}
+
+@keyframes aiEcosystemOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .ai-ecosystem-hero-copy h1 {
+    font-size: 4rem;
+  }
+
+  .ai-ecosystem-hero-grid {
+    gap: 3rem;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+  }
+}
+
+@media (max-width: 1020px) {
+  .ai-ecosystem-hero {
+    padding-top: 8rem;
+  }
+
+  .ai-ecosystem-hero-grid,
+  .ai-ecosystem-split,
+  .ai-ecosystem-vision-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ai-ecosystem-visual {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 760px) {
+  body .ria-site.glass-theme .route-interior section.py-20,
+  body .ria-site.glass-theme.route-interior section.py-20,
+  .ai-ecosystem-section {
+    padding-block: 4.25rem !important;
+  }
+
+  body .ria-site.glass-theme .site-footer-premium .premium-container,
+  body .ria-site.glass-theme .premium-container {
+    width: calc(100% - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+  }
+
+  .ai-ecosystem-hero {
+    padding: 6.8rem 0 4.5rem;
+  }
+
+  .ai-ecosystem-hero-grid {
+    gap: 2.3rem;
+  }
+
+  .ai-ecosystem-hero-copy h1 {
+    margin-top: 1rem;
+    font-size: 2.85rem;
+    line-height: 1.05;
+  }
+
+  .ai-ecosystem-hero-copy > p:not(.premium-eyebrow) {
+    margin-top: 1.1rem;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .ai-ecosystem-hero-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    margin-top: 1.4rem;
+  }
+
+  .ai-ecosystem-hero-actions .premium-button {
+    width: 100%;
+    justify-content: center;
+    min-height: 49px !important;
+  }
+
+  .ai-ecosystem-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1.6rem;
+    border-bottom: 0;
+  }
+
+  .ai-ecosystem-metrics div {
+    min-height: 74px;
+    padding: 0.9rem;
+    border-bottom: 1px solid rgba(166, 220, 230, 0.11);
+  }
+
+  .ai-ecosystem-metrics div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .ai-ecosystem-visual {
+    min-height: 410px;
+  }
+
+  .ai-ecosystem-device {
+    width: 190px;
+    min-height: 270px;
+  }
+
+  .ai-device-core strong {
+    font-size: 1.1rem;
+  }
+
+  .ai-ecosystem-visual-orbit.orbit-a {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ai-ecosystem-visual-orbit.orbit-b {
+    width: 390px;
+    height: 390px;
+  }
+
+  .ai-ecosystem-node-grid {
+    inset: 1rem;
+  }
+
+  .ai-ecosystem-node {
+    width: 132px;
+    padding: 0.65rem;
+  }
+
+  .ai-ecosystem-node span {
+    font-size: 0.58rem;
+  }
+
+  .ai-ecosystem-node strong {
+    font-size: 0.78rem;
+  }
+
+  .ai-ecosystem-signal-strip {
+    display: none;
+  }
+
+  .ai-ecosystem-section-copy h2,
+  .ai-ecosystem-vision-copy h2,
+  .ai-ecosystem-cta-panel h2 {
+    font-size: 2.35rem;
+    line-height: 1.08;
+  }
+
+  .ai-ecosystem-why-panel article,
+  .ai-ecosystem-stack-panel article {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 1.1rem;
+  }
+
+  .ai-ecosystem-card-grid {
+    margin-top: 2rem;
+  }
+
+  .ai-ecosystem-card-grid .feature-card-premium {
+    min-height: 220px;
+  }
+
+  .ai-ecosystem-cta-panel {
+    padding: 1.5rem;
+  }
+
+  body .ria-site.glass-theme .footer-command-shell {
+    padding: 1.25rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .ai-ecosystem-hero-copy h1 {
+    font-size: 2.45rem;
+  }
+
+  .ai-ecosystem-section-copy h2,
+  .ai-ecosystem-vision-copy h2,
+  .ai-ecosystem-cta-panel h2 {
+    font-size: 2rem;
+  }
+
+  .ai-ecosystem-visual {
+    min-height: 380px;
+  }
+
+  .ai-ecosystem-node {
+    width: 118px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-ecosystem-visual-orbit {
+    animation: none !important;
+  }
+}
+
+html body .ria-site.glass-theme .skip-to-content {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(-170%) !important;
+}
+
+html body .ria-site.glass-theme .skip-to-content:focus-visible {
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: translateY(0) !important;
+}
+
+html body .ria-site.glass-theme :is(
+  .dark-glass-card,
+  .glass-card,
+  .glass-panel,
+  .ria-glass-card,
+  .feature-card-premium,
+  .premium-feature-card,
+  .prose-panel,
+  .timeline-line,
+  .footer-command-shell,
+  .site-nav-dropdown-inner,
+  .ai-ecosystem-visual,
+  .ai-ecosystem-device,
+  .ai-ecosystem-node,
+  .ai-ecosystem-why-panel,
+  .ai-ecosystem-stack-panel,
+  .ai-ecosystem-cta-panel
+) {
+  border-radius: var(--production-radius) !important;
+}
