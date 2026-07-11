@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSPropertie
 import { Link, NavLink, Route, Routes, useLocation, Navigate, useNavigate } from 'react-router-dom'
 import { filterRiaImages, imageLibraryFilters, type RiaImage } from './data/riaImages'
 import { motion } from 'framer-motion'
+import CosmicBackground from './components/CosmicBackground'
 import CosmosBackground from './components/CosmosBackground'
 import ProductBento from './components/ProductBento'
 import ArchitectureBlueprintVisual from './components/ArchitectureBlueprint'
@@ -3595,28 +3596,77 @@ function AiPcEcosystemVisual() {
 
   return (
     <div className="ai-ecosystem-visual" aria-label="AION AI PC ecosystem architecture">
+      {/* Cinematic background layers */}
+      <div className="ai-eco-scanlines" aria-hidden="true" />
+      <div className="ai-eco-vignette" aria-hidden="true" />
       <div className="ai-ecosystem-visual-grid" aria-hidden="true" />
+
+      {/* Orbit rings */}
       <div className="ai-ecosystem-visual-orbit orbit-a" aria-hidden="true" />
       <div className="ai-ecosystem-visual-orbit orbit-b" aria-hidden="true" />
+      <div className="ai-ecosystem-visual-orbit orbit-c" aria-hidden="true" />
+
+      {/* Pulse rings from center */}
+      <div className="ai-eco-pulse pulse-1" aria-hidden="true" />
+      <div className="ai-eco-pulse pulse-2" aria-hidden="true" />
+      <div className="ai-eco-pulse pulse-3" aria-hidden="true" />
+
+      {/* Floating data particles */}
+      <div className="ai-eco-particles" aria-hidden="true">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className={`ai-eco-particle particle-${i + 1}`} />
+        ))}
+      </div>
+
+      {/* Center core device */}
       <div className="ai-ecosystem-device">
-        <div className="ai-device-topline" aria-hidden="true"><span /><span /><span /></div>
+        <div className="ai-device-topline" aria-hidden="true">
+          <span /><span /><span />
+          <span className="ai-device-live-dot" />
+        </div>
         <div className="ai-device-core">
-          <Cpu aria-hidden="true" />
+          <div className="ai-device-icon-wrap">
+            <Cpu aria-hidden="true" />
+            <div className="ai-device-icon-glow" aria-hidden="true" />
+          </div>
           <span>AION AI PC</span>
-          <strong>Private intelligence workstation</strong>
+          <strong>intelligence<br />workstation</strong>
+          <div className="ai-device-status" aria-hidden="true">
+            <span className="ai-device-status-dot" />
+            <span>ACTIVE</span>
+          </div>
         </div>
         <div className="ai-device-rails" aria-hidden="true">
           <span /><span /><span /><span /><span />
         </div>
       </div>
+
+      {/* Connector lines SVG */}
+      <svg className="ai-eco-connectors" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        {/* Lines from center to each corner node */}
+        <line className="ai-eco-connector-line" x1="50%" y1="50%" x2="16%" y2="14%" />
+        <line className="ai-eco-connector-line" x1="50%" y1="50%" x2="84%" y2="14%" />
+        <line className="ai-eco-connector-line" x1="50%" y1="50%" x2="16%" y2="82%" />
+        <line className="ai-eco-connector-line" x1="50%" y1="50%" x2="84%" y2="82%" />
+        {/* Dots at the node card corners */}
+        <circle className="ai-eco-connector-dot" cx="16%" cy="14%" r="3" />
+        <circle className="ai-eco-connector-dot" cx="84%" cy="14%" r="3" />
+        <circle className="ai-eco-connector-dot" cx="16%" cy="82%" r="3" />
+        <circle className="ai-eco-connector-dot" cx="84%" cy="82%" r="3" />
+      </svg>
+
+      {/* Node cards */}
       <div className="ai-ecosystem-node-grid">
         {nodes.map(([label, value], index) => (
           <div className={`ai-ecosystem-node node-${index + 1}`} key={label}>
+            <div className="ai-node-indicator" aria-hidden="true" />
             <span>{label}</span>
             <strong>{value}</strong>
           </div>
         ))}
       </div>
+
+      {/* Bottom status strip */}
       <div className="ai-ecosystem-signal-strip" aria-hidden="true">
         <span>Local models</span>
         <span>Offline-ready</span>
@@ -4310,8 +4360,7 @@ export default function App() {
     <main className={`ria-site cosmos glass-theme min-h-screen ${routeClass}`}>
       <ScrollToTop />
       <a className="skip-to-content" href="#ria-page-content">Skip to page content</a>
-      {!isHomePage && <CosmicStarField />}
-      {!isHomePage && <CosmosBackground />}
+      <CosmicBackground />
       <Header />
       <div id="ria-page-content" tabIndex={-1}>
       <Routes>

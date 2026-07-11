@@ -13,6 +13,7 @@ import './mobile-professional.css'
 import './transparent-dark.css'
 import './production-company.css'
 import './cinematic-space.css'
+import './enterprise-code-cinematic.css'
 
 // Touch file to trigger Vite HMR reload after CSS changes
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
