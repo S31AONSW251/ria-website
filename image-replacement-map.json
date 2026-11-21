@@ -1,26 +1,56 @@
 {
-  "updatedAt": "2026-06-02T00:00:00Z",
+  "updatedAt": "2026-11-21T00:00:00Z",
+  "product": "RIA",
+  "company": "AION",
   "changes": [
     {
-      "key": "assets.logo",
-      "old": "/images/aion-uploaded/ria-brain-logo.webp",
-      "new": "/images/logos/ria-logo.png",
-      "confidence": 0.95,
-      "note": "Replace header logo with provided RIA logo file."
+      "key": "assets.product.workspace",
+      "old": "/assets/ria/orbit-dashboard-desktop.jpg",
+      "new": "/assets/ria/product/ria-workspace-2560.png",
+      "confidence": 1,
+      "note": "Replaced the retired ORBIT concept dashboard with the authentic RIA Workspace screenshot supplied for this release."
     },
     {
-      "key": "assets.hero",
-      "old": "/images/aion-uploaded/defensecore-dashboard.png",
-      "new": "/images/ria-uploaded/ria-os-orbit-hero.jpg",
-      "confidence": 0.9,
-      "note": "Use RIA orbit hero image for main hero section."
+      "key": "assets.product.conversation",
+      "old": null,
+      "new": "/assets/ria/product/ria-detail-conversation.png",
+      "confidence": 1,
+      "note": "Cropped from the authentic RIA Workspace screenshot; no generative redraw."
     },
     {
-      "key": "assets.aion.brainLogo",
+      "key": "assets.product.memory",
+      "old": null,
+      "new": "/assets/ria/product/ria-detail-memory.png",
+      "confidence": 1,
+      "note": "Cropped from the authentic RIA Workspace screenshot; no generative redraw."
+    },
+    {
+      "key": "assets.product.runtime",
+      "old": null,
+      "new": "/assets/ria/product/ria-detail-runtime.png",
+      "confidence": 1,
+      "note": "Cropped from the authentic RIA Workspace screenshot; no generative redraw."
+    },
+    {
+      "key": "assets.brand.mark",
       "old": "/images/aion-uploaded/ria-brain-logo.webp",
-      "new": "/images/logos/ria-conscious-logo.png",
-      "confidence": 0.85,
-      "note": "Use consciousness-mark variant for internal brand placements."
+      "new": "/assets/brand/ria-mark-128.png",
+      "confidence": 1,
+      "note": "Derived from the supplied RIA logo. Used for the product mark in navigation and release cards."
+    },
+    {
+      "key": "assets.brand.lockup",
+      "old": "/images/logos/ria-logo.png",
+      "new": "/assets/brand/ria-logo.png",
+      "confidence": 1,
+      "note": "The supplied RIA logo, preserved at its original resolution."
+    },
+    {
+      "key": "assets.social",
+      "old": "/assets/ria/orbit-dashboard-desktop.jpg",
+      "new": "/assets/ria/product/ria-workspace-og.png",
+      "confidence": 1,
+      "note": "Open Graph and Twitter card image, derived from the authentic workspace screenshot."
     }
   ]
 }

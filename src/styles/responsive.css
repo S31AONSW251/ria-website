@@ -1,0 +1,613 @@
+/* ==========================================================================
+   Responsive behavior
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .container,
+  .header-inner {
+    padding-inline: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .header-inner {
+    padding-inline: 48px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-top {
+    gap: 40px;
+  }
+
+  .section-head--split {
+    gap: 40px;
+  }
+
+  .split,
+  .interface-grid,
+  .specs-grid,
+  .faq-grid,
+  .company-grid,
+  .privacy-callout {
+    gap: 48px;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 960px) {
+  .desktop-nav,
+  .header-actions {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .hero-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .hero-aside {
+    max-width: 640px;
+  }
+
+  .hero-title {
+    font-size: clamp(3.2rem, 10vw, 5.5rem);
+  }
+
+  .page-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .page-hero-aside {
+    max-width: 480px;
+  }
+
+  .product-facts,
+  .privacy-summary,
+  .about-facts,
+  .release-card--download,
+  .feature-index {
+    margin-left: 0;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .intro-body {
+    padding-top: 0;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+  }
+
+  .principle {
+    padding: 24px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .principle + .principle,
+  .principles > div + div .principle {
+    padding-left: 0;
+  }
+
+  .principle:last-child,
+  .principles > div:last-child .principle {
+    border-bottom: 0;
+    border-right: 0;
+  }
+
+  .workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .control-points {
+    grid-template-columns: 1fr;
+  }
+
+  .control-point {
+    padding: 24px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--dark-line);
+  }
+
+  .control-point + .control-point {
+    padding-left: 0;
+  }
+
+  .control-point:last-child {
+    border-bottom: 0;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .download-panel {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+
+  .release-card {
+    max-width: 480px;
+  }
+
+  .company-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-mark {
+    max-width: 480px;
+  }
+
+  .final-cta-panel {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .final-cta-actions {
+    justify-content: flex-start;
+  }
+
+  .product-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .interface-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-row,
+  .feature-row--reverse {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 56px 0;
+  }
+
+  .feature-row--reverse .feature-copy {
+    order: 1;
+  }
+
+  .feature-row--reverse .feature-visual {
+    order: 2;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-glance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-block {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .privacy-callout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contact-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+  }
+
+  .install-grid,
+  .release-notes-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-card {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+
+  .founder-avatar {
+    max-width: 220px;
+  }
+
+  .direction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-head--split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .section-head-intro p {
+    max-width: 56ch;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: 80px;
+  }
+
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 72px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 11vw, 4.8rem);
+  }
+
+  .page-hero {
+    padding-top: 72px;
+    padding-bottom: 56px;
+  }
+
+  .page-title {
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+  }
+
+  .workflow-card {
+    min-height: auto;
+  }
+
+  .product-frame-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .footer-grid {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container,
+  .header-inner {
+    padding-inline: 20px;
+  }
+
+  .section {
+    padding-block: 64px;
+  }
+
+  .hero {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.9rem, 13vw, 4.2rem);
+  }
+
+  .page-hero {
+    padding-top: 56px;
+    padding-bottom: 48px;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .hero-actions,
+  .download-actions,
+  .download-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn,
+  .download-actions .btn,
+  .download-hero-actions .btn {
+    width: 100%;
+  }
+
+  .workflow-card {
+    padding: 24px;
+  }
+
+  .download-panel,
+  .final-cta-panel {
+    padding: 28px;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-label-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-label {
+    border-right: 0;
+  }
+
+  .feature-label:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .feature-label:last-child {
+    border-bottom: 0;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .specs-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .specs-label {
+    font-size: 0.75rem;
+  }
+
+  .runtime-row {
+    grid-template-columns: 24px 1fr;
+  }
+
+  .runtime-row-value {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .page-meta,
+  .hero-meta {
+    font-size: 0.6875rem;
+  }
+
+  .section-head {
+    margin-bottom: 40px;
+  }
+
+  .section-head--split {
+    margin-bottom: 40px;
+  }
+
+  .intro-grid {
+    margin-bottom: 56px;
+  }
+
+  .feature-row {
+    padding: 48px 0;
+  }
+
+  .founder-card {
+    padding: 24px;
+  }
+
+  .download-panel::before {
+    opacity: 0.2;
+  }
+
+  .footer-bottom-links {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2.6rem, 13.5vw, 3.5rem);
+  }
+
+  .page-title {
+    font-size: clamp(2.3rem, 11.5vw, 3.4rem);
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+
+  .btn-lg {
+    min-height: 48px;
+    padding-inline: 16px;
+    font-size: 0.9375rem;
+  }
+
+  .workflow-card {
+    padding: 20px;
+  }
+
+  .download-panel,
+  .final-cta-panel {
+    padding: 24px;
+  }
+
+  .contact-card {
+    padding: 20px;
+  }
+
+  .stat {
+    padding: 20px;
+  }
+
+  .founder-avatar {
+    max-width: 180px;
+  }
+
+  .interface-index {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-label-card-head {
+    flex-wrap: wrap;
+  }
+
+  .feature-label-card-head .status-pill {
+    margin-left: 0;
+  }
+
+  .install-track {
+    padding: 24px;
+  }
+
+  .release-note-card {
+    padding: 24px;
+  }
+
+  .privacy-block {
+    padding: 28px 0;
+  }
+
+  .privacy-glance-card {
+    padding: 24px;
+  }
+
+  .pillar {
+    padding: 24px;
+  }
+
+  .value {
+    padding: 24px;
+  }
+
+  .direction-card {
+    padding: 24px;
+  }
+
+  .control-point {
+    padding: 24px 0;
+  }
+
+  .product-facts,
+  .privacy-summary,
+  .about-facts {
+    max-width: none;
+  }
+
+  .footer-grid {
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    gap: 10px;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.5rem;
+  }
+
+  .hero-meta,
+  .page-meta {
+    row-gap: 4px;
+  }
+}
+
+@media (max-width: 390px) {
+  .container,
+  .header-inner {
+    padding-inline: 16px;
+  }
+
+  .header-inner {
+    gap: 12px;
+  }
+
+  .header-brand {
+    gap: 10px;
+  }
+
+  .brand-divider {
+    height: 18px;
+  }
+
+  .aion-logo-text {
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-title {
+    font-size: clamp(2.45rem, 13vw, 3.2rem);
+  }
+
+  .page-title {
+    font-size: clamp(2.15rem, 11vw, 3.1rem);
+  }
+
+  .btn {
+    font-size: 0.875rem;
+  }
+
+  .btn-lg {
+    padding-inline: 14px;
+    font-size: 0.875rem;
+  }
+
+  .workflow-tags .tag {
+    font-size: 0.6875rem;
+  }
+
+  .download-panel,
+  .final-cta-panel {
+    padding: 20px;
+  }
+
+  .contact-card {
+    padding: 18px;
+  }
+
+  .product-frame-media {
+    border-radius: 12px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+  }
+
+  .mobile-menu {
+    padding-top: 20px;
+  }
+}
