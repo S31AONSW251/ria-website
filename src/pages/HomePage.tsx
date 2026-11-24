@@ -32,8 +32,8 @@ export function HomePage() {
   return (
     <>
       <Seo
-        title="Personal intelligence, made personal"
-        description="RIA is a personal intelligence workspace for Windows. Conversation, memory, knowledge, and local tools in one calm desktop system. Built by AION."
+        title="AION — RIA | Private Intelligence for Everyone"
+        description="Discover RIA, the private, local-first intelligence system by AION. Built for persistent memory, intelligent automation, reasoning and personal computing."
       />
 
       <section className="hero" aria-labelledby="hero-title">

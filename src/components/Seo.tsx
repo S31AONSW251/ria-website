@@ -48,7 +48,7 @@ export function Seo({
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const fullTitle = `${title} — ${PRODUCT} by ${COMPANY}`
+    const fullTitle = title
     const url = `${SITE_URL}${pathname === '/' ? '/' : pathname}`
 
     document.title = fullTitle
