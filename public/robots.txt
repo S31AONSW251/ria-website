@@ -1,3 +1,5 @@
+# https://www.aiontec.co.in
+# Every public page is indexable. There are no private or tracked areas.
 User-agent: *
 Allow: /
 

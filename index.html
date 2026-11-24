@@ -3,44 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Brand assets: the official black rounded-square RIA mark, never redrawn -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#F7F7F5" />
     <meta name="color-scheme" content="light" />
-    <meta name="robots" content="index, follow" />
-
-    <meta name="description" content="Discover RIA, the private, local-first intelligence system by AION. Built for persistent memory, intelligent automation, reasoning and personal computing." />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="AION" />
-    <meta property="og:title" content="AION — RIA | Private Intelligence for Everyone" />
-    <meta property="og:description" content="Discover RIA, the private, local-first intelligence system by AION. Built for persistent memory, intelligent automation, reasoning and personal computing." />
-    <meta property="og:url" content="https://www.aiontec.co.in/" />
-    <meta
-      property="og:image"
-      content="https://www.aiontec.co.in/assets/ria/product/ria-workspace-og.png"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="The RIA Workspace on Windows showing conversation, memory, knowledge, and local runtime"
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AION — RIA | Private Intelligence for Everyone" />
-    <meta name="twitter:description" content="Discover RIA, the private, local-first intelligence system by AION. Built for persistent memory, intelligent automation, reasoning and personal computing." />
-    <meta
-      name="twitter:image"
-      content="https://www.aiontec.co.in/assets/ria/product/ria-workspace-og.png"
-    />
-
-    <link rel="canonical" href="https://www.aiontec.co.in/" />
+    <meta name="application-name" content="AION" />
+    <meta name="apple-mobile-web-app-title" content="AION" />
+    <meta name="author" content="AION" />
+    <meta name="format-detection" content="telephone=no" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,35 +27,70 @@
       rel="stylesheet"
     />
 
-    <title>AION — RIA | Private Intelligence for Everyone</title>
+    <!-- seo:start -->
+    <title>AION — Advancing the Future of Personal Intelligence</title>
+    <meta
+      name="description"
+      content="Discover RIA by AION, a private intelligence system designed for persistent memory, intelligent automation, advanced reasoning and personal computing."
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <link rel="canonical" href="https://www.aiontec.co.in/" />
 
-    <script type="application/ld+json">
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AION" />
+    <meta property="og:locale" content="en" />
+    <meta
+      property="og:title"
+      content="AION — Advancing the Future of Personal Intelligence"
+    />
+    <meta
+      property="og:description"
+      content="Discover RIA by AION, a private intelligence system designed for persistent memory, intelligent automation, advanced reasoning and personal computing."
+    />
+    <meta property="og:url" content="https://www.aiontec.co.in/" />
+    <meta
+      property="og:image"
+      content="https://www.aiontec.co.in/assets/brand/og/aion-home.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta
+      property="og:image:alt"
+      content="AION presents RIA — a personal intelligence workspace shown on a Windows desktop, with the AION and RIA logos"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="AION — Advancing the Future of Personal Intelligence"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover RIA by AION, a private intelligence system designed for persistent memory, intelligent automation, advanced reasoning and personal computing."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.aiontec.co.in/assets/brand/og/aion-home.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="AION presents RIA — a personal intelligence workspace shown on a Windows desktop, with the AION and RIA logos"
+    />
+
+    <script type="application/ld+json" id="aion-structured-data">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "RIA",
-        "applicationCategory": "ProductivityApplication",
-        "operatingSystem": "Windows 10, Windows 11",
-        "softwareVersion": "0.0.2",
-        "description": "RIA is a personal intelligence workspace for Windows featuring conversation, persistent memory, knowledge sources, creative tools, and an optional local runtime.",
+        "@type": "Organization",
+        "name": "AION",
         "url": "https://www.aiontec.co.in/",
-        "image": "https://www.aiontec.co.in/assets/ria/product/ria-workspace-og.png",
-        "author": {
-          "@type": "Organization",
-          "name": "AION",
-          "url": "https://www.aiontec.co.in/",
-          "founder": {
-            "@type": "Person",
-            "name": "Sudeep Bala"
-          },
-          "foundingDate": "2026",
-          "foundingLocation": {
-            "@type": "Country",
-            "name": "India"
-          }
-        }
+        "logo": "https://www.aiontec.co.in/assets/brand/aion-logo-512.png"
       }
     </script>
+    <!-- seo:end -->
   </head>
   <body>
     <div id="root"></div>

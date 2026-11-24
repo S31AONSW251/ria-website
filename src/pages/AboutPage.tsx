@@ -65,10 +65,7 @@ const DIRECTION = [
 export function AboutPage() {
   return (
     <>
-      <Seo
-        title="About AION"
-        description={`${COMPANY} is an independent software company building ${PRODUCT}, a personal intelligence workspace for Windows. Learn about the company, its mission, and its founder.`}
-      />
+      <Seo />
 
       <PageHero
         eyebrow={`About ${COMPANY}`}

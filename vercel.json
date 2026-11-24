@@ -1,8 +1,74 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(favicon\\.ico|favicon\\.svg|favicon-.*\\.png|apple-touch-icon\\.png|android-chrome-.*\\.png|site\\.webmanifest)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        }
+      ]
     }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/(.*)\\.html", "destination": "/$1", "permanent": true },
+    { "source": "/ria", "destination": "/product", "permanent": true },
+    { "source": "/ria/", "destination": "/product", "permanent": true },
+    { "source": "/ria-personal", "destination": "/features", "permanent": true },
+    { "source": "/ria-personal/", "destination": "/features", "permanent": true },
+    {
+      "source": "/security-privacy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/security-privacy/",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    { "source": "/aion", "destination": "/about", "permanent": true },
+    { "source": "/aion/", "destination": "/about", "permanent": true },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "aiontec.co.in" }],
+      "destination": "https://www.aiontec.co.in/$1",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/product", "destination": "/product/index.html" },
+    { "source": "/features", "destination": "/features/index.html" },
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/download", "destination": "/download/index.html" },
+    { "source": "/about", "destination": "/about/index.html" }
   ]
 }

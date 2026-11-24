@@ -445,15 +445,11 @@ export function RobotAssistantSection() {
           </div>
           <div className="robot-visual">
             <Reveal delay={0.06}>
-              <figure className="robot-frame">
-                <ProductFrame
-                  image={PRODUCT_IMAGES.robotAssistant}
-                  sizes="(max-width: 767px) 100vw, 880px"
-                  caption="RIA assistant — part of the desktop workspace"
-                  label="Actual product element"
-                  priority
-                />
-              </figure>
+              <ProductFrame
+                image={PRODUCT_IMAGES.robotAssistant}
+                className="robot-frame"
+                sizes="(max-width: 960px) 80vw, 460px"
+              />
             </Reveal>
           </div>
         </div>

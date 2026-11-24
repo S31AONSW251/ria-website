@@ -40,10 +40,7 @@ const WORKSPACE_AREAS = [
 export function ProductPage() {
   return (
     <>
-      <Seo
-        title="Product"
-        description="RIA is a personal intelligence workspace for Windows: conversation, memory, knowledge, goals, creative tools, and an optional local runtime. Built by AION."
-      />
+      <Seo />
 
       <PageHero
         eyebrow="The product"

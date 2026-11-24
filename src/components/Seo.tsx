@@ -1,25 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
-import { COMPANY, PRODUCT, SITE_URL } from '../lib/site'
+import { getPageMeta } from '../lib/seo'
 
-const OG_IMAGE = `${SITE_URL}/assets/ria/product/ria-workspace-og.png`
-
-function setMeta(
-  selector: string,
-  attr: 'name' | 'property',
-  value: string,
-) {
+function setMeta(attr: 'name' | 'property', key: string, value: string) {
   let element = document.head.querySelector(
-    `meta[${attr}="${selector}"]`,
+    `meta[${attr}="${key}"]`,
   ) as HTMLMetaElement | null
 
   if (!element) {
     element = document.createElement('meta')
-    element.setAttribute(attr, selector)
+    element.setAttribute(attr, key)
     document.head.appendChild(element)
   }
 
-  element.content = value
+  element.setAttribute('content', value)
 }
 
 function setLink(rel: string, href: string) {
@@ -36,42 +30,45 @@ function setLink(rel: string, href: string) {
   element.href = href
 }
 
-export function Seo({
-  title,
-  description,
-  noIndex = false,
-}: {
-  title: string
-  description: string
-  noIndex?: boolean
-}) {
+function setJsonLd(data: Record<string, unknown>) {
+  const id = 'aion-structured-data'
+  let element = document.getElementById(id) as HTMLScriptElement | null
+
+  if (!element) {
+    element = document.createElement('script')
+    element.id = id
+    element.type = 'application/ld+json'
+    document.head.appendChild(element)
+  }
+
+  element.textContent = JSON.stringify(data)
+}
+
+/**
+ * Keeps document metadata in sync after client-side navigation. The same values
+ * are written into each static HTML file at build time by scripts/prerender.mjs,
+ * so crawlers see them without running JavaScript.
+ */
+export function Seo() {
   const { pathname } = useLocation()
+  const meta = useMemo(() => getPageMeta(pathname), [pathname])
 
   useEffect(() => {
-    const fullTitle = title
-    const url = `${SITE_URL}${pathname === '/' ? '/' : pathname}`
+    document.title = meta.title
 
-    document.title = fullTitle
+    setMeta('name', 'description', meta.description)
+    setMeta('name', 'robots', meta.robots)
+    setLink('canonical', meta.canonical)
 
-    setMeta('description', 'name', description)
-    setMeta('robots', 'name', noIndex ? 'noindex, nofollow' : 'index, follow')
+    for (const [key, value] of Object.entries(meta.og)) {
+      setMeta('property', `og:${key}`, value)
+    }
+    for (const [key, value] of Object.entries(meta.twitter)) {
+      setMeta('name', `twitter:${key}`, value)
+    }
 
-    setMeta('og:type', 'property', 'website')
-    setMeta('og:site_name', 'property', COMPANY)
-    setMeta('og:title', 'property', fullTitle)
-    setMeta('og:description', 'property', description)
-    setMeta('og:url', 'property', url)
-    setMeta('og:image', 'property', OG_IMAGE)
-    setMeta('og:image:width', 'property', '1200')
-    setMeta('og:image:height', 'property', '630')
-
-    setMeta('twitter:card', 'name', 'summary_large_image')
-    setMeta('twitter:title', 'name', fullTitle)
-    setMeta('twitter:description', 'name', description)
-    setMeta('twitter:image', 'name', OG_IMAGE)
-
-    setLink('canonical', url)
-  }, [title, description, noIndex, pathname])
+    setJsonLd(meta.jsonLd)
+  }, [meta])
 
   return null
 }

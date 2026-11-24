@@ -1,0 +1,100 @@
+{
+  "site": {
+    "name": "AION",
+    "alternateName": "AION — RIA",
+    "url": "https://www.aiontec.co.in",
+    "locale": "en",
+    "language": "en",
+    "product": "RIA",
+    "company": "AION",
+    "founded": "2026",
+    "founder": "Sudeep Bala",
+    "email": "balasudeep22@gmail.com",
+    "country": "India",
+    "themeColor": "#F7F7F5",
+    "organizationLogo": "/assets/brand/aion-logo-512.png",
+    "productLogo": "/assets/brand/ria-logo-512.png",
+    "softwareVersion": "0.0.2",
+    "softwareDescription": "RIA is a personal intelligence workspace for Windows featuring conversation, persistent memory, knowledge sources, goals, creative tools and an optional local runtime."
+  },
+  "pages": [
+    {
+      "path": "/",
+      "name": "Home",
+      "title": "AION — Advancing the Future of Personal Intelligence",
+      "description": "Discover RIA by AION, a private intelligence system designed for persistent memory, intelligent automation, advanced reasoning and personal computing.",
+      "ogImage": "/assets/brand/og/aion-home.png",
+      "ogImageAlt": "AION presents RIA — a personal intelligence workspace shown on a Windows desktop, with the AION and RIA logos",
+      "priority": "1.0",
+      "changeFrequency": "weekly",
+      "indexable": true,
+      "includeProduct": true,
+      "breadcrumb": null
+    },
+    {
+      "path": "/product",
+      "name": "Product",
+      "title": "RIA — Private Personal Intelligence | AION",
+      "description": "RIA is a personal intelligence workspace for Windows: conversation, persistent memory, knowledge sources, goals, creative tools and an optional local runtime.",
+      "ogImage": "/assets/brand/og/ria-product.png",
+      "ogImageAlt": "The RIA desktop workspace on Windows showing conversation, memory, knowledge and local runtime panels",
+      "priority": "0.9",
+      "changeFrequency": "monthly",
+      "indexable": true,
+      "includeProduct": true,
+      "breadcrumb": "Product"
+    },
+    {
+      "path": "/features",
+      "name": "Features",
+      "title": "RIA Features — Intelligence Designed Around You",
+      "description": "Explore RIA's capabilities: a unified workspace, contextual conversation, visible memory, knowledge sources, goals, creative tools and a local runtime.",
+      "ogImage": "/assets/brand/og/ria-features.png",
+      "ogImageAlt": "RIA features overview with the RIA workspace and branding",
+      "priority": "0.9",
+      "changeFrequency": "monthly",
+      "indexable": true,
+      "includeProduct": true,
+      "breadcrumb": "Features"
+    },
+    {
+      "path": "/privacy",
+      "name": "Privacy & data",
+      "title": "Privacy & Security | AION",
+      "description": "How RIA handles your data: local-first storage, explicit cloud features, memory and permission controls, and the online dependencies you choose to connect.",
+      "ogImage": "/assets/brand/og/ria-privacy.png",
+      "ogImageAlt": "RIA privacy overview — local-first by design, with the official RIA logo",
+      "priority": "0.8",
+      "changeFrequency": "monthly",
+      "indexable": true,
+      "includeProduct": false,
+      "breadcrumb": "Privacy"
+    },
+    {
+      "path": "/download",
+      "name": "Download",
+      "title": "Download RIA | AION",
+      "description": "Get RIA for Windows: release status, system requirements, installation guidance and release notes for the RIA desktop application from AION.",
+      "ogImage": "/assets/brand/og/ria-download.png",
+      "ogImageAlt": "Download RIA for Windows — release information and system requirements",
+      "priority": "0.9",
+      "changeFrequency": "weekly",
+      "indexable": true,
+      "includeProduct": true,
+      "breadcrumb": "Download"
+    },
+    {
+      "path": "/about",
+      "name": "About AION",
+      "title": "About AION — Building Personal Intelligence",
+      "description": "AION is an independent software company in India building RIA, a personal intelligence workspace for Windows. Read the vision, principles and founder story.",
+      "ogImage": "/assets/brand/og/aion-about.png",
+      "ogImageAlt": "The AION company mark on a dark panel — an independent software company building personal intelligence",
+      "priority": "0.7",
+      "changeFrequency": "monthly",
+      "indexable": true,
+      "includeProduct": false,
+      "breadcrumb": "About"
+    }
+  ]
+}

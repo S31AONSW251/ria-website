@@ -94,15 +94,24 @@ export function DownloadPage() {
 
   return (
     <>
-      <Seo
-        title="Download"
-        description={`Download RIA ${RELEASE.version} for Windows. Release status, system requirements, installation guidance, release notes, and troubleshooting from AION.`}
-      />
+      <Seo />
 
       <PageHero
         eyebrow="Download RIA"
         title={
           <>
+            <svg
+              width="34"
+              height="34"
+              viewBox="0 0 88 88"
+              aria-hidden="true"
+              style={{ marginBottom: '12px', display: 'block' }}
+            >
+              <path
+                fill="#0078D4"
+                d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.686zm4.326-39.025L87.314 0v41.524l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.067-34.737z"
+              />
+            </svg>
             RIA for
             <br />
             Windows.

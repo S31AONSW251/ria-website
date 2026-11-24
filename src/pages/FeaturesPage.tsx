@@ -25,10 +25,7 @@ const IMAGE_MAP = {
 export function FeaturesPage() {
   return (
     <>
-      <Seo
-        title="Features"
-        description="Explore RIA's features: a unified workspace, persistent memory, knowledge sources, conversation, goals, creative tools, and an optional local runtime. Built by AION."
-      />
+      <Seo />
 
       <PageHero
         eyebrow="Features"

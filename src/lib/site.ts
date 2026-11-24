@@ -74,11 +74,12 @@ export const PRODUCT_IMAGES = {
     alt: 'RIA desktop workspace showing conversation, memory, knowledge, local runtime, GPU monitoring, and product navigation',
   },
   robotAssistant: {
-    src: '/assets/ria/product/Screenshot%202026-11-21%20130410.png',
-    srcSet: '/assets/ria/product/Screenshot%202026-11-21%20130410.png 1000w',
-    width: 1000,
-    height: 800,
-    alt: 'RIA robot assistant — white and silver robotic figure with dark display face and cyan illuminated eyes',
+    src: '/assets/ria/product/ria-robot-assistant-560.jpg',
+    srcSet:
+      '/assets/ria/product/ria-robot-assistant-560.jpg 560w, /assets/ria/product/ria-robot-assistant-900.jpg 900w, /assets/ria/product/ria-robot-assistant.png 1150w',
+    width: 1150,
+    height: 1367,
+    alt: 'RIA robot assistant — white and silver robotic figure with a dark display face, cyan illuminated eyes, and a RIA Ready status pill',
   },
 } as const
 

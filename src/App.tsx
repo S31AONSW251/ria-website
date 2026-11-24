@@ -1,6 +1,8 @@
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
+import { ErrorBoundary, PageFallback } from './components/ErrorBoundary'
 import { Footer, Header, ScrollToTop, SkipLink } from './components/Layout'
+import { Seo } from './components/Seo'
 import { Eyebrow } from './components/ui'
 import { HomePage } from './pages/HomePage'
 import { ProductPage } from './pages/ProductPage'
@@ -12,6 +14,7 @@ import { AboutPage } from './pages/AboutPage'
 function NotFoundPage() {
   return (
     <section className="page-hero not-found">
+      <Seo />
       <div className="container">
         <Eyebrow>404</Eyebrow>
         <h1 className="page-title">This page isn&rsquo;t here.</h1>
@@ -41,22 +44,24 @@ export default function App() {
       <SkipLink />
       <Header />
       <main id="main" tabIndex={-1} className="page-shell" key={pathname}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product" element={<ProductPage />} />
-          <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/download" element={<DownloadPage />} />
-          <Route path="/about" element={<AboutPage />} />
+        <ErrorBoundary label="Page" fallback={<PageFallback />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product" element={<ProductPage />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/download" element={<DownloadPage />} />
+            <Route path="/about" element={<AboutPage />} />
 
-          {/* Legacy routes from the previous site structure */}
-          <Route path="/ria" element={<Navigate to="/" replace />} />
-          <Route path="/ria-personal" element={<Navigate to="/features" replace />} />
-          <Route path="/security-privacy" element={<Navigate to="/privacy" replace />} />
-          <Route path="/aion" element={<Navigate to="/about" replace />} />
+            {/* Legacy routes from the previous site structure */}
+            <Route path="/ria" element={<Navigate to="/product" replace />} />
+            <Route path="/ria-personal" element={<Navigate to="/features" replace />} />
+            <Route path="/security-privacy" element={<Navigate to="/privacy" replace />} />
+            <Route path="/aion" element={<Navigate to="/about" replace />} />
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
       <Footer />
       <Analytics />

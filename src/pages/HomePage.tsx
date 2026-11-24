@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Download, X } from 'lucide-react'
+import { SectionBoundary } from '../components/ErrorBoundary'
 import { Seo } from '../components/Seo'
 import {
   CompanySection,
@@ -31,10 +32,7 @@ export function HomePage() {
 
   return (
     <>
-      <Seo
-        title="AION — RIA | Private Intelligence for Everyone"
-        description="Discover RIA, the private, local-first intelligence system by AION. Built for persistent memory, intelligent automation, reasoning and personal computing."
-      />
+      <Seo />
 
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-bg" aria-hidden="true" />
@@ -135,14 +133,30 @@ export function HomePage() {
         </div>
       </section>
 
-      <WorkflowSection />
-      <MemorySection />
-      <ControlSection />
-      <GallerySection />
-      <RobotAssistantSection />
-      <DownloadSection />
-      <CompanySection />
-      <FinalCta />
+      <SectionBoundary label="Workflow">
+        <WorkflowSection />
+      </SectionBoundary>
+      <SectionBoundary label="Memory">
+        <MemorySection />
+      </SectionBoundary>
+      <SectionBoundary label="Control">
+        <ControlSection />
+      </SectionBoundary>
+      <SectionBoundary label="Gallery">
+        <GallerySection />
+      </SectionBoundary>
+      <SectionBoundary label="Robot assistant">
+        <RobotAssistantSection />
+      </SectionBoundary>
+      <SectionBoundary label="Download">
+        <DownloadSection />
+      </SectionBoundary>
+      <SectionBoundary label="Company">
+        <CompanySection />
+      </SectionBoundary>
+      <SectionBoundary label="Final call to action">
+        <FinalCta />
+      </SectionBoundary>
 
       {robotDismissed ? null : (
         <div className="robot-float" id="robot-float">

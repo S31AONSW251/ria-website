@@ -34,10 +34,7 @@ const ICONS = [
 export function PrivacyPage() {
   return (
     <>
-      <Seo
-        title="Privacy & data"
-        description="How RIA handles data: local storage, explicit cloud features, memory controls, permissions, and online dependencies. A clear, plain-language account from AION."
-      />
+      <Seo />
 
       <PageHero
         eyebrow="Privacy & data"
