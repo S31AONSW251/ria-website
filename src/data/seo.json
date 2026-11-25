@@ -21,8 +21,8 @@
     {
       "path": "/",
       "name": "Home",
-      "title": "AION — Advancing the Future of Personal Intelligence",
-      "description": "Discover RIA by AION, a private intelligence system designed for persistent memory, intelligent automation, advanced reasoning and personal computing.",
+      "title": "AION — RIA Private Intelligence",
+      "description": "Discover RIA by AION. A private, local-first AI system designed for intelligent assistance, persistent memory, autonomous workflows, and personal computing.",
       "ogImage": "/assets/brand/og/aion-home.png",
       "ogImageAlt": "AION presents RIA — a personal intelligence workspace shown on a Windows desktop, with the AION and RIA logos",
       "priority": "1.0",

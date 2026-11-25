@@ -154,7 +154,7 @@ export function buildJsonLd(dataset, page) {
       name: site.company,
       alternateName: site.alternateName,
       url: `${base}/`,
-      slogan: 'Advancing the future of personal intelligence.',
+      slogan: 'Private intelligence, built around you.',
       description:
         'AION is an independent software company building RIA, a personal intelligence workspace for Windows.',
       email: site.email,
@@ -179,7 +179,7 @@ export function buildJsonLd(dataset, page) {
       name: site.name,
       alternateName: site.alternateName,
       description:
-        'The official home of AION and RIA — a private intelligence system for persistent memory, intelligent automation, advanced reasoning and personal computing.',
+        'The official home of AION and RIA — a private, local-first intelligence system for Windows.',
       publisher: { '@id': orgId },
       inLanguage: site.language,
     },

@@ -5,6 +5,7 @@ import {
   Check,
   ChevronDown,
   Download,
+  Github,
 } from 'lucide-react'
 import { Seo } from '../components/Seo'
 import {
@@ -200,6 +201,15 @@ export function DownloadPage() {
           >
             Read the release guide
           </a>
+          <a
+            href="https://github.com/S31AONSW251/RIA"
+            className="btn btn-secondary btn-lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github size={16} aria-hidden="true" />
+            Download RIA 0.0.1 from Git
+          </a>
         </div>
 
         <p className="download-hero-note">
@@ -319,6 +329,15 @@ export function DownloadPage() {
                     </li>
                   ))}
                 </ol>
+                <a
+                href="https://github.com/S31AONSW251/RIA"
+                  className="btn btn-secondary btn-lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github size={16} aria-hidden="true" />
+                  Download RIA from Git
+                </a>
                 <a
                   href="/downloads/ria-release-guide.md"
                   className="text-link"
